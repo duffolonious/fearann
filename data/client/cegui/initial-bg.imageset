@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Imageset Name="InitialBG" Imagefile="InitialBG.png" NativeHorzRes="512" NativeVertRes="384" AutoScaled="true">
+	<Image Name="InitialBG" XPos="0" YPos="0" Width="512" Height="384" />
+</Imageset>

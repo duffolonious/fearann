@@ -1,0 +1,48 @@
+<!-- basic info on each class type -->
+
+<classes>
+	<fighter key="level">
+		<row	level="1"
+				attack="1"
+				fort="2"
+				ref="0"
+				will="0" />
+		<row	level="1"
+				attack="2"
+				fort="3"
+				ref="0"
+				will="0" />
+	</fighter>
+	<wizard key="level">
+		<row	level="1"
+				attack="0"
+				fort="0"
+				ref="0"
+				will="2"
+				spell_level0="3"
+				spell_level1="1" />
+		<row	level="2"
+				attack="1"
+				fort="0"
+				ref="0"
+				will="3"
+				spell_level0="4"
+				spell_level1="2" />
+	</wizard>
+	<sorcerer key="level">
+		<row	level="1"
+				attack="0"
+				fort="0"
+				ref="0"
+				will="2"
+				spell_level0="5"
+				spell_level1="3" />
+		<row	level="2"
+				attack="1"
+				fort="0"
+				ref="0"
+				will="3"
+				spell_level0="6"
+				spell_level1="4" />
+	</sorcerer>
+</classes>

@@ -1,0 +1,522 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ActionId	entity/srventitybase.h	/^	enum ActionId { ENTITY_CREATE = 1, ENTITY_DESTROY };$/;"	g	class:SrvEntityBaseObserverEvent
+ENTITY_CREATE	entity/srventitybase.h	/^	enum ActionId { ENTITY_CREATE = 1, ENTITY_DESTROY };$/;"	e	enum:SrvEntityBaseObserverEvent::ActionId
+ENTITY_DESTROY	entity/srventitybase.h	/^	enum ActionId { ENTITY_CREATE = 1, ENTITY_DESTROY };$/;"	e	enum:SrvEntityBaseObserverEvent::ActionId
+GETCWD_LENGTH	content/srvcontentmgr.cpp	/^const unsigned int GETCWD_LENGTH = 1024;$/;"	v
+INSTANCE	action/srvcombatmgr.cpp	/^template <> SrvCombatMgr* Singleton<SrvCombatMgr>::INSTANCE = 0;$/;"	m	class:Singleton	file:
+INSTANCE	action/srvtrademgr.cpp	/^template <> SrvTradeMgr* Singleton<SrvTradeMgr>::INSTANCE = 0;$/;"	m	class:Singleton	file:
+INSTANCE	console/srvcommand.cpp	/^template <> SrvCommandMgr* Singleton<SrvCommandMgr>::INSTANCE = 0;$/;"	m	class:Singleton	file:
+INSTANCE	console/srvconsolemgr.cpp	/^template <> SrvConsoleMgr* Singleton<SrvConsoleMgr>::INSTANCE = 0;$/;"	m	class:Singleton	file:
+INSTANCE	content/srvcontentmgr.cpp	/^template <> SrvContentMgr* Singleton<SrvContentMgr>::INSTANCE = 0;$/;"	m	class:Singleton	file:
+INSTANCE	db/srvdbmgr.cpp	/^template <> SrvDBMgr* Singleton<SrvDBMgr>::INSTANCE = 0;$/;"	m	class:Singleton	file:
+INSTANCE	login/srvloginmgr.cpp	/^template <> SrvLoginMgr* Singleton<SrvLoginMgr>::INSTANCE = 0;$/;"	m	class:Singleton	file:
+INSTANCE	net/srvnetworkmgr.cpp	/^template <> SrvNetworkMgr* Singleton<SrvNetworkMgr>::INSTANCE = 0;$/;"	m	class:Singleton	file:
+INSTANCE	srvmain.cpp	/^template <> SrvMain* Singleton<SrvMain>::INSTANCE = 0;$/;"	m	class:Singleton	file:
+INSTANCE	world/srvworldmgr.cpp	/^template <> SrvWorldMgr* Singleton<SrvWorldMgr>::INSTANCE = 0;$/;"	m	class:Singleton	file:
+INSTANCE	world/srvworldtimemgr.cpp	/^template <> SrvWorldTimeMgr* Singleton<SrvWorldTimeMgr>::INSTANCE = 0;$/;"	m	class:Singleton	file:
+LoginData	login/srvloginmgr.cpp	/^LoginData::LoginData(Netlink* n) :$/;"	f	class:LoginData
+LoginData	login/srvloginmgr.h	/^class LoginData$/;"	c
+MAX_BYTES_IN_SEND_QUEUE	content/srvcontentmgr.cpp	/^const unsigned int MAX_BYTES_IN_SEND_QUEUE = 8*1024;$/;"	v
+MsgHdlChat	net/srvmsghdls.h	/^class MsgHdlChat : public MsgHdlBase$/;"	c
+MsgHdlCombat	net/srvmsghdls.h	/^class MsgHdlCombat : public MsgHdlBase$/;"	c
+MsgHdlCombatAction	net/srvmsghdls.h	/^class MsgHdlCombatAction : public MsgHdlBase$/;"	c
+MsgHdlCommand	net/srvmsghdls.h	/^class MsgHdlCommand : public MsgHdlBase$/;"	c
+MsgHdlConnect	net/srvmsghdls.h	/^class MsgHdlConnect : public MsgHdlBase$/;"	c
+MsgHdlContactAdd	net/srvmsghdls.h	/^class MsgHdlContactAdd : public MsgHdlBase$/;"	c
+MsgHdlContactDel	net/srvmsghdls.h	/^class MsgHdlContactDel : public MsgHdlBase$/;"	c
+MsgHdlContentQueryUpdate	net/srvmsghdls.h	/^class MsgHdlContentQueryUpdate : public MsgHdlBase$/;"	c
+MsgHdlDelChar	net/srvmsghdls.h	/^class MsgHdlDelChar : public MsgHdlBase$/;"	c
+MsgHdlEntityMove	net/srvmsghdls.h	/^class MsgHdlEntityMove : public MsgHdlBase$/;"	c
+MsgHdlInventoryDrop	net/srvmsghdls.h	/^class MsgHdlInventoryDrop : public MsgHdlBase$/;"	c
+MsgHdlInventoryGet	net/srvmsghdls.h	/^class MsgHdlInventoryGet : public MsgHdlBase$/;"	c
+MsgHdlJoin	net/srvmsghdls.h	/^class MsgHdlJoin : public MsgHdlBase$/;"	c
+MsgHdlLogin	net/srvmsghdls.h	/^class MsgHdlLogin : public MsgHdlBase$/;"	c
+MsgHdlNPCDialog	net/srvmsghdls.h	/^class MsgHdlNPCDialog : public MsgHdlBase$/;"	c
+MsgHdlNPCDialogReply	net/srvmsghdls.h	/^class MsgHdlNPCDialogReply : public MsgHdlBase$/;"	c
+MsgHdlNewChar	net/srvmsghdls.h	/^class MsgHdlNewChar : public MsgHdlBase$/;"	c
+MsgHdlNewUser	net/srvmsghdls.h	/^class MsgHdlNewUser : public MsgHdlBase$/;"	c
+MsgHdlTrade	net/srvmsghdls.h	/^class MsgHdlTrade : public MsgHdlBase$/;"	c
+PART_SIZE	content/srvcontentmgr.cpp	/^const unsigned int PART_SIZE = 1024;$/;"	v
+PICKUP_DISTANCE	world/srvworldmgr.cpp	/^const float PICKUP_DISTANCE = 10.0f;$/;"	v
+REGHDL	net/srvnetworkmgr.cpp	69;"	d	file:
+SERVER_CONFIG_FILE	srvmain.cpp	48;"	d	file:
+SignalHandler	srvmain.cpp	/^void SignalHandler(int sig)$/;"	f
+SrvCombatBattle	action/srvcombatmgr.cpp	/^SrvCombatBattle::SrvCombatBattle() :$/;"	f	class:SrvCombatBattle
+SrvCombatBattle	action/srvcombatmgr.h	/^class SrvCombatBattle$/;"	c
+SrvCombatMgr	action/srvcombatmgr.cpp	/^SrvCombatMgr::SrvCombatMgr() :$/;"	f	class:SrvCombatMgr
+SrvCombatMgr	action/srvcombatmgr.h	/^class SrvCombatMgr : public Singleton<SrvCombatMgr>$/;"	c
+SrvCommandChangeTime	console/srvcommand.cpp	/^	SrvCommandChangeTime() :$/;"	f	class:SrvCommandChangeTime
+SrvCommandChangeTime	console/srvcommand.cpp	/^class SrvCommandChangeTime : public Command$/;"	c	file:
+SrvCommandCombat	console/srvcommand.cpp	/^	SrvCommandCombat() :$/;"	f	class:SrvCommandCombat
+SrvCommandCombat	console/srvcommand.cpp	/^class SrvCommandCombat : public Command$/;"	c	file:
+SrvCommandLoadArea	console/srvcommand.cpp	/^	SrvCommandLoadArea() :$/;"	f	class:SrvCommandLoadArea
+SrvCommandLoadArea	console/srvcommand.cpp	/^class SrvCommandLoadArea : public Command$/;"	c	file:
+SrvCommandLoadCreatures	console/srvcommand.cpp	/^	SrvCommandLoadCreatures() :$/;"	f	class:SrvCommandLoadCreatures
+SrvCommandLoadCreatures	console/srvcommand.cpp	/^class SrvCommandLoadCreatures : public Command$/;"	c	file:
+SrvCommandLoadObjects	console/srvcommand.cpp	/^	SrvCommandLoadObjects() :$/;"	f	class:SrvCommandLoadObjects
+SrvCommandLoadObjects	console/srvcommand.cpp	/^class SrvCommandLoadObjects : public Command$/;"	c	file:
+SrvCommandLoadTable	console/srvcommand.cpp	/^	SrvCommandLoadTable() :$/;"	f	class:SrvCommandLoadTable
+SrvCommandLoadTable	console/srvcommand.cpp	/^class SrvCommandLoadTable : public Command$/;"	c	file:
+SrvCommandMgr	console/srvcommand.cpp	/^SrvCommandMgr::SrvCommandMgr()$/;"	f	class:SrvCommandMgr
+SrvCommandMgr	console/srvcommand.h	/^class SrvCommandMgr : public CommandMgr, public Singleton<SrvCommandMgr>$/;"	c
+SrvCommandQuit	console/srvcommand.cpp	/^	SrvCommandQuit() :$/;"	f	class:SrvCommandQuit
+SrvCommandQuit	console/srvcommand.cpp	/^class SrvCommandQuit : public Command$/;"	c	file:
+SrvCommandReloadContent	console/srvcommand.cpp	/^	SrvCommandReloadContent() :$/;"	f	class:SrvCommandReloadContent
+SrvCommandReloadContent	console/srvcommand.cpp	/^class SrvCommandReloadContent : public Command$/;"	c	file:
+SrvCommandSetLogLevel	console/srvcommand.cpp	/^	SrvCommandSetLogLevel() :$/;"	f	class:SrvCommandSetLogLevel
+SrvCommandSetLogLevel	console/srvcommand.cpp	/^class SrvCommandSetLogLevel : public Command$/;"	c	file:
+SrvCommandShowStats	console/srvcommand.cpp	/^	SrvCommandShowStats() :$/;"	f	class:SrvCommandShowStats
+SrvCommandShowStats	console/srvcommand.cpp	/^class SrvCommandShowStats : public Command$/;"	c	file:
+SrvCommandWho	console/srvcommand.cpp	/^	SrvCommandWho() :$/;"	f	class:SrvCommandWho
+SrvCommandWho	console/srvcommand.cpp	/^class SrvCommandWho : public Command$/;"	c	file:
+SrvConsoleMgr	console/srvconsolemgr.cpp	/^SrvConsoleMgr::SrvConsoleMgr()$/;"	f	class:SrvConsoleMgr
+SrvConsoleMgr	console/srvconsolemgr.h	/^class SrvConsoleMgr : public Singleton<SrvConsoleMgr>$/;"	c
+SrvContentFile	content/srvcontentmgr.cpp	/^SrvContentFile::SrvContentFile(uint32_t transferID,$/;"	f	class:SrvContentFile
+SrvContentFile	content/srvcontentmgr.h	/^class SrvContentFile$/;"	c
+SrvContentMgr	content/srvcontentmgr.cpp	/^SrvContentMgr::SrvContentMgr() :$/;"	f	class:SrvContentMgr
+SrvContentMgr	content/srvcontentmgr.h	/^class SrvContentMgr : public Singleton<SrvContentMgr>$/;"	c
+SrvContentTransfer	content/srvcontentmgr.cpp	/^SrvContentTransfer::SrvContentTransfer(LoginData* player) :$/;"	f	class:SrvContentTransfer
+SrvContentTransfer	content/srvcontentmgr.h	/^class SrvContentTransfer$/;"	c
+SrvDBConnectorBase	db/srvdbmgr.h	/^	SrvDBConnectorBase() { }$/;"	f	class:SrvDBConnectorBase
+SrvDBConnectorBase	db/srvdbmgr.h	/^class SrvDBConnectorBase$/;"	c
+SrvDBConnectorPostgresql	db/srvdbconnectorpostgresql.cpp	/^SrvDBConnectorPostgresql::SrvDBConnectorPostgresql() :$/;"	f	class:SrvDBConnectorPostgresql
+SrvDBConnectorPostgresql	db/srvdbconnectorpostgresql.h	/^class SrvDBConnectorPostgresql : public SrvDBConnectorBase$/;"	c
+SrvDBMgr	db/srvdbmgr.cpp	/^SrvDBMgr::SrvDBMgr() :$/;"	f	class:SrvDBMgr
+SrvDBMgr	db/srvdbmgr.h	/^class SrvDBMgr : public Singleton<SrvDBMgr>$/;"	c
+SrvDBPostgresqlResult	db/srvdbconnectorpostgresql.cpp	/^SrvDBPostgresqlResult::SrvDBPostgresqlResult(PGresult* result)$/;"	f	class:SrvDBPostgresqlResult
+SrvDBPostgresqlResult	db/srvdbconnectorpostgresql.h	/^class SrvDBPostgresqlResult : public SrvDBResult$/;"	c
+SrvDBQuery	db/srvdbmgr.cpp	/^SrvDBQuery::SrvDBQuery() :$/;"	f	class:SrvDBQuery
+SrvDBQuery	db/srvdbmgr.h	/^class SrvDBQuery$/;"	c
+SrvDBResult	db/srvdbmgr.h	/^class SrvDBResult$/;"	c
+SrvEntityBase	entity/srventitybase.cpp	/^SrvEntityBase::SrvEntityBase(const MsgEntityCreate& basic,$/;"	f	class:SrvEntityBase
+SrvEntityBase	entity/srventitybase.h	/^class SrvEntityBase : public SrvEntityBaseObservable$/;"	c
+SrvEntityBaseMovable	entity/srventitybase.cpp	/^SrvEntityBaseMovable::SrvEntityBaseMovable(const MsgEntityMove& mov) :$/;"	f	class:SrvEntityBaseMovable
+SrvEntityBaseMovable	entity/srventitybase.h	/^class SrvEntityBaseMovable$/;"	c
+SrvEntityBaseObservable	entity/srventitybase.cpp	/^SrvEntityBaseObservable::SrvEntityBaseObservable(const MsgEntityCreate& basic,$/;"	f	class:SrvEntityBaseObservable
+SrvEntityBaseObservable	entity/srventitybase.h	/^class SrvEntityBaseObservable : public SrvEntityBaseMovable, public Observable$/;"	c
+SrvEntityBaseObserverEvent	entity/srventitybase.h	/^	SrvEntityBaseObserverEvent(ActionId actionId, MsgBase& msg) :$/;"	f	class:SrvEntityBaseObserverEvent
+SrvEntityBaseObserverEvent	entity/srventitybase.h	/^class SrvEntityBaseObserverEvent : public ObserverEvent$/;"	c
+SrvEntityCreature	entity/srventitycreature.cpp	/^SrvEntityCreature::SrvEntityCreature(MsgEntityCreate& basic,$/;"	f	class:SrvEntityCreature
+SrvEntityCreature	entity/srventitycreature.h	/^class SrvEntityCreature : public SrvEntityBase$/;"	c
+SrvEntityObject	entity/srventityobject.cpp	/^SrvEntityObject::SrvEntityObject(const MsgEntityCreate& basic,$/;"	f	class:SrvEntityObject
+SrvEntityObject	entity/srventityobject.h	/^class SrvEntityObject : public SrvEntityBase$/;"	c
+SrvEntityPlayer	entity/srventityplayer.cpp	/^SrvEntityPlayer::SrvEntityPlayer(MsgEntityCreate& basic,$/;"	f	class:SrvEntityPlayer
+SrvEntityPlayer	entity/srventityplayer.h	/^class SrvEntityPlayer : public SrvEntityBase, public Observer$/;"	c
+SrvLoginError	login/srvloginmgr.cpp	/^	SrvLoginError(MsgUtils::Errors::Codes e, const std::string& msg) :$/;"	f	class:SrvLoginError	file:
+SrvLoginError	login/srvloginmgr.cpp	/^class SrvLoginError$/;"	c	file:
+SrvLoginMgr	login/srvloginmgr.cpp	/^SrvLoginMgr::SrvLoginMgr()$/;"	f	class:SrvLoginMgr
+SrvLoginMgr	login/srvloginmgr.h	/^class SrvLoginMgr : public Singleton<SrvLoginMgr>$/;"	c
+SrvMain	srvmain.cpp	/^SrvMain::SrvMain()$/;"	f	class:SrvMain
+SrvMain	srvmain.h	/^class SrvMain : public Singleton<SrvMain>$/;"	c
+SrvNetworkMgr	net/srvnetworkmgr.cpp	/^SrvNetworkMgr::SrvNetworkMgr() :$/;"	f	class:SrvNetworkMgr
+SrvNetworkMgr	net/srvnetworkmgr.h	/^class SrvNetworkMgr : public Singleton<SrvNetworkMgr>$/;"	c
+SrvPlayerInventory	entity/srventityplayer.h	/^	SrvPlayerInventory ():$/;"	f	class:SrvPlayerInventory
+SrvPlayerInventory	entity/srventityplayer.h	/^class SrvPlayerInventory$/;"	c
+SrvTradeMgr	action/srvtrademgr.cpp	/^SrvTradeMgr::SrvTradeMgr()$/;"	f	class:SrvTradeMgr
+SrvTradeMgr	action/srvtrademgr.h	/^class SrvTradeMgr : public Singleton<SrvTradeMgr>$/;"	c
+SrvTradeSession	action/srvtrademgr.h	/^	SrvTradeSession() {};$/;"	f	class:SrvTradeSession
+SrvTradeSession	action/srvtrademgr.h	/^class SrvTradeSession$/;"	c
+SrvWorldContactMgr	world/srvworldcontactmgr.h	/^class SrvWorldContactMgr$/;"	c
+SrvWorldMgr	world/srvworldmgr.cpp	/^SrvWorldMgr::SrvWorldMgr()$/;"	f	class:SrvWorldMgr
+SrvWorldMgr	world/srvworldmgr.h	/^class SrvWorldMgr : public Singleton<SrvWorldMgr>$/;"	c
+SrvWorldTimeMgr	world/srvworldtimemgr.cpp	/^SrvWorldTimeMgr::SrvWorldTimeMgr() :$/;"	f	class:SrvWorldTimeMgr
+SrvWorldTimeMgr	world/srvworldtimemgr.h	/^class SrvWorldTimeMgr : public Singleton<SrvWorldTimeMgr>$/;"	c
+__FEARANN_SERVER_ACTION_COMBAT_MGR_H__	action/srvcombatmgr.h	32;"	d
+__FEARANN_SERVER_COMMAND_H__	console/srvcommand.h	23;"	d
+__FEARANN_SERVER_CONSOLE_CONSOLEMGR_H__	console/srvconsolemgr.h	26;"	d
+__FEARANN_SERVER_CONTENT_MGR_H__	content/srvcontentmgr.h	20;"	d
+__FEARANN_SERVER_DB_CONNECTOR_POSTGRESQL_H__	db/srvdbconnectorpostgresql.h	20;"	d
+__FEARANN_SERVER_DB_MGR_H__	db/srvdbmgr.h	20;"	d
+__FEARANN_SERVER_ENTITY_BASE_H__	entity/srventitybase.h	20;"	d
+__FEARANN_SERVER_ENTITY_CREATURE_H__	entity/srventitycreature.h	21;"	d
+__FEARANN_SERVER_ENTITY_NPC_H__	entity/srventitynpc.h	20;"	d
+__FEARANN_SERVER_ENTITY_OBJECT_H__	entity/srventityobject.h	20;"	d
+__FEARANN_SERVER_ENTITY_PLAYER_H__	entity/srventityplayer.h	20;"	d
+__FEARANN_SERVER_H__	srvmain.h	20;"	d
+__FEARANN_SERVER_LOGIN_MGR_H__	login/srvloginmgr.h	29;"	d
+__FEARANN_SERVER_NET_MGR_H__	net/srvnetworkmgr.h	24;"	d
+__FEARANN_SERVER_NET_MSGHDLS_H__	net/srvmsghdls.h	29;"	d
+__FEARANN_SERVER_TRADE_TRADE_MGR_H__	action/srvtrademgr.h	20;"	d
+__FEARANN_SERVER_WORLD_CONTACT_MGR_H__	world/srvworldcontactmgr.h	20;"	d
+__FEARANN_SERVER_WORLD_MGR_H__	world/srvworldmgr.h	20;"	d
+__FEARANN_SERVER_WORLD_TIME_MGR_H__	world/srvworldtimemgr.h	20;"	d
+_actionId	entity/srventitybase.h	/^	const ActionId _actionId;$/;"	m	class:SrvEntityBaseObserverEvent
+_msg	entity/srventitybase.h	/^	MsgBase& _msg;$/;"	m	class:SrvEntityBaseObserverEvent
+acceptTrade	action/srvtrademgr.cpp	/^bool SrvTradeMgr::acceptTrade(MsgTrade* msg)$/;"	f	class:SrvTradeMgr
+addBattle	action/srvcombatmgr.cpp	/^void SrvCombatMgr::addBattle( MsgCombat* msg )$/;"	f	class:SrvCombatMgr
+addColumnWithValue	db/srvdbmgr.cpp	/^void SrvDBQuery::addColumnWithValue(const char* name, const char* value, bool escape)$/;"	f	class:SrvDBQuery
+addColumnWithValue	db/srvdbmgr.cpp	/^void SrvDBQuery::addColumnWithValue(const char* name, const string& value, bool escape)$/;"	f	class:SrvDBQuery
+addColumnWithoutValue	db/srvdbmgr.cpp	/^void SrvDBQuery::addColumnWithoutValue(const char* name)$/;"	f	class:SrvDBQuery
+addConnection	login/srvloginmgr.cpp	/^void SrvLoginMgr::addConnection(Netlink* netlink)$/;"	f	class:SrvLoginMgr
+addContact	world/srvworldcontactmgr.cpp	/^void SrvWorldContactMgr::addContact(const LoginData* player,$/;"	f	class:SrvWorldContactMgr
+addEntity	action/srvcombatmgr.cpp	/^void SrvCombatBattle::addEntity( SrvEntityPlayer* entity )$/;"	f	class:SrvCombatBattle
+addEntity	world/srvworldmgr.cpp	/^void SrvWorldMgr::addEntity(SrvEntityBase* entity)$/;"	f	class:SrvWorldMgr
+addFile	content/srvcontentmgr.cpp	/^void SrvContentTransfer::addFile(SrvContentFile* file)$/;"	f	class:SrvContentTransfer
+addItem	entity/srventityplayer.cpp	/^bool SrvPlayerInventory::addItem(InventoryItem& item)$/;"	f	class:SrvPlayerInventory
+addPlayer	world/srvworldmgr.cpp	/^void SrvWorldMgr::addPlayer(LoginData* loginData)$/;"	f	class:SrvWorldMgr
+addToInventory	entity/srventityplayer.cpp	/^bool SrvEntityPlayer::addToInventory(InventoryItem* item)$/;"	f	class:SrvEntityPlayer
+addToInventory	entity/srventityplayer.cpp	/^bool SrvEntityPlayer::addToInventory(SrvEntityObject* object)$/;"	f	class:SrvEntityPlayer
+addTrade	action/srvtrademgr.cpp	/^bool SrvTradeMgr::addTrade(MsgTrade* msg)$/;"	f	class:SrvTradeMgr
+battles	action/srvcombatmgr.h	/^	std::vector<SrvCombatBattle*> battles;$/;"	m	class:SrvCombatMgr
+changeObjectOwner	world/srvworldmgr.cpp	/^bool SrvWorldMgr::changeObjectOwner(EntityID entityID, const std::string& charname)$/;"	f	class:SrvWorldMgr
+changeTime	world/srvworldtimemgr.cpp	/^void SrvWorldTimeMgr::changeTime(int minutes)$/;"	f	class:SrvWorldTimeMgr
+charname	login/srvloginmgr.h	/^	std::string charname;$/;"	m	class:LoginData
+checkBattle	action/srvcombatmgr.cpp	/^bool SrvCombatBattle::checkBattle()$/;"	f	class:SrvCombatBattle
+cid	login/srvloginmgr.h	/^	std::string cid;$/;"	m	class:LoginData
+clearContentTree	content/srvcontentmgr.cpp	/^void SrvContentMgr::clearContentTree()$/;"	f	class:SrvContentMgr
+commitTrade	action/srvtrademgr.cpp	/^bool SrvTradeMgr::commitTrade(MsgTrade* msg)$/;"	f	class:SrvTradeMgr
+connectToDB	db/srvdbconnectorpostgresql.cpp	/^bool SrvDBConnectorPostgresql::connectToDB(const char* host,$/;"	f	class:SrvDBConnectorPostgresql
+createCharacter	login/srvloginmgr.cpp	/^void SrvLoginMgr::createCharacter(LoginData* loginData,$/;"	f	class:SrvLoginMgr
+createUser	login/srvloginmgr.cpp	/^void SrvLoginMgr::createUser(LoginData* loginData,$/;"	f	class:SrvLoginMgr
+deleteCharacter	login/srvloginmgr.cpp	/^void SrvLoginMgr::deleteCharacter(LoginData* loginData, string charname)$/;"	f	class:SrvLoginMgr
+disconnectPlayer	net/srvnetworkmgr.cpp	/^void SrvNetworkMgr::disconnectPlayer(Netlink& netlink)$/;"	f	class:SrvNetworkMgr
+downloadingContent	login/srvloginmgr.h	/^	bool downloadingContent;$/;"	m	class:LoginData
+dropObjectFromInventory	world/srvworldmgr.cpp	/^bool SrvWorldMgr::dropObjectFromInventory(EntityID entityID,$/;"	f	class:SrvWorldMgr
+entities	action/srvcombatmgr.h	/^	std::vector<SrvEntityPlayer*> entities;$/;"	m	class:SrvCombatBattle
+entity	login/srvloginmgr.h	/^	SrvEntityPlayer* entity;$/;"	m	class:LoginData
+errorCode	login/srvloginmgr.cpp	/^	int errorCode;$/;"	m	class:SrvLoginError	file:
+escape	db/srvdbmgr.cpp	/^string SrvDBMgr::escape(const std::string& in) const$/;"	f	class:SrvDBMgr
+escape	db/srvdbmgr.cpp	/^void SrvDBMgr::escape(std::string& out, const std::string& in) const$/;"	f	class:SrvDBMgr
+escapeData	db/srvdbconnectorpostgresql.cpp	/^void SrvDBConnectorPostgresql::escapeData(string& out, const char* data, size_t length) const$/;"	f	class:SrvDBConnectorPostgresql
+execute	console/srvcommand.cpp	/^	virtual void execute(vector<string>& args, CommandOutput& out) {$/;"	f	class:SrvCommandChangeTime
+execute	console/srvcommand.cpp	/^	virtual void execute(vector<string>& args, CommandOutput& out) {$/;"	f	class:SrvCommandCombat
+execute	console/srvcommand.cpp	/^	virtual void execute(vector<string>& args, CommandOutput& out) {$/;"	f	class:SrvCommandLoadArea
+execute	console/srvcommand.cpp	/^	virtual void execute(vector<string>& args, CommandOutput& out) {$/;"	f	class:SrvCommandLoadCreatures
+execute	console/srvcommand.cpp	/^	virtual void execute(vector<string>& args, CommandOutput& out) {$/;"	f	class:SrvCommandLoadObjects
+execute	console/srvcommand.cpp	/^	virtual void execute(vector<string>& args, CommandOutput& out) {$/;"	f	class:SrvCommandLoadTable
+execute	console/srvcommand.cpp	/^	virtual void execute(vector<string>& args, CommandOutput& out) {$/;"	f	class:SrvCommandQuit
+execute	console/srvcommand.cpp	/^	virtual void execute(vector<string>& args, CommandOutput& out) {$/;"	f	class:SrvCommandReloadContent
+execute	console/srvcommand.cpp	/^	virtual void execute(vector<string>& args, CommandOutput& out) {$/;"	f	class:SrvCommandSetLogLevel
+execute	console/srvcommand.cpp	/^	virtual void execute(vector<string>& args, CommandOutput& out) {$/;"	f	class:SrvCommandShowStats
+execute	console/srvcommand.cpp	/^	virtual void execute(vector<string>& args, CommandOutput& out) {$/;"	f	class:SrvCommandWho
+execute	db/srvdbmgr.cpp	/^bool SrvDBMgr::execute(const char* cmd) const$/;"	f	class:SrvDBMgr
+executeCommand	srvmain.cpp	/^void SrvMain::executeCommand(const std::string& cmd) const$/;"	f	class:SrvMain
+executeQuery	db/srvdbconnectorpostgresql.cpp	/^SrvDBResult* SrvDBConnectorPostgresql::executeQuery(const char* sqlcmd) const$/;"	f	class:SrvDBConnectorPostgresql
+filenameFilter	content/srvcontentmgr.cpp	/^bool SrvContentMgr::filenameFilter(const string& fileName)$/;"	f	class:SrvContentMgr
+finalize	action/srvcombatmgr.cpp	/^void SrvCombatMgr::finalize()$/;"	f	class:SrvCombatMgr
+finalize	action/srvtrademgr.cpp	/^void SrvTradeMgr::finalize()$/;"	f	class:SrvTradeMgr
+finalize	content/srvcontentmgr.cpp	/^void SrvContentMgr::finalize()$/;"	f	class:SrvContentMgr
+finalize	db/srvdbmgr.cpp	/^void SrvDBMgr::finalize()$/;"	f	class:SrvDBMgr
+finalize	login/srvloginmgr.cpp	/^void SrvLoginMgr::finalize()$/;"	f	class:SrvLoginMgr
+finalize	net/srvnetworkmgr.cpp	/^void SrvNetworkMgr::finalize()$/;"	f	class:SrvNetworkMgr
+finalize	world/srvworldmgr.cpp	/^void SrvWorldMgr::finalize()$/;"	f	class:SrvWorldMgr
+finalize	world/srvworldtimemgr.cpp	/^void SrvWorldTimeMgr::finalize()$/;"	f	class:SrvWorldTimeMgr
+findBattle	action/srvcombatmgr.cpp	/^SrvCombatBattle * SrvCombatMgr::findBattle( uint64_t entityID )$/;"	f	class:SrvCombatMgr
+findCreature	world/srvworldmgr.cpp	/^SrvEntityCreature* SrvWorldMgr::findCreature(EntityID entityID) const$/;"	f	class:SrvWorldMgr
+findEntity	action/srvcombatmgr.cpp	/^SrvEntityPlayer* SrvCombatBattle::findEntity( uint64_t id )$/;"	f	class:SrvCombatBattle
+findObject	world/srvworldmgr.cpp	/^SrvEntityObject* SrvWorldMgr::findObject(EntityID entityID) const$/;"	f	class:SrvWorldMgr
+findOtherPlayer	action/srvtrademgr.cpp	/^const char * SrvTradeSession::findOtherPlayer(const char * player_name)$/;"	f	class:SrvTradeSession
+findPlayer	action/srvcombatmgr.cpp	/^SrvEntityPlayer* SrvCombatBattle::findPlayer( uint64_t entityID )$/;"	f	class:SrvCombatBattle
+findPlayer	login/srvloginmgr.cpp	/^LoginData* SrvLoginMgr::findPlayer(EntityID id) const$/;"	f	class:SrvLoginMgr
+findPlayer	login/srvloginmgr.cpp	/^LoginData* SrvLoginMgr::findPlayer(const Netlink* netlink) const$/;"	f	class:SrvLoginMgr
+findPlayer	login/srvloginmgr.cpp	/^LoginData* SrvLoginMgr::findPlayer(const std::string& playerName) const$/;"	f	class:SrvLoginMgr
+findPlayer	world/srvworldmgr.cpp	/^SrvEntityPlayer* SrvWorldMgr::findPlayer(const LoginData* loginData) const$/;"	f	class:SrvWorldMgr
+findTrade	action/srvtrademgr.cpp	/^SrvTradeSession* SrvTradeMgr::findTrade(const char* player)$/;"	f	class:SrvTradeMgr
+getAllConnections	login/srvloginmgr.cpp	/^void SrvLoginMgr::getAllConnections(vector<LoginData*>& allConnections) const$/;"	f	class:SrvLoginMgr
+getAllConnectionsPlaying	login/srvloginmgr.cpp	/^void SrvLoginMgr::getAllConnectionsPlaying(vector<LoginData*>& allPlayers) const$/;"	f	class:SrvLoginMgr
+getArea	entity/srventitybase.cpp	/^const char* SrvEntityBaseMovable::getArea() const$/;"	f	class:SrvEntityBaseMovable
+getColumnName	db/srvdbconnectorpostgresql.cpp	/^const char* SrvDBPostgresqlResult::getColumnName(size_t column) const$/;"	f	class:SrvDBPostgresqlResult
+getColumnName	db/srvdbmgr.cpp	/^void SrvDBQuery::getColumnName(size_t column, string& name) const$/;"	f	class:SrvDBQuery
+getColumnValue	db/srvdbmgr.cpp	/^void SrvDBQuery::getColumnValue(const char* columnName, string& value) const$/;"	f	class:SrvDBQuery
+getColumnValue	db/srvdbmgr.cpp	/^void SrvDBQuery::getColumnValue(size_t column, string& value) const$/;"	f	class:SrvDBQuery
+getCount	entity/srventityplayer.cpp	/^size_t SrvPlayerInventory::getCount()$/;"	f	class:SrvPlayerInventory
+getDistanceToEntity	entity/srventitybase.cpp	/^float SrvEntityBaseMovable::getDistanceToEntity(const SrvEntityBaseMovable& other) const$/;"	f	class:SrvEntityBaseMovable
+getEntityClass	entity/srventitybase.cpp	/^const char* SrvEntityBase::getEntityClass() const$/;"	f	class:SrvEntityBase
+getFilename	content/srvcontentmgr.cpp	/^const char* SrvContentFile::getFilename() const$/;"	f	class:SrvContentFile
+getGameTime	world/srvworldtimemgr.cpp	/^uint32_t SrvWorldTimeMgr::getGameTime() const$/;"	f	class:SrvWorldTimeMgr
+getID	entity/srventitybase.cpp	/^EntityID SrvEntityBase::getID() const$/;"	f	class:SrvEntityBase
+getIP	login/srvloginmgr.cpp	/^const char* LoginData::getIP() const$/;"	f	class:LoginData
+getInventoryItem	entity/srventityplayer.cpp	/^InventoryItem* SrvEntityPlayer::getInventoryItem(uint32_t itemID)$/;"	f	class:SrvEntityPlayer
+getItem	entity/srventityplayer.cpp	/^InventoryItem* SrvPlayerInventory::getItem(uint32_t itemID)$/;"	f	class:SrvPlayerInventory
+getItemByIndex	entity/srventityplayer.cpp	/^InventoryItem* SrvPlayerInventory::getItemByIndex(size_t index)$/;"	f	class:SrvPlayerInventory
+getLoad	entity/srventityobject.cpp	/^float SrvEntityObject::getLoad() const$/;"	f	class:SrvEntityObject
+getLoginData	entity/srventityplayer.cpp	/^LoginData* SrvEntityPlayer::getLoginData()$/;"	f	class:SrvEntityPlayer
+getMeshFactory	entity/srventitybase.cpp	/^const char* SrvEntityBase::getMeshFactory() const$/;"	f	class:SrvEntityBase
+getMsgType	net/srvmsghdls.cpp	/^MsgType MsgHdlChat::getMsgType() const$/;"	f	class:MsgHdlChat
+getMsgType	net/srvmsghdls.cpp	/^MsgType MsgHdlCombat::getMsgType() const$/;"	f	class:MsgHdlCombat
+getMsgType	net/srvmsghdls.cpp	/^MsgType MsgHdlCombatAction::getMsgType() const$/;"	f	class:MsgHdlCombatAction
+getMsgType	net/srvmsghdls.cpp	/^MsgType MsgHdlCommand::getMsgType() const$/;"	f	class:MsgHdlCommand
+getMsgType	net/srvmsghdls.cpp	/^MsgType MsgHdlConnect::getMsgType() const$/;"	f	class:MsgHdlConnect
+getMsgType	net/srvmsghdls.cpp	/^MsgType MsgHdlContactAdd::getMsgType() const$/;"	f	class:MsgHdlContactAdd
+getMsgType	net/srvmsghdls.cpp	/^MsgType MsgHdlContactDel::getMsgType() const$/;"	f	class:MsgHdlContactDel
+getMsgType	net/srvmsghdls.cpp	/^MsgType MsgHdlContentQueryUpdate::getMsgType() const$/;"	f	class:MsgHdlContentQueryUpdate
+getMsgType	net/srvmsghdls.cpp	/^MsgType MsgHdlDelChar::getMsgType() const$/;"	f	class:MsgHdlDelChar
+getMsgType	net/srvmsghdls.cpp	/^MsgType MsgHdlEntityMove::getMsgType() const$/;"	f	class:MsgHdlEntityMove
+getMsgType	net/srvmsghdls.cpp	/^MsgType MsgHdlInventoryDrop::getMsgType() const$/;"	f	class:MsgHdlInventoryDrop
+getMsgType	net/srvmsghdls.cpp	/^MsgType MsgHdlInventoryGet::getMsgType() const$/;"	f	class:MsgHdlInventoryGet
+getMsgType	net/srvmsghdls.cpp	/^MsgType MsgHdlJoin::getMsgType() const$/;"	f	class:MsgHdlJoin
+getMsgType	net/srvmsghdls.cpp	/^MsgType MsgHdlLogin::getMsgType() const$/;"	f	class:MsgHdlLogin
+getMsgType	net/srvmsghdls.cpp	/^MsgType MsgHdlNPCDialog::getMsgType() const$/;"	f	class:MsgHdlNPCDialog
+getMsgType	net/srvmsghdls.cpp	/^MsgType MsgHdlNPCDialogReply::getMsgType() const$/;"	f	class:MsgHdlNPCDialogReply
+getMsgType	net/srvmsghdls.cpp	/^MsgType MsgHdlNewChar::getMsgType() const$/;"	f	class:MsgHdlNewChar
+getMsgType	net/srvmsghdls.cpp	/^MsgType MsgHdlNewUser::getMsgType() const$/;"	f	class:MsgHdlNewUser
+getMsgType	net/srvmsghdls.cpp	/^MsgType MsgHdlTrade::getMsgType() const$/;"	f	class:MsgHdlTrade
+getName	entity/srventitybase.cpp	/^const char* SrvEntityBase::getName() const$/;"	f	class:SrvEntityBase
+getNearbyPlayers	world/srvworldmgr.cpp	/^void SrvWorldMgr::getNearbyPlayers(const LoginData* player,$/;"	f	class:SrvWorldMgr
+getNetlink	login/srvloginmgr.cpp	/^Netlink* LoginData::getNetlink() const$/;"	f	class:LoginData
+getNewTransferID	content/srvcontentmgr.cpp	/^uint32_t SrvContentMgr::getNewTransferID()$/;"	f	class:SrvContentMgr
+getNumberOfAccounts	login/srvloginmgr.cpp	/^int SrvLoginMgr::getNumberOfAccounts() const$/;"	f	class:SrvLoginMgr
+getNumberOfAffectedRows	db/srvdbconnectorpostgresql.cpp	/^size_t SrvDBPostgresqlResult::getNumberOfAffectedRows() const$/;"	f	class:SrvDBPostgresqlResult
+getNumberOfCharacters	login/srvloginmgr.cpp	/^int SrvLoginMgr::getNumberOfCharacters() const$/;"	f	class:SrvLoginMgr
+getNumberOfColumns	db/srvdbconnectorpostgresql.cpp	/^size_t SrvDBPostgresqlResult::getNumberOfColumns() const$/;"	f	class:SrvDBPostgresqlResult
+getNumberOfColumns	db/srvdbmgr.cpp	/^size_t SrvDBQuery::getNumberOfColumns() const$/;"	f	class:SrvDBQuery
+getNumberOfConnections	login/srvloginmgr.cpp	/^size_t SrvLoginMgr::getNumberOfConnections() const$/;"	f	class:SrvLoginMgr
+getNumberOfConnectionsPlaying	login/srvloginmgr.cpp	/^size_t SrvLoginMgr::getNumberOfConnectionsPlaying() const$/;"	f	class:SrvLoginMgr
+getNumberOfFiles	content/srvcontentmgr.cpp	/^size_t SrvContentTransfer::getNumberOfFiles() const$/;"	f	class:SrvContentTransfer
+getNumberOfParts	content/srvcontentmgr.cpp	/^uint32_t SrvContentFile::getNumberOfParts() const$/;"	f	class:SrvContentFile
+getNumberOfRows	db/srvdbconnectorpostgresql.cpp	/^size_t SrvDBPostgresqlResult::getNumberOfRows() const$/;"	f	class:SrvDBPostgresqlResult
+getObjectToInventory	world/srvworldmgr.cpp	/^bool SrvWorldMgr::getObjectToInventory(EntityID entityID, const std::string& charname)$/;"	f	class:SrvWorldMgr
+getPermissionLevel	login/srvloginmgr.cpp	/^PermLevel::LEVEL LoginData::getPermissionLevel() const$/;"	f	class:LoginData
+getPlayer	content/srvcontentmgr.cpp	/^LoginData* SrvContentTransfer::getPlayer() const$/;"	f	class:SrvContentTransfer
+getPlayerEntity	login/srvloginmgr.cpp	/^SrvEntityPlayer* LoginData::getPlayerEntity() const$/;"	f	class:LoginData
+getPlayerID	login/srvloginmgr.cpp	/^const char* LoginData::getPlayerID() const$/;"	f	class:LoginData
+getPlayerInfo	entity/srventitycreature.cpp	/^PlayerInfo * SrvEntityCreature::getPlayerInfo()$/;"	f	class:SrvEntityCreature
+getPlayerInfo	entity/srventityplayer.cpp	/^PlayerInfo * SrvEntityPlayer::getPlayerInfo()$/;"	f	class:SrvEntityPlayer
+getPlayerName	login/srvloginmgr.cpp	/^const char* LoginData::getPlayerName() const$/;"	f	class:LoginData
+getPlayerNameList	login/srvloginmgr.cpp	/^void SrvLoginMgr::getPlayerNameList(list<string>& nameList) const$/;"	f	class:SrvLoginMgr
+getPosition	entity/srventitybase.cpp	/^void SrvEntityBaseMovable::getPosition(Vector3& position) const$/;"	f	class:SrvEntityBaseMovable
+getPositionWithRelativeOffset	entity/srventitybase.cpp	/^void SrvEntityBaseMovable::getPositionWithRelativeOffset(Vector3& position,$/;"	f	class:SrvEntityBaseMovable
+getResult	db/srvdbmgr.cpp	/^const SrvDBResult* SrvDBQuery::getResult() const$/;"	f	class:SrvDBQuery
+getSize	content/srvcontentmgr.cpp	/^size_t SrvContentFile::getSize() const$/;"	f	class:SrvContentFile
+getState	action/srvcombatmgr.h	/^	MsgCombat::BATTLE_STATE getState() { return mState; };$/;"	f	class:SrvCombatBattle
+getState	action/srvtrademgr.h	/^	MsgTrade::MESSAGE_TYPE getState( void ) { return state; };$/;"	f	class:SrvTradeSession
+getSubtype	entity/srventitybase.cpp	/^const char* SrvEntityBase::getSubtype() const$/;"	f	class:SrvEntityBase
+getTransferID	content/srvcontentmgr.cpp	/^uint32_t SrvContentFile::getTransferID() const$/;"	f	class:SrvContentFile
+getType	action/srvcombatmgr.h	/^	MsgCombat::BATTLE_TYPE getType() { return type; };$/;"	f	class:SrvCombatBattle
+getType	entity/srventitybase.cpp	/^const char* SrvEntityBase::getType() const$/;"	f	class:SrvEntityBase
+getUpdateKey	content/srvcontentmgr.cpp	/^const char* SrvContentFile::getUpdateKey() const$/;"	f	class:SrvContentFile
+getUptime	srvmain.cpp	/^std::string SrvMain::getUptime() const$/;"	f	class:SrvMain
+getUserName	login/srvloginmgr.cpp	/^const char* LoginData::getUserName() const$/;"	f	class:LoginData
+getValue	db/srvdbconnectorpostgresql.cpp	/^const char* SrvDBPostgresqlResult::getValue(size_t row, size_t column) const$/;"	f	class:SrvDBPostgresqlResult
+getValue	db/srvdbmgr.cpp	/^void SrvDBResult::getValue(size_t row, const char* columnName, float& value) const$/;"	f	class:SrvDBResult
+getValue	db/srvdbmgr.cpp	/^void SrvDBResult::getValue(size_t row, const char* columnName, int& value) const$/;"	f	class:SrvDBResult
+getValue	db/srvdbmgr.cpp	/^void SrvDBResult::getValue(size_t row, const char* columnName, string& value) const$/;"	f	class:SrvDBResult
+giveSelectedItem	action/srvtrademgr.cpp	/^void SrvTradeMgr::giveSelectedItem( SrvEntityPlayer* playerEntity,$/;"	f	class:SrvTradeMgr
+handleActionMsg	action/srvcombatmgr.cpp	/^bool SrvCombatMgr::handleActionMsg( MsgCombatAction* msg )$/;"	f	class:SrvCombatMgr
+handleMsg	action/srvcombatmgr.cpp	/^bool SrvCombatMgr::handleMsg( MsgCombat* msg )$/;"	f	class:SrvCombatMgr
+handleMsg	net/srvmsghdls.cpp	/^void MsgHdlChat::handleMsg(MsgBase& baseMsg, Netlink* netlink)$/;"	f	class:MsgHdlChat
+handleMsg	net/srvmsghdls.cpp	/^void MsgHdlCombat::handleMsg(MsgBase& baseMsg, Netlink* netlink)$/;"	f	class:MsgHdlCombat
+handleMsg	net/srvmsghdls.cpp	/^void MsgHdlCombatAction::handleMsg(MsgBase& baseMsg, Netlink* netlink)$/;"	f	class:MsgHdlCombatAction
+handleMsg	net/srvmsghdls.cpp	/^void MsgHdlCommand::handleMsg(MsgBase& baseMsg, Netlink* netlink)$/;"	f	class:MsgHdlCommand
+handleMsg	net/srvmsghdls.cpp	/^void MsgHdlConnect::handleMsg(MsgBase& baseMsg, Netlink* netlink)$/;"	f	class:MsgHdlConnect
+handleMsg	net/srvmsghdls.cpp	/^void MsgHdlContactAdd::handleMsg(MsgBase& baseMsg, Netlink* netlink)$/;"	f	class:MsgHdlContactAdd
+handleMsg	net/srvmsghdls.cpp	/^void MsgHdlContactDel::handleMsg(MsgBase& baseMsg, Netlink* netlink)$/;"	f	class:MsgHdlContactDel
+handleMsg	net/srvmsghdls.cpp	/^void MsgHdlContentQueryUpdate::handleMsg(MsgBase& baseMsg, Netlink* netlink)$/;"	f	class:MsgHdlContentQueryUpdate
+handleMsg	net/srvmsghdls.cpp	/^void MsgHdlDelChar::handleMsg(MsgBase& baseMsg, Netlink* netlink)$/;"	f	class:MsgHdlDelChar
+handleMsg	net/srvmsghdls.cpp	/^void MsgHdlEntityMove::handleMsg(MsgBase& baseMsg, Netlink* netlink)$/;"	f	class:MsgHdlEntityMove
+handleMsg	net/srvmsghdls.cpp	/^void MsgHdlInventoryDrop::handleMsg(MsgBase& baseMsg, Netlink* netlink)$/;"	f	class:MsgHdlInventoryDrop
+handleMsg	net/srvmsghdls.cpp	/^void MsgHdlInventoryGet::handleMsg(MsgBase& baseMsg, Netlink* netlink)$/;"	f	class:MsgHdlInventoryGet
+handleMsg	net/srvmsghdls.cpp	/^void MsgHdlJoin::handleMsg(MsgBase& baseMsg, Netlink* netlink)$/;"	f	class:MsgHdlJoin
+handleMsg	net/srvmsghdls.cpp	/^void MsgHdlLogin::handleMsg(MsgBase& baseMsg, Netlink* netlink)$/;"	f	class:MsgHdlLogin
+handleMsg	net/srvmsghdls.cpp	/^void MsgHdlNPCDialog::handleMsg(MsgBase& baseMsg, Netlink* netlink)$/;"	f	class:MsgHdlNPCDialog
+handleMsg	net/srvmsghdls.cpp	/^void MsgHdlNPCDialogReply::handleMsg(MsgBase& baseMsg, Netlink* netlink)$/;"	f	class:MsgHdlNPCDialogReply
+handleMsg	net/srvmsghdls.cpp	/^void MsgHdlNewChar::handleMsg(MsgBase& baseMsg, Netlink* netlink)$/;"	f	class:MsgHdlNewChar
+handleMsg	net/srvmsghdls.cpp	/^void MsgHdlNewUser::handleMsg(MsgBase& baseMsg, Netlink* netlink)$/;"	f	class:MsgHdlNewUser
+handleMsg	net/srvmsghdls.cpp	/^void MsgHdlTrade::handleMsg(MsgBase& baseMsg, Netlink* netlink)$/;"	f	class:MsgHdlTrade
+handleQueryFiles	content/srvcontentmgr.cpp	/^void SrvContentMgr::handleQueryFiles(LoginData* loginData,$/;"	f	class:SrvContentMgr
+handleTrade	action/srvtrademgr.cpp	/^bool SrvTradeMgr::handleTrade(MsgTrade* msg)$/;"	f	class:SrvTradeMgr
+interactiveModeReadInput	srvmain.cpp	/^void SrvMain::interactiveModeReadInput() const$/;"	f	class:SrvMain
+isAreaLoaded	world/srvworldmgr.cpp	/^bool SrvWorldMgr::isAreaLoaded(const std::string& name) const$/;"	f	class:SrvWorldMgr
+isConnected	net/srvnetworkmgr.cpp	/^bool SrvNetworkMgr::isConnected()$/;"	f	class:SrvNetworkMgr
+isContactPlaying	world/srvworldcontactmgr.cpp	/^bool SrvWorldContactMgr::isContactPlaying(const std::string& name)$/;"	f	class:SrvWorldContactMgr
+isDownloadingContent	login/srvloginmgr.cpp	/^bool LoginData::isDownloadingContent() const$/;"	f	class:LoginData
+isPlaying	login/srvloginmgr.cpp	/^bool LoginData::isPlaying() const$/;"	f	class:LoginData
+joinGame	login/srvloginmgr.cpp	/^void SrvLoginMgr::joinGame(LoginData* loginData, string charname)$/;"	f	class:SrvLoginMgr
+listBattles	action/srvcombatmgr.cpp	/^void SrvCombatMgr::listBattles()$/;"	f	class:SrvCombatMgr
+listInfo	action/srvcombatmgr.cpp	/^void SrvCombatBattle::listInfo()$/;"	f	class:SrvCombatBattle
+listTrades	action/srvtrademgr.cpp	/^void SrvTradeMgr::listTrades(void)$/;"	f	class:SrvTradeMgr
+loadArea	world/srvworldmgr.cpp	/^bool SrvWorldMgr::loadArea(const std::string& name)$/;"	f	class:SrvWorldMgr
+loadContentTree	content/srvcontentmgr.cpp	/^void SrvContentMgr::loadContentTree()$/;"	f	class:SrvContentMgr
+loadCreaturesFromDB	world/srvworldmgr.cpp	/^bool SrvWorldMgr::loadCreaturesFromDB(const std::string& area)$/;"	f	class:SrvWorldMgr
+loadFromDB	world/srvworldtimemgr.cpp	/^void SrvWorldTimeMgr::loadFromDB()$/;"	f	class:SrvWorldTimeMgr
+loadObjectsFromDB	world/srvworldmgr.cpp	/^bool SrvWorldMgr::loadObjectsFromDB(const std::string& area)$/;"	f	class:SrvWorldMgr
+loadStartupScript	srvmain.cpp	/^bool SrvMain::loadStartupScript(const std::string& file)$/;"	f	class:SrvMain
+logMsg	login/srvloginmgr.cpp	/^	string logMsg;$/;"	m	class:SrvLoginError	file:
+login	login/srvloginmgr.cpp	/^void SrvLoginMgr::login(LoginData* loginData, string username, string pwd)$/;"	f	class:SrvLoginMgr
+mAreaList	world/srvworldmgr.h	/^	std::vector<std::string> mAreaList;$/;"	m	class:SrvWorldMgr
+mBasic	entity/srventitybase.h	/^	MsgEntityCreate mBasic;$/;"	m	class:SrvEntityBaseObservable
+mCond	db/srvdbmgr.h	/^	std::string mCond;$/;"	m	class:SrvDBQuery
+mConn	db/srvdbconnectorpostgresql.h	/^	PGconn* mConn;$/;"	m	class:SrvDBConnectorPostgresql
+mConnList	net/srvnetworkmgr.h	/^	std::list<Netlink*> mConnList;$/;"	m	class:SrvNetworkMgr
+mConnector	db/srvdbmgr.h	/^	SrvDBConnectorBase* mConnector;$/;"	m	class:SrvDBMgr
+mContentTree	content/srvcontentmgr.h	/^	std::vector<NameValuePair> mContentTree;$/;"	m	class:SrvContentMgr
+mCreatureList	world/srvworldmgr.h	/^	std::vector<SrvEntityCreature*> mCreatureList;$/;"	m	class:SrvWorldMgr
+mCursor	content/srvcontentmgr.h	/^	uint32_t mCursor;$/;"	m	class:SrvContentFile
+mDBMgr	login/srvloginmgr.h	/^	SrvDBMgr* mDBMgr;$/;"	m	class:SrvLoginMgr
+mFieldPair	db/srvdbmgr.h	/^	std::vector<NameValuePair> mFieldPair;$/;"	m	class:SrvDBQuery
+mFile	content/srvcontentmgr.h	/^	FILE* mFile;$/;"	m	class:SrvContentFile
+mFileList	content/srvcontentmgr.h	/^	std::vector<SrvContentFile*> mFileList;$/;"	m	class:SrvContentTransfer
+mFilename	content/srvcontentmgr.h	/^	std::string mFilename;$/;"	m	class:SrvContentFile
+mFilepath	content/srvcontentmgr.h	/^	std::string mFilepath;$/;"	m	class:SrvContentFile
+mGameTime	world/srvworldtimemgr.h	/^	uint32_t mGameTime;$/;"	m	class:SrvWorldTimeMgr
+mInteractiveMode	srvmain.h	/^	bool mInteractiveMode;$/;"	m	class:SrvMain
+mInventory	entity/srventityplayer.h	/^	SrvPlayerInventory mInventory;$/;"	m	class:SrvEntityPlayer
+mInventory	entity/srventityplayer.h	/^	std::vector<InventoryItem> mInventory;$/;"	m	class:SrvPlayerInventory
+mLoad	entity/srventityobject.h	/^	float mLoad;$/;"	m	class:SrvEntityObject
+mLoadCurrent	entity/srventityplayer.h	/^	float mLoadCurrent;$/;"	m	class:SrvPlayerInventory
+mLoadMax	entity/srventityplayer.h	/^	float mLoadMax;$/;"	m	class:SrvPlayerInventory
+mLoginData	entity/srventityplayer.h	/^	LoginData* mLoginData;$/;"	m	class:SrvEntityPlayer
+mMaxCharsPerAccount	login/srvloginmgr.h	/^	int mMaxCharsPerAccount;$/;"	m	class:SrvLoginMgr
+mMaxPlayers	net/srvnetworkmgr.h	/^	uint32_t mMaxPlayers;$/;"	m	class:SrvNetworkMgr
+mMeshFactory	entity/srventitybase.h	/^	std::string mMeshFactory;$/;"	m	class:SrvEntityBase
+mMov	entity/srventitybase.h	/^	MsgEntityMove mMov;$/;"	m	class:SrvEntityBaseMovable
+mMsgHdlFactory	net/srvnetworkmgr.h	/^	MsgHdlFactory mMsgHdlFactory;$/;"	m	class:SrvNetworkMgr
+mNAffected	db/srvdbconnectorpostgresql.h	/^	size_t mNAffected;$/;"	m	class:SrvDBPostgresqlResult
+mNFields	db/srvdbconnectorpostgresql.h	/^	size_t mNFields;$/;"	m	class:SrvDBPostgresqlResult
+mNRows	db/srvdbconnectorpostgresql.h	/^	size_t mNRows;$/;"	m	class:SrvDBPostgresqlResult
+mNetMgr	login/srvloginmgr.h	/^	SrvNetworkMgr* mNetMgr;$/;"	m	class:SrvLoginMgr
+mNetlink	net/srvnetworkmgr.h	/^	Netlink mNetlink;$/;"	m	class:SrvNetworkMgr
+mNewCharArea	login/srvloginmgr.h	/^	std::string mNewCharArea;$/;"	m	class:SrvLoginMgr
+mNewCharPosX	login/srvloginmgr.h	/^	std::string mNewCharPosX;$/;"	m	class:SrvLoginMgr
+mNewCharPosY	login/srvloginmgr.h	/^	std::string mNewCharPosY;$/;"	m	class:SrvLoginMgr
+mNewCharPosZ	login/srvloginmgr.h	/^	std::string mNewCharPosZ;$/;"	m	class:SrvLoginMgr
+mObjectList	world/srvworldmgr.h	/^	std::vector<SrvEntityObject*> mObjectList;$/;"	m	class:SrvWorldMgr
+mOrder	db/srvdbmgr.h	/^	std::string mOrder;$/;"	m	class:SrvDBQuery
+mPartsSent	content/srvcontentmgr.h	/^	uint32_t mPartsSent;$/;"	m	class:SrvContentFile
+mPingServer	net/srvnetworkmgr.h	/^	PingServer mPingServer;$/;"	m	class:SrvNetworkMgr
+mPlayer	content/srvcontentmgr.h	/^	LoginData* mPlayer;$/;"	m	class:SrvContentTransfer
+mPlayerData	entity/srventitycreature.h	/^	MsgPlayerData mPlayerData;$/;"	m	class:SrvEntityCreature
+mPlayerData	entity/srventityplayer.h	/^	MsgPlayerData mPlayerData;$/;"	m	class:SrvEntityPlayer
+mPlayerInfo	entity/srventitycreature.h	/^	PlayerInfo * mPlayerInfo;$/;"	m	class:SrvEntityCreature
+mPlayerInfo	entity/srventityplayer.h	/^	PlayerInfo * mPlayerInfo;$/;"	m	class:SrvEntityPlayer
+mPlayerList	login/srvloginmgr.h	/^	std::vector<LoginData*> mPlayerList;$/;"	m	class:SrvLoginMgr
+mPlayerList	world/srvworldmgr.h	/^	std::vector<SrvEntityPlayer*> mPlayerList;$/;"	m	class:SrvWorldMgr
+mPlayer_inv	action/srvtrademgr.h	/^	std::vector<InventoryItem> mPlayer_inv;$/;"	m	class:SrvTradeSession
+mProtocolVersion	login/srvloginmgr.h	/^	std::string mProtocolVersion;$/;"	m	class:SrvLoginMgr
+mRadiusSay	console/srvconsolemgr.h	/^	float mRadiusSay;$/;"	m	class:SrvConsoleMgr
+mResult	db/srvdbconnectorpostgresql.h	/^	PGresult* mResult;$/;"	m	class:SrvDBPostgresqlResult
+mResult	db/srvdbmgr.h	/^	SrvDBResult* mResult;$/;"	m	class:SrvDBQuery
+mRootDirForOS	content/srvcontentmgr.h	/^	std::string mRootDirForOS;$/;"	m	class:SrvContentMgr
+mRound	action/srvcombatmgr.h	/^	int mRound;$/;"	m	class:SrvCombatBattle
+mSerialCounter	content/srvcontentmgr.h	/^	uint32_t mSerialCounter;$/;"	m	class:SrvContentMgr
+mSize	content/srvcontentmgr.h	/^	uint32_t mSize;$/;"	m	class:SrvContentFile
+mSocketLayer	net/srvnetworkmgr.h	/^	SocketLayer mSocketLayer;$/;"	m	class:SrvNetworkMgr
+mStartTimestamp	srvmain.h	/^	time_t mStartTimestamp;$/;"	m	class:SrvMain
+mState	action/srvcombatmgr.h	/^	MsgCombat::BATTLE_STATE mState;$/;"	m	class:SrvCombatBattle
+mTables	db/srvdbmgr.h	/^	std::string mTables;$/;"	m	class:SrvDBQuery
+mTarget_inv	action/srvtrademgr.h	/^	std::vector<InventoryItem> mTarget_inv;$/;"	m	class:SrvTradeSession
+mTicks	action/srvcombatmgr.h	/^	int mTicks;$/;"	m	class:SrvCombatBattle
+mTicks	action/srvcombatmgr.h	/^	int mTicks;$/;"	m	class:SrvCombatMgr
+mTicks	world/srvworldtimemgr.h	/^	int mTicks;$/;"	m	class:SrvWorldTimeMgr
+mTransferID	content/srvcontentmgr.h	/^	uint32_t mTransferID;$/;"	m	class:SrvContentFile
+mTransferList	content/srvcontentmgr.h	/^	std::list<SrvContentTransfer*> mTransferList;$/;"	m	class:SrvContentMgr
+mUpdateKey	content/srvcontentmgr.h	/^	std::string mUpdateKey;$/;"	m	class:SrvContentFile
+main	srvmain.cpp	/^int main(int argc, char* argv[])$/;"	f
+mainLoop	srvmain.cpp	/^void SrvMain::mainLoop()$/;"	f	class:SrvMain
+netlink	login/srvloginmgr.h	/^	Netlink* netlink;$/;"	m	class:LoginData
+notifyOtherPlayers	world/srvworldcontactmgr.cpp	/^void SrvWorldContactMgr::notifyOtherPlayers(const LoginData* player,$/;"	f	class:SrvWorldContactMgr
+notifyPlayerOfContacts	world/srvworldcontactmgr.cpp	/^void SrvWorldContactMgr::notifyPlayerOfContacts(const LoginData* player)$/;"	f	class:SrvWorldContactMgr
+notifyPlayerOfOneContact	world/srvworldcontactmgr.cpp	/^void SrvWorldContactMgr::notifyPlayerOfOneContact(const LoginData* player,$/;"	f	class:SrvWorldContactMgr
+onAttachObserver	entity/srventitybase.cpp	/^void SrvEntityBaseObservable::onAttachObserver(Observer* observer)$/;"	f	class:SrvEntityBaseObservable
+onDetachObserver	entity/srventitybase.cpp	/^void SrvEntityBaseObservable::onDetachObserver(Observer* observer)$/;"	f	class:SrvEntityBaseObservable
+openFile	content/srvcontentmgr.cpp	/^bool SrvContentFile::openFile()$/;"	f	class:SrvContentFile
+orderInit	action/srvcombatmgr.cpp	/^void SrvCombatBattle::orderInit()$/;"	f	class:SrvCombatBattle
+performAction	action/srvcombatmgr.cpp	/^void SrvCombatBattle::performAction( SrvEntityPlayer * playerEntity )$/;"	f	class:SrvCombatBattle
+permLevel	login/srvloginmgr.h	/^	PermLevel::LEVEL permLevel;$/;"	m	class:LoginData
+player	action/srvtrademgr.h	/^	std::string player;$/;"	m	class:SrvTradeSession
+playerDropItem	world/srvworldmgr.cpp	/^void SrvWorldMgr::playerDropItem(SrvEntityPlayer* player, EntityID entityID)$/;"	f	class:SrvWorldMgr
+playerGetItem	world/srvworldmgr.cpp	/^void SrvWorldMgr::playerGetItem(SrvEntityPlayer* player, EntityID entityID)$/;"	f	class:SrvWorldMgr
+playerSelectedList	action/srvtrademgr.h	/^	std::vector<int> playerSelectedList;$/;"	m	class:SrvTradeSession
+playerStatusChange	world/srvworldcontactmgr.cpp	/^void SrvWorldContactMgr::playerStatusChange(const LoginData* player,$/;"	f	class:SrvWorldContactMgr
+playingGame	login/srvloginmgr.h	/^	bool playingGame;$/;"	m	class:LoginData
+processChat	console/srvconsolemgr.cpp	/^void SrvConsoleMgr::processChat(const MsgChat* msg, const LoginData* player)$/;"	f	class:SrvConsoleMgr
+processCommand	console/srvconsolemgr.cpp	/^void SrvConsoleMgr::processCommand(const MsgCommand* msg, const LoginData* player)$/;"	f	class:SrvConsoleMgr
+processIncomingMsgs	net/srvnetworkmgr.cpp	/^void SrvNetworkMgr::processIncomingMsgs()$/;"	f	class:SrvNetworkMgr
+queryDelete	db/srvdbmgr.cpp	/^int SrvDBMgr::queryDelete(const SrvDBQuery* query) const$/;"	f	class:SrvDBMgr
+queryInsert	db/srvdbmgr.cpp	/^bool SrvDBMgr::queryInsert(const SrvDBQuery* query) const$/;"	f	class:SrvDBMgr
+queryMatch	db/srvdbmgr.cpp	/^bool SrvDBMgr::queryMatch(const SrvDBQuery* query) const$/;"	f	class:SrvDBMgr
+queryMatchNumber	db/srvdbmgr.cpp	/^int SrvDBMgr::queryMatchNumber(const SrvDBQuery* query) const$/;"	f	class:SrvDBMgr
+querySelect	db/srvdbmgr.cpp	/^int SrvDBMgr::querySelect(SrvDBQuery* query) const$/;"	f	class:SrvDBMgr
+queryUpdate	db/srvdbmgr.cpp	/^int SrvDBMgr::queryUpdate(const SrvDBQuery* query) const$/;"	f	class:SrvDBMgr
+recalculatePosition	entity/srventitybase.cpp	/^void SrvEntityBaseMovable::recalculatePosition(uint32_t ms)$/;"	f	class:SrvEntityBaseMovable
+registerCommands	console/srvcommand.cpp	/^void SrvCommandMgr::registerCommands()$/;"	f	class:SrvCommandMgr
+registerMsgHdls	net/srvnetworkmgr.cpp	/^void SrvNetworkMgr::registerMsgHdls()$/;"	f	class:SrvNetworkMgr
+reloadContentTree	content/srvcontentmgr.cpp	/^bool SrvContentMgr::reloadContentTree()$/;"	f	class:SrvContentMgr
+removeConnection	content/srvcontentmgr.cpp	/^void SrvContentMgr::removeConnection(LoginData* loginData)$/;"	f	class:SrvContentMgr
+removeConnection	login/srvloginmgr.cpp	/^void SrvLoginMgr::removeConnection(LoginData* loginData)$/;"	f	class:SrvLoginMgr
+removeConnection	login/srvloginmgr.cpp	/^void SrvLoginMgr::removeConnection(Netlink* netlink)$/;"	f	class:SrvLoginMgr
+removeContact	world/srvworldcontactmgr.cpp	/^void SrvWorldContactMgr::removeContact(const LoginData* player,$/;"	f	class:SrvWorldContactMgr
+removeEntity	action/srvcombatmgr.cpp	/^bool SrvCombatBattle::removeEntity( uint64_t id )$/;"	f	class:SrvCombatBattle
+removeEntity	world/srvworldmgr.cpp	/^void SrvWorldMgr::removeEntity(SrvEntityBase* entity)$/;"	f	class:SrvWorldMgr
+removeFromInventory	entity/srventityplayer.cpp	/^void SrvEntityPlayer::removeFromInventory(uint32_t itemID)$/;"	f	class:SrvEntityPlayer
+removeItem	entity/srventityplayer.cpp	/^bool SrvPlayerInventory::removeItem(uint32_t itemID)$/;"	f	class:SrvPlayerInventory
+removePlayer	action/srvcombatmgr.cpp	/^bool SrvCombatBattle::removePlayer( uint64_t id )$/;"	f	class:SrvCombatBattle
+removePlayer	world/srvworldmgr.cpp	/^void SrvWorldMgr::removePlayer(LoginData* loginData)$/;"	f	class:SrvWorldMgr
+removePlayerFromBattle	action/srvcombatmgr.cpp	/^void SrvCombatMgr::removePlayerFromBattle( LoginData* player )$/;"	f	class:SrvCombatMgr
+removeTrade	action/srvtrademgr.cpp	/^bool SrvTradeMgr::removeTrade(const char* player)$/;"	f	class:SrvTradeMgr
+saveToDB	entity/srventitybase.cpp	/^void SrvEntityBase::saveToDB()$/;"	f	class:SrvEntityBase
+saveToDB	entity/srventitycreature.cpp	/^void SrvEntityCreature::saveToDB()$/;"	f	class:SrvEntityCreature
+saveToDB	entity/srventityplayer.cpp	/^void SrvEntityPlayer::saveToDB()$/;"	f	class:SrvEntityPlayer
+saveToDB	world/srvworldtimemgr.cpp	/^void SrvWorldTimeMgr::saveToDB()$/;"	f	class:SrvWorldTimeMgr
+sendConsoleReply	world/srvworldcontactmgr.cpp	/^void SrvWorldContactMgr::sendConsoleReply(const LoginData* loginData,$/;"	f	class:SrvWorldContactMgr
+sendDataToClients	content/srvcontentmgr.cpp	/^void SrvContentMgr::sendDataToClients()$/;"	f	class:SrvContentMgr
+sendMovementToClient	entity/srventityplayer.cpp	/^void SrvEntityPlayer::sendMovementToClient()$/;"	f	class:SrvEntityPlayer
+sendPart	content/srvcontentmgr.cpp	/^bool SrvContentFile::sendPart(const LoginData* player)$/;"	f	class:SrvContentFile
+sendPart	content/srvcontentmgr.cpp	/^bool SrvContentTransfer::sendPart()$/;"	f	class:SrvContentTransfer
+sendTick	action/srvcombatmgr.cpp	/^void SrvCombatBattle::sendTick(uint32_t ticks)$/;"	f	class:SrvCombatBattle
+sendTick	action/srvcombatmgr.cpp	/^void SrvCombatMgr::sendTick(uint32_t ticks)$/;"	f	class:SrvCombatMgr
+sendTick	world/srvworldtimemgr.cpp	/^void SrvWorldTimeMgr::sendTick(uint32_t ticks)$/;"	f	class:SrvWorldTimeMgr
+sendTimeToAllPlayers	world/srvworldtimemgr.cpp	/^void SrvWorldTimeMgr::sendTimeToAllPlayers() const$/;"	f	class:SrvWorldTimeMgr
+sendTimeToPlayer	world/srvworldtimemgr.cpp	/^void SrvWorldTimeMgr::sendTimeToPlayer(const LoginData* player) const$/;"	f	class:SrvWorldTimeMgr
+sendToAllButPlayer	net/srvnetworkmgr.cpp	/^void SrvNetworkMgr::sendToAllButPlayer(MsgBase& msg, const LoginData* player)$/;"	f	class:SrvNetworkMgr
+sendToAllConnections	net/srvnetworkmgr.cpp	/^void SrvNetworkMgr::sendToAllConnections(MsgBase& msg)$/;"	f	class:SrvNetworkMgr
+sendToAllPlayers	net/srvnetworkmgr.cpp	/^void SrvNetworkMgr::sendToAllPlayers(MsgBase& msg)$/;"	f	class:SrvNetworkMgr
+sendToConnection	net/srvnetworkmgr.cpp	/^void SrvNetworkMgr::sendToConnection(MsgBase& msg, Netlink* netlink)$/;"	f	class:SrvNetworkMgr
+sendToOtherPlayer	action/srvtrademgr.cpp	/^void SrvTradeSession::sendToOtherPlayer(MsgBase& msg, const char* playerName)$/;"	f	class:SrvTradeSession
+sendToPlayer	net/srvnetworkmgr.cpp	/^void SrvNetworkMgr::sendToPlayer(MsgBase& msg, const LoginData* player)$/;"	f	class:SrvNetworkMgr
+sendToPlayerList	net/srvnetworkmgr.cpp	/^void SrvNetworkMgr::sendToPlayerList(MsgBase& msg, vector<LoginData*>& playerList)$/;"	f	class:SrvNetworkMgr
+sessions	action/srvtrademgr.h	/^	std::vector<SrvTradeSession*> sessions;$/;"	m	class:SrvTradeMgr
+setCondition	db/srvdbmgr.cpp	/^void SrvDBQuery::setCondition(const char* cond)$/;"	f	class:SrvDBQuery
+setCondition	db/srvdbmgr.cpp	/^void SrvDBQuery::setCondition(const string& cond)$/;"	f	class:SrvDBQuery
+setDownloadingContent	login/srvloginmgr.cpp	/^void LoginData::setDownloadingContent(bool dl)$/;"	f	class:LoginData
+setList	action/srvtrademgr.cpp	/^void SrvTradeSession::setList(std::vector<InventoryItem> itemList, $/;"	f	class:SrvTradeSession
+setLoad	entity/srventityobject.cpp	/^void SrvEntityObject::setLoad(float load)$/;"	f	class:SrvEntityObject
+setMaxLoad	entity/srventityplayer.cpp	/^void SrvPlayerInventory::setMaxLoad(float load)$/;"	f	class:SrvPlayerInventory
+setMovementData	entity/srventitybase.cpp	/^void SrvEntityBaseMovable::setMovementData(const MsgEntityMove& mov)$/;"	f	class:SrvEntityBaseMovable
+setOrder	db/srvdbmgr.cpp	/^void SrvDBQuery::setOrder(const char* order)$/;"	f	class:SrvDBQuery
+setOrder	db/srvdbmgr.cpp	/^void SrvDBQuery::setOrder(const string& order)$/;"	f	class:SrvDBQuery
+setPermissionLevel	login/srvloginmgr.cpp	/^void LoginData::setPermissionLevel(PermLevel::LEVEL lvl)$/;"	f	class:LoginData
+setPlayerEntity	login/srvloginmgr.cpp	/^void LoginData::setPlayerEntity(SrvEntityPlayer* e)$/;"	f	class:LoginData
+setPlaying	login/srvloginmgr.cpp	/^void LoginData::setPlaying(bool playing)$/;"	f	class:LoginData
+setResult	db/srvdbmgr.cpp	/^void SrvDBQuery::setResult(SrvDBResult* result)$/;"	f	class:SrvDBQuery
+setSelectedList	action/srvtrademgr.cpp	/^void SrvTradeSession::setSelectedList(std::vector<int> itemList, $/;"	f	class:SrvTradeSession
+setState	action/srvcombatmgr.h	/^	void setState( MsgCombat::BATTLE_STATE _state ) { mState = _state; };$/;"	f	class:SrvCombatBattle
+setState	action/srvtrademgr.h	/^	void setState( MsgTrade::MESSAGE_TYPE _state ) { state = _state; };$/;"	f	class:SrvTradeSession
+setTables	db/srvdbmgr.cpp	/^void SrvDBQuery::setTables(const char* tables)$/;"	f	class:SrvDBQuery
+setTables	db/srvdbmgr.cpp	/^void SrvDBQuery::setTables(const string& tables)$/;"	f	class:SrvDBQuery
+setType	action/srvcombatmgr.h	/^	void setType( MsgCombat::BATTLE_TYPE _type ) { type = _type; };$/;"	f	class:SrvCombatBattle
+shutdownGame	srvmain.cpp	/^void SrvMain::shutdownGame()$/;"	f	class:SrvMain
+start	srvmain.cpp	/^void SrvMain::start()$/;"	f	class:SrvMain
+startListening	net/srvnetworkmgr.cpp	/^bool SrvNetworkMgr::startListening(const char* host, int port, int maxPlayers)$/;"	f	class:SrvNetworkMgr
+state	action/srvtrademgr.h	/^	MsgTrade::MESSAGE_TYPE state;$/;"	m	class:SrvTradeSession
+swapSelected	action/srvtrademgr.cpp	/^void SrvTradeMgr::swapSelected( SrvTradeSession * trade )$/;"	f	class:SrvTradeMgr
+target	action/srvtrademgr.h	/^	std::string target;$/;"	m	class:SrvTradeSession
+targetSelectedList	action/srvtrademgr.h	/^	std::vector<int> targetSelectedList;$/;"	m	class:SrvTradeSession
+transactDuel	action/srvcombatmgr.cpp	/^void SrvCombatBattle::transactDuel()$/;"	f	class:SrvCombatBattle
+type	action/srvcombatmgr.h	/^	MsgCombat::BATTLE_TYPE type;$/;"	m	class:SrvCombatBattle
+uid	login/srvloginmgr.h	/^	std::string uid;$/;"	m	class:LoginData
+updateFromObservable	entity/srventityplayer.cpp	/^void SrvEntityPlayer::updateFromObservable(const ObserverEvent& event)$/;"	f	class:SrvEntityPlayer
+updateList	action/srvtrademgr.cpp	/^bool SrvTradeMgr::updateList(MsgTrade* msg)$/;"	f	class:SrvTradeMgr
+updateMovementFromClient	entity/srventitycreature.cpp	/^void SrvEntityCreature::updateMovementFromClient(MsgEntityMove* msg)$/;"	f	class:SrvEntityCreature
+updateMovementFromClient	entity/srventityplayer.cpp	/^void SrvEntityPlayer::updateMovementFromClient(MsgEntityMove* msg)$/;"	f	class:SrvEntityPlayer
+username	login/srvloginmgr.h	/^	std::string username;$/;"	m	class:LoginData
+~SrvCombatBattle	action/srvcombatmgr.cpp	/^SrvCombatBattle::~SrvCombatBattle()$/;"	f	class:SrvCombatBattle
+~SrvContentFile	content/srvcontentmgr.cpp	/^SrvContentFile::~SrvContentFile()$/;"	f	class:SrvContentFile
+~SrvDBConnectorBase	db/srvdbmgr.h	/^	virtual ~SrvDBConnectorBase() { }$/;"	f	class:SrvDBConnectorBase
+~SrvDBConnectorPostgresql	db/srvdbconnectorpostgresql.cpp	/^SrvDBConnectorPostgresql::~SrvDBConnectorPostgresql()$/;"	f	class:SrvDBConnectorPostgresql
+~SrvDBMgr	db/srvdbmgr.cpp	/^SrvDBMgr::~SrvDBMgr()$/;"	f	class:SrvDBMgr
+~SrvDBPostgresqlResult	db/srvdbconnectorpostgresql.cpp	/^SrvDBPostgresqlResult::~SrvDBPostgresqlResult()$/;"	f	class:SrvDBPostgresqlResult
+~SrvDBQuery	db/srvdbmgr.cpp	/^SrvDBQuery::~SrvDBQuery()$/;"	f	class:SrvDBQuery
+~SrvDBResult	db/srvdbmgr.h	/^	virtual ~SrvDBResult() { }$/;"	f	class:SrvDBResult
+~SrvEntityBase	entity/srventitybase.h	/^	virtual ~SrvEntityBase() { }$/;"	f	class:SrvEntityBase
+~SrvEntityBaseMovable	entity/srventitybase.cpp	/^SrvEntityBaseMovable::~SrvEntityBaseMovable()$/;"	f	class:SrvEntityBaseMovable
+~SrvEntityBaseObservable	entity/srventitybase.h	/^	virtual ~SrvEntityBaseObservable() { }$/;"	f	class:SrvEntityBaseObservable
+~SrvEntityCreature	entity/srventitycreature.cpp	/^SrvEntityCreature::~SrvEntityCreature()$/;"	f	class:SrvEntityCreature
+~SrvEntityObject	entity/srventityobject.cpp	/^SrvEntityObject::~SrvEntityObject()$/;"	f	class:SrvEntityObject
+~SrvEntityPlayer	entity/srventityplayer.cpp	/^SrvEntityPlayer::~SrvEntityPlayer()$/;"	f	class:SrvEntityPlayer
+~SrvTradeSession	action/srvtrademgr.h	/^	~SrvTradeSession() {};$/;"	f	class:SrvTradeSession

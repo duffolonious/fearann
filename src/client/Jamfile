@@ -1,0 +1,37 @@
+SubDir TOP src client ;
+
+# when including headers from the project, this is the root
+SubDirHdrs src ;
+
+SubDirC++Flags $(OSG.CXXFLAGS) $(CEGUI.CXXFLAGS) $(CEGUIOPENGL.CXXFLAGS) $(OSGCAL.CXXFLAGS) $(CAL3D.CXXFLAGS) $(CXXFLAGS) ;
+
+Main fmclient :
+	cltcamera.cpp
+	cltcommand.cpp
+	cltentitymgr.cpp
+	cltinput.cpp
+	cltviewer.cpp
+	net/cltnetmgr.cpp
+	net/cltmsghdls.cpp
+	action/cltcombatmgr.cpp
+	cegui/cltceguiconsole.cpp
+	cegui/cltceguiinitial.cpp
+	cegui/cltceguiinventory.cpp
+	cegui/cltceguiactionmenu.cpp
+	cegui/cltceguidialog.cpp
+	cegui/cltceguimgr.cpp
+	cegui/cltceguiminimap.cpp
+	cegui/cltceguidrawable.cpp
+	content/cltcontentloader.cpp
+	content/cltcontentmgr.cpp
+	entity/cltentitybase.cpp
+	entity/cltentityplayer.cpp
+	entity/cltentitycreature.cpp
+	entity/cltentityobject.cpp
+	entity/cltentitymainplayer.cpp
+	cltmain.cpp ;
+
+LINKLIBS on fmclient = $(OSG.LDFLAGS) $(CEGUI.LDFLAGS) $(CEGUIOPENGL.LDFLAGS) $(XERCES.LDFLAGS) $(OSGCAL.LDFLAGS) $(CAL3D.LDFLAGS)  $(LDFLAGS) ;
+LinkLibraries fmclient : fmcommon ;
+
+

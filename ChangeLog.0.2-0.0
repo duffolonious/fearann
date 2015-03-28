@@ -1,0 +1,910 @@
+2006-09-14
+
+	* mafm: 0.2 stable release.
+
+	* duffolonious: added mesh select via mouse click.  It's pretty basic atm.
+	it is commented out in cltinput.cpp.  This is very important in allowing us
+	to do interaction with the world (combat, trade, picking up objects).
+
+	* duffolonious: added object loading support in the client.
+
+2006-09-12
+
+	* mafm: Removing testing stuff in the client for environment
+	lights (now it works as in final games), switched over to Orbital
+	camera as default, and made a few minor bugfixes and cleanup to
+	prepare for 0.2 release.
+
+	* duffolonious: committing uint64_t [de]serialization code.
+
+2006-09-07
+
+	* duffolonious: added creature entity stuff in the server and client - so 
+	now creatures will show up in the client.  Although right now that is
+	about all they do.  
+
+2006-09-06
+
+	* duffolonious: more trading and combat fixes, including api changes.  For
+	example: you can now easily give one item to another player.  This will be
+	quite useful for NPC's, I think.
+
+	* duffolonious: I added class support so now you can be a fighter or a 
+	sorcerer.  There really is no difference between classes atm.  More work 
+	on that will be done after the release.  Trade and combat fixes.  Fixed
+	the inventory in the server in client so it works more-or-less correctly
+	without crashing.
+
+2006-09-01
+
+	* duffolonious: the combat manager and trade manager are more reliable.
+	You can now reliably "/quit" from combat as a bot without crashing the 
+	server.  Also fighting/trading with yourself or nonexistent players 
+	should no longer be doable.  The ability for basic spellcasting is coming
+	closer.  Also fixed a bug with dodge being unitialized - so your defense
+	was way to high (you became invincible).  Still need to test with 2 
+	battles running simultaneously.
+
+	* duffolonious: misc fixes - I fixed "load", it was set at 0, and thus not
+	giving players the items in their inventories (otherwise you have nothing
+	to trade).
+
+2006-08-31
+
+	* mafm: Massive conversion in the managers of the server to use
+	Singleton patterns.  One important consequence of this is that
+	there is no more call to Server->getLoginManager() and so on, the
+	structure of the main server class changed dramatically, and it
+	mostly performs some initialization functions, cleanup of the
+	managers when shutting down, and main loop.
+
+	* mafm: Massive renaming in the server, following what was done
+	before for client, common and bot.  At this point there should be
+	no references to Once-like names in the code.  Cleanups while at
+	it, removing some comments and the like, not very important.
+
+2006-08-30
+
+	* duffolonious: committed simple dialog system with the bot.  How it's
+	used:
+	load up the bot, connect to server, login, then join, after that...
+	/auto mode npc (this can be set in the start-script.txt)
+	Then a regular player (bot, or client) will be able to talk to the npc.
+	start the conversation:
+	/pm npc hey
+	(The npc should return a list of story items)
+	What are ya curious about?
+	1. You.
+	2. The town, anything of interest?
+	3. Anything out of the ordinary?
+	4. I've gotten all I need to know.
+	(You then select the number of the item you want to ask about)
+	/pm npc 1
+	(that will follow that section of the story, or to end the conversation:)
+	/pm npc 4
+	Eventually this will have it's won CEGUI window popup - and be handled all
+	from in there.
+
+2006-08-27
+
+	* mafm: Fixed many minor bugs (things that couldn't be tested
+	during the transition, mostly), and tweaks here and there.  This
+	includes massive renaming to get rid of oc* part in the code in
+	common/ (and thus all the related parts in client, bot and
+	server), many classes in the server still use them, but those
+	aren't affecting the whole project.  Apart from that, there code
+	was checked carefully in many places, simplifying things when
+	possible, removing some obsolete or redundant stuff, and improving
+	coding style (in example, introducing many const qualifiers where
+	possible).  Apart from minor isolated problems, things are working
+	back with the same level of functionality as before with CS, it's
+	a matter of days to get servers and clients working together, and
+	officially closing the transition period.
+
+2006-08-26
+
+	* mafm: Fixed some bugs in the client content updater, which were
+	introduced when moving away from CS (they are parts that were done
+	by CS's VFS before), and we didn't have the opportunity to test
+	them thoroughly yet.
+
+2006-08-25
+
+	* mafm: Making the CD to work for the main player (there's no
+	implementation for the rest of objects yet, but they would use the
+	same scheme).  It works more or less flawlessly, with all the
+	unavoidable errors of any possible implementation: we can't
+	emulate CD for every vertex of the model, so we have to make
+	approximations and sometimes part of the model "merges" with walls
+	and so on; and there's a general inaccuracy.  However, the status
+	of this is comparable to other games, so minus bugfixes or so, the
+	implementation is mostly complete.
+
+2006-08-23
+
+	* duffolonious: committed combat manager, along with changes in
+	health and load for the d20 system.  Currently much of the combat
+	is hard coded - so you attack right away.  Also, the only combat
+	is duels - player vs. player.  so...
+
+	player A: /combat start B
+	player B: /combat accept A
+
+	Combat starts and continues until a player has less than one
+	hitpoint.  Combat ends - and that's it, no glory, no fame.  You
+	can't change weapons.  And the only other combat mode besides
+	attack, is defense, which currently does nothing.  That's why the
+	default it attack.  More to come...
+
+2006-08-22
+
+	* mafm: Additional comment: with these additions and minus
+	bugfixes or tweaks (and waiting for comments by other people in
+	the team), the camera implementation should be mostly complete for
+	final versions of the game.  Sure, not everybody will be
+	completely happy with this and might want a new mode (or ten of
+	them); but as CEL cameras have proved, having many cameras all of
+	them almost alike don't make the whole set more pleasant and
+	usable -- they complicate things and confuse the users, switching
+	from lousy to lousier and not finding any mode that really is
+	useful and suit your needs.
+	
+	* mafm: Implemented the new camera mode, which orbits around the
+	main player, so it allows a range of new possibilities that the
+	other mode can't provide -- seeing your character from above or
+	below in any angle, and the front/rear sides.  Probably this is
+	not very useful when playing (althought it could "emulate" some of
+	the Follow mode positions), but it's very useful to make
+	screenshots and so on, at least.  With these two modes (Follow
+	providing 3rd person follow + 1st person when fully zoomed in;
+	it's like two modes really) we cover most of the needs for the
+	game, so maybe we won't have new ones.
+
+	* mafm: Implemented a way to maintain camera with direct sight to
+	the player always, so when there are obstacles in the middle of
+	player and point where the camera is supposed to be, the camera
+	comes closer to the player.
+
+2006-08-21
+
+	* mafm: Camera improvements:
+	- The current camera mode is enhanced in the way that when in full
+	zoom in (equivalent 1st person mode), when looking
+	up/down/left/right, the camera stands in the same point (instead
+	of returning to the center when the key is unpressed, as it was
+	doing).
+	- Automatically returning to the center made that looking around
+	wasn't very useful; so I removed it from the main camera mode (as
+	I say above) and now we provide a new flag to request to center
+	the camera
+	- There's a new camera mode, yet to be defined (talking about it
+	now, so the code is still the same than the main camera mode).
+
+2006-08-20
+
+	* mafm: 1001 different changes everywhere, fixing things so
+	they're working as with CS or better (although in some occasions
+	glitches appear).  Apart from moving code here and there, remove
+	hacks and bugfixing everywhere; the major things today were to get
+	the cal3d models and animations working, and having most of the
+	code in place (no dirty hacks in the viewer to load models, etc).
+	The code will need a few more days of bugfixes, adaptations to OSG
+	or the other new libraries and so on, but it's very close to being
+	as functional as before.  Long live OpenSceneGraph!!
+
+	* mafm: Restoring most of the funcitonality of the client entity
+	manager, and creating a hierarchy of classes for the different
+	entityes (base class, and derived player and mainplayer at the
+	moment; but more will follow).  The entities should be mostly the
+	parts encapsulating the game logic (and some bindings with the
+	engine), so we have a separate region isolated, when we need to
+	change things.
+
+2006-08-19
+
+	* mafm: Fixing CEGUI data files so it's mostly working as before,
+	but there might be problems here and there (including the use of
+	only one theme now and so on).  Anyway, I leave CEGUI disabled at
+	the moment, because it's quickier to get our client acting as a
+	viewer, to fix the other outstanding issues not migrated yet.
+
+	* mafm: Adding support to build with Cal3D and osgCal plugin, this
+	time with pkg-config (the new osgCal fork does have pkg-config
+	config files).
+
+2006-08-18
+
+	* mafm: Adding support to build with Cal3D and osgCal plugin
+	(hardcoded options, since there's no pkg-config available).
+
+2006-08-17
+
+	* mafm: Updating CEGUI support: adding a osg::Drawable which
+	encapsulates CEGUI functionality (loading data, rendering every
+	frame and capturing/converting input).  CEGUI is not working fully
+	yet, since it needs tweaks in data files, and it'll need probably
+	some adaptations that I'm still missing (due to the lack of
+	testing), but preliminary support is already there and supposed to
+	work.
+
+	* mafm: Completing the camera implementation: It's working better
+	than our old implementation in CS, just that it's not using fancy
+	curves when zooming out yet -- anyway we'll probably don't want
+	the same effects that we had before; so I'll wait for people to
+	test it and give me their opinions about how it should behave.
+
+2006-08-14
+
+	* mafm: Adapting CEGUI data files to use one theme only (instead
+	of two, like we were doing before), removing stalled WIP stuff and
+	other obsolete stuff.  It should work with 0.5 now, but we can't
+	get CEGUI to be rendered in the engine, yet.  Hopefully it'll be
+	possible to start to try it now, with our real configuration.
+
+	* mafm: After almost a month stopped (due to work in the website,
+	and making testing apps to trying to get CEGUI to work), I'm
+	getting things [re]implemented again in OSG: the basic input
+	system is working, and the main player movement (not animations,
+	we still have to try osg::Cal3D plugin) is working as well,
+	althought it might need some tweaking as we implement more
+	features.
+
+	* mafm: Changes in CEGUI code to adapt it to the upcoming v0.5.
+	There are some problems with the data files, so those are not
+	commited yet (need CEGUI team to fix them and copy the changes).
+	Anyway, we still need to get CEGUI to render in OSG properly, but
+	we need it to be able to load its own files without aborting
+	first...
+
+2006-07-17
+
+	* mafm: More changes and adaptations for OSG, this time the
+	message handler for time messages.  It did a lot of calculations
+	before, related with linghtning and so on.  Now it only parses the
+	time value to a human readable form and other useful values, and
+	relays on CEGUI and Viewer classes to change the calendar window
+	and light.
+
+	* duffolonious: xml reading works to some degree - in fmbot
+	"/connect list" should list the different servers configured in
+	data/client/servers.xml
+
+2006-07-15
+
+	* duffolonious: added SHA1 support in bot, as well as a partial
+	xml read test - which kind of works.
+
+	* mafm: Removing the old bash bootstrap script, the one in Python
+	is much more flexible and functional, and people seems to have it
+	working without noticeable problems.
+
+2006-07-14
+
+	* mafm: Adding the implementation of SHA1, which substitutes
+	md5sum in such functions like sending the password hash to the
+	server (instead of clear-text password).
+
+2006-07-12
+
+	* mafm: Commiting a lot of changes, delayed for several reasons,
+	like dealing with several parallel WIPs.  I will explain only the
+	main differences in design (since there are a lot of
+	substitutions, renaming functions, reestructuring code, etc, not
+	worth to comment).  The main changes in design are:
+
+	- The client doesn't have an equivalent of ocClient anymore.  Now,
+	all so-called managers and classes instantiated once, have
+	Singleton-like patterns, so we don't need the ocClient overlord to
+	initializate one object of each class, and having functions to
+	return pointers to the managers (with the added advantage that the
+	singleton ensures initializing once and only once, no matter
+	what).  Since in the classes using the managers you have to
+	include the manager header anyway (to be able to call its
+	methods), the inclusion of ocClient in this task was mostly an
+	annoyance -- every time that a manager changed name, new manager
+	added or removed, etc, ocClient had to be edited to keep up with
+	changes.  So this makes that the ocClient class is stripped down
+	to CltMain class, which holds the main() function call, parsing
+	the parameters and functions to quit and restart, but not related
+	with the rest of the graphical application.  This makes also that
+	the overall desing is a bit more clear, since each manager
+	completely takes care of itself, and so alleviates a bit the need
+	of maintainance in one file where there are changes in another
+	ones.
+
+	- Now without the CEL input system, we don't need an entity
+	behavior to handle the input events, so the input handling is
+	separated from the class governing the main player actions -- for
+	good.  Several classes handling input and its consequences (player
+	movement, changing interface options -rising windows, changing
+	minimap zoom, etc-, controlling camera...) are now in a separated
+	file.
+
+	- Currently, the CltViewer class takes care of setting up the
+	scene, and the main render loop, so it has also partially the
+	functionality of the old ocClient (the one related with the
+	graphical application).  It might change in the future depending
+	on several things being investigated ATM, but in general we'll
+	probably have a class taking care of the graphical application
+	runtime maintainance.  ATM it doesn't have a complete
+	implementation (it doesn't load anything at all), we'll have to
+	learn about OSG to complete it.  (This couldn't be done before,
+	because the CS Application template used the main class to parse
+	command line arguments, handle events, holding the render loop,
+	initializing the application and all that, which can be now
+	separated -- which is good for clarity and ease of maintainance).
+
+	- The camera class is now separated as before, but much more rich
+	and more independent from the engine than before (which was done a
+	while ago, but I think that it's worth remembering the camera
+	changes here, because are part of the same package anyway).
+	Hopefully, creating new camera modes now is much more clean and
+	easy than before (where the changes in pitch for Chase were
+	causing artifacts when switching to other modes, etc).
+
+	- We are using more Design Patterns than before (appart from
+	Singletons), like Listeners in several places.  I didn't track all
+	the changes, but basically there are more listeners now between
+	interface and Camera or Content managers, and more will probably
+	follow in the near future.
+
+	- We had to change stuff everywhere, like using our config manager
+	instead of CS one, XML parser, and so on.  There are lots of
+	changes related with this, sometimes restructuring code while at
+	it, but as I say above its not very interesting to comment in
+	detail.
+
+2006-07-11
+
+	* duffolonious: changed names and config manager stuff in the bot
+	so it compiles.
+
+	* duffolonious: minor change to bootstrap.py - added postgresql
+	support.  It assumes you have mysql.  Also changed defaults in
+	ocserver.cfg from 'once' to 'fearann'.
+
+	* duffolonious: merged trading manager for server and bot (but not
+	client). Also added a start on the combat manager.  Hopefully I
+	didn't miss anything.
+
+	* mafm: Changes to the XML "adapter" that Duff submitted a while
+	ago, to get rid of some unused stuff that it might be messy/buggy
+	and hard to maintain (using our logging routines instead of Xerces
+	ones, in example).
+
+	* mafm: More changes to the XML "adapter", to adapt it to the
+	needs of our code.
+
+2006-07-08
+
+	* mafm: Adding new bootstrap script coded in Python.  It won't be
+	as ubiquotous as the old one in bash, but it shouldn't be a
+	problem for standard systems, since most of the installations of
+	current GNU/Linux distributions require Python in the base system.
+	We can provide templates of Jamrule very easy to modify, in order
+	to get things working for those having problems with the script,
+	anyway.  The new script does already the same than the old one,
+	and a bit more: it can handle more options, and more gracefully
+	(which was the reason for the switch).  After a few days of
+	testing, the old one could be safely removed, we can always
+	retrieve the one in bash from SVN history, if needed.
+
+2006-07-05
+
+	* mafm: Modifying the common ConfigMgr to work as other managers
+	in client and server, with Singleton patterns and so on.  This is
+	important (apart from having only one instance) because, in this
+	way, the instance "lives" in the class itself, so we don't need a
+	Client or Server "master class" to hold all those objects needed
+	in most parts of the application.  Most of the changes in the last
+	few days with the other managers are due to this, too.
+
+2006-07-04
+
+	* mafm: Getting the client content manager to work without CS'
+	VFS, and miscellaneous cleanups while at it.
+
+2006-07-01
+
+	* mafm: Adding singleton-like pattern for CltCommandMgr and
+	CltNetworkMgr.
+
+	* mafm: Misc renamings, cleanup and adaptations all around the
+	place; not worth to comment in detail.  Details for important
+	design changes will come in the following days.
+
+2006-06-29
+
+	* mafm: Creating a branch for OSG transition, so let's see whether
+	this works or not.  Removed the player and object behaviors in the
+	client, because they were basically placeholders without anything
+	really implemented; yet they are a little burden that requires to
+	slow down the pace of changes; and converting the main player
+	behavior to be generic.
+
+2006-06-28
+
+	* mafm: Rewriting camera system in the client, and not using CEL
+	for this.  This includes making a camera manager, creating a
+	hierarchy for camera modes (although there's only one right now,
+	new ones can be implemented very easily), and making easily
+	understandable interfaces with patterns, including Singleton and
+	Listener.
+
+	* mafm: Removing CEL pctooltips due to the camera changes, anyway
+	they were looking very bad so we needed to replace them
+	eventually.
+
+	* mafm: Changes in some places, in example frame processing, due
+	to the camera changes: now we paint it by hand, don't rely on CEL
+	to do it...
+
+	* mafm: Fixing checks in the server that prevented to create
+	characters.
+
+	* mafm: Changes to README and INSTALL, updating them a bit
+	(including new name of the project).
+
+2006-06-21
+
+	* duffolonious: character creation changes.
+
+2006-06-20
+
+	* mafm: fixing some problems (sometimes due to changes in CS)
+	preventing clean compilation.
+
+2006-05-30
+
+	* duffolonious: fixed ocMsgInventoryListing serialization -
+	netlayer still has issue serializing "cont char *".  And
+	re-enabled sending inventory list to players.  Tested - seems to
+	work fine, but load is still incorrect.
+
+2006-05-12
+
+	* mafm: Changing the servers.xml file for the client, new defaults.
+
+2006-05-11
+
+	* duffolonious: Committed bot for debugging and testing of various
+	features (inventory, trading, etc).  How to use:
+	1. configure bot (data/bot/botdata.cfg)
+	2. Login: /login config
+	3. Join: /join <character>
+
+	If you setup the config file and uncomment the commands in the
+	startup file, the bot will automatically login and automatically
+	join the world.
+
+	"/help" will show you all the commands as usual.  More to come...
+
+2006-05-09
+
+	* duffolonious: Increased object get radius to 5.0.  Fixed
+	osMsgInventoryAdd serialization issue.  And adding a "trading"
+	message.
+
+	* duffolonious: fixed entity - now sends correct position and area
+	to client, so it doesn't crash.
+
+	* mafm: Reimplementing a Buffer in the message base class, there
+	are no evidences that the implementation was much more efficient
+	than the new one, and it was causing some bugs difficult to trace.
+
+2006-05-06
+
+	* mafm: Implementing several missing things in the client: the
+	picture in the PlayerStats window was using Elf-female picture all
+	the time; fixing crash when creating a new character and the
+	server didn't send us proper info; reporting proper progress for
+	empty files; etc.
+
+	* mafm: Improving other parts of the network while bufixing, like
+	the performance of some buffers avoiding copies.
+
+	* mafm: Fixing several bugs in the network: not processing all the
+	data when serializing/deserializing some messages; mixing the data
+	from several messages sometimes (due to not using really separated
+	buffers for different netlinks).
+
+	* mafm: Substituting remaining csStrings in the code.  We want to
+	use STL instead of CrystalSpace specific stuff when possible, to
+	avoid being affected by bugs or changes in CS.
+
+	* mafm: Fixing a bug with new characters (crash in the client
+	after creating one); which involved to protect the client when
+	data is not sent properly, and filling the message to send all
+	expected data (it wasn't serializing and deserializing all the
+	data in the message).
+
+	* mafm: Moving the code from Once project (in SourceForge's
+	repository) to Fearann Muin project (in gna.org).
+
+2006-05-03
+
+	* duffolonious: mafm submitting a patch from duffolonious to fix
+	some discrepancies due to good ol' Unix mess, that we didn't want
+	to investigate further.  Just say that this seems to make the
+	server content manager to work fine in our systems instead of the
+	previous solutions, let's hope that works in other places as well.
+	My (mafm) changes to Duff's patch are only cosmethical, removing
+	now unused variables, disabling verbose log entries enabled for
+	testing and so forth.
+
+2006-05-02
+
+	* mafm: Fixing some bugs withe entity classes in the server:
+	destructors in base classes, no matter whether they are virtual or
+	not, are always called when destructing the object (even, again,
+	if they're redifined in the derived classes); and they can access
+	the local functions only, instead of the ones redefined in the
+	derived classes.  This is because the order of destruction is
+	derived first and base last, so the destructor might attempt to
+	access vtables for the "derived part", which would have been
+	already destroyed by the time that the base destructor comes into
+	action.
+
+2006-05-01
+
+	* mafm: Content update working again, and not using md5sum.
+	md5sums are indeed reliable, but they're too "heavy" to be used
+	all the time: it requires tenths of seconds to check not-so-big
+	dirs of 200MB or so, and it flushes out the cache that your OS
+	uses to store parts of the filesystem (unless you have really a
+	lot of memory); so this wasn't very desirable in the long-run.  An
+	additional problem is that, without CS, we would have to require
+	yet another external library (openssl or something) to calculate
+	this for us, so a better solution came to our mind.  The new
+	system uses keys to identify the version of a file, and this is
+	the timestamp of the modification time of the file in the server,
+	quite reliable key to see if the file was modified :).  The client
+	stores the key that the server sends (without calculating
+	anything), and when querying for updates it sends the key back to
+	the server; the server then compares it with the local timestamp
+	and see if matches to decide wheter is up-to-date or not.
+
+	* duffolonious: added ocConfigMgr in common - it is simply the
+	functions mafm created in ocserver.cpp moved to their own class.
+	This gets rid of redundancy - I use this code in my bot as well.
+	And if more functions are added it'll be easier to manage.
+
+2006-04-30
+
+	* mafm: As a status report of what has been going on during last
+	days, the summary is that the server (the changes in the client
+	were pretty simple) it's not completely functional as before yet,
+	but I expect this to get working soon (within 1-2 days), now much
+	more efficiently (using 1/10 of the memory **in the worst case**
+	comparing with before -- 20MB with CrystalSpace and 2MB now; 64MB
+	with CrystalSpace when loading the empty terrain map; and we still
+	using 2MB because we don't load the actual map at all).  There are
+	a lot of changes in other parts, usually rewriting some classes
+	with the help of the experience gained in the last months; so in
+	general the transition is going very well and the result in the
+	server is that the design is much more clean, interfaces are quite
+	simplified and understandable, and so forth.  I expect that this
+	is confirmed with a noticeable boost in functionality of the game
+	in the next weeks/months, provided that me or somebody else have
+	time to do it :)
+
+	* mafm: Lots of improvements and bugfixes, because the last few
+	days I developed "blindly", the amount of changes was so huge that
+	I couldn't be testing even the most obvious bugs.
+
+	* mafm: Adding the new server entity implementations.
+
+	* mafm: Complete rewrite of the world manager, due to switch from
+	old behaviours to new entities, but also because the data
+	structures are different and so they are some of the
+	functionalities as well.
+
+	* mafm: Moving code from the old helper class EntityStorage to
+	different places.  In example, the login manager also loads the
+	basic data to create the player entity (it needs few additional
+	lines, compared to the function in EntityStorage, because it has
+	to access already some of the tables so retrieving some more data
+	is cheaper).  Another example is saving data, now entities are
+	responsible for doing so, and it seems that we save code and
+	interface complexity as well.
+
+2006-04-29
+
+	* mafm: More work in the server, including to finish the command
+	part, providing an alternative for CS config manager, and
+	rewriting the main server application to make make it work by its
+	own.  Now mostly the only things missing are parts of the world
+	and entities, but this is also one of the most important parts.
+
+	* mafm: 'Final' changes for the transition in common and client.
+	It's not really final, since there are a lot of things to cleanup,
+	in example with the content loader which will be used only for the
+	client now; so it should be a big cleanup in the client later
+	(rethinking what to do with the classes used now only by the
+	client, think about new possibilities of interaction with the
+	server, etc).  But at least things seem to be compiling again and
+	there are few changes in the client, so hopefully will work again
+	as soon as the server does.
+
+	* mafm: Moved old ocLoader and BehaviourCommon to the client,
+	because it's not needed for the server, and so we are almost
+	finished with the transition.
+
+	* mafm: Creating common/datatypes.h, for things like Vector3.
+
+2006-04-28
+
+	* mafm: Revision of the command classes in common, client and
+	server.
+
+	* mafm: Revision of the classes related with the world in the
+	server, including: removal of old behaviours (saving worthy parts
+	to new classes which will be substituting them soon), removal of
+	the entity factory for those behaviours, adaptation to all the
+	changes going, on and exhaustive revision of the rest of the
+	classes.
+
+2006-04-27
+
+	* mafm: Revision of the content manager and files being sent in
+	the server.
+
+	* mafm: Revision of the console manager in the server.
+
+	* mafm: Deletion of area behaviour in the server, it was always a
+	dummy implementation and it's not really needed.  Deleted the
+	behaviour base of the server too, preparing for the complete
+	removal of all them as they were (new CEL-free versions will be
+	commited soon).
+
+	* mafm: Exhaustive revision of the LoginMgr.
+
+	* mafm: General cleanup in all the DB classes.  This includes a
+	general revision of the code, simplifying functions when possible;
+	removing unused parts of classes; renaming accordingly with new
+	standards (in example iocDatabase to ocDBMgr) and so forth.  Since
+	the mysql backend and database scheme isn't maintained for more
+	than a year I removed it, because I don't want to spend time
+	maintaining unused code, and the class was trivial enough so it
+	can reimplemented again within minutes (and there's SVN history to
+	help to retrieve the old file, if needed).
+
+	* mafm: Adding a file for utility functions, classes or algorithms
+	used everywhere (such as string converters), that are in general
+	unclassifiable to put in separate files.
+
+	* mafm: Making some changes in the logger functions to improve
+	maintainability.
+
+	* mafm: Remove logout messages, they would duplicate the function
+	(closing the socket in the client has the same effect), and thus
+	causes confusion on the differences, we would have to maintain
+	duplicated code, etc.
+
+2006-04-26
+
+	* mafm: Making the connect menu to show "off-line" for servers
+	when the connection is lost, instead of just showing the last ping
+	value forever.
+
+	* mafm: Fix bug in the Ping server and client classes of the
+	destructor, not properly destroying the connections.
+
+	* mafm: Destroying initial menus when joining the game, so
+	hopefully we'll save some memory and CEGUI will be a bit quickier
+	(not having to search through a lot of windows with some
+	algorithms, etc).  Probably we don't gain much, but since we don't
+	need those windows anymoer, it should be safe.  Note that we can't
+	disconnect from the game and go back to the initial menus even if
+	we wanted, we have to restart the client instead, because some CS
+	internal plugins (or cards, or drivers, etc) segfault when doing
+	it.
+
+	* mafm: Reimplementing ping stuff and so undoing the previous
+	stuff about this (messages, etc).  The new method is to setup
+	another TCP channel for this, and to use specialized PingServer
+	and PingClient with the minimal operations to perform this; and
+	not being intrusive at all with the rest of the code.
+
+2006-04-25
+
+	* mafm: Adding support in client and server for Ping and PingReply
+	messages, which are useful to show the lag with the servers before
+	connecting.
+
+	* mafm: Adding timeout capability to the function connectToServer,
+	so it doesn't block forever (15 minutes in default TCP
+	implementations, IIRC), just for the given number of seconds
+	(5 by default).
+
+	* mafm: Adding hostname->IP translation capability to the socket
+	abstraction, so we can use it at will from now on.  Since the only
+	place where we would normally use this is the connecToServer
+	function, it calls the translator function automagically when
+	detects that the address is an hostname instead of an IP.  We
+	didn't have the possibility to use this with Raknet, so we're
+	gaining new advantages :)
+
+	* mafm: Disabling only-one-IP restriction in the login manager, is
+	not useful for testing (you can't connect from the same computer
+	to test player interactions, in example).
+
+	* mafm: Fixed important bug in the netlink class, the server
+	wasn't setting up the IP of the incoming connection, and this was
+	causing problems in the login manager -- rejecting connection due
+	to duplicate IPs (empty strings really).
+
+2006-04-24
+
+	* mafm: Changing unsigned int for uint32_t in some parts of the
+	network/message layer, it doesn't appear to cause problems at the
+	moment, but it could lead to hard to find bugs in the future.
+
+	* mafm: Some more cleanup in the client content manager, but
+	mostly no changes in functionality.
+
+	* mafm: Scrutiny of the client content manager, rewritten most of
+	it with cleaner functions and so on.
+
+	* mafm: Changing some internals of MsgBase, so it's much more
+	efficient (not using STL vector now) and robust.
+
+	* mafm: Fixing PlayerData serialization problem: it was trying to
+	send the message acting as variable in the player behaviour
+	itself, so it was being serialized multiple times adding more and
+	more data, and sent over to the client, where it failed to
+	deserialize.  Two fixes come out of this: with messages, just
+	allowing serializing once (we could clear it and allow reuse, but
+	since it's the only message doing this at the moment, it's not
+	necessary to do this); so at least we don't get odd errors in
+	these cases.  The second fix is to copy a message and send it in
+	the player behaviour, instead of sending the message used
+	internally by that class.
+
+2006-04-23
+
+	* duffolonious: minor cegui bugfix, bug #1472604.  Now you
+	shouldn't be able to join the world when you are still downloading
+	content.
+
+	* mafm: Thanks to the previous changes I made new improvements,
+	now it's much faster also when receiving messages, and it's being
+	quite stable in the rest of functionality.
+
+	* mafm: Many important improvements in the network code.  Now most
+	of the sending and receiving functionality is moved to the
+	ocNetlink itself, because it was a bit confusing otherwise.  A lot
+	of things changed as well in the way that buffers are dealt with,
+	making it much more performant and avoiding floods in example when
+	sending messages.
+
+2006-04-22
+
+	* mafm: Commiting a fix in the DB scheme for the time problem
+	(needs a row to be inserted in the table, in order to be able to
+	update it while the server is running).
+
+	* mafm: Fixing a size_t instead of uint32_t in a message, so it
+	was giving problems in 64bit machines.
+
+	* mafm: Set default compile mode to optimize but maintaining
+	compatibility (guessing the correct processor is not easy and
+	portable).
+
+2006-04-21
+
+	* mafm: Fixing a bug in the deserialization with floats, it was
+	reading completely different values than the ones sent.  All data
+	types appear to be working correctly at this moment.
+
+	* mafm: Adding a test message and the corresponding handler, to
+	quicly test if the client is receiving sane data or not (contains
+	strings, floats, integers, etc).
+
+	* mafm: Removing the state manager class.  Basically, it was a
+	place to put all the stuff that nobody knew where to put, and it
+	was overlapping the initial windows all the time (making calls
+	back and forth to display different menus when clicking buttons).
+	So basically, the class handling CEGUI initial menus is in charge
+	for all that, and taking the player from the initial screen to
+	playing.
+
+2006-04-20
+
+	* mafm: Getting rid of Raknet and a few associated classes.
+	Raknet was a pain in the ass since we started using it: GNU/Linux
+	(or Unix, in general) builds needed to manually tweak makefiles,
+	lots of bugs in new versions making it highly unstable, and being
+	almost impossible to use client and server with different versions
+	of it (without even telling you that you were using mismatched
+	versions).  Watching the mess of its code was a terrifying
+	experience.  So basically, since it doesn't seem to be any net
+	library very suitable for this (offering very important advantages
+	outweighting the inconvenience of having to use yet another
+	external library and learn how to develop with it), I just
+	substituted it for a straightforward implementation over TCP
+	sockets, which seems to work much better at the moment -- not
+	causing any of the problems of Raknet.  TCP could be substituted
+	for an UDP implementation if needed, but given that World of
+	Warcraft and Anarchy On-line and other major MMORPGs are using
+	exclusively TCP, it shouldn't be any problem with that.
+
+	* mafm: Changes in the associated classes include: serialize and
+	serial factory (enhanced simplified versions replaced them),
+	messages and message handlers (again, simplified and more
+	maintainable versions replaced them), rewriting classes related
+	with content (to get rid of low level stuff likely to cause
+	errors, and taking advantage of some new features of the network
+	layer).
+
+	* duffolonious: Added one line to the cegui config to fix rise on
+	click problem with cegui background - sf bug #1472601
+
+	* mafm: Tweaking a bit the bootstrap script for different values
+	when compiling.
+
+2006-04-19
+
+	* mafm: Removing some unused entity behaviours in the server.
+	They're still much of a work in progress without doing anything
+	special at all, so by removing them we don't have to maintain
+	whenever code that they depend on changes.
+
+	* mafm: Removing the name generator in the server: nobody likes
+	the idea of forcing people to have generated names only, and the
+	architecture to achieve this and is not trivial, the user should
+	be able at least to choose one name in a big list, etc; and check
+	that the name chosen is allowed.  It's incomplete, there are no
+	other plans to use it at the moment and it's not clear if its
+	structure is the best one for a real usable generator; so after
+	two years unused let's remove it to avoid having dead code around.
+
+	* mafm: Removing a class dealing with censorship in the server, it
+	was disabled anyway (search for "censor" in the old ChangeLog for
+	details).  There's a general agreement that we don't want to do
+	silly censororing, nor serious one even if we could.
+
+2006-04-18
+
+	* mafm: Adding hardcoded lines for PostgreSQL: it will work in
+	most setups anyway, and at least in this way people only has to
+	change the parameters and not guess the whole lines.
+
+2006-04-17
+
+	* mafm: Removing some unused messages (attack, journal).  It's
+	better to have them only when they are working, otherwise we're
+	maintaining code not really used anyway, such as the changes
+	commented below.  Since they haven't been used for months, they're
+	removed for good :)
+
+	* mafm: Fixing some issues of serializing with 64 bits (using
+	size_t which is 64 bits with uint32_t, etc).  Removing some
+	functions, since aren't used at all; and substituting a lot of
+	"uint32" and "unsigned int" or "int" for "uint32_t" so we reduce
+	the complexity of interactions and possible problems due to
+	truncation by using the same size for almost everything.
+	"ProtocolVersion" in client and server config files set to another
+	value, because these changes make impossible to talk newer with
+	older clients.
+
+	* mafm: Making some improvements to the bootstrap script, so it
+	supports CS installed in standard directories (in example in
+	Gentoo), and allows GCC <4.0 to link the binaries.
+
+2006-04-16
+
+	* mafm: Making some improvements with paths, in example using the
+	config files instead of hardcoding filenames.
+
+	* mafm: Rearranging data layout so there are data/client and
+	data/server, and removing some unused stuff like Vinque font (with
+	a "dangerous" license).
+
+	* mafm: Changing the fully bloated method of autotools (autoconf,
+	automake, etc) for a simple bootstrap script and Jam.  Read
+	explanations about it in the INSTALL file.
+
+	* mafm: Initial import into SVN repository.  You can see the
+	changelog since the creation of the project until today in
+	ChangeLog.initial.	

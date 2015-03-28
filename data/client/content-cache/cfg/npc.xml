@@ -1,0 +1,13 @@
+<!-- maybe we need other model-dependent data, such as CD boxes -->
+
+<npc>
+	<farmer		prettyName="Farmer"
+			description=""
+			walkSpeed=""
+			runSpeed="">
+			<abilities	str="14" con="11" agi="8" int="4" wis="2" cha="8" />
+			<dialog		action1=""
+					action2=""
+					action3="" />
+	</farmer>
+</npc>

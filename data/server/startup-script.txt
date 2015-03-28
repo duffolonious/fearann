@@ -1,0 +1,9 @@
+load_table data/server/content-client/cfg/load.xml
+load_table data/server/content-client/cfg/classes.xml
+load_table data/server/content-client/cfg/spells.xml
+load_table data/server/content-client/cfg/creatures.xml
+load_table data/server/content-client/cfg/objects.xml
+
+load_area tmprotmar
+load_objects tmprotmar
+load_creatures tmprotmar

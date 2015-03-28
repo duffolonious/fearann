@@ -1,0 +1,172 @@
+<!-- Meaning of interesting attributes:
+
+- load: It usually indicates weight (in kilograms), but can also be
+	increased if the material it's something like straw: the bulk
+	of the object.
+
+- durability: Not used yet, but it will have the usual meaning in
+	games.
+
+- handed: 1 or 2h. This for tolls maybe it's applied only for visuals
+	but you can't handle two tools at the same time, but this
+	won't be applicable to weapons probably.
+
+- weaponType: Pierce, contundent, slash.
+
+- damage: Maybe we don't let people to use this in combat, but if so
+	that's the meaning of the value.
+
+- magicAttack: If it has magic attacks (say, firebolt when hit). Maybe
+	it should be better to put as child node and not attribute, so
+	we can have more than one and we can specify other things such
+	as amount of damage for this attack as attribute of the child
+	node (so we maintain this more structured :) ).
+
+- magicSpell: similar to the previous one, but with charges etc. The
+	same for child nodes aplies.
+
+- abilityBonus: Magic bonus for an ability, such as str +3. Maybe we
+	need this also for other things (such as bonus to armor class
+	directly).
+
+- protectionBonus: Similar to the previous one, but protection against
+	fire, magic and so on.
+
+- restrictions: In example requiring str >= 20 to be able to use some
+	weapons.
+
+- RANGED_STUFF: we need to have this into account, but nothing
+	designed yet.
+
+-->
+
+<weapons key="name">
+	<gauntlet	name="Gauntlet"
+			description=""
+			category="simple"
+			cost="2"
+			smdamage="1d2"
+			mddamage="1d3"
+			critical="2"
+			criticallb="20"
+			range_inc="0"
+	        load="1.0"
+			type="Bludgeoning"
+			handed="1"
+			double_reach="0"
+			double_weapon="no"
+			ranged="no"
+	/>
+	<unarmed	name="unarmed"
+			description="default weapon"
+			category="simple"
+			cost="0"
+			smdamage="1d2"
+			mddamage="1d3"
+			critical="2"
+			criticallb="20"
+			range_inc="0"
+	        load="0.0"
+			type="Bludgeoning"
+			handed="1"
+			double_reach="0"
+			double_weapon="no"
+			ranged="no"
+	/>
+	<dagger	name="dagger"
+			description="A dagger is a double-edged knife used for stabbing, thrusting or as a secondary defense weapon in close combat."
+			category="simple"
+			cost="2"
+			smdamage="1d3"
+			mddamage="1d4"
+			critical="2"
+			criticallb="19"
+			range_inc="0"
+	        load="1.0"
+			type="Piercing|Slashing"
+			handed="1"
+			double_reach="0"
+			double_weapon="no"
+			ranged="no"
+	/>
+	<club	name="club"
+			description=""
+			category="simple"
+			cost="0"
+			smdamage="1d4"
+			mddamage="1d6"
+			critical="2"
+			criticallb="20"
+			range_inc="10"
+	        load="3.0"
+			type="Bludgeoning"
+			handed="1"
+			double_reach="0"
+			double_weapon="no"
+			ranged="no"
+	/>
+	<longsword	name="longsword"
+			description=""
+			category="simple"
+			cost="15"
+			smdamage="1d6"
+			mddamage="1d8"
+			critical="2"
+			criticallb="19"
+			range_inc="00"
+	        load="4.0"
+			type="Slashing"
+			handed="1"
+			double_reach="0"
+			double_weapon="no"
+			ranged="no"
+	/>
+	<longbow	name="longbow"
+			description=""
+			category="simple"
+			cost="75"
+			smdamage="1d6"
+			mddamage="1d8"
+			critical="3"
+			criticallb="20"
+			range_inc="100"
+	        load="3.0"
+			type="Piercing"
+			handed="2"
+			double_reach="0"
+			double_weapon="no"
+			ranged="yes"
+	/>
+	<arrows	name="arrows"
+			description=""
+			category="simple"
+			cost="1"
+			smdamage="0"
+			mddamage="0"
+			critical="0"
+			criticallb="0"
+			range_inc="0"
+	        load="3.0"
+			type=""
+			handed="1"
+			double_reach="0"
+			double_weapon="no"
+			ranged="no"
+	/>
+	<shortsword	name="short sword"
+			description=""
+			category="martial"
+			cost="10"
+			smdamage="1d4"
+			mddamage="1d6"
+			critical="2"
+			criticallb="19"
+			range_inc="00"
+	        load="2.0"
+			type="Piercing"
+			handed="1"
+			double_reach="0"
+			double_weapon="no"
+			ranged="no"
+	/>
+</weapons>

@@ -1,0 +1,160 @@
+Fearann Muin On-line RPG (formerly Once MMORPG)
+http://gna.org/projects/fearann/
+
+Copyright (C) 2005-2006 Fearann Muin Development Team
+
+
+--------
+Preamble
+--------
+
+After trying for a few days to get a standard compilation procedures
+working (such as GNU Autotools, or at least autoconf with Jam), the
+result was very clumsy in the best cases (needing autoconf, make,
+automake, running several scripts to get everything working); and
+usually wasn't working due to some part failing (such as needing
+specific versions of some of these tools, due to interdependencies
+between them).  Trying to integrate the standard configure script with
+Jam is not easy either: pkg-config is not integrated with it, and so
+you need to copy macros for pkg-config and run scripts to regenerate
+the standard configure script, etc.
+
+After this we decided to go for a simple hand-made system using Jam
+instead of make, which seems to work better for this project.  Don't
+get it wrong: it's not that we're saying that a few bash script lines
+outperform those tools in power; it's just that this software is not
+meant to run on arcane systems (by its very 3D nature, it can only run
+on very recent and powerful systems with good 3D graphic cards), so
+the portability and other features offered by GNU Autotools are not
+needed, they're a burden not worth to carry, because creating and
+maintaining those files require work that we can better use elsewhere.
+The reason to create autoconf, in example, is to allow compilations on
+systems not having even bash shell and other basic tools; and the
+reason behind automake is that make is a very basic tool without the
+power of tools like Jam.  Modern tools as pkg-config and Jam (widely
+available) do most of the dirty work for us; and at least, if you have
+problems with this method, you can hack very easily the config files
+or the script.
+
+So please, install these tools if you don't have them in your system
+if you want to compile this project.  We don't intend to support
+traditional 'make' or other similar compilation procedures in the next
+future.
+
+
+-------------
+Prerequisites
+-------------
+
+You should have the following software (and approximate versions)
+working in your system.  You should try to get support from those
+project directly in the case that you find troubles
+building/installing and running them (and all the libraries that these
+projects depend on, etc).  Also, note that this list may not be always
+up to date, although we'll try to have it updated at least in major
+releases.
+
+
+* Tools to build from source
+
+- G++ (GNU C++ Compiler) [ http://gcc.gnu.org/ ] , or other compiler
+  compliant with standards of the language (though not all them may be
+  supported).  4.1 or newer is recommended, since the 4th version is
+  much more compliant with the standards that the old ones, but some
+  4.0.x had some problems with code generation that make our
+  binaries unusable.
+
+- Jam, replacement of make and automake-like tools [
+  http://www.perforce.com/jam/jam.html ]
+
+- pkg-config, helper tool to compile and link external libraries [
+  http://pkgconfig.freedesktop.org/wiki/ ]
+
+
+* External libraries:
+
+- OpenSceneGraph, graphic engine [ http://www.openscenegraph.org/ ],
+  version 1.0.0
+
+- Cal3D, skeletal based 3D character animation [ http://home.gna.org/cal3d/ ],
+  version 0.11.x
+
+- osgCal, for Cal3D into OSG [ https://gna.org/projects/underware/ ],
+  version 0.1.4x
+
+- CEGUI, graphical user interface [ http://www.cegui.org.uk/ ],
+  version 0.5.x.  It needs to have support to load at least PNG files
+  (probably the easiest way is to install DevIL libraries as well), so
+  make sure that you include support for them if you compile CEGUI
+  yourself.
+
+- Xerces-C++, XML parser [ http://xml.apache.org/xerces-c/ ],
+  version 2.7.x
+
+
+------------------
+Basic Installation
+------------------
+
+This assumes that you have some basic tools in your system (or
+whatever you need to build it in your system), such as bash shell and
+pkg-config; and also the libraries needed to run the project correctly
+installed in your system. The configuration script checks that you
+have them, as well as a rough approximations to the right versions
+needed, and if it can get all the parameters needed to configure it.
+
+This installation will refer to the GNU/Linux method, other systems
+(*BSD, Mac OS X, MingW under Windows, etc) should require to perform
+similar steps, if not equal.  Note that Jam is multiplatform and has a
+wide support, so most probably will work in your system.  Trying to
+compile it directly with MSVC or other compilers should be possible as
+long as they're conformant with C++ standards; the only thing that you
+will need is to set the include directories and so on, in a similar
+way that the script does for Jam.
+
+The script can't check whether the version of the libraries have
+absolutely all the details working, or incompatibilities between
+versions, so please check that these are working correctly (most of
+the libraries have demo programs to do at least basic tests) before
+sending bug reports or asking for help in this project (do it in the
+project of the failing software instead).
+
+The basic steps:
+
+1) Run "./bootstrap.py", which is an script trying to do the basic
+configuration for you (and you can choose some options by passing
+parameters, see "./bootstrap.py --help"). This generates the
+"Jamrules" file in the top directory.
+
+2) You can edit by hand the values in "Jamrules", if for some reason
+the script doesn't work as it should.  Note that you have to install
+and configure other libraries before doing this, so the script can
+detect the paths and so forth.  You shouldn't need to edit any other
+file.
+
+3) After that, you just need to type "jam" in the top directory, and
+it will begin to compile.
+
+4) Typing "jam install" if the compilation is successful should
+install this software in the appropriate directories (/usr/local/ in
+UNIX systems), but note that this might not work in every system, and
+maybe you need to do part of the configuration by hand.  At the moment
+of writing this, developers usually run the binaries from the
+directory where it was built, so they usually won't check whether "jam
+install" is working or not.
+
+5) You can remove the program binaries and object files from the
+source code directory by typing "jam clean".  To also remove the
+"Jamrules" files and other related files generated in previous steps,
+type "jam distclean".
+
+
+Note that typically (and by default) you'll only need to build the
+client.  It's not forbidden at all to build and use the server (or
+other modules present) for whatever purpose, but the maintainers don't
+feel like spending time having always up to date the server code, data
+needed, and detailed instructions to get it running (additional
+external libraries, DB schemes, configuration files, ...).  Please
+don't bug us about issues concerning the server, unless you absolutely
+must to -- if you want to try it it's all right, but you'll have to
+find the way by yourself.

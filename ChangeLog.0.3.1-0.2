@@ -1,0 +1,58 @@
+2008-11-20
+
+	* mafm: Obsolete, not used for too long, check svn logs as needed.
+
+2006-11-25
+
+	* mafm: Creating common/d20 subdir for stuff closely tighted to
+	d20.
+
+2006-11-24
+
+	* mafm: Simplifying TableMgr a lot, so the users of the class
+	should barely care about the internals (unlike until now,
+	accessing first rows and then individual rows), and saving space
+	in several aspects.
+
+	* mafm: Fixing a bug in XMLMgr, which was returning a pointer to a
+	C-string local to a function, thus causing annoying crashes
+	difficult to debug.
+
+2006-11-18
+
+	* mafm: Improving the implementation of the class dealing with
+	rolling dies: it recognizes more options and more safely, it
+	initializes the seed with less predictable data, and the whole
+	class and interfaces are simpler and more mantainable.
+
+	* mafm: Improving a bit the getHostByName wrapper around the
+	library function, thus making the client to not segfault when this
+	function fails (it's not that uncommon connected through wireless
+	networks...).
+
+2006-11-17
+
+	* mafm: Cleaning up a number of files in common/, it's mostly
+	cosmetic stuff and const modifiers.
+
+2006-10-04
+
+	* duffolonious: a number of changes.
+	1. id's for entities are now 64 bit unsigned ints (more changes necessary) - 
+	combat works with this.
+	2. Added basic dialog interface - discussion tree.
+	3. Added action menu (basic) - for right-clicking on entities to do 
+	actions (trade,fight,info,dialog).
+
+2006-09-17
+
+	* duffolonious: finally got object "picking" working - where we can select
+	an object (player, creature, item) by right-clicking on it with the mouse.
+	And along with that, a menu pops up with the name of the object and the 
+	distance to the object.  There is also an "action" button to click on - 
+	currently it only picks up objects.  This is still pretty preliminary, but
+	it does allow some interactivity.
+
+2006-09-14
+
+	* mafm: Starting with version 0.3 in the trunk.

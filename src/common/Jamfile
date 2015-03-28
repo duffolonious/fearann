@@ -1,0 +1,25 @@
+SubDir TOP src common ;
+
+# root to search for includes
+SubDirHdrs src ;
+
+# Needed for some data types
+SubDirC++Flags $(XERCES.CXXFLAGS) $(CXXFLAGS) ;
+
+
+Library fmcommon :
+	command.cpp
+	configmgr.cpp
+	datatypes.cpp
+	logmgr.cpp
+	logger.cpp
+	stats.cpp
+	sha1.cpp
+	tablemgr.cpp
+	util.cpp
+	xmlmgr.cpp
+	d20/rolldie.cpp
+	net/msgbase.cpp
+	net/msgs.cpp
+	net/netlayer.cpp
+	patterns/observer.cpp ;

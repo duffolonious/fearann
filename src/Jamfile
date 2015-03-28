@@ -1,0 +1,11 @@
+SubDir TOP src ;
+
+if $(BUILD_CLIENT) = "yes" || $(BUILD_SERVER) = "yes" || $(BUILD_BOT) = "yes"
+	{ SubInclude TOP src common ; }
+
+if $(BUILD_CLIENT) = "yes"
+	{ SubInclude TOP src client ; }
+if $(BUILD_SERVER) = "yes"
+	{ SubInclude TOP src server ; }
+if $(BUILD_BOT) = "yes"
+	{ SubInclude TOP src bot ; }

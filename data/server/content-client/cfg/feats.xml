@@ -1,0 +1,14 @@
+<!-- maybe we need other model-dependent data, such as CD boxes -->
+
+<feats>
+	<feat	name="Improved Initiative"
+			description="You get a +4 bonus on initiative checks."
+			initiative="4">
+	</feat>
+	<feat	name="Lightning Reflexes"
+			description="You get a +2 bonus on all Reflex saving throws."
+			will="2"
+			reflex="2"
+			fortitude="2">
+	</feat>
+</feats>

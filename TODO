@@ -1,0 +1,32 @@
+Fearann Muin Roadmap
+
+Upcoming 0.4.0 release:
+
+1. Camera working (follow and orbital) - done
+2. Window mode - done
+3. Picking (selecting objects) - done (needs GUI though)
+4. Plant harvesting
+  a. Needs plant object/entity
+  b. When you click on plant - send message to server.
+  c. Server replies with newly harvested object.
+5. Auto-join for client
+6. Terrain re-work
+  a. Create heightmap texture (with GIMP for now)
+  b. Create heightmap geometry - for server.
+  c. Create osg file with geometry - make it loadable for the client.
+  d. Add colors to geometry
+  e. Add texture to the geometry
+7. Basic Client GUI - osgwidgets?
+  a. Server Login page
+  b. Server Auth page
+  c. Join World page
+  d. Console
+
+
+0.6.0 release:
+1. Simple AI - bunny, walk around, eat.
+2. More GUI
+3. ...
+
+
+Bryan Duff <duff0097@umn.edu>

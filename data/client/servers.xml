@@ -1,0 +1,5 @@
+<serverlist>
+    <server name="localhost" port="20768" pingport="20767" />
+    <server name="gameserver.fearannmuin.org" port="20768" pingport="20767" />
+    <server name="testserver.fearannmuin.org" port="20769" pingport="20770" />
+</serverlist>

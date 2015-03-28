@@ -1,0 +1,2 @@
+#install jam, openscenegraph, cal3d
+sudo apt-get install jam libopenscenegraph-dev libcal3d12-dev libxerces-c-dev

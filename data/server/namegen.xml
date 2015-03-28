@@ -1,0 +1,306 @@
+<?xml version="1.0"?>
+<NameData>
+  <!-- PhonemeList contains a list of phonemes that can be used by
+  names. These are divided into consonants, vowels, and seperators.
+  -->
+  <PhonemeList>
+	  <!-- Consonants -->
+      <Phoneme Name="Affricate">
+          <Part>ch</Part>
+          <Part>dg</Part>
+          <Part>j</Part>
+      </Phoneme>
+      <Phoneme Name="Alveolar">
+          <Part>d</Part>
+          <Part>l</Part>
+          <Part>n</Part>
+          <Part>r</Part>
+          <Part>s</Part>
+          <Part>t</Part>
+          <Part>z</Part>
+      </Phoneme>
+      <Phoneme Name="Bilabial">
+          <Part>b</Part>
+          <Part>m</Part>
+          <Part>p</Part>
+      </Phoneme>
+      <Phoneme Name="BilabialStop">
+          <Part>b</Part>
+          <Part>p</Part>
+      </Phoneme>
+      <Phoneme Name="Complex">
+          <Part>sch</Part>
+          <Part>thr</Part>
+      </Phoneme>
+      <Phoneme Name="Consonant">
+          <Part>b</Part>
+          <Part>c</Part>
+          <Part>d</Part>
+          <Part>f</Part>
+          <Part>g</Part>
+          <Part>h</Part>
+          <Part>j</Part>
+          <Part>k</Part>
+          <Part>l</Part>
+          <Part>m</Part>
+          <Part>n</Part>
+          <Part>p</Part>
+          <Part>r</Part>
+          <Part>s</Part>
+          <Part>t</Part>
+          <Part>v</Part>
+          <Part>z</Part>
+      </Phoneme>
+      <Phoneme Name="DoubleConsonant">
+          <Part>bb</Part>
+          <Part>dd</Part>
+          <Part>ff</Part>
+          <Part>ll</Part>
+          <Part>mm</Part>
+          <Part>nn</Part>
+          <Part>rr</Part>
+          <Part>ss</Part>
+          <Part>ss</Part>
+          <Part>tt</Part>
+      </Phoneme>
+      <Phoneme Name="DoubleGlide">
+          <Part>wy</Part>
+      </Phoneme>
+      <Phoneme Name="EndingNasal">
+          <Part>g</Part>
+          <Part>ng</Part>
+          <Part>r</Part>
+      </Phoneme>
+      <Phoneme Name="Fricative">
+          <Part>ch</Part>
+          <Part>f</Part>
+          <Part>ph</Part>
+          <Part>s</Part>
+          <Part>sh</Part>
+          <Part>th</Part>
+          <Part>v</Part>
+          <Part>z</Part>
+      </Phoneme>
+      <Phoneme Name="Glide">
+          <Part>w</Part>
+          <Part>y</Part>
+      </Phoneme>
+      <Phoneme Name="Glottal">
+          <Part>h</Part>
+      </Phoneme>
+      <Phoneme Name="Liquid">
+          <Part>l</Part>
+          <Part>r</Part>
+      </Phoneme>
+      <Phoneme Name="MidConsonant">
+          <Part>ct</Part>
+          <Part>dr</Part>
+          <Part>dw</Part>
+          <Part>ft</Part>
+          <Part>mk</Part>
+          <Part>nd</Part>
+          <Part>ndr</Part>
+          <Part>nf</Part>
+          <Part>nj</Part>
+          <Part>nk</Part>
+          <Part>ns</Part>
+          <Part>nt</Part>
+          <Part>ny</Part>
+          <Part>pr</Part>
+          <Part>ps</Part>
+          <Part>rd</Part>
+          <Part>rg</Part>
+          <Part>rk</Part>
+          <Part>rm</Part>
+          <Part>rn</Part>
+          <Part>rz</Part>
+          <Part>sl</Part>
+          <Part>st</Part>
+          <Part>stl</Part>
+          <Part>wl</Part>
+      </Phoneme>
+      <Phoneme Name="Nasal">
+          <Part>m</Part>
+          <Part>n</Part>
+      </Phoneme>
+      <Phoneme Name="Palatal">
+          <Part>ch</Part>
+          <Part>dg</Part>
+          <Part>s</Part>
+          <Part>j</Part>
+          <Part>sh</Part>
+          <Part>y</Part>
+      </Phoneme>
+      <Phoneme Name="OrcBegin">
+          <Part>gn</Part>
+          <Part>gr</Part>
+          <Part>hr</Part>
+          <Part>k'z</Part>
+          <Part>x</Part>
+          <Part>z</Part>
+          <Part>zr</Part>
+          <Part>k</Part>
+          <Part>m</Part>
+          <Part>n</Part>
+          <Part>x</Part>
+          <Part>zh</Part>
+      </Phoneme>
+      <Phoneme Name="OrcMiddle">
+          <Part>gh</Part>
+          <Part>gl</Part>
+          <Part>gzh</Part>
+          <Part>rg</Part>
+          <Part>rgh</Part>
+          <Part>rgl</Part>
+          <Part>rl</Part>
+          <Part>rmg</Part>
+          <Part>rng</Part>
+          <Part>zg</Part>
+      </Phoneme>
+      <Phoneme Name="Stop">
+          <Part>b</Part>
+          <Part>d</Part>
+          <Part>g</Part>
+          <Part>k</Part>
+          <Part>p</Part>
+          <Part>t</Part>
+      </Phoneme>
+      <Phoneme Name="Velar">
+          <Part>g</Part>
+          <Part>k</Part>
+          <Part>ng</Part>
+          <Part>w</Part>
+      </Phoneme>
+
+	  <!-- Vowels -->
+      <Phoneme Name="Dipthong">
+          <Part>ay</Part>
+          <Part>ea</Part>
+          <Part>ee</Part>
+          <Part>ei</Part>
+          <Part>oa</Part>
+          <Part>oe</Part>
+          <Part>ou</Part>
+          <Part>ow</Part>
+          <Part>oy</Part>
+          <Part>y</Part>
+      </Phoneme>
+      <Phoneme Name="Vowel">
+          <Part>a</Part>
+          <Part>e</Part>
+          <Part>i</Part>
+          <Part>o</Part>
+          <Part>u</Part>
+      </Phoneme>
+      <Phoneme Name="DoubleVowel">
+          <Part>ae</Part>
+          <Part>au</Part>
+          <Part>ea</Part>
+          <Part>ey</Part>
+          <Part>ie</Part>
+          <Part>io</Part>
+          <Part>oe</Part>
+          <Part>oi</Part>
+          <Part>oo</Part>
+          <Part>ou</Part>
+          <Part>ue</Part>
+          <Part>ui</Part>
+          <Part>ya</Part>
+          <Part>yo</Part>
+      </Phoneme>
+
+	  <!-- Miscellaneous -->
+      <Phoneme Name="Separator">
+          <Part>'</Part>
+          <Part>-</Part>
+          <!-- Part>&nbsp;</Part -->
+      </Phoneme> 
+  </PhonemeList>
+  <!-- The NameTemplateList lists a number of name templates for the current race. -->
+  <RaceNameTemplateList>
+    <Race Name="Human">
+      <!-- 3+ letters:  V MC V [E.g., Erdi] -->
+      <NameTemplate Name="V, MC, V ['Erdi']">
+          <Part Type="Cap">Vowel</Part>
+          <Part Type="Normal">MidConsonant</Part>
+          <Part Type="Normal">Vowel</Part>
+      </NameTemplate>
+
+      <!-- 3+ letters:  V MC DoubleVowel [E.g., Erdoo] -->
+      <NameTemplate Name="V, MC, VV ['Erdoo']">
+          <Part Type="Cap">Vowel</Part>
+          <Part Type="Normal">MidConsonant</Part>
+          <Part Type="Normal">DoubleVowel</Part>
+      </NameTemplate>
+
+      <!-- 3+ letters:  Fricative DoubleVowel Nasal [E.g., Sean] -->
+      <NameTemplate Name="Fricative, VV, Nasal ['Sean']">
+          <Part Type="Cap">Fricative</Part>
+          <Part Type="Normal">DoubleVowel</Part>
+          <Part Type="Normal">Nasal</Part>
+      </NameTemplate>
+
+      <!-- 3+ letters:  Fricative DoubleVowel Consonant [E.g., Seaz] -->
+      <NameTemplate Name="Fricative, VV, C ['Seaz']">
+          <Part Type="Cap">Fricative</Part>
+          <Part Type="Normal">DoubleVowel</Part>
+          <Part Type="Normal">Consonant</Part>
+      </NameTemplate>
+
+      <!-- 5 letters:  CVCVC [E.g., Seton] -->
+      <NameTemplate Name="CVCVC ['Seton']">
+          <Part Type="Cap">Consonant</Part>
+          <Part Type="Normal">Vowel</Part>
+          <Part Type="Normal">Consonant</Part>
+          <Part Type="Normal">Vowel</Part>
+          <Part Type="Normal">Consonant</Part>
+      </NameTemplate>
+
+      <!-- 3 letters:  VCV [E.g., Eti] -->
+      <NameTemplate Name="V, C, V ['Eti']">
+          <Part Type="Cap">Vowel</Part>
+          <Part Type="Normal">Consonant</Part>
+          <Part Type="Normal">Vowel</Part>
+      </NameTemplate>
+
+      <!-- 3+ letters:  V DC V [E.g., Etti] -->
+      <NameTemplate Name="V, CC, V ['Etti']">
+          <Part Type="Cap">Vowel</Part>
+          <Part Type="Normal">DoubleConsonant</Part>
+          <Part Type="Normal">Vowel</Part>
+      </NameTemplate>
+
+      <!-- 5+ letters:  Nasal V Fricative V EndingGuttural [E.g., Masher] -->
+      <NameTemplate Name="Nasal, V, Fricative, V, Guttural ['Masher']">
+          <Part Type="Cap">Nasal</Part>
+          <Part Type="Normal">Vowel</Part>
+          <Part Type="Normal">Fricative</Part>
+          <Part Type="Normal">Vowel</Part>
+          <Part Type="Normal">EndingNasal</Part>
+      </NameTemplate>
+
+      <!-- 5+ letters:  Fricative V DoubleGlide V EndingNasal [E.g., Sawyer] -->
+      <NameTemplate Name="Fricative, V, DoubleGlide, V, EndingNasal ['Sawyer']">
+          <Part Type="Cap">Fricative</Part>
+          <Part Type="Normal">Vowel</Part>
+          <Part Type="Normal">DoubleGlide</Part>
+          <Part Type="Normal">Vowel</Part>
+          <Part Type="Normal">EndingNasal</Part>
+      </NameTemplate>
+    </Race>
+
+    <Race Name="Orc">
+      <!-- 8+ letters:  [E.g., Gruph'Norgle] -->
+      <NameTemplate Name="Orcish [Gruph Norgle]">
+          <Part Type="Cap">OrcBegin</Part>
+          <Part Type="Normal">Vowel</Part>
+          <Part Type="Normal">Fricative</Part>
+          <Part Type="Normal">Separator</Part>
+          <Part Type="Cap">OrcBegin</Part>
+          <Part Type="Normal">Vowel</Part>
+          <Part Type="Normal">OrcMiddle</Part>
+          <Part Type="Normal">Vowel</Part>
+      </NameTemplate>
+    </Race>
+  </RaceNameTemplateList>
+</NameData>

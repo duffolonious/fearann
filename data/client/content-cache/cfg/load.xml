@@ -1,0 +1,33 @@
+<!-- how much can a character carry? -->
+
+<load key="strength" >
+	<load1 strength="1" light="3" medium="6" heavy="10" />
+	<load2 strength="2" light="6" medium="13" heavy="20" />
+	<load3 strength="3" light="10" medium="20" heavy="30" />
+	<load4 strength="4" light="13" medium="26" heavy="40" />
+	<load5 strength="5" light="16" medium="33" heavy="50" />
+	<load6 strength="6" light="20" medium="40" heavy="60" />
+	<load7 strength="7" light="23" medium="46" heavy="70" />
+	<load8 strength="8" light="26" medium="53" heavy="80" />
+	<load9 strength="9" light="30" medium="60" heavy="90" />
+	<load10 strength="10" light="33" medium="66" heavy="100" />
+	<load11 strength="11" light="38" medium="76" heavy="115" />
+	<load12 strength="12" light="43" medium="86" heavy="130" />
+	<load13 strength="13" light="50" medium="100" heavy="150" />
+	<load14 strength="14" light="58" medium="116" heavy="175" />
+	<load15 strength="15" light="66" medium="133" heavy="200" />
+	<load16 strength="16" light="76" medium="153" heavy="230" />
+	<load17 strength="17" light="86" medium="173" heavy="260" />
+	<load18 strength="18" light="100" medium="200" heavy="300" />
+	<load19 strength="19" light="116" medium="233" heavy="350" />
+	<load20 strength="20" light="133" medium="266" heavy="400" />
+	<load21 strength="21" light="153" medium="306" heavy="460" />
+	<load22 strength="22" light="173" medium="346" heavy="520" />
+	<load23 strength="23" light="200" medium="400" heavy="600" />
+	<load24 strength="24" light="233" medium="466" heavy="700" />
+	<load25 strength="25" light="266" medium="533" heavy="800" />
+	<load26 strength="26" light="306" medium="613" heavy="920" />
+	<load27 strength="27" light="346" medium="693" heavy="1040" />
+	<load28 strength="28" light="400" medium="800" heavy="1200" />
+	<load29 strength="29" light="466" medium="933" heavy="1400" />
+</load>

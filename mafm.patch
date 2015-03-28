@@ -1,0 +1,166 @@
+Index: src/client/cltviewer.cpp
+===================================================================
+--- src/client/cltviewer.cpp	(revision 664)
++++ src/client/cltviewer.cpp	(working copy)
+@@ -36,6 +36,7 @@
+ #include "client/cegui/cltceguidrawable.h"
+ #include "client/content/cltcontentloader.h"
+ #include "client/entity/cltentitymainplayer.h"
++#include "client/net/cltnetmgr.h"
+ #include "cltcamera.h"
+ #include "cltinput.h"
+ 
+@@ -285,16 +286,53 @@
+        /* mafm: for testing, readily available world without login into the
+         * server
+ 	*/                                                                                                                   
+-       MsgEntityCreate fakeMainPlayer;
+-       fakeMainPlayer.entityID = 0;
+-       fakeMainPlayer.position = Vector3(-35, -65, 0);
+-       fakeMainPlayer.rot = 2.5f;
+-       fakeMainPlayer.area = "tmprotmar";
+-       fakeMainPlayer.meshType = "elf";
+-       fakeMainPlayer.meshSubtype = "m";
+-       fakeMainPlayer.entityName = "Test Player";
+-       fakeMainPlayer.entityClass = "MainPlayer";
+-       CltEntityMgr::instance().entityCreate(&fakeMainPlayer);
++	bool connected = CltNetworkMgr::instance().connectToServer("wainu.ii.uned.es",
++								   20768);
++
++	MsgConnect msgConnect;
++	CltNetworkMgr::instance().sendToServer(msgConnect);
++
++	MsgLogin msgLogin;
++        msgLogin.username = "mafm";
++	msgLogin.pw_md5sum = "0e0e68cc27a6334256e0752d1243c4d894e56869";
++	CltNetworkMgr::instance().sendToServer(msgLogin);
++
++	MsgJoin msgJoin;
++        msgJoin.charname = "Elfo";
++	CltNetworkMgr::instance().sendToServer(msgJoin);
++
++	/*
++	MsgNewUser msgNewUser;
++        msgNewUser.username = "mafm";
++	msgNewUser.pw_md5sum = "0e0e68cc27a6334256e0752d1243c4d894e56869";
++        msgNewUser.email = "mafm@fearann.muin";
++        msgNewUser.realname = "Manuel Montecelo";
++	CltNetworkMgr::instance().sendToServer(msgNewUser);
++
++	MsgNewChar msgNewChar;
++        msgNewChar.charname = "Elfo";
++	msgNewChar.race = "elf";
++	msgNewChar.gender = "m";
++	msgNewChar.playerClass = "sorcerer";
++	msgNewChar.ab_choice_str = 13;
++	msgNewChar.ab_choice_con = 13;
++	msgNewChar.ab_choice_dex = 13;
++	msgNewChar.ab_choice_int = 13;
++	msgNewChar.ab_choice_wis = 13;
++	msgNewChar.ab_choice_cha = 13;
++	CltNetworkMgr::instance().sendToServer(msgNewChar);
++
++	MsgEntityCreate fakeMainPlayer;
++	fakeMainPlayer.entityID = 0;
++	fakeMainPlayer.position = Vector3(-35, -65, 0);
++	fakeMainPlayer.rot = 2.5f;
++	fakeMainPlayer.area = "tmprotmar";
++	fakeMainPlayer.meshType = "elf";
++	fakeMainPlayer.meshSubtype = "m";
++	fakeMainPlayer.entityName = "Test Player";
++	fakeMainPlayer.entityClass = "MainPlayer";
++	CltEntityMgr::instance().entityCreate(&fakeMainPlayer);
++	*/
+ }
+ 
+ void CltViewer::start()
+Index: src/client/net/cltmsghdls.cpp
+===================================================================
+--- src/client/net/cltmsghdls.cpp	(revision 664)
++++ src/client/net/cltmsghdls.cpp	(working copy)
+@@ -71,6 +71,7 @@
+ void CltMsgHdlConnectReply::handleMsg(MsgBase& baseMsg, Netlink* /* netlink */)
+ {
+ 	MsgConnectReply* msg = dynamic_cast<MsgConnectReply*>(&baseMsg);
++	return;
+ 
+ 	string clientVersion = ConfigMgr::instance().getConfigVar("Client.ProtocolVersion", "");
+ 	if (msg->resultCode == MsgUtils::Errors::SUCCESS
+@@ -102,6 +103,7 @@
+ void CltMsgHdlLoginReply::handleMsg(MsgBase& baseMsg, Netlink* /* netlink */)
+ {
+ 	MsgLoginReply* msg = dynamic_cast<MsgLoginReply*>(&baseMsg);
++	return;
+ 
+ 	if (msg->resultCode == MsgUtils::Errors::SUCCESS) {
+ 		CltCEGUIInitial::instance().Login_to_Join(msg->charList);
+@@ -123,6 +125,7 @@
+ void CltMsgHdlNewUserReply::handleMsg(MsgBase& baseMsg, Netlink* /* netlink */)
+ {
+ 	MsgNewUserReply* msg = dynamic_cast<MsgNewUserReply*>(&baseMsg);
++	return;
+ 
+ 	if (msg->resultCode == MsgUtils::Errors::SUCCESS) {
+ 		CltCEGUIInitial::instance().NewUser_to_Login();
+@@ -143,6 +146,7 @@
+ void CltMsgHdlNewCharReply::handleMsg(MsgBase& baseMsg, Netlink* /* netlink */)
+ {
+ 	MsgNewCharReply* msg = dynamic_cast<MsgNewCharReply*>(&baseMsg);
++	return;
+ 
+ 	if (msg->resultCode == MsgUtils::Errors::SUCCESS) {
+ 		CltCEGUIInitial::instance().Join_FillNewChar(msg->charname,
+@@ -188,6 +192,7 @@
+ void CltMsgHdlJoinReply::handleMsg(MsgBase& baseMsg, Netlink* /* netlink */)
+ {
+ 	MsgJoinReply* msg = dynamic_cast<MsgJoinReply*>(&baseMsg);
++	return;
+ 
+ 	if (msg->resultCode == MsgUtils::Errors::SUCCESS) {
+ 		CltCEGUIInitial::instance().LoadingGame_to_Game();
+@@ -261,6 +266,8 @@
+ void CltMsgHdlChat::handleMsg(MsgBase& baseMsg, Netlink* /* netlink */)
+ {
+ 	MsgChat& msg = dynamic_cast<MsgChat&>(baseMsg);
++	return;
++
+ 	CltCEGUIConsole::instance().printMessage(msg);
+ }
+ 
+@@ -294,6 +301,7 @@
+ void CltMsgHdlContactStatus::handleMsg(MsgBase& baseMsg, Netlink* /* netlink */)
+ {
+ 	MsgContactStatus* msg = dynamic_cast<MsgContactStatus*>(&baseMsg);
++	return;
+ 
+ 	CltCEGUIMgr::instance().Contacts_AddToList(msg->charname.c_str(),
+ 						   msg->type,
+@@ -413,6 +421,7 @@
+ void CltMsgHdlPlayerData::handleMsg(MsgBase& baseMsg, Netlink* /* netlink */)
+ {
+ 	MsgPlayerData* msg = dynamic_cast<MsgPlayerData*>(&baseMsg);
++	return;
+ 
+ 	// player itself
+ 	CltEntityMainPlayer::instance().setPlayerData(msg);
+@@ -464,6 +473,10 @@
+ 	       numeric_uptime, year, season, moon, day, hour, minute);
+ 	*/
+ 
++	// update environment in the client viewer
++	CltViewer::instance().setEnvironment(day_rest);
++	return;
++
+ 	// setting time in the calendar applet
+ 	string prettyTime = StrFmt("%02dh%02d", hour, minute);
+ 	char prettySeason = '!';
+@@ -497,9 +510,6 @@
+ 	}
+ 	string moonPictureName = StrFmt("Moon_%02d", moonPic);
+ 	CltCEGUIMgr::instance().Calendar_SetMoonPicture(moonPictureName);
+-
+-	// update environment in the client viewer
+-	CltViewer::instance().setEnvironment(day_rest);
+ }
+ 
+ 

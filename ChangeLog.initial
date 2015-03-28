@@ -1,0 +1,1869 @@
+Once MMORPG detailed change log.
+http://once.sourceforge.net/
+
+The history order is reversed so that new features are at the top.
+
+10-Apr 2006
+- mafm: To sum up all the changes below and the missing activities
+  (deoo didn't log here any of his changes), the result is that I
+  reverted most of the changes that deeo made (except adding a couple
+  of variables and a function in MySQL wrapper to match PostgreSQL
+  wrapper functionality), since they were mostly tests or badly coded
+  quick hacks.  The rest of the changes that I preserved and new ones
+  that made are mostly minor cleanups or enhancements.
+- mafm: Reverting changes in the client handler for time messages.
+  deeo made an stoopid hack (bad coded anyway) to prevent client to
+  change the lights accordingly to the time of the day, so they change
+  suddenly at fixed intervals (dawn, etc) and not smoothly every few
+  seconds.  The effects depend on the map and other things, and since
+  I can't run the client it's a bit difficult to predict the exact
+  effects, but I deduced it from the code and some comments.  Although
+  this indeed hurts performance (as deeo claims), this one can't be
+  the solution, otherwise it would be better to not have light changes
+  at all, being in "noon" all the time.  Apart from that he slipped
+  some changes of light values, and we spent quite a lot of time to
+  produce those values just to be changed without any reason.  Thus, I
+  reverted all the changes using the previous revision.
+- mafm: Removing sound support as well.  Leaving test code around is
+  not nice, and to make what the sound code from deeo was doing is not
+  very difficult: just copy a couple of lines from some tutorial in
+  CS, when the sound part is rewritten.  My previous code for sound
+  was commented out because of this reason...
+- mafm: Removing Lua support, deeo left the project and there hasn't
+  been any debate at all about using Lua or any other scripting
+  language.  Once is fat enough due to CS bloatness, no need to feed
+  it up more by requiring more external libraries at the moment.
+- mafm: Minor tweaks and error reporting in some places of the server
+
+4-Mar 2006
+- mafm: minor fixes due to DataBase scheme renamings
+
+19-Feb 2006
+- mafm: Updating DB scheme (PostgreSQL)
+
+7-Feb 2006
+- mafm: Adding a couple of missing data files (for the GUI)
+
+20-Jan 2006
+- mafm: Removing Combat Manager, it's not doing anything really and a
+  proper implementation won't take this one into account, probably.
+- mafm: Removing other unused parts, functions commented out for long
+  and so on, no longer useful.
+
+15-Jan 2006
+- mafm: Some minor cleanups in classes, including changing the
+  copyright dates
+- mafm: Making the offset in GetPositionOffset of entities to return
+  the offset with the direction where they're looking at. This is, in
+  example when dropping an item, we want to drop it 1m before the
+  player (in the direction where the player is looking at), not 1m
+  before in the default direction.
+
+14-Jan 2006
+- mafm: Using now the load value of the objects in the server,
+  especified in XML files. The server was doing the right thing except
+  by loading the load value when creating the object.
+- mafm: Now there are functions to change gold/money of the player,
+  saving the value in the database when it changes.
+- mafm: Making the interface of the inventory work, although not with
+  shiny icons yet (it's a plain list of items, with name and load and
+  other characteristics). This is important since we can now test that
+  everything is working in client and server, and we only need to make
+  the icons work later. By the way, CEGUI doesn't suport listboxes
+  with items being images yet, but maybe we can create the slots in
+  this way when available.
+- mafm: Disabling Credits button in the interface, it's better to have
+  this elsewhere to not burden the interface with something that
+  nobody is going to look at, and which will require mainteinance with
+  every version
+
+10-Jan 2006
+- mafm: A lot of work with the inventories all around the place in the
+  last days, intending to support them fully and properly in both
+  client and server. This needs testing and bugsquashing, but it's
+  supposed to work and to be complete.
+- mafm: Not using the CEL pcinventory class in client nor server,
+  because of the following reasons (copied from a comment in the
+  code):
+  // mafm: the CEL class for inventories is not appropriate, since we
+  // have to create entities for the objects in the inventory. This is
+  // a waste of space most of the time, since an entity needs a lot of
+  // properties (mesh, linmove, ...), and the player may have
+  // tipically 10 to 50 objects in the inventory, that means an extra
+  // of 1000 to 5000 entities in the engine with only 100 players,
+  // which probably exceeds the rest of the entities present: 100
+  // players, a few dozens of NPCs, tenths to hundreds of
+  // objects... so it would be much probably less than 1000 in total.
+
+2-Jan 2006
+- mafm: Changing some things in the database, in example adding
+  support for the "gold" value in player tables and renaming the
+  abilities so names are shorter and more regular. Changed the code
+  acordingly to cope with this.
+
+24-Dec 2005
+- mafm: A bit of cleanup with player permissions in the server side.
+
+17-Dec 2005
+- mafm: Fixed all things for the latest changes in CS, so it works
+  again. I had to wait several days because there were some bugs
+  upstream that I couldn't get around from our code...
+
+9-Dec 2005
+- mafm: Using data from config files when creating new character (area
+  and position at the moment)
+- mafm: Reviewed the command output system and made a bit of
+  simplification of cleanup, not important changes from the outside
+  point of view.
+- mafm: Changing PermissionLevel to a class of its own
+- mafm: Initializing some variables so the camera doesn't start in
+  unexpected positions
+- mafm: Delegating more functionality in the helper class for movement
+  of client main player behaviour, so it's more coherent and a bit
+  more eficient.
+- mafm: Overwriting values for cal3d sprites in the client config
+  file, so the frames are not reduced so dramatically in short
+  distance. This is done by CS as a kind of quick LoD, but it's not
+  nearly precise, it's just that ignores some frames. The result for
+  our models was that when the distance was >10m, they had only about
+  2 frames in the animation, so it looked completely robotic even for
+  the own player when zooming out. Now it seems to work fine in most
+  cases.
+
+8-Dec 2005
+- mafm: using static data instead of dynamic data in the
+  charListHelper class of the initial menus, so we avoid leaks if we
+  forget to remove the elements in the future
+- mafm: Making the server list in CEGUI to use names and not IPs,
+  doing all the "translations" internally.
+- mafm: Remove the last GUI'isms from the client StateManager, there
+  were some remaining bits to update pings in the connect menu.
+- mafm: removing a few ToDos which weren't ToDos really or were
+  obsolete
+- mafm: Fixing one more ToDo item: now the console manager takes into
+  account the distance to the players to broadcast "say" messages,
+  which required to introduce a new function in the world manager to
+  return a list of players within certain radius to the given one. The
+  value is set in the config file, initially to 500m to encourage
+  social relationships. If we put something "realistic", like 25m or
+  even up to 100, nobody will be able to talk in the chat in these
+  first steps of the game.
+- mafm: some minor improvements in the chat messages sent by the
+  client, such as refusing to send empty messages.
+- mafm: Separating commands and chat messages: they're quite different
+  now, and this way the handlers are cleaner. Maybe we'll do more
+  specialization in the future, in example separating request and
+  reply messages.
+
+7-Dec 2005
+- mafm: Putting server cleanup related with game in a separate
+  function, so we have a clear separation of game related managers
+  (which potentially need to save data and so on), and CS stuff.
+- mafm: Disabling Name Generator with preprocessor macros. It has
+  never been used really, and there are no plans to do it in the next
+  future. This way we save compilation time, reduce a bit the size of
+  the binary, save loading time not parsing the XML file and so on.
+- mafm: using static data instead of dynamic data in a message, so we
+  avoid leaks if we forget to remove the elements in the future
+- mafm: Fixed several "chain" segfaults in the server. These were
+  produced during cleanup when shutting down the server.
+- mafm: Fixed a ToDo item, hardcoded number of characters for an
+  account in the server, now is set in the config file.
+- mafm: Fixed a ToDo item, hardcoded number of connections in the
+  server, now is set in the config file.
+
+6-Dec 2005
+- mafm: Removing three packet types from Raknet in both client and
+  server managers. They were a kind of internal data so Once is not
+  supposed to be affected...
+
+5-Dec 2005
+- mafm: Removed the control of downloaded content from the state
+  manager and put it in the content manager, where it should be
+- mafm: cleaned the state manager of most GUI'isms. The functions of
+  the state manager hasn't ever been very clear, but more or less it's
+  a class to control the state changes among the phases of the client
+  before playing: disconnected, logged in, and so on. Some of those
+  interferences with GUI functions come from the ol'good times of AWS.
+
+4-Dec 2005
+- mafm: Trying to get around a potential source for trouble in the
+  client content manager: it was vulnerable to removal or
+  substitution/creation of whatever files instructed by the server
+  (all files that the client executable had permission to remove, that
+  is). This is not a problem for the server since it doesn't write
+  down anything into the filesystem (not content anyway), but it may
+  be for the client if for some reason we put something wrong in the
+  server, or if people put around unnoficial servers with malicious
+  code. The (insufficient) fix is just a filter, the client content
+  manager passes all the filenames received through that filter to
+  check if they're suspicious. The only chekcks done at the moment are
+  for UNIX, it rejects the file if path begin with '/' (absolute path)
+  or if it contains double dots (..), those are supposed to be the
+  only ways to get out of the "/once/content" virtual dir.
+- mafm: Intensive reorganization and cleanup related with the
+  interface, finishing what I said above but also using macros for
+  common functionalities, member variables needed by each class, where
+  are the objects instantiated and so on.
+
+3-Dec 2005
+- mafm: As the CEGUIMgr was getting too big (almost 2000 lines, and
+  with some of the classes related with the interface already
+  splitted), I separated the main parts still standing in that class:
+  console, initial menus, etc. Probably I'll do more than this in the
+  future, depending on how big get the other functionalities.
+
+2-Dec 2005
+- mafm: Making the content manager in the client to show bars based on
+  size instead of number of files. This way, when a file is finished
+  and known to be complete the total percentage is increased, but
+  based on the size of this file and not on the number of files
+  downloaded so far. So it will be much more precise, specially
+  because the file sizes are very different.
+- mafm: Reorganization of entity handling in the server. Now they
+  compare the basic code for movement and subscription and other
+  (already done before, but loosely), and also loading and saving.
+
+1-Dec 2005
+- mafm: Enabled a filter again in the server content manager, to avoid
+  files known to be garbage (such as backup~). I removed these filters
+  in the past because it was made for 'index' files no longer in use,
+  but they come in handy again now.
+- mafm: Implementing preliminary tooltip for players (isn't working
+  very accurately, but it's enough at the moment)
+- mafm: Implementing some new functions when login, storing more data
+  about player age and similar stats
+
+30-Nov 2005
+- mafm: Removed some obsolete things from the serializer.
+- mafm: Changed the server to use the Object Oriented fashion for CS
+  application. It's not a great improvement, but it's cleaner in some
+  aspects. I also made some cleanup in the meanwhile.
+- mafm: Made some minor fixes here and there caused by the latest
+  changes, and a few old problems (like showing proper help about Once
+  commands).
+
+28-Nov 2005
+- mafm: More work in the name generator: added more secure parsing of
+  the data file, and lots of cleanup around. I think that it still
+  needs more work, because it seems to be duplicating data and using a
+  confusing scheme for data structures in several places.
+- mafm: Fixed a few leaks and design problems in the Name
+  Generator. The design problems were that it required to be
+  initialized externally with couple of functions, but they could be
+  done in the constructor, which is the right thing to do.
+- mafm: Disabled chat censor (with "#if 0", to not compile it), the
+  comment put in the header follows:
+  Disabled this class because I don't like censorship (and
+  probably I'm not the only one against this :) ), and in particular
+  I don't like the idea of filtering silly things, like replacing ass
+  with donkey -- donkey is still an insult with similar offensive
+  effect, censoring "ass" just because of the word itself is
+  silly. Replacing shit for excrement is the same thing, you can see
+  more examples in server_data/chat_filter.txt.
+  Apart from other considerations, this kind of filtering is not
+  effective, you can write a$$ and it will pass the filter: it's just
+  impossible to think of all the combinations. And it's more
+  impossible to do aggresive filtering without affecting other words
+  (currently, if you write "bastard sword" it would be replaced with
+  "illegitimate child sword"... see that file again).
+  And ENGLISH IS NOT THE ONLY LANGUAGE IN THE WORLD. In example,
+  "ano" means "asshole" in spanish, but "year" in portuguese); the
+  typo "Puta knife on the table" will be banned in a few languages
+  because it means "whore".
+  Anyway, remember that Your mother is a whole and your father is a
+  fairy ;)
+
+27-Nov 2005
+- mafm: Using ocLoginData instead of Raknet's PlayerID or
+  ocPlayerBehaviour where possible in the server. The reason for not
+  using Raknet is obvious: we're not tied to it or affected by its
+  changes except in the network managers. The reason to use LoginData
+  instead of ocPlayerBehaviour is pretty simple too: LoginData is a
+  representation of the player/user connection, and PlayerBehaviour is
+  related to the engine itself; so it's more appropriate to have it
+  separated and the former not likely to change so often (which saves
+  compilation time and minor modifications).
+- mafm: Removed the player list class, only left the idea implemented
+  briefly in the /who command. The class was making some wrong
+  assumptions:
+  < The main list which is actually reported to the client is updated
+  at fixed time intervals rather than on every single login/logout --
+  this scheme is meant to reduce the time wasted recomposing this
+  list.  Because of the time delay in updating the list, it is
+  possible for a player to log out then log in again before the list
+  is updated (and vice-versa).  Due to this "feature", the "Add" and
+  "Remove" methods need to check the new and defunct sets to avoid
+  unnecessary operations. >
+  The interval that it's talking about are a few seconds, in a real
+  game player can't log in and out that fast, and if it's rebuilt
+  every minute or so (so that reason becomes significant), the list is
+  not accurate any more. Additionally, other parts of the code were
+  calling this class when adding/removing a connection, so the main
+  purpose din't make any sense at all. Anyway it wouldn't be worth it,
+  because the who command wouldn't be used as frequently as
+  logins/logouts.
+  Apart from that, the other reason to have could be for displays
+  based on 80x25 terminals (the output was formatted in pages of that
+  size), which is not the case of the chat window, and the server is
+  not supposed to run in interactive mode (output from terminals)
+  except for development, when that command is not needed in
+  pages. Talking about pages only makes sense when we know the size of
+  the media, but the chat window won't necessarily a fixed size...
+  Well, this may sound silly but I'm commenting all this because
+  somebody could get pissed off :P, but I think that those are good
+  reasons to remove the class as is.
+  Also, it serves as a documentation of what we shouldn't do: As Hoare
+  said, "Premature optimization is the root of all evil".
+
+26-Nov 2005
+- mafm: Reworked the command classes, one of the almost untouched at
+  the moment. The CommandSet class had some serious misdesigns. In
+  example, it was exporting internal data to perform help commands (so
+  the help commands could get the list of the other commands within
+  the command set), instead of using a "pseudo-command" (now the
+  command set catches a request with the name "help", and calls the
+  ShowHelp function).
+- mafm: Removed ocConsoleOnly. First, to have a graphical window for
+  the server was always a stoopid idea, with the additional
+  complication for console callbacks and so on. And we don't need to
+  use that class, the only thing that we need is to read the input
+  from the terminal when in interactive mode, implemented in a
+  function now.
+
+25-Nov 2005
+- mafm: Removed old logger and replaced with new convenience
+  functions. As I said many times (and appart from failing -- refusing
+  to write in the file after a few entries), they're so annoying to
+  type that people use printf for testing, and those are the lines
+  which end up staying there in the code forever. So I made a few very
+  simple functions to deal with this, they're far easier to type
+  (exactly as a printf, even with small shortcuts) and provide all the
+  functionality that we need.
+- mafm: Removed trace lines, it's annoying to put them all the time
+  when making new functions and creating new classes. Nobody seems to
+  be using them in the last year, and there are good debuggers to make
+  these entries obsolete.
+- mafm: Tried to unificate log calls (Report, PrintMessage, etc) to
+  the new ones (LogERR, LogWRN, LogNTC, LogDBG), probably there are
+  still a lot of calls out there with printfs and similar that will be
+  changed with time.
+- mafm: Minor fixes and lots of cleanup all around while doing this
+
+24-Nov 2005
+- mafm: The login manager didn't make any sense, it was just another
+  indirection level, but with no use at all. So I removed
+  ocuseraccount file (made of network handlers), put the network
+  handlers in the same way that the others and only with the purpose
+  of bein "glue code" between manager and network layer, and
+  implemented the functionality in the LoginMgr. There are some
+  advantages with this approach, such as 1) having the list of
+  connections in the login manager with proper information (user name,
+  character name, etc) so the authentication checks are quickier and
+  easier, 2) we have a central point whith all the connections,
+  instead of having to look for them throughout several managers, 3)
+  having an own structure instead of Raknet as our base connection
+  identifier, so transitions won't be so traumatic. There are a few
+  more details, but it's enough as an explanation.
+- mafm: Changed some other managers accordingly to the changes of the
+  login manager.
+
+15-Nov 2005
+- mafm: fixed the code for newer CS.
+
+12-Nov 2005
+- mafm: Minor editing in messages, using std::string and a few other
+  not important changes
+- mafm: Minor fixes of things commited the last time (using fixed
+  paths and so on)
+- mafm: Adding Inventory window, not working yet
+
+28-Oct 2005
+- mafm: Removing PAWS and using CEGUI for everything now, and a lot of
+  other fixes and new implementations that I can't properly
+  explain. This is because I have problems with my connection at home,
+  so I accumulated changes in the last two weeks that I'm commiting in
+  a hurry from my cousin's office.
+
+18-Oct 2005
+- mafm: Fixed some elements of the theme (comboboxes) and changing
+  other
+- mafm: Completed the character creation, it's working better than
+  before
+- mafm: Making a new "Race Info" window to show a description and
+  larger images of the characters (testing images at the moment), so
+  people can take a glance of the traits of races in the game, instead
+  of knowing just the name of the races.
+
+17-Oct 2005
+- mafm: Almost finished the implementation of the initial menus, and
+  they're much more complete than before.
+- mafm: Fixed some problems with the theme of CEGUI (spinner buttons).
+- mafm: Removing some (now) unneded PAWS classes.
+- mafm: Making some general improvements while replacing PAWS, such as
+  choosing exit or restart the application.
+
+15-Oct 2005
+- mafm: Fixing most of the issues remaining with loading screens. Now
+  items are hightlighted when selected, login data and character
+  selected are stored for the next session, password is hidden in
+  screen with the usual asterisks and stored encrypted. So basically,
+  everything but creating a character is already working with the same
+  functionality of PAWS or better.
+
+14-Oct 2005
+- mafm: Substituting CS_ASSERT with OC_PERM_ASSERT, which does not
+  vanish when not in debuggin mode. The reason for this is that when
+  compiling in optimize mode (which is the default in the configure
+  file), CS_ASSERT is wiped out and so code inside it is vanished with
+  it, which occurred in several parts of the code of different
+  developers. In addition, having them always enabled may help to
+  discover bugs in systems of other people testing it (such as Mac) or
+  with different configurations, and in general we want them active to
+  check for fuctions returning pointers which may be zero (which is by
+  far where CS_ASSERT was more used): better make sure check always
+  than saving a few CPU instructions.
+- mafm: The CEGUI windows of the initial menus are working with about
+  the same functionality (sometimes a bit worse, sometimes a bit
+  better) than PAWS ones, so I disabled the PAWS ones.
+
+13-Oct 2005
+- mafm: CEGUI and PAWS are working now side by side in most of the
+  initial screens with the same results (except for character
+  creation, not reimplemented in CEGUI yet), so if there are no major
+  problems in the next days this means that we can remove PAWS soon,
+  at least that part. The in-game windows need to be refactored too,
+  but except for the chat window the other are not very useful and
+  were going to be rewritten anyway.
+
+11-Oct 2005
+- mafm: Making the content-disable flag to work again
+- mafm: fixed bug of Create New User button not working
+
+5-Oct 2005
+- mafm: Changes to use CEGUI, plus update to new autotools versions
+
+29-Sep 2005
+- mafm: pinniped enabled these changes again, properly fixed.
+
+28-Sep 2005
+- pinniped: Changed ocserialize.{cpp,h} so that it is Endian-safe.
+  The default is now Litte-Endian, which means that you must recompile
+  both client and server.  The old system sent most data as Big-Endian
+  but float and double were sent as native endian. On Little-Endian
+  systems, you can define the macro __ENDIAN_NATIVE to get a
+  small optimization.
+- mafm: Reverting changes above, not working at all and client and
+  server can't communicate.
+
+25-Sep 2005
+- mafm: Massive changes to ocClient class, adapting it to the more
+  oriented scheme used in celtest and other applications and doing a
+  lot of cleanup, as well as remove the dependence of ocApplication so
+  it's now all in this file.
+- mafm: Renaming clientsys to Client
+- mafm: Moving old ocEntityFactory to the server. As I have explained
+  a lot of times, the entities need a different set of properties in
+  client and server, so it doesn't make sense to have a class wanting
+  to do this in the same way for both (and so this class was only
+  being used in the server, the counterpart in the client is the
+  entity manager). Also, this was only creating properties for the
+  entities, so it's not a "entity factory" really. But I probably will
+  expand it to be a full entity factory, as a helper of ocWorld to
+  deal completely with entity creation, and ocWorld taking care of
+  general management only.
+- mafm: Added base class to handle the part related to movement for
+  entities in the server. The final behaviour classes for entities
+  with movement will be derived from this (among other, of course), so
+  they inherit the movement-related methods from this one.
+- mafm: Added mid-level class which derives from other (such as
+  movement, above) to represent the behaviour of living entities
+  (creatures, players and so on will be derived from this; and so
+  share a big part if the code)
+- mafm: Added the behaviour of a domesticated creature, this is
+  especifically for the farm creatures of the planned "mini-game"
+- mafm: Added code in the class to update content in the server, to
+  try to avoid flooding the client. The problem is that Raknet is
+  reporting that the user has zero packets in queue, so it's flooding
+  exactly in the same way as before. I'll talk with pinniped to try to
+  get this working.
+
+23-Sep 2005
+- mafm: Passing physical layer as argument of the behaviours, so it
+  get initialized in the base class and we don't have problems of
+  doing it for all classes and maybe forgetting it.
+- mafm: Some changes in several classes to avoid dependence on
+  ocApplication (explained below).
+- mafm: Preparing to remove ocApplication. Although client and server
+  are both CS applications, so it might seem that makes sense to have
+  this class, experience has proved otherwise. Other similar actions
+  introduced about a year ago were proven to be misdesigned, in
+  example because entities don't have to share properties in client
+  and server (in the server they can have a timer to trigger actions
+  which shouldn't be seen in the client, in the client may have
+  tooltips -with player names on top of the head- not shown in the
+  server, etc). In a similar way, it's just stupid to force the server
+  to use a window, because servers are mostly to be run as background
+  processes, so all the consoles and windows and g3d plugins loaded
+  are just for nothing, or even worse: more bloat and chances to hit
+  bugs. So to share a couple of functions and plugins in client and
+  server application we don't need to have this class, because among
+  other reasons to load part of the application in the derived class
+  and other in the base class, with interdependence, it's just calling
+  for problems more than saving any effor or making the program
+  clearer.
+- mafm: Removing ocApplication.
+
+21-Sep 2005
+- mafm: Fixing glitches in the movement of main player, and improving
+  all the related functions so they're clear, simpler and
+  non-redundant
+- mafm: Sanitizing almost all of the parts behaviour classes which
+  were not in acceptable state, in particular object handling, but
+  also missing doxygen comments, redundant and unused functions and so
+  on.
+- mafm: Changes to the graphical inventory so it now actually works
+- mafm: Removing ocexception.h, because it was never really used, and
+  if it were going to be used in the future it doesn't matter much,
+  since it's basically empty
+- mafm: Removing entity registry, if you're interested about the
+  reasons read the considerations about its "unusefulness" in
+  yesterday's entry
+
+20-Sep 2005
+- mafm: Finishing with splitting of behaviour classes in the client,
+  clean them up of obsolete features as well and make improvements
+  with the experiences and caveats spotted in the last months.
+- mafm: Removing the entity registry from the applications (not the
+  file, yet). It's just duplicating a function that already keeps the
+  physical layer, and it seems that we won't have any other use for it
+  in the near future. Even if so, the current implementation it's only
+  a wrapper around a hash...
+
+19-Sep 2005
+- mafm: Splitting behaviour classes in the client into several ones
+  and a new dir for them, so we don't have gigantic files.
+
+18-Sep 2005
+- mafm: The new system to deal with entities already replaced the
+  funcionalities of the old one, and I'm beginning to make useful
+  things with it not possible before (such as race bonus from the XML,
+  when creating the character).
+
+17-Sep 2005
+- mafm: Making the entity messages a bit more flexible, including
+  separate mesh type and subtype instead of mesh factory altogether.
+- mafm: Massive changes to the ocLoader class, but not yet
+  complete. Instead of the excessively basic entity.cfg used for ages,
+  now we'll use XML files with proper especification of the entities
+  being used, so we can begin to show info windows with descriptions
+  and characteristics of entities, use load for objects in inventory
+  and things like that. I expect to have it working within days, but
+  to fully exploit all the capabilities will take months or years:
+  it's the skeleton for the whole game :)
+
+13-Sep 2005
+- mafm: Puting ocLoginData in the file for the manager, so we don't
+  need to import files everywhere which do basically nothing.
+
+12-Aug 2005
+- mafm: Syncing PAWS and needed stuff from PlaneShift from upstream
+- mafm: Changes needed by recent CS (probably you'll need to update).
+
+03-Aug 2005
+- pinniped:  Separated the camera from the player behavior. This
+  will allow us to reimplement the camera without too many
+  unnecessary changes to the behavior files.
+
+30-July 2005
+- mafm: making some improvements in the Chat Window, it marks with red
+  color the tabs with new messages and makes black the active one (so
+  at last you know what is your active tab)
+- mafm: at last the content manager is rewritted and working
+  again. There are a few problems related with the network, it seems
+  to be broken for moderately big packets (around 10KB) so there are
+  sometimes problems when deserializing messages; and sometimes
+  disconnections during transmission. Apart from that, the content
+  manager itself seems to work pretty well and I haven't detected yet
+  any failures because of it (files not being deleted/updated when
+  they should be, errors writing to the FS after transmitting, etc).
+- mafm: Implemented additional function to the content manager, so we
+  can reload the content on the fly and so the next connections will
+  receive new data (the advantange is that it's without kicking people
+  and restarting the server, obviously).
+
+27-July 2005
+- mafm: Complete rewrite and redesign of the content manager. The
+  previous one was partly designed to have updates on the fly, but the
+  fact that the server couldn't reload the content because of the same
+  design of it (the server had to be restarted and the client
+  disconnected), made this impossible. It was bloated with whole
+  classes not used at all, lots of methods to support this on-the-fly
+  updates not working, and full of dangerous methods (marked in that
+  way in the comments) not very appropriate for a wannabe-stable
+  server. Also, it was maintaining a complex tree structure all the
+  time that the program was running, even if it was only used once in
+  the client; and the write features were not needed in the server
+  where it has to be loaded all the time. The overall complexity made
+  that nobody could fix all the bugs caused by it in all these months,
+  in example downloading again and again the same file. So RIP, old
+  content manager :) The new one has about 1/10 to 1/5 of the size
+  both in code and memory, will allow reload content at least in the
+  server (just for new connections, the on-the-fly idea is not good)
+  and hopefully won't have those bugs. I expect to have it working
+  within days.
+- mafm: Removing FileListener in the client: if we don't have
+  continous update (and this is a feature that never worked anyway,
+  nor have much sense with CS at this moment) those listeners are
+  mostly an overhead and a suboptimal solution to use with graphical
+  dialogs.
+- mafm: Removing ocChangeNumber, it's a silly class [not really] used
+  by the content manager.
+- mafm: Remove ocSettings class. Aside from not being polished (with a
+  lot of testing code and quick tricks), it has redundant methods (the
+  document system plugin already allows to get values as int, float
+  and so on) and templates to support this, so it's heavily bloated;
+  and the functions to retrieve the nodes have a cost of O(n) for
+  every node called, so there's nothing worth to keep in this class at
+  all.
+
+24-July 2005
+- mafm: Almost finished with the restructuration of the DB. Basically,
+  we use a ocDBQuery class which substitutes the functionality of
+  ocColumnPairList (which was basically a fancy way to send
+  field=value data for INSERT, UPDATE and so on); and adds the
+  capability to link to the result of a SELECT with the whole matrix
+  (unlike the old way, only one row at a time), so we can perform all
+  the basic operations of the DB using this class only. It also
+  encapsulates the rest of the data used previously like tables that
+  we ask for, conditions and so on. So I basically changed a lot of
+  code, but there are a few changes. The most important thing is that
+  having the whole matrix of the result available we can load the
+  entities stored directly from the DB; and also that should be easier
+  to use and maintain in the future.
+- mafm: Making yet more improvements in the DB helper classes, and
+  changins classes which used the old methods
+
+23-July 2005
+- mafm: Making some improvements in the helper classes for the DB,
+  such as using dynamic instead of static structure so we can have
+  unlimited column requests, and general cleanup to help mainteinance
+  in the future
+- mafm: Switching from pqxx (C++ PostgreSQL client lib) to normal lib,
+  it seems that we're not using it for anything and it's better to
+  avoind intermediate problems, updates and so on
+- mafm: Removed scons and makefile, because Jam is working just fine
+  and better than those two, and so we don't confuse people
+
+21-July 2005
+- mafm: creating at last a build system with Jam. We need a build
+  system because the Makefile doesn't work with the client since we
+  introduced PAWS, and both Scons and Makefile are very very
+  basic. The reasons to choose Jam instead of make with proper
+  ./configure, or improve Scons are mainly: 1) it's already used with
+  CS and CEL (so people who want to build Once have to have it
+  anyway); 2) works properly with Mingw (apparently Scons not); and
+  most importantly 3) PK provided me a system almost working and
+  showed me that a script of CS made almost all the configuration job,
+  it won't be a mainteinance nightmare and in fact it's very easy to
+  keep it up to date. So thanks to PK, and please let me know of any
+  problems.
+
+20-July 2005
+- mafm: Fixing a bug so LoadMOTD works properly again (and simplified)
+- mafm: Making better use of doxygen, beginning with some parts of the
+  server
+- mafm: Removing dbcommon and putting its contents in ocdb itself:
+  it's already the common and base class for mysql and postgresql
+- mafm: Lots of cleanup all around the place, including: removing
+  functions not used, comments, reformatting, fixing outdated
+  comments, adding missing doxygen comments, ....
+
+19-July 2005
+- mafm: Removing class ocArea which does nothing.
+- mafm: Removing terrain related functions. They were never really
+  used (they are far from implemented) and the most important reason:
+  there are some elements such as shadows and fog that need a tight
+  integration with CS that we probably wouldn't ever be able to make
+  work (and maintain!), even if we wanted to use an own terrain
+  generator.
+- mafm: Removing iPcStaticProperties. As it says in the header: "These
+  implementation is a lot more efficient in serialization or
+  deserialization, although less flexible than the Cel default
+  iPcProperties". We aren't using [de]serialization (and this class
+  has never been used), because it can be used to save the game state
+  into files or to send over the network. The first is handled in the
+  server via DB and doesn't make sense the client: it's a persistent
+  world, the world remains there when the client is disconnected. The
+  second has been proven wrong with things such as old subscription
+  classes, because the entities need a different set of properties in
+  the client and in the server (pccamera, input, etc). So if we wanted
+  to use a similar class in the future, we rather use that more
+  flexible CEL class instead of our own.
+- mafm: Fixing bug in the server so users can remove characters again
+- mafm: Cleanup of unused commands in ocCommand classes
+
+17-July 2005
+- mafm: Modifying the console messages, so all the messages sent from
+  the server indicate the type of the message, and thus the chat
+  window is pretty much complete
+- mafm: Making the chat window work as expected, with the different
+  message types (general chat, pm, sytem, etc) being put in their
+  tabs. Still more work to come about this, because it's not yet
+  implemented for all types of messages, and the usability of the
+  window is not very good yet.
+- mafm: Removing ForceMessage from all the interfaces of output to the
+  client, it's not used in any place and it's redundant with
+  PrintMessage
+- mafm: Making better checks and reports in the console message
+  handler of the server
+- mafm: Making some changes to the appearance, adding buttons made by
+  Kayvan and cleanup of unused things
+- mafm: Implementing a simple command to change the game time via
+  commands (useful for quick testing of light values or events
+  triggered with the time of the day)
+
+12-July 2005
+- mafm: Replaced csArray for std::vector in all ocWorld lists
+- mafm: Cleanup in client and server, in example renaming message
+  handlers in the client to follow the rule of the others.
+- mafm: Fixing the /who command segfault
+- mafm: Created date applet
+
+11-July 2005
+- mafm: implemented protocol version, so we can change it easily (in
+  ocserver.cfg) and the client receives a message about having to
+  upgrade to be able to use the server
+- pinniped: more conversions from 'long' to 'int' to properly
+  support 64-bit CPUs. It was possible for the 32-bit server
+  to think a message had too many bytes in it because my 64-bit
+  client would actually send 'long' data which was 64-bit rather
+  that the 32-bit expected by the server.
+
+10-July 2005
+- mafm: Adding a file to hold time related messages
+- mafm: Disabling ConnectionAlive messages, because time messages
+  being sent make them unneeded. I leave them for a while in the case
+  that we revert this decission
+- mafm: Implementing the time manager in the server
+- mafm: Adding support to store the time in the DB, so the
+  implementation is pretty much complete at the moment, until there
+  are new requirements for the time manager in the server
+- mafm: Adding handlers (with dummy actions) for the time messages in
+  the client
+
+9-July 2005
+- pinniped: Fixed the segfault which happened when pressing 'w'.
+  Please be careful when fixing CVS conflicts! The segfault was
+  due to code being removed by mistake, probably when resolving
+  a conflict.
+  
+8-July 2005
+- mafm: Using std::string in addition to csString for serialization,
+  and making some messages to use the new system.
+
+7-July 2005
+- mafm: Fixing the consoleonly input system so the commands in the
+  server console are read correctly
+- pinniped: Used 'unsigned int' rather than size_t as an index to
+  result::tuple in ocpostgresql.cpp because size_t may be 64-bit
+  on some systems and libpqxx does not have a 64-bit overload on
+  the index operator.
+
+6-July 2005
+- mafm: Adding some parameters to functions related with CEL linmove
+  propclass in the server (done in the client a few days ago), you
+  need a recent CEL to have this working
+- mafm: Fixing the client, so the screen is rendered again and the
+  splash screen is not loaded twice
+- mafm: adding cursors, buttons and other decorations, made by Kayvan
+
+5-July 2005
+- pinniped: Made some (small) changes so that Once will work properly on
+  64-bit CPUs.  Here is a tip: NEVER use 'long' - the standard says a
+  'long' is 'at least 32 bit'; for GCC a long is 64-bit on a 64-bit CPU.
+  Instead, use 'int' for 32-bit and int64_t/uint64_t for a 64-bit int.
+
+30-June 2005
+- mafm: splitting entity messages handling and entity manipulation,
+  now it's done in a separate manager
+
+29-June 2005
+- mafm: fixing some problems with behaviours in the client which were
+  causing segfaults
+- mafm: updating DRData-related functions, required by newer CS code
+
+15-June 2005
+- mafm: removed ocDisplay, since is not being used in a while, and the
+  main purpose it's already done by pccamera: autodrawing the 3d world
+- mafm: added command in the client to disable content manager
+- mafm: removed ocsyslog, since the new oclogger it's supposed to be
+  what we will use from now on (and are using for months instead of
+  ocsyslog).
+- pinniped: Changed implicit inline functions to normal functions in
+  all src/client and src/common files.  There seems to be a bug in GCC
+  which causes problems when returning a pointer via an implicit inline.
+- pinniped: Changed the LOG_XXX functions to work around an MSVS
+  preprocessor problem (it does not support variadic macros). Hopefully
+  they support variadic macros in the future and we can get rid of this
+  extra layer of function calls in the logging.
+
+14-June 2005
+- mafm: commited changes related with functions being defined in
+  headers. I think that this is mostly a bad practice, and good
+  compilers should manage this with optimization levels independtly of
+  where the function is defined. Anyway, it's giving some really weird
+  problems, at least with some versions of GCC, returning pointers
+  with bad addresses where no memory corruption seems to happen, and
+  there are some evidences to think that it's caused by this. So
+  pinniped took care of moving the functions to .cpp in the client and
+  common, and I took care of the server.
+- mafm: commited changes related to converting csString into common
+  char* and string, especially in the part dealing with DB retrieval
+  of data. csString is giving us a lot of headaches lately, and a
+  general class not dealing with the engine does not need this at all.
+- mafm: similar to the above, converted the player list to vector
+  instead of csArray in a bunch of places.
+- mafm: commited a lot of changes related with general cleanup, useful
+  comments, fixing little things and adding new \todos, along with
+  changes above. We'll have to begin to fix the code and remove all
+  those \todos someday, and there are lot of obsolete stuff still
+  present in the code.
+
+10-June 2005
+- mafm: removing ocknowledge from client, because it's not implemented
+  and not useful even if were implemented: there's no problem to send
+  all configuration files in the beginning and so assuring that we
+  have all data necessary. We'll do it even with big art files to
+  avoid complexity, so we don't have any benefit complicating things
+  in this way, avoiding segfaults because of some problem with the
+  data in the middle of the game, etc.
+- mafm: separating the classes of the client content manager, one file
+  for each class and all them in content/ subdir.
+
+6-June 2005
+- mafm: Adding support for object entities and a few things related,
+  like commands to load them when initializing the server
+- mafm: Adding inventories for players
+
+25-May 2005
+- mafm: adding handlers in the server for player actions msgs
+- mafm: changed "Once freelook" camera mode to use "CEL
+  lara_thirdperson" instead of "CEL freelook": they're similar but
+  the new one is much better.
+
+19-May 2005
+- mafm: Adding new messages so players can request to the server to
+  get items from the world an put them into the inventory. Code in the
+  server barely works and will be changing it in the next hows, but
+  will commit soon.
+
+17-May 2005
+- duffolonious: object selection now works.  Although now for other 
+  players because they can be created before the main player - which
+  will cause an assertion to fail (and probably a segfault - altough it's
+  untested), because the camera hasn't been instantiated yet.
+- duffolonious: moved csStringID's to ocBehaviourBase - so that all 
+  entities can inherit those abilities.
+- duffolonious: for every entity, the camera and mouse buttons have to
+  be set for pcmeshselect to work.
+
+12-May 2005
+- duffolonious: paws mainwidget no longer handles mouse clicks (in the
+  case where there is no window to click on) - but cel still doesn't 
+  seem to handle this, not sure why.
+
+5-May 2005
+- mafm: commited a lot of changes and general cleanup related with
+  this things below
+- mafm: commited NPC and creature behaviours, mostly derived from the
+  player (will need unification when we know what we need)
+- mafm: commited time and combat manager classes, almost empty and not
+  working at all
+
+4-May 2005
+- mafm: Changing camera to iPcDefaultCamera. In CEL the cammera was
+  splitted in Default and Simple, Default is the one which has the
+  same behaviour as the old one.
+- mafm: Commiting the new subscription class, which makes basically
+  the same as the old one, but should be more complex in the
+  not-so-distant future (either itself or other classes related to
+  subscriptions), to be more selective: only subscribing to entities
+  within certain range, separate subscribers depending on radius (to
+  not send all the movement updates, in example), etc.
+
+2-May 2005
+- mafm: lots of cleanup, especially in the "common" directory. There
+  are still a few classes not used or only used as a kind of test:
+  terrain, settings and pcproperties.
+- mafm: removed iOnceBehaviour, we don't need if it's used only to
+  have functions such as GetPrivateData with data that we don't need
+  to retrieve, and empty Load funcitons with abort() inside
+- mafm:: removed behaviour factory: there's no need to have a hash for
+  a a few behaviours, it only adds overhead and makes us to waste time
+  fixing it when there are CS changes with hash tables (twice in the
+  last month)
+- mafm: removed entity helper, because that support for loadable
+  entities only make things difficult (you can just force people to
+  have all up to date before playing, this shouldn't be a
+  problem). Besides this, if you would have to wait to download the
+  data not present for an entity, maybe when the data is available you
+  don't see the entity, or make strange effects such as appearing
+  suddenly in front of you. There wasn't anything useful in that class
+  apart from this.
+- mafm: removed sector registry, because it was only used only for a
+  function in ocWorld which can be done in another way, and using
+  pczonemanager in the near future will make this difficult to keep in
+  sync and being useful. Also some minor changes in entity registry.
+- mafm: removed the property classes loaders, converters,
+  serializatiors and all that. It's a bad idea (and wasn't used for
+  some time) because:
+  a) It's not needed. The representations in the client and the server
+  doesn't need to be the same, in example PcTooltip, PcMeshSelect are
+  not used in the server, so it's wrong to assume that client and
+  server need to have the same representation in both sides.
+  b) It shouln't be done that way (properties updated rawly and
+  separately). The better example is the movement: In the old way,
+  linear movement and actor movement was updated separately, so the
+  player could began to use run animation before actually moving
+  faster; and updating as it comes prevents the client for proper
+  smoothing functions to avoid jerky movement of other players in the
+  client side.
+
+1-May 2005
+- mafm: Removing this unused class pcsubscription, I'll add a new one
+  simpler and which actually works in the next hours/days
+- mafm: Implemented access levels for the commands, now you have to
+  specify the minium access level to be able to execute the command
+  when you register it (and this is set for players in the DB, 'roles'
+  column, account based).
+- mafm: Implemented a basic combat manager, for testing purposes only
+- duffolonious: added start of inventory window.
+- duffolonious: added chat applet
+- duffolonious: cleaned up tooltip code.  Now is more flexible, but
+  still needs more work.
+
+30-April 2005
+- mafm: removing lua file in server_data/ after a year and a half not
+  being used
+- mafm: removing full_state and mini_state.sav, the persistent data is
+  saved in the DB
+- mafm: separating content for client and server, so the server can
+  use simplified models for some things (such as cal3d models) to save
+  memory, CPU and other misc problems as leaks that can bring the
+  whole server down in a few hours (as it was happening these days)
+
+27-April 2005
+- duffolonious: got rid of stupid missing sound file errors in paws.
+
+25-April 2005
+- mafm: commited a lot of changes in the server, but most of them just
+  to adjust the code to the DB changes (removing some unused fields)
+  and cleanup. Important changes will come soon.
+- mafm: similar for the client, just little changes accumulated.
+
+24-April-2005
+- duffolonious:	quit buttons work (in-game asks for confirmation)
+- duffolonious, mafm: character deletion works.
+- duffolonious: fixed double-click app window behavior.
+- duffolonious: lots of cleanup in the gui.
+- mafm, duffolonious: character creation now works.
+
+22-April-2005
+- Remi: fixed bug that caused the server to crash when the player
+password was wrong.
+
+7-April 2005
+- duffolonious: download window mostly works (total progress bar doesn't work
+because the content manager sends it the wrong value).
+- quitting with Esc now works, but the "Quit" buttons don't.  The 
+disconnect/quitting functions need to be reworked.
+- duffolonious: download window functions have been pulled out of the state
+manager, and put into the content manager.
+
+6-April 2005
+- duffolonious: new char info screen, progress bars, and such, looks much 
+nicer.  As well as a start of a right-click menu for the chat window.
+- duffolonious: most of the work for character deletion is done, just need a 
+confirmation dialog.
+- duffolonious: most of the character creation is ready, I just need some way 
+to allow only a certain number of increments to the spinbox's, and add racial
+differences.
+
+6-April 2005
+- mafm: finishing the transitions (RakNet, PAWS, removing
+  pcsubscription class, ...) and related problems, with lot of
+  rewrited code and moving functionality to different classes to make
+  a cleaner design
+
+4-April 2005
+- duffolonious: start on new character windows, still doesn't work.
+- duffolonious: fix chatwindow bug - now you can click the buttons.
+- duffolonious: new window behavior, double-clicking on the
+  charstatswindow "minimizes" it, opening a small window.  This is the
+  idea of the applet, which will have minimal information.
+- duffolonious: did a number of other small cleanup changes, as long
+  as a lot of other undocumented changes :).
+
+27-29 March 2005
+- mafm: lot of reoganization, making a directory structure to be more
+  manegeable, this includes moving a lot of classes to other files but
+  not adding functionality.
+
+25-March 2005
+- mafm: Reorganization of the directory structure and functions in the
+  server, and some fixes and modifications done while reviewing
+- mafm: Deactivating the custom property classes for subscription and
+  deactivating some of the implementation of behaviors in the server
+  (would be reworked soon). That subscription classes are broken with
+  the current CEL and nobody seems to want to fix them, for these
+  reasons: they are not easily understandable, work with low level
+  stuff (the way to send the messages, in example), are still
+  incompleted (albeit I fixed them and completed them to work with
+  more or less nicely with several players) and are built over a bad
+  design: the property classes shouldn't be updated in the client
+  directly for the server as there was working Once until now (the
+  server doesn't need the mesh, linear movement and actor actions need
+  to be coordinated and not updated separately, etc etc etc).
+
+??-March 2005
+- pinniped commited the RakNet switch
+
+18-March 2005
+- duffolonious: minor fixes to the new PAWS, and the addition of a new 
+  character window, that doesn't work.
+
+18-March 2005
+- mafm: Removing the entities of players who log out, and proper
+  collision detection and gravity for them while in the world.
+  Both of them are quick, not proper fixes.
+  I came to the conclusion that property class architecture is
+  basically wrong and it shouldn't be done in this way, but that
+  would require a deep rewrite so I'll wait a while to gather more
+  information before attempt to code a better solution.
+
+17-March 2005
+- duffolonious: commited the AWS->PAWS switch, there are still
+  some missing functionalities and AWS code remaining.
+
+12-March 2005
+- mafm: removing init_db command in the server
+
+11-March 2005
+- mafm: added a function to notify of the changes in property classes
+  for the same player too, so now it works again the rescue command
+
+6-March 2005
+- mafm: Changed CS_ID to uint, CS_ID was removed in CS.
+
+28-February 2005
+- mafm: commited the code to see other players with actions in the game.
+  There are still flaws with movement updates, but this is getting
+  better :)
+  *** NOTE: the code may be broken for some time until CEL is
+  patched with some features that we use, ask me for the patch if
+  you want this working in the meantime.
+
+16-February 2005
+- mafm: commited the code to see other players in the game. There are
+  still some flaws in the server, the movement is really bad represented
+  and there's no animation in the meshes, but most of this need quite 
+  inveestigation and other changes in the client, so I commit this now.
+- mafm: support for contact list completed in the server
+
+13-February 2005
+- mafm: adding support for contact list, need to be implemented in
+  client and server
+- duffolonious: fixed Character List box, filled out race,gender,name info.
+
+10-Febuary 2005
+- duffolonious: Once now compiles on gcc-3.4.3
+
+9-February 2005
+- duffolonious: "Main Menu" buttons now actually go to the main menu.
+- mafm: ocuseraccount is quite complete now, accordingly with the current
+  stage of development of the game
+
+5-February 2005
+- mafm: New messages to send back data to the client after login (characters
+  available and so on)
+
+30-January-2005
+- mafm: Adding a new font: Vinque
+
+19-January-2005
+- mafm: Adding a new font: Vera
+- mafm: Making client and server to use the same entity.cfg in the common dir. This
+  way the client has this file synced with the server and so it can really use the
+  new maps and models.
+- mafm: Fixed a little bug to make the server not crash when using wrong maps
+
+15-January-2005
+- mafm: complete graphical rework of the menu system, also some
+  features resurrected and improved, as the content download
+  progress dialog.
+
+14-January-2005
+- mafm: use different fonts for menus and consoles
+- mafm: change ocloginreplymsg and ochdlloginreply name login->join,
+  since that's the right name of the funcition that they do now
+  (it's part of the user accounts transition, and it clashes with
+  the name of a new message that I want to add, when the user logins)
+- mafm: change ocnewavatarmsg for ocnewcharmsg, this is not as important
+  as the other naming change, but I hope it helps to avoid confusion.
+
+12-January-2005
+- uavfun added a fix for content files of size 0
+- uavfun added /rescue command to reset player position
+
+10-January-2005
+- mafm: implemented autorun, jump and a new camera mode. just a few days ago,
+  around new year, I put a server online, now hosted in ResQuad machine; so we
+  have a real permanent server for the first time.
+
+06-January-2005
+- uavfun fixed server IP saving
+
+27-December-2004
+- mafm: completing support for races
+
+22-December-2004
+- mafm: basic user account+character support
+
+21-December-2004
+- mafm: some world file changes (told by Jorrit, from CS). seems to fix
+  the problem of (not) displaying the character mesh.
+
+12-November-2004
+- uavfun added server connection status tracking to ocClient.
+
+30-October-2004
+- Remi fixed a bug in the content manager due to a behaviour change of csList.
+
+29-October-2004
+- Remi removed ocIDs. Now, IDs of entities are the ones allocated by the cel
+  physical layer and fetched by iCelEntity::GetID()
+- Remi added a new propclass: iPcStaticProperties. It can be used to add a
+  fixed number of defined properties to an entity. Very incomplete.
+
+17-October-2004
+- Remi fixed a few segfault and moved back some code in the state manager.
+- Remi synced ocIDs with CS_IDs on server - this fix a few bugs and 
+  inconsistencies. Also removed a few duplicate actions.
+
+3-October-2004
+- Remi fixed a cssysdef include and parse problems in awsclient.def
+- Remi tried some rework to fix the RemoveEntity crash. Not sure this will
+  be better like this though.
+
+24-September-2004
+- uavfun added startup script support to the server
+
+23-September-2004
+- uavfun added private chat messages
+
+18-September-2004
+- uavfun fixed rotation messages
+
+30-August-2004
+- Remi created a entity helper class to create, serialize and deserialize
+  easily entities.
+- Remi removed all the data fields that duplicated info contained into cel
+  property classes (region name, entity name)
+
+29-August-2004
+- Remi re-created ocDisplay from code parasiting ocBehaviourLayer
+- Remi move network handling code from ocBehaviourLayer to ocEntityHandler
+- Remi removed the ID knowledge from the behaviours.
+- Remi created a state manager to ease the state changes (connection, 
+  disconnection, display enable ...)
+- Remi moved the propclass creation code from client behaviours to entity
+  factory.
+- Remi fixed a bug that caused files to be transfered at an insane rate
+  (64 octets/frame)
+
+28-August-2004
+- Remi created an entity register to share the entity storing code. This is 
+  another step to remove undesigned functionalities from the behaviour layer.
+- Remi add/removed files he forgot to commit yesterday (thanks TheWizzard for
+  reporting)
+
+27-August-2004
+- Remi generalized the propclass serialization system so propclass are now
+  handled by the network "relatively" independently of their type.
+- Remi fixed a few bugs.
+- Remi removed a lot of loading code from the behaviours. Goal is to use the
+  behaviours only for what they were designed: handling of special events.
+
+26-August-2004
+- Remi improved the subscription system so the player can now move.
+
+25-August-2004
+- Remi re-added the subscription system in a very basic form.
+
+24-August-2004
+- Remi made the following fixes:
+  - Replaced appsys by a GetApplication() function
+  - Generalized code for waiting entities. No more special casing of 
+    iPcLinearMovement.
+  - Moved area registry in common application.
+  - Merged server states with server behaviours to create server wrappers. This
+    is a lot easier to access the loading functions now.
+  - Various "Remi-is-an-idiot" fixes.
+
+23-August-2004
+- Remi made the following fixes:
+  - Removed all unused warnings.
+  - Moved the ocID allocation/management. Now the behaviour get a copy, and the
+    server wrappers takes care of allocating them. This is because these IDs
+    won't be used only for network but also for area referrencing.
+  - Removed behaviour factory to replace it by Create* callbacks in client
+    behaviour layer. This will allow the behaviour layer to register new 
+    entities directly instead of calling register functions in the behaviour
+    constructor.
+  - Moved our specific behaviour interface from client to common so the server
+     can also access easily the ID.
+  - Moved region loading code in the Loader.
+  - Fixed bug where the property classes where created after the network
+    code tested their presence.
+
+22-August-2004
+- Remi made the following fixes:
+  - Created an ocAreaRegistry class to do translations between iCelEntity*,
+    ocID and iSector*.
+  - DRData now also include the sector.
+
+21-August-2004
+- Remi made the following fixes:
+  - Added some comments and "virtual" keywords.
+  - Replaced the message system by a virtual interface for the client 
+    behaviours.
+  - Fixed confusion between player name and entity name.
+
+20-August-2004
+- Remi made the following fixes:
+  - Changed entity deserialization system on client to avoid the use of the
+    files he forgot to commit and lost (shame on him). This code is still bad
+    and use special-cases.
+  - Once-side entity data is now stored in a normal serial object instead of
+    iPcProperties.
+  - Behaviours are now created directly in the entity wrapper on server side.
+
+5-August-2004
+- The Wizzard fixed a compile error due to a cel api change.
+
+1-August-2004
+- Remi created a cel-switch branch containing all his broken code.
+
+28-July-2004
+- Remi removed iTextureManager as asked on the Crystal Mailing List.
+- Remi made a new step towards cel:
+  - Removed collision detection code (cel takes care of this). All entity
+    controlling code is now inside cel or in the behaviour.
+  - Re-added some common behaviour handling.
+
+26-July-2004
+- Remi made a new step towards cel:
+  - Reorgarnized files. Now server and client doesn't share any more behaviours
+    or behaviour layer. Design behind this is that client behaviour will only
+    send messages to server while server behaviours will do real management.
+  - Removed ocEntityMesh. We now keep directly an iCelEntity* in the ocEntity.
+    The compatibility hacks have been moved from ocEntityMesh to ocEntity and
+    ocEntityState.
+  - Added some checks to prevent server crashes if behaviours can't be loaded.
+    Client still crashes if any file is missing.
+
+25-July-2004
+- Remi made the first serious move towards cel. Some code is now broken and a
+  few features are removed. The code is now ugly or incoherent in most places
+  but this will be fixed when new steps are achieved. The following parts
+  were greatly modified:
+  - ocLoader has been completely rewritten
+  - Added dummy behaviours for level and player.
+  - ocEntityMesh was rewritten to work with the new ocLoader. The code is
+    especially bad here.
+  - Added a new "entity" config file and a test entity file.
+- Remi made the client be nicer on CPU when the display is not enabled.
+
+24-July-2004
+- Remi created a basic class for ocClient and ocServer that takes care of 
+  common initialization/cleanuop procedure.
+- Remi used this new class as an interface for common classes that want to get
+  access to common modules or gui output.
+- Remi moved storage fonctionnalities of ocContentMgr into ocContentDirTree.
+- Remi made the applications mount their paths according to config files.
+- Remi moved some defines into a global config file that also takes care of 
+  including cssysdef.h.
+- Remi made the application load the cel behaviour/physical layer. They still
+  aren't used.
+- Remi made scons work on his system. Not sure of how this will work on others
+  though. Moved config.h to src/ and fixed some line wrapping.
+
+19-July-2004
+- uavfun fixed a bug in win32, strdup doesn't seem to work properly.
+
+18-July-2004
+- Remi added a basic cel behaviour layer (mostly stolen from CrystalCore)
+- Remi tried to gather factory stuff. Removed six files, added two new ones.
+
+12-July-2004
+- Remi made the server send client info about races.
+- Remi fixed a few bugs in the content manager.
+- Remi made server load starting positions per race (really basic stuff)
+- Remi added an ID field to race structures. These IDs must be unique and never
+  changed. Look at races.def for a ID allocation proposal.
+
+10-July-2004
+- Remi fixed a bug with pointer arithmetic in ocAreaState::RealTryToMove that
+  caused a segfault when more than two colliders where involved. Bug reported
+  by Rigbyd.
+
+8-July-2004
+- Remi fixed the server content manager so it saves correctly its state.
+- Remi changed the settings manager so it use templates for better flexibility.
+- Remi added a <starting_positions> field in race structures. For now, it is 
+  only loaded and not used.
+- Remi added change number and md5sum info to the /content_show command.
+
+5-July-2004
+- Remi added gravity.
+- Remi fixed CollidePath so steps are correctly handled.
+- Remi fixed virtual clock by stopping it while the map is loading to avoid
+  big moves after.
+
+4-July-2004
+- Remi changed iRegion::Prepare call to iEngine::Prepare since CS doesn't 
+  support shaders in region.
+
+3-July-2004
+- Rigbyd fixed linker warnings in MSVC7.1 for server executable.
+
+3-July-2004
+- Remi removed all the compilation warnings he got (thanks to the csArray 
+  change).
+- Remi updated once map to CS terrain plugin (new renderer). CS shaders and
+  textures are still used.
+
+30-June-2004
+- Remi removed delaying of player requests. This code was buggy and wasn't 
+  really useful. There is better ways to avoid DoS and as long as we stay
+  single-threaded, the networking will always be done in the same step.
+- Remi changed handling of missing mesh files.
+- Remi fixed various bugs and uninitialized vars.
+
+23-June-2004
+- Remi made a few trivial fixed in loading map funcs so the server don't crash
+  if there's no starting position in map file.
+- Remi made another fix to the content manager.
+
+19-June-2004
+- Remi fixed content manager so client can disconnect and reconnect at will.
+
+17-June-2004
+- Remi copied signal handler from server to client.
+- Remi made the content manager remember his state through saving it into
+  index files.
+
+16-June-2004
+- Remi changed all copyright headers to the generic term "Once developement 
+  team."
+
+14-June-2004
+- Remi fixed server crashes when client disconnects.
+
+13-June-2004
+- Remi commited the basic structure for the new content manager system. Still
+  need a few things. Thanks to Rigbyd for reporting the errors on Windows.
+
+12-June-2004
+- Rigbyd modified ocmysql.h to have an ifdef for including windows.h on
+  windows machines. This solved an issue with the server not compiling on
+  windows. Once builds successfully on windows again.
+
+12-June-2004
+- Remi made the server remembers when someone create a new user.
+
+11-June-2004
+- Rigbyd fixed project files for MSVC 7.1 to include hawkNL lib depandancies
+  and fixed project files to match with current state of code (removed some
+  deleted files, added ocnetwork.h, ocnetwork.cpp).
+
+11-Juny-2004
+- Remi made a special handling for login messages.
+- Remi added a check in LoadMap to detect a wrong sector name.
+- Remi removed a duplicate call to engine->Prepare(). Fixed loading of username
+  and password in ocOverlayLogin. Fixed hide of new user overlay message when
+  server fails.
+
+8-Juny-2004
+- Remi removed CS networking and replaced it by HawkNL networking.
+- Remi did various restructuration in network code. All network code is now
+  stored in a few classes.
+- Remi updated collision detection to work with latest CS code.
+- Remi reverted world file to an empty world (that don't need CS).
+
+25-May-2004
+- Remi fixed an assert trigger when the world file failed to load
+- Remi made a small change in the world file to allow newer version of CS to 
+  load it
+
+27-April-2004
+- Remi fixed a few bugs:
+  - Display shutdown correctly at client quit
+  - A wrong index in content manager
+  - Renderloop in world file now take care of meshes (thanks to Jorrit and 
+    thebolt for the fix)
+  - Collision detection now works with New Renderer.
+
+26-April-2004
+- Remi cleaned the initialization process. Various bugs are fixed so the client
+  is able to reconnect whatever happens. Server is also able to load multiple
+  times, and survive if a load fail.
+
+25-April-2004
+- Wouter fixed CS so that we can use the new renderer (NR) from CS.
+  ocserver runs using opengl now. Also terrain has no collision detection
+  wrapper so moving doesn't work yet.
+  Otherwise it is showing the NR terrain plugin terrain and sky.
+
+24-April-2004
+- Wouter tried to make octerraingen compile. The syntax errors are gone,
+  but lots of functions aren't implemented yet, so it doesn't link yet.
+- Wouter made empty implementations of missing functions in terraingen.
+
+20-April-2004
+- elscouta added a Makefile switch to allow the use to choose what dbs he want
+  to use
+
+19-April-2004
+- uavfun split up the terrain stuff into different files.
+- elscouta fixed some memory allocation.
+- elscouta added some basic collision detection (+ hacks)
+
+18-April-2004
+- TheWizzard added progress bars when the client receives files
+- elscouta fixed some bugs, leaks and indentation. Also removed some obsolete
+  vars in ocClient.
+- elscouta added a settings manager. Currently able to load race data
+
+17-April-2004
+- TheWizzard added a window, when the client receives files
+- elscouta moved a lot of code from client into common to allow the server
+  to load mesh. 
+
+16-April-2004
+- elscouta changed a few things into subscription so a player won't receive
+  a substart or subend message if no state change is done.
+- elscouta cleaned a bit ocDisplay, adding small function to handle
+  starting/displaying/content files logic.
+- elscouta made the client load the entity appearance send by the server.
+
+15-April-2004
+- elscouta fixed the last (i hope) bugs in /full_load and /mini_load.
+- elscouta added a /entity_appearance command.
+
+14-April-2004
+- uavfun moved all login processing to the database and removed
+  the lists of non-logged in players.
+- uavfun added Delaunay triangulation to heightfield conversion.
+- elscouta fixed bugs in the lua serialization/deserialization that avoided
+  /full_load and /full_save to work. Also pointers to id were not correctly
+  registered at loading.
+
+13-April-2004
+- uavfun added Delaunay triangulation for the terrain.
+
+12-April-2004
+- elscouta prepared the collision detection system. Map loading on server, 
+  bug fixes and naming of the starting position.
+- elscouta cleaned some stuff to allow the client to reconnect after having
+  been disconnected.
+
+10-April-2004
+- uavfun moved database configuration to ocserver.cfg
+- elscouta fixed two bugs, one which caused an undesired displaying of the main
+  window even if the navbar isn't shown and another causing the player avatar
+  to have no server state.
+- elscouta added some basic gravity stuff in the same time
+
+09-April-2004
+- elscouta added the main overlay with a better callback handling.
+
+08-April-2004
+- uavfun started moving login info to the database
+- elscouta fixed the unix Makefile so mysql headers are found
+
+07-April-2004
+- uavfun started on MySQL support
+
+05-April-2004
+- elscouta added callbacks for the navigation bar. Only the system window is
+  currently available.
+- elscouta fixed a bug in ocDisplay.
+
+04-April-2004
+- elscouta added the small navigation bar (image made by Alex Budovski)
+
+28-March-2004
+- uavfun added in basic terrain generation + display on the client
+
+10-March-2004
+- Wouter fixed for small change in Loadfont behaviour in CS.
+  No more SetFontSize() call. It is an argument to LoadFont().
+
+06-March-2004
+- elscouta: /content_show and /content_update accept now the area 'global'
+
+05-March-2004
+- uavfun added basic mesh loading + a test in ocDisplay.cpp
+
+15-February-2004
+- elscouta moved the virtual clock call to ocClient::SetupFrame 
+- elscouta changed the rotation system so client doesn't wait for server to
+  rotate the camera. On top of that, rotation requests are now sent only
+  every 150ms. 
+
+14-February-2004
+- uavfun updated the vs 6 and 7.1 projects
+
+12-February-2004
+- elscouta cleaned ocDisplay (removing an unused function, protecting some
+  function that must be used only by ocDisplay)
+- elscouta fixed a bug which triggered an assert if you used /mini_load more
+  than once.
+- elscouta changed subscription and serialization so some class can be
+  updated only as small diffs. you can now send only position, speed or 
+  y_rotation of ocEntity.
+
+10-February-2004
+- elscouta added messaging between client and server about deplacement. Bugs
+  fixed, in ocDisplay and subscription manager
+
+04-February-2004
+- uavfun added a VS 7.1 solution and cleaned up some warnings.
+
+01-February-2004
+- uavfun changed the content files so sending is throttled properly
+- uavfun added a progress indicator for client content file downloading.
+- uavfun added a message of the day feature to the server (stored in
+  server_data/motd.txt)
+- uavfun made a couple small fixes
+
+18-January-2004
+- uavfun added a buffer to each connection for storing incomplete packets
+- uavfun fixed the chat messages so the player's name is shown
+- uavfun added a chat command to the server console (/msg)
+
+10-January-2004
+- uavfun added a censor for chat messages to the server
+
+07-January-2004
+- elscouta change the old inheritance system for command to a callback system
+
+20-December-2003
+- uavfun added ocmsghandler_common.* to the vc6 projects
+
+18-December-2003
+- Network fix: hard-coded limit of 15000 bytes is removed so there's
+  no longer weird behaviour when this limit is exceeded. Although, it
+  seems CS can't keep more than 130000 bytes so after this limit, packets
+  are dropped (but not corrupted as before). 
+- Client and server shares basic network funcs. 
+
+15-December-2003
+- Small fixes to entity and player updating. A sidenote about entity
+  references in commands: you can use the plain name for an entity
+  in the same area as you (the player typing this command) are,
+  or 0x<long hex version of the entity ID> for automated use,
+  or @areaname:entityname for entities in other areas.
+
+14-December-2003
+- Added several entity related commands: /entity_create, entity_info,
+  entity_position, entity_rotate, entity_rotatereset, entity_desc,
+  entity_visible.
+
+13-December-2003
+- Wouter changed the resolution by default of the occlient to 1024x768.
+- Added first simple code to subscribe players to entities based on
+  distance. Visibility is set to 100m for now.
+- Textures and models are loaded into the crystalspace engine when the
+  area_files_ready callback happens.
+- Added permissions to players and server commands. A player needs to
+  have build permissions to do building commands. Admin permission
+  allows player management and server management. Admin permission
+  allows you to set player permissions.
+
+7-December-2003
+- uavfun updated the VC6 server project and fixed another for loop problem.
+- Wouter changed more templated functions to macros, this time for
+  IsOfClass and QueryClass functionality.
+- Made loading show the wait message more nicely.
+- Added a signal handler (for Unix, only used in GNUC for now)
+  to the server. So when running ocserver -textonly you can quit it
+  by doing a kill -1 or ctrl-c.
+- signals only on OS_UNIX now.
+- Added server entitystate object. Cleaned up entity object.
+- elscouta added callbacks to content managers. (client-side only)
+
+6-December-2003
+- uavfun updated the VC6 project to include LUA scripting.
+- Wouter changed content file mgr on server to ignore empty files (i.e. 
+  directory pathnames) and the filename 'CVS'.
+- Wouter committed the terrain in area 1. /mini_load followed by
+  /content_update start  will load everything on the server.
+- Wouter added script manager. The server now needs lua to compile.
+  The client compiles without lua still. Lua 5.0 from www.lua.org is needed.
+- Wouter changed some templates that were incompatible with VC6 to macros
+  in the regclass files.
+
+2-December-2003
+- elscouta did some minor fixes in content files.
+
+29-November-2003
+- Wouter fixed two uninitialised variables.
+- Wouter changed server_data/client to server_data/common
+
+28-November-2003
+- Wouter change entity. The Entity now has one appearance,
+  and each appearance is in one entity. This makes the appearance
+  class much easier to use.
+- elscouta added content file downloading improvements.
+  The commands /content_update <areaname> and /content_show <areaname>.
+
+23-November-2003
+- uavfun fixed content files to compile under VC, fixed doxygen comments,
+  and tidied up some comments and names
+- elscouta added content files.
+- Wouter fixed a delete segfault on the client side,
+  by adding virtual destructors to iSerial and iocSubscribable.
+- Wouter fixed several bugs in mini load and full load, they now 
+  handle the IDs correctly.
+- Remi added a big patch that allows the server to give the client
+  content files.
+
+22-November-2003
+- Wouter added patch from ndarnell/Sarus(Nick Darnell ncdarnel@ncsu.edu),
+  that implements saving of user settings in a config file.
+- Instead of sprintf/itoa using csString.
+
+16-November-2003
+- Wouter fixed a bug in the oc_global_lookup on the client reported
+  by Tullius. The object was never created.
+- Fixed also the ocVoidIDSet::Remove operation.
+- Fixed uninitialiased variable in occclient: the focus member.
+
+14-November-2003
+- Wouter added some doxygen comments to parts that were missing it.
+  Enabled macro expansion for doxygen.
+
+13-November-2003
+- uavfun added a doxygen config file
+- uavfun removed templated members of ocVoidID so they would compile under VC6
+- uavfun added Visual C++ 6.0 workspace and project files
+- rissy added some error checking to the ocClient Initialize function.
+- Snocrash@users.sf.net (Brian Otto) made some small changes, removed
+  unimplemented stuff from ocClient. However, these were only unimplemented
+  in the anonymous CVS of CS due to the 24 hour lag. Wouter reverted the
+  commit.
+- Wouter added some code to catch subscription information on the client
+  side. Notification further into the client is still to be done.
+- Wouter made some small fixes to prevent a class, operator == wasn't
+  working properaly for the ocVoidID class.
+- Changed makefile, now dependencies aren't generated for targets
+  such as make clean.
+- The client subscription manager keeps track of validity of objects
+  and notifies listeners. 
+- Also change notifications are implemented.
+- Removed names.dat, it is the same as server_data/namegen/human.dat.
+
+11-November-2003
+- Removed unistd include from ocdisplay.cpp, not only did rissy
+  remove it because it wasn't needed on windows, it also wasn't
+  needed on unix.
+- Fixed reference leak of an iView object in ocdisplay. This
+  was causing a lof of SCF errors on exit (in debug mode).
+- Changed default font (in client) to Vera-bold (comes with CS).
+  Line height of the font is a bit high though.
+
+10-November-2003
+- Changed 'CreateWindow' in ocoverlay to MakeWindow.
+  It clashes with a macro with the same name under windows.
+- removed get_current_dir_name from ocdisplay.cpp, it is
+  unportable. Also the usage of malloc/realloc isn't very nice.
+  Uses csString now.
+- Callbacks and structure change in client network API.
+  ClientSubscription Manager gets the callbacks.
+
+8-November-2003
+- Fixed 'no start location' error to be more understandable.
+- Server now Sleep(20)'s always, so rendering of client is smoother.
+- Added a transparent pane behind the console.
+- Created a materialmap for the terrain. Black means the regular terrain
+  texture, other values can be used to override to different textures.
+  Added some first roads to the terrain.
+
+7-November-2003
+- Added SCF_DESTRUCT_IBASE to complement the SCF_CONSTRUCT_IBASE calls
+  for both server and client display callback functions.
+- Added patch from elscouta (Remi Bonnet <remi.bonnet@laposte.net>)
+  that adds maploading the client, try /load world in the console.
+  You can move around if you click on the background first.
+- The PrintMessage function now updates to show the text, even
+  if the client is then unresponsive (read: loading a level) for a while.
+- Added a level to load, of Angmar.
+- Background of console is transparent, text of console is shaded.
+
+5-November-2003
+- Wouter changed all source files, converted tabs to spaces,
+  the tabstops are at 8 space, the code is using a two-space indent setting.
+
+22-October-2003
+- Wouter fixed server and client for keyboard handling change in CS.
+  Compiles. Untested, but should work.
+
+13-October-2003
+- Wouter added ochdlnewuser.cpp and h which he forgot to commit.
+
+4-October-2003
+- Wouter moved the ocsubscription.cpp and h files from server to common.
+- ocPlayer and ocArea implement ocSubscribable.
+- ocPlayerState keeps track by being subscribed.
+- Added substartmsg, subchangemsg and subendmsg to send to client.
+- Added newusermsg for client to request new user creation
+- moved from csHashMap to csSet<T>.
+- Added csSchedule to ocAreaState, it will keep track of players
+  and entities and call them to update themselves.
+	The world has a Simulate(elapsed_time) method that is called
+	periodically. Players send update messages to the client when
+	they are updated, now every 50 msec.
+- Wouter committed a patch from Pete Ryland (pdr at pdr.cx).
+  The patch makes a new user window on the client side,
+	adds a safe new user message sent over the network,
+	and handles creation of the user on the server.
+
+27-September-2003
+- Wouter added a new class to the client: ocOverlay. This class,
+  or more precisely its subclasses, can hold the specific gui
+	interaction code, clearing up the main ocClient class.
+- Moved over the connect and login windows as overlay subclasses.
+- Wouter added mini_load and mini_save that store basic server state.
+- Added full_load and full_save as well, that store all information
+  except the entities for now. This file format is in binary,
+	whilst the minisave is in textonly. Also committed sample save files.
+
+19-September-2003
+- Thomas fixed a case sensitivity error in the name generator.
+- Wouter updated the Makefile for latest CS (no explicit cssys lib).
+- Wouter removed srand from Generate name constructor, the srand
+  is already done in the server creation; and leads to getting the
+  same name when invoked in during same second.
+
+10-September-2003
+- rissy added ocNameGen.cpp/h - the preliminary basic name generator
+- rissy added ocCmdSvrGenerateName to the server commands (/generate_name <player>)
+
+5-September-2003
+- rissy added a include directive to server/ocmsghandler.h of
+  inetwork/driver.h to fix the missing declaration of iNetworkConnection
+  in VC++ compilation.
+- rissy added the vs/ directory, which contains the visual studio solution and
+  project files nesscary to compile under visual studio.
+
+4-July-2003
+- The server has a -textonly commandline option. In that case it uses
+  an off-screen canvas. It runs without showing a window.
+  Of course, you also cannot type in the absent window. To quit you
+  need to login with the client and type '/server /quit' at the console.
+- Server is nice in multiuser environment, performing sleep(20 ms),
+  when running in -textonly.
+- Made the consolecallbacks a separate class for server and client.
+  They caused circular dependencies, which were causing problems at cleanup.
+- Makefile now uses .d files to keep track of dependencies automatically.
+- created iocSubscriber, iocSubscribable, ocSubscriptionList and
+  ocSubscriberList. With this, ocPlayerState objects can be subscribed
+  to other serverstate objects.
+
+3-July-2003
+- Added handling for login message and comparing.
+- Player and area server states are created.
+- Players online have their netlink transferred to playerstate object.
+  Note that duplicate logins give a 'login succeeded message.',
+  and have no further effect.
+
+27-June-2003
+- Migrated from using the deprecated socket2 API to using the cssocket
+  API from CrystalSpace.
+
+21-June-2003
+- Added ocLoginMsg, ocLoginReplyMsg. Login msg uses MD5 to hash the password.
+- Added content file object.
+- occlient now uses standard output console, the simple output lacks options.
+- Added methods to ocserialize, for reading unsigned chars.
+- the client starts an AWS gui interface.
+- Client has functional connect and login windows.
+- Menu bar for the client. After fixing AWS and crystalspace this works
+  and looks good. One menu 'Game' with one option 'Quit'.
+- Added client_data directory for client-only data storage.
+  In this directory is the gui definition and a copy of wood001, which 
+  is used to theme the gui.
+- Made console text coloured.
+
+8-June-2003
+- Added ocChatMsg (renamed common/ocpacket to common/occhatmsg),
+  with server and client handlers.
+- Added client command to connect to a server of choice.
+- Added serialization and deserialization to the ID classes,
+  by Read and Write methods.
+- Note on Class IDs. Common classes use Capitals (PLAY, AREA),
+  Server state classes add a + at the end, (PLA+, ARE+),
+  Network messages have a lowercase 'm' in front (mcat).
+- Added serialization and deserialization method contents.
+  Arrays are serialized by writing first an int with the 
+  size of the array, subsequently the elements are serialized.
+
+7-June-2003
+- Added classes ocMsgHandlerClient, ocMsgHandlerServer,
+- Registration method for the ServerFactory and ClientFactory.
+  The added classes enable object construction and message handling
+  for the server and the client. Both use the data from common.
+  The src/common code never references the server/client code.
+  This way client and server code are kept separated.
+- Objects implement iSerial now. (Except the bodies of the serialize/
+  deserialize need to be filled in).
+- iSerialBuffer has a mode to determine size of buffer needed, a
+  sort of a dry-run.
+
+1-June-2003
+- Added ocSerialBuffer class, to aid in message serialization.
+  It is safe, checking the bounds and does byteswapping as well.
+- Changed NULL to 0 in the code to conform to C++ standards.
+
+17-May-2003
+- Added new ocCommandSet, iocCommand interface objects.
+- Using that added the following commands to the server.
+  help
+  quit
+  area_list
+  area_info <areaname>
+  area_create ....
+  player_list
+  player_info <playername>
+  player_create .....
+
+9-May-2003
+- Created the start of several new classes, appearance, area, 
+  entity, player, areastate.
+- Fixed identifiers according to the alternative design (from
+  techdesign.html).
+
+5-May-2003
+- Added identifier class, and a change number class.
+
+4-May-2003
+- Created sourceforge repository.
+- Initial version server and client connect, the server echos the
+  text typed into the client(s) to all clients.
+
+3-May-2003
+- Wouter Wijngaards (wouter@users.sf.net) started the changelog.
+- Created makefiles.

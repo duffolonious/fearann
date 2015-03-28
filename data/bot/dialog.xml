@@ -1,0 +1,28 @@
+<!-- This file will contain npc dialog -->
+
+<dialog>
+	<greeting key="id">
+		<dl id="0" line="Hullo there!  I'm Jyn Muuchin, what can I do for you?" />
+		<dl id="1" line="Yes?" />
+		<dl id="2" line="Hi!  I'm Jyn Muuchin, what can I do ya for?" />
+	</greeting>
+	<story1 key="id">
+		<dl id="0" line="What are ya curious about?" link="" />
+		<dl id="1" line="You." link="story2" />
+		<dl id="2" line="The town, anything of interest?" link="story3" />
+		<dl id="3" line="Anything out of the ordinary?" link="story4" />
+		<dl id="4" line="I've gotten all I need to know." link="end" />
+	</story1>
+	<story2 key="id">
+		<dl id="0" line="The town is fairly new, built on the ruins of another town - like many of the new towns built by refugees." link="" />
+		<dl id="1" line="Uh huh." link="story1" />
+	</story2>
+	<story3 key="id">
+		<dl id="0" line="I've lived here only a short while - you see the town isn't that old.  It was made from refugees, rich refugees, only 20 years ago." link="" />
+		<dl id="1" line="I see." link="story1"  />
+	</story3>
+	<story4 key="id">
+		<dl id="0" line="Nothing out of the ordinary." link="" />
+		<dl id="1" line="Ok then." link="story1" />
+	</story4>
+</dialog>

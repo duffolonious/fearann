@@ -1,0 +1,21 @@
+SubDir TOP src bot ;
+
+# when including headers from the project, this is the root
+SubDirHdrs src ;
+
+SubDirC++Flags $(CXXFLAGS) ;
+
+Main fmbot :
+	net/botmsghdls.cpp
+	net/botnetmgr.cpp
+	action/bottradeinv.cpp
+	action/botcombat.cpp
+	action/botmove.cpp
+	npc/dialog.cpp
+	npc/trade.cpp
+	botcommand.cpp
+	botinventory.cpp
+	bot.cpp ;
+
+LINKLIBS on fmbot = $(XERCES.LDFLAGS) $(LDFLAGS) ;
+LinkLibraries fmbot : fmcommon ;

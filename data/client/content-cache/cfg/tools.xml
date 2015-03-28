@@ -1,0 +1,60 @@
+<!-- Meaning of interesting attributes:
+
+- load: It usually indicates weight (in kilograms), but can also be
+	increased if the material it's something like straw: the bulk
+	of the object.
+
+- durability: Not used yet, but it will have the usual meaning in
+	games.
+
+- handed: 1 or 2h, but maybe we make tools to be used alone even if
+	the character holds it only with one hand.
+
+- damage: Maybe we don't let people to use this in combat, but if so
+	that's the meaning of the value.
+
+- activity: Activities that this tool can be used for. Maybe we
+	implement it in the other way around, each activity requiring
+	an specific tool. Another possibility is to use it in both
+	ways: activity requires tool which can do X, tool provides X
+	functionality.
+
+- restrictions: Maybe it doesn't make much sense for tools, but it's
+	the counterpart of weapons of requiring str >= 20 to be able
+	to wear an armour and so on.
+
+-->
+
+<tools>
+	<brush		prettyName="Brush"
+			description=""
+			load="0.3"
+			price="20"
+			handed="1"
+			activity="BrushFarmAnimal">
+	</brush>
+
+	<sickle		prettyName="Sickle"
+			description=""
+			load="0.7"
+			price="20"
+			handed="1"
+			activity="CutPlant">
+	</sickle>
+
+	<stick		prettyName="Stick"
+			description=""
+			load="3.6"
+			price="500"
+			handed="1"
+			activity="Whatever">
+	</stick>
+
+	<whistle	prettyName="Whistle"
+			description=""
+			load="0.1"
+			price="500"
+			handed="1"
+			activity="CallFarmAnimal">
+	</whistle>
+</tools>

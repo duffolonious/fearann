@@ -1,0 +1,90 @@
+<!--  Meaning of interesting attributes:
+
+
+NOTE: just some vague ideas at the moment.
+
+
+- load: read the considerations in tools file, in example.
+
+- used for: If it's going to be processable, say wood to make some
+	tool.
+
+- consumible: If the player can eat it.
+
+- effects: Effects of using it.
+
+-->
+
+<resources>
+	<egg		prettyName="Egg"
+			description=""
+			load="1.7"
+			price="4">
+	</egg>
+	<egg-qual	prettyName="Quality Egg"
+			description=""
+			load="1.7"
+			price="10">
+	</egg-qual>
+	<egg-excep	prettyName="Exceptional Egg"
+			description=""
+			load="1.7"
+			price="20">
+	</egg-excep>
+	<egg-golden	prettyName="Golden Egg"
+			description=""
+			load="1.7"
+			price="50">
+	</egg-golden>
+
+	<feather	prettyName="Feather"
+			description=""
+			load="0.01"
+			price="2">
+	</feather>
+	<feather-good	prettyName="Good Feather"
+			description=""
+			load="0.01"
+			price="8">
+	</feather-good>
+	<feather-shiny	prettyName="Shiny Feather"
+			description=""
+			load="0.01"
+			price="35">
+	</feather-shiny>
+	<feather-mag	prettyName="Magic Feather"
+			description=""
+			load="0.01"
+			price="150">
+	</feather-mag>
+
+	<gold_lump	prettyName="Gold Lump"
+			description=""
+			load="0.1"
+			price="20">
+	</gold_lump>		
+
+	<grass		prettyName="Grass"
+			description=""
+			load="2.0"
+			price="2">
+	</grass>
+
+	<herb_med	prettyName="Medicinal Herb"
+			description=""
+			load="0.2"
+			price="300">
+	</herb_med>
+
+	<meat		prettyName="Meat"
+			description=""
+			load="1.0"
+			price="15">
+	</meat>
+
+	<mushroom_fky	prettyName="Funky Mushroom"
+			description=""
+			load="0.6"
+			price="-">
+	</mushroom_fky>		
+</resources>

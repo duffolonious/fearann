@@ -1,0 +1,56 @@
+<?xml version="1.0" ?>
+<GUIScheme Name="fearann">
+	<Imageset Name="FearannLook" Filename="FearannLook.imageset" />
+	<Imageset Name="InitialBG" Filename="initial-bg.imageset" />
+	<Imageset Name="RacePictures" Filename="racepictures.imageset" />
+	<Imageset Name="InterfaceDecorations" Filename="interfacedecorations.imageset" />
+	<Imageset Name="Map" Filename="map.imageset" />
+
+	<LookNFeel Filename="FearannLook.looknfeel" />
+
+	<WindowSet Filename="CEGUIFalagardWRBase" />
+	<FalagardMapping WindowType="FearannLook/Button"      TargetType="CEGUI/PushButton"  Renderer="Falagard/Button"       LookNFeel="FearannLook/Button" />
+	<FalagardMapping WindowType="FearannLook/Checkbox"    TargetType="CEGUI/Checkbox"    Renderer="Falagard/ToggleButton" LookNFeel="FearannLook/Checkbox" />
+	<FalagardMapping WindowType="FearannLook/ImageButton" TargetType="CEGUI/PushButton"  Renderer="Falagard/Button"       LookNFeel="FearannLook/ImageButton" />
+	<FalagardMapping WindowType="FearannLook/RadioButton" TargetType="CEGUI/RadioButton" Renderer="Falagard/ToggleButton" LookNFeel="FearannLook/RadioButton" />
+	<FalagardMapping WindowType="FearannLook/FrameWindow"  TargetType="CEGUI/FrameWindow" Renderer="Falagard/FrameWindow"  LookNFeel="FearannLook/FrameWindow" />
+	<FalagardMapping WindowType="FearannLook/Titlebar"     TargetType="CEGUI/Titlebar"    Renderer="Falagard/Titlebar"     LookNFeel="FearannLook/Titlebar" />
+	<FalagardMapping WindowType="FearannLook/SystemButton" TargetType="CEGUI/PushButton"  Renderer="Falagard/SystemButton" LookNFeel="FearannLook/Button" />
+	<FalagardMapping WindowType="FearannLook/Editbox"          TargetType="CEGUI/Editbox"          Renderer="Falagard/Editbox"          LookNFeel="FearannLook/Editbox" />
+	<FalagardMapping WindowType="FearannLook/MultiLineEditbox" TargetType="CEGUI/MultiLineEditbox" Renderer="Falagard/MultiLineEditbox" LookNFeel="FearannLook/MultiLineEditbox" />
+	<FalagardMapping WindowType="FearannLook/Menubar"   TargetType="CEGUI/Menubar"   Renderer="Falagard/Menubar"   LookNFeel="FearannLook/Menubar" />
+	<FalagardMapping WindowType="FearannLook/PopupMenu" TargetType="CEGUI/PopupMenu" Renderer="Falagard/PopupMenu" LookNFeel="FearannLook/PopupMenu" />
+	<FalagardMapping WindowType="FearannLook/MenuItem"  TargetType="CEGUI/MenuItem"  Renderer="Falagard/MenuItem"  LookNFeel="FearannLook/MenuItem" />
+	<FalagardMapping WindowType="FearannLook/AlternateProgressBar" TargetType="CEGUI/ProgressBar" Renderer="Falagard/ProgressBar" LookNFeel="FearannLook/AltProgressBar" />
+	<FalagardMapping WindowType="FearannLook/ProgressBar"          TargetType="CEGUI/ProgressBar" Renderer="Falagard/ProgressBar" LookNFeel="FearannLook/ProgressBar" />
+	<FalagardMapping WindowType="FearannLook/VUMeter"              TargetType="CEGUI/ProgressBar" Renderer="Falagard/ProgressBar" LookNFeel="FearannLook/VUMeter" />
+	<FalagardMapping WindowType="FearannLook/VerticalScrollbar"   TargetType="CEGUI/Scrollbar" Renderer="Falagard/Scrollbar" LookNFeel="FearannLook/VerticalScrollbar" />
+	<FalagardMapping WindowType="FearannLook/HorizontalScrollbar" TargetType="CEGUI/Scrollbar" Renderer="Falagard/Scrollbar" LookNFeel="FearannLook/HorizontalScrollbar" />
+	<FalagardMapping WindowType="FearannLook/VerticalScrollbarThumb"   TargetType="CEGUI/Thumb" Renderer="Falagard/Button" LookNFeel="FearannLook/VerticalScrollbarThumb" />
+	<FalagardMapping WindowType="FearannLook/HorizontalScrollbarThumb" TargetType="CEGUI/Thumb" Renderer="Falagard/Button" LookNFeel="FearannLook/HorizontalScrollbarThumb" />
+	<FalagardMapping WindowType="FearannLook/LargeVerticalScrollbar"      TargetType="CEGUI/Scrollbar" Renderer="Falagard/Scrollbar" LookNFeel="FearannLook/LargeVerticalScrollbar" />
+	<FalagardMapping WindowType="FearannLook/LargeVerticalScrollbarThumb" TargetType="CEGUI/Thumb"     Renderer="Falagard/Button"    LookNFeel="FearannLook/LargeVerticalScrollbarThumb" />
+	<FalagardMapping WindowType="FearannLook/TabButton"  TargetType="CEGUI/TabButton"  Renderer="Falagard/TabButton"  LookNFeel="FearannLook/TabButton" />
+	<FalagardMapping WindowType="FearannLook/TabControl" TargetType="CEGUI/TabControl" Renderer="Falagard/TabControl" LookNFeel="FearannLook/TabControl" />
+	<FalagardMapping WindowType="FearannLook/TabContentPane"    TargetType="DefaultWindow"    Renderer="Falagard/Default"    LookNFeel="FearannLook/TabContentPane" />
+	<FalagardMapping WindowType="FearannLook/TabButtonPane"    TargetType="DefaultWindow"    Renderer="Falagard/Default"    LookNFeel="FearannLook/TabButtonPane" />
+	<FalagardMapping WindowType="FearannLook/ComboDropList" TargetType="CEGUI/ComboDropList" Renderer="Falagard/Listbox" LookNFeel="FearannLook/ComboDropList" />
+	<FalagardMapping WindowType="FearannLook/ComboEditbox"  TargetType="CEGUI/Editbox"	 Renderer="Falagard/Editbox" LookNFeel="FearannLook/ComboEditbox" />
+	<FalagardMapping WindowType="FearannLook/Combobox"	TargetType="CEGUI/Combobox"	 Renderer="Falagard/Default" LookNFeel="FearannLook/Combobox" />
+	<FalagardMapping WindowType="FearannLook/Listbox"           TargetType="CEGUI/Listbox"           Renderer="Falagard/Listbox"           LookNFeel="FearannLook/Listbox" />
+	<FalagardMapping WindowType="FearannLook/ListHeader"        TargetType="CEGUI/ListHeader"        Renderer="Falagard/ListHeader"        LookNFeel="FearannLook/ListHeader" />
+	<FalagardMapping WindowType="FearannLook/ListHeaderSegment" TargetType="CEGUI/ListHeaderSegment" Renderer="Falagard/ListHeaderSegment" LookNFeel="FearannLook/ListHeaderSegment" />
+	<FalagardMapping WindowType="FearannLook/MultiColumnList"   TargetType="CEGUI/MultiColumnList"   Renderer="Falagard/MultiColumnList"   LookNFeel="FearannLook/MultiColumnList" />
+	<FalagardMapping WindowType="FearannLook/Slider"      TargetType="CEGUI/Slider"      Renderer="Falagard/Slider"  LookNFeel="FearannLook/Slider" />
+	<FalagardMapping WindowType="FearannLook/SliderThumb" TargetType="CEGUI/Thumb" Renderer="Falagard/Button"  LookNFeel="FearannLook/SliderThumb" />
+	<FalagardMapping WindowType="FearannLook/ScrollablePane" TargetType="CEGUI/ScrollablePane" Renderer="Falagard/ScrollablePane" LookNFeel="FearannLook/ScrollablePane" />
+	<FalagardMapping WindowType="FearannLook/Spinner" TargetType="CEGUI/Spinner" Renderer="Falagard/Default" LookNFeel="FearannLook/Spinner" />
+	<FalagardMapping WindowType="FearannLook/Tooltip" TargetType="CEGUI/Tooltip" Renderer="Falagard/Tooltip" LookNFeel="FearannLook/Tooltip" />
+	<FalagardMapping WindowType="FearannLook/StaticImage" TargetType="DefaultWindow" Renderer="Falagard/StaticImage" LookNFeel="FearannLook/StaticImage" />
+	<FalagardMapping WindowType="FearannLook/StaticText"  TargetType="DefaultWindow" Renderer="Falagard/StaticText"  LookNFeel="FearannLook/StaticText" />
+
+	<FalagardMapping WindowType="FearannLook/ProgressBarHealth" TargetType="CEGUI/ProgressBar" Renderer="Falagard/ProgressBar" LookNFeel="FearannLook/ProgressBarHealth" />
+	<FalagardMapping WindowType="FearannLook/ProgressBarMagic" TargetType="CEGUI/ProgressBar" Renderer="Falagard/ProgressBar" LookNFeel="FearannLook/ProgressBarMagic" />
+	<FalagardMapping WindowType="FearannLook/ProgressBarStamina" TargetType="CEGUI/ProgressBar" Renderer="Falagard/ProgressBar" LookNFeel="FearannLook/ProgressBarStamina" />
+	<FalagardMapping WindowType="FearannLook/ProgressBarLoad" TargetType="CEGUI/ProgressBar" Renderer="Falagard/ProgressBar" LookNFeel="FearannLook/ProgressBarLoad" />
+</GUIScheme>

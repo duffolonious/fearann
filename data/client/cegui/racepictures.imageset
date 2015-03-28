@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Imageset Name="RacePictures" Imagefile="RacePictures.png" NativeHorzRes="768" NativeVertRes="768" AutoScaled="true">
+	<Image Name="Dwarf_f" XPos="0" YPos="0" Width="256" Height="384" />
+	<Image Name="Dwarf_m" XPos="0" YPos="512" Width="256" Height="384" />
+	<Image Name="Elf_f" XPos="256" YPos="0" Width="256" Height="384" />
+	<Image Name="Elf_m" XPos="256" YPos="512" Width="256" Height="384" />
+	<Image Name="Human_f" XPos="512" YPos="0" Width="256" Height="384" />
+	<Image Name="Human_m" XPos="512" YPos="512" Width="256" Height="384" />
+
+	<Image Name="Dwarf_f-face" XPos="768" YPos="0" Width="92" Height="128" />
+	<Image Name="Dwarf_m-face" XPos="768" YPos="512" Width="92" Height="128" />
+	<Image Name="Elf_f-face" XPos="768" YPos="128" Width="92" Height="128" />
+	<Image Name="Elf_m-face" XPos="768" YPos="640" Width="92" Height="128" />
+	<Image Name="Human_f-face" XPos="768" YPos="256" Width="92" Height="128" />
+	<Image Name="Human_m-face" XPos="768" YPos="768" Width="92" Height="128" />
+</Imageset>

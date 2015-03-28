@@ -1,0 +1,37 @@
+<!-- maybe we need other model-dependent data, such as CD boxes -->
+
+<spells key="name">
+	<spell0	name="acid splash"
+			description="You fire a small orb of acid at the target. You must succeed on a ranged touch attack to hit your target. The orb deals 1d3 points of acid damage."
+			school="conjuration"
+			damage="1d3"
+			level="0"
+			casttime="1"
+			range="25 + 5/(2*level)"
+			duration="0"
+			savingthrow="none"
+			resistance="none">
+	</spell0>
+	<spell0	name="ray of frost"
+			description="A ray of freezing air and ice projects from your pointing finger. You must succeed on a ranged touch attack with the ray to deal damage to a target. The ray deals 1d3 points of cold damage."
+			school="evocation"
+			damage="1d3"
+			level="0"
+			casttime="1"
+			range="25 + 5/(2*level)"
+			duration="0"
+			savingthrow="none"
+			resistance="yes">
+	</spell0>
+	<spell1	name="magic missle"
+			description="A missile of magical energy darts forth from your fingertip and strikes its target."
+			school="evocation"
+			damage="1d4+1"
+			level="1"
+			casttime="1"
+			range="100 + 10*level"
+			duration="0"
+			savingthrow="none"
+			resistance="yes">
+	</spell1>
+</spells>

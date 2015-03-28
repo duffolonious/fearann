@@ -1,0 +1,12 @@
+This file contains the major visible changes and features between
+releases.
+
+
+[0.3.1] Current development version.
+
+- Started using OpenSceneGraph
+
+
+[0.2] Last stable version
+
+- Last stable version, using CrystalSpace 3D

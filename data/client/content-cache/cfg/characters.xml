@@ -1,0 +1,14 @@
+<!-- maybe we need other model-dependent data, such as CD boxes -->
+
+<characters>
+	<dwarf		prettyName="Dwarf" >
+			<bonus str="0" con="2" dex="-2" int="0" wis="0" cha="0" />
+	</dwarf>
+
+	<elf		prettyName="Elf" >
+			<bonus str="0" con="-2" dex="2" int="0" wis="0" cha="0" />
+	</elf>
+	<human		prettyName="Human" >
+			<bonus str="0" con="0" dex="0" int="0" wis="0" cha="0" />
+	</human>
+</characters>

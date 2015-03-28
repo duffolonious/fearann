@@ -1,0 +1,36 @@
+SubDir TOP src server ;
+
+# when including headers from the project, this is the root
+SubDirHdrs src ;
+
+SubDirC++Flags $(OSG.CXXFLAGS) $(POSTGRESQL.CXXFLAGS) $(CXXFLAGS) ;
+
+if $(POSTGRESQL.AVAILABLE) != yes
+{
+	echo "ERROR: PostgreSQL is required to build the server, skipping" ;
+	return ;
+}
+
+Main fmserver :
+	srvmain.cpp
+	action/srvcombatmgr.cpp
+	action/srvtrademgr.cpp
+	db/srvdbmgr.cpp
+	db/srvdbconnectorpostgresql.cpp 
+	console/srvcommand.cpp
+	console/srvconsolemgr.cpp
+	content/srvcontentmgr.cpp 
+	entity/srventitybase.cpp
+	entity/srventitynpc.cpp
+	entity/srventityobject.cpp
+	entity/srventitycreature.cpp
+	entity/srventityplayer.cpp
+	login/srvloginmgr.cpp
+	net/srvmsghdls.cpp
+	net/srvnetworkmgr.cpp
+	world/srvworldmgr.cpp
+	world/srvworldcontactmgr.cpp
+	world/srvworldtimemgr.cpp ;
+
+LINKLIBS on fmserver = $(OSG.LDFLAGS) $(POSTGRESQL.LDFLAGS) $(XERCES.LDFLAGS) $(LDFLAGS) ;
+LinkLibraries fmserver : fmcommon ;

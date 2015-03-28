@@ -1,0 +1,14 @@
+TOP ?= "." ;
+
+SubDir TOP ;
+
+if $(JAMRULES_COMPLETE) != "yes"
+	{ exit "Please run bootstrap script to configure the compilation" ; }
+
+# recurse into src subdirectory
+SubInclude TOP src ;
+
+Clean clean : ;
+Clean distclean :
+	Jamrules
+	clean ;

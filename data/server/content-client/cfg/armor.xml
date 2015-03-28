@@ -1,0 +1,56 @@
+<!-- Armor - for your defense -->
+
+<armor>
+	<armor>
+		<padded	name="Padded"
+			description=""
+			category="light"
+			cost="5"
+			bonus="1"
+			maxDexterity="8"
+			penalty="0"
+			spellFailure="5"
+			mdSpeed="30"
+			smSpeed="20"
+			load="10.0"
+	/>
+	<leather	name="leather"
+			description=""
+			category="light"
+			cost="10"
+			bonus="2"
+			maxDexterity="6"
+			penalty="0"
+			spellFailure="10"
+			mdSpeed="30"
+			smSpeed="20"
+			load="15.0"
+		/>
+		<studded	name="studded"
+			description=""
+			category="light"
+			cost="25"
+			bonus="3"
+			maxDexterity="5"
+			penalty="-1"
+			spellFailure="15"
+			mdSpeed="30"
+			smSpeed="20"
+			load="20.0"
+		/>
+	</armor>
+	<shields>
+		<buckler	name="buckler"
+			description=""
+			category="shield"
+			cost="15"
+			bonus="1"
+			maxDexterity="-"
+			penalty="-1"
+			spellFailure="5"
+			mdSpeed="-"
+			smSpeed="-"
+			load="5.0"
+		/>
+	</shields>
+</armor>
