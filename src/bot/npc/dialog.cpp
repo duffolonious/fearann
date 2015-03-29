@@ -18,6 +18,8 @@
 
 #include "config.h"
 
+#include <stdio.h>
+
 #include "common/tablemgr.h"
 
 #include "bot/bot.h"

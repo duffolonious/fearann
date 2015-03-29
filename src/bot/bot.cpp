@@ -18,6 +18,8 @@
 
 #include "config.h"
 
+#include <unistd.h>
+
 #include "common/net/msgs.h"
 #include "common/configmgr.h"
 #include "common/xmlmgr.h"

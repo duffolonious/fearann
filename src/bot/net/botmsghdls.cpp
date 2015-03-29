@@ -20,6 +20,8 @@
 #include "config.h"
 #include "bot/botconfig.h"
 
+#include <stdio.h>
+
 #include "common/net/netlayer.h"
 #include "common/net/msgs.h"
 #include "common/configmgr.h"
@@ -435,7 +437,7 @@ void MsgHdlInventoryDel::handleMsg(MsgBase& baseMsg, Netlink* /* netlink */)
 {
 	MsgInventoryDel* msg = dynamic_cast<MsgInventoryDel*>(&baseMsg);
 
-	LogDBG("InventoryDel received (itemID: %llu)",
+	LogDBG("InventoryDel received (itemID: %lu)",
 	       msg->itemID);
 
 	BotInventory::instance().RemoveItem(msg->itemID);
