@@ -22,7 +22,7 @@
 
 #include "common/patterns/singleton.h"
 
-#include <osgGA/MatrixManipulator>
+#include <osgGA/CameraManipulator>
 #include <osg/Vec3>
 
 #include <deque>
@@ -32,7 +32,7 @@
 /** Event handler controlling the camera, linking between our application and
  * the engine.
  */
-class CltCameraManipulator : public osgGA::MatrixManipulator
+class CltCameraManipulator : public osgGA::CameraManipulator
 {
 public:
 	/** Return the name, to be identified */

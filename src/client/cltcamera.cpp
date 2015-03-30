@@ -158,7 +158,7 @@ void CltCameraModeFollow::reset()
 	mVertRot = DEFAULT_VERTICAL_ROT;
 }
 
-void CltCameraModeFollow::updateCamera(osg::Matrix* cameraView, double elapsedSeconds)
+void CltCameraModeFollow::updateCamera(osg::Camera* cameraView, double elapsedSeconds)
 {
 	// whether we're already in the game with a node assigned
 	if (!mTargetTransform)
