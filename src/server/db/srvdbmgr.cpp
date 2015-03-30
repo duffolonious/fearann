@@ -39,7 +39,7 @@
 void SrvDBResult::getValue(size_t row, const char* columnName, string& value) const
 {
 	if (row > getNumberOfRows()) {
-		LogERR("Asked for row '%d', nresults='%d'",
+		LogERR("Asked for row '%zu', nresults='%zu'",
 		       row, getNumberOfRows());
 		value = "<row out of bounds>";
 		return;
@@ -53,7 +53,7 @@ void SrvDBResult::getValue(size_t row, const char* columnName, string& value) co
 			return;
 		}
 	}
-	LogERR("Column '%s' not found, numcolumns=%u",
+	LogERR("Column '%s' not found, numcolumns=%zu",
 	       columnName, nColumns);
 	value = "<column not found>";
 }

@@ -30,6 +30,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <dirent.h>
+#include <stdio.h>
 #include <cerrno>
 
 #include <deque>
@@ -391,20 +392,20 @@ void SrvContentMgr::loadContentTree()
 
 		// process the files found in the directory
 		while (!filesToProcess.empty()) {
-			string FILE = filesToProcess.front();
-			// LogDBG("FILE: %s", FILE.c_str());
+			string file = filesToProcess.front();
+			// LogDBG("file: %s", file.c_str());
 			filesToProcess.pop_front();
 
 			// with regular files, get the data
 			struct stat statbuf;
-			lstat(FILE.c_str(), &statbuf);
+			lstat(file.c_str(), &statbuf);
 			string updatekey = StrFmt("%lu-%lu", statbuf.st_size, statbuf.st_mtime);
 
 			// strip the root (including last /)
-			FILE.erase(0, mRootDirForOS.length()+1);
+			file.erase(0, mRootDirForOS.length()+1);
 
 			// push it into the tree
-			mContentTree.push_back(NameValuePair(FILE, updatekey));
+			mContentTree.push_back(NameValuePair(file, updatekey));
 		}
 	}
 

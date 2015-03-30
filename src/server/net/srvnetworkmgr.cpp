@@ -31,6 +31,7 @@
 
 #include <cstdlib>
 #include <fcntl.h>
+#include <unistd.h>
 
 
 //---------------------------- SrvNetworkMgr ---------------------
