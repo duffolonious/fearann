@@ -30,6 +30,7 @@
 #include <osg/ArgumentParser>
 
 #include <cstdlib>
+#include <stdio.h>
 
 /// Path to the config file
 #define CLIENT_CONFIG_FILE	"data/client/client.cfg"

@@ -285,7 +285,7 @@ void CltViewer::setup()
 
        /* mafm: for testing, readily available world without login into the
         * server
-	*/                                                                                                                   
+	*/
 	bool connected = CltNetworkMgr::instance().connectToServer("wainu.ii.uned.es",
 								   20768);
 
