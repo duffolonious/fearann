@@ -22,7 +22,7 @@
 ######################################################################
 
 MARCH="notset"
-LDFLAGS="-lstdc++ -lpthread"
+LDFLAGS="-lstdc++ -lpthread -lm"
 BASE_CXXFLAGS="-pipe -ansi -std=c++98 -Wall -Wextra -Wno-unused-parameter -Wpointer-arith -Wreturn-type -Wcast-qual -Wswitch -Wshadow -Wcast-align -Wwrite-strings -Wchar-subscripts -Wredundant-decls -Woverloaded-virtual -Wdeprecated "
 CXXFLAGS_DEBUG="-g3 -O0"
 CXXFLAGS_OPTCOMPAT="-g0 -O2 -ffast-math"
