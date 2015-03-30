@@ -1,2 +1,14 @@
 #install jam, openscenegraph, cal3d
-sudo apt-get install jam libopenscenegraph-dev libcal3d12-dev libxerces-c-dev
+sudo apt-get install jam libopenscenegraph-dev libcal3d12-dev libxerces-c-dev libpqxx-dev
+
+#there appears to be no package for osgcal - so pull from subversion
+svn co https://osgcal.svn.sourceforge.net/svnroot/osgcal/trunk/osgCal osgCal
+
+#server db
+# https://help.ubuntu.com/community/PostgreSQL
+
+sudo apt-get install postgresql-client postgresql postgresql-contrib
+
+sudo -u postgres createdb fearann
+sudo -u postgres psql fearann < dbscheme-postgresql.sql
+
