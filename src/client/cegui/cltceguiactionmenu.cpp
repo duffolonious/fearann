@@ -21,8 +21,8 @@
 
 #include <cstdlib>
 
-#include <CEGUIWindowManager.h>
-#include <elements/CEGUIPushButton.h>
+#include <CEGUI/WindowManager.h>
+#include <CEGUI/widgets/PushButton.h>
 
 #include "common/net/msgs.h"
 
@@ -44,8 +44,8 @@ template <> CltCEGUIActionMenu* Singleton<CltCEGUIActionMenu>::INSTANCE = 0;
 CltCEGUIActionMenu::CltCEGUIActionMenu()
 {
 	///\todo: replace with popup menu.
-	CEGUI::WindowManager* mWinMgr = &CEGUI::WindowManager::getSingleton();
-	CEGUI::Window* menu = mWinMgr->getWindow("InGame/ActionMenu");
+	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
+	CEGUI::Window* menu = root->getChild("InGame/ActionMenu");
     PERM_ASSERT(menu);
 	menu->setVisible(false);
 
@@ -81,8 +81,8 @@ bool CltCEGUIActionMenu::Event_Shown(const CEGUI::EventArgs& e)
 
 bool CltCEGUIActionMenu::ShowAt( float norm_x, float norm_y)
 {
-	CEGUI::WindowManager* mWinMgr = &CEGUI::WindowManager::getSingleton();
-	CEGUI::Window* menu = mWinMgr->getWindow("InGame/ActionMenu");
+	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
+	CEGUI::Window* menu = root->getChild("InGame/ActionMenu");
     PERM_ASSERT(menu);
 	mSelectedEntityID = CltViewer::instance().pick( norm_x, norm_y );
 	if ( mSelectedEntityID == 0 )
@@ -92,7 +92,7 @@ bool CltCEGUIActionMenu::ShowAt( float norm_x, float norm_y)
 		CltEntityBase* entity = CltEntityMgr::instance().getEntity( mSelectedEntityID );
 		float distance = CltEntityMainPlayer::instance().getDistanceToEntity( mSelectedEntityID );
 		string text = StrFmt("%s (%.1f)", entity->getName(),  distance);
-		mWinMgr->getWindow("InGame/ActionMenu/Target_Lbl")->setText(text.c_str());
+		menu->getChild("Target_Lbl")->setText(text.c_str());
 		///Change window position to where mouse was clicked
 		string x = StrFmt("{%.2f,0}", CltCEGUIMgr::instance().convertXToCEGUI( norm_x ) );
 		string y = StrFmt("{%.2f,0}", CltCEGUIMgr::instance().convertYToCEGUI( norm_y )-0.05 );
@@ -107,11 +107,12 @@ bool CltCEGUIActionMenu::ShowAt( float norm_x, float norm_y)
 void CltCEGUIActionMenu::buildMenu( CltEntityBase* entity)
 {
 	/// clear buttons
-	CEGUI::WindowManager* mWinMgr = &CEGUI::WindowManager::getSingleton();
-	mWinMgr->getWindow("InGame/ActionMenu/PickupAction")->setVisible(false);
-	mWinMgr->getWindow("InGame/ActionMenu/FightAction")->setVisible(false);
-	mWinMgr->getWindow("InGame/ActionMenu/DialogAction")->setVisible(false);
-	mWinMgr->getWindow("InGame/ActionMenu/TradeAction")->setVisible(false);
+	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
+	CEGUI::Window* menu = root->getChild("InGame/ActionMenu");
+	menu->getChild("PickupAction")->setVisible(false);
+	menu->getChild("FightAction")->setVisible(false);
+	menu->getChild("DialogAction")->setVisible(false);
+	menu->getChild("TradeAction")->setVisible(false);
 
 	/// build info button.
 	setupButton( "InGame/ActionMenu/InfoAction", 0);
@@ -133,8 +134,8 @@ void CltCEGUIActionMenu::buildMenu( CltEntityBase* entity)
 
 void CltCEGUIActionMenu::setupButton( const char * buttonStr, uint32_t pos)
 {
-	CEGUI::WindowManager* mWinMgr = &CEGUI::WindowManager::getSingleton();
-	CEGUI::Window* button = mWinMgr->getWindow(buttonStr);
+	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
+	CEGUI::Window* button = root->getChild(buttonStr);
     PERM_ASSERT(button);
 
 	float x_pos = pos * 0.22 + 0.01 ;
@@ -150,9 +151,9 @@ void CltCEGUIActionMenu::setupButton( const char * buttonStr, uint32_t pos)
 
 bool CltCEGUIActionMenu::Info_Action(const CEGUI::EventArgs& e)
 {
-	CEGUI::WindowManager* mWinMgr = &CEGUI::WindowManager::getSingleton();
-	CEGUI::Window* menu = mWinMgr->getWindow("InGame/ActionMenu");
-	CEGUI::Window* button = mWinMgr->getWindow("InGame/ActionMenu/InfoAction");
+	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
+	CEGUI::Window* menu = root->getChild("InGame/ActionMenu");
+	CEGUI::Window* button = root->getChild("InGame/ActionMenu/InfoAction");
     PERM_ASSERT(menu && button);
 	if (mSelectedEntityID != 0)
 	{
@@ -165,9 +166,9 @@ bool CltCEGUIActionMenu::Info_Action(const CEGUI::EventArgs& e)
 
 bool CltCEGUIActionMenu::Pickup_Action(const CEGUI::EventArgs& e)
 {
-	CEGUI::WindowManager* mWinMgr = &CEGUI::WindowManager::getSingleton();
-	CEGUI::Window* menu = mWinMgr->getWindow("InGame/ActionMenu");
-	CEGUI::Window* button = mWinMgr->getWindow("InGame/ActionMenu/PickupAction");
+	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
+	CEGUI::Window* menu = root->getChild("InGame/ActionMenu");
+	CEGUI::Window* button = root->getChild("InGame/ActionMenu/PickupAction");
     PERM_ASSERT(menu && button);
 	if (mSelectedEntityID != 0)
 	{
@@ -175,7 +176,7 @@ bool CltCEGUIActionMenu::Pickup_Action(const CEGUI::EventArgs& e)
 		if ( std::string("Object") == entity->className() )
 		{
 			CltEntityMainPlayer::instance().pickup( mSelectedEntityID );
-		}	
+		}
 	}
 	menu->setVisible(false);
 	return true;
@@ -183,9 +184,9 @@ bool CltCEGUIActionMenu::Pickup_Action(const CEGUI::EventArgs& e)
 
 bool CltCEGUIActionMenu::Fight_Action(const CEGUI::EventArgs& e)
 {
-	CEGUI::WindowManager* mWinMgr = &CEGUI::WindowManager::getSingleton();
-	CEGUI::Window* menu = mWinMgr->getWindow("InGame/ActionMenu");
-	LogDBG("Perform fight action");	
+	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
+	CEGUI::Window* menu = root->getChild("InGame/ActionMenu");
+	LogDBG("Perform fight action");
 	menu->setVisible(false);
 	CltCombatMgr::instance().setTarget( mSelectedEntityID );
 	CltCombatMgr::instance().combatAction(MsgCombat::START);
@@ -194,8 +195,8 @@ bool CltCEGUIActionMenu::Fight_Action(const CEGUI::EventArgs& e)
 
 bool CltCEGUIActionMenu::Dialog_Action(const CEGUI::EventArgs& e)
 {
-	CEGUI::WindowManager* mWinMgr = &CEGUI::WindowManager::getSingleton();
-	CEGUI::Window* menu = mWinMgr->getWindow("InGame/ActionMenu");
+	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
+	CEGUI::Window* menu = root->getChild("InGame/ActionMenu");
 	LogDBG("Perform dialog action");
 
 	if ( mSelectedEntityID != 0 )
@@ -207,8 +208,8 @@ bool CltCEGUIActionMenu::Dialog_Action(const CEGUI::EventArgs& e)
 
 bool CltCEGUIActionMenu::Trade_Action(const CEGUI::EventArgs& e)
 {
-	CEGUI::WindowManager* mWinMgr = &CEGUI::WindowManager::getSingleton();
-	CEGUI::Window* menu = mWinMgr->getWindow("InGame/ActionMenu");
+	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
+	CEGUI::Window* menu = root->getChild("InGame/ActionMenu");
 	LogDBG("Perform trade action");
 	menu->setVisible(false);
 	return true;

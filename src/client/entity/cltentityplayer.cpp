@@ -60,8 +60,10 @@ osgCal::Model* CltEntityPlayer::loadModel()
 	// load model with the help of the content loader
 	mOSGCal3DModel = new osgCal::Model();
 	mNode = mOSGCal3DModel;
+	osgCal::BasicMeshAdder* meshAdder(new osgCal::DefaultMeshAdder);
 	osgCal::CoreModel* coreModel = CltContentLoader::instance().loadCal3DCoreModel(mEntityBasicData.meshType,
 										       mEntityBasicData.meshSubtype);
+#if 0
 	if (!mOSGCal3DModel->setCoreModel(coreModel)) {
 		LogERR("Loading cal3d model: %s", CalError::getLastErrorDescription().c_str());
 		return 0;
@@ -79,7 +81,9 @@ osgCal::Model* CltEntityPlayer::loadModel()
 		LogERR("Creating cal3d model: %s", CalError::getLastErrorDescription().c_str());
 		return 0;
 	}
+#endif
 
+	mOSGCal3DModel->load(coreModel, meshAdder);
 	// set the node name as player name
 	mOSGCal3DModel->setName(mEntityBasicData.entityName);
 

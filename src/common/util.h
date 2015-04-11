@@ -28,7 +28,7 @@
 #ifndef __FEARANN_COMMON_UTIL_H__
 #define __FEARANN_COMMON_UTIL_H__
 
-
+#include <stdint.h>
 #include <string>
 
 

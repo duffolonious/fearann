@@ -59,12 +59,12 @@ cmdLflagsOSGCAL = ['OSGCAL.LDFLAGS', 'pkg-config osgcal --libs']
 cmdCAL3D = ['CAL3D', 'pkg-config cal3d --atleast-version=0.11']
 cmdCflagsCAL3D = ['CAL3D.CXXFLAGS', 'pkg-config cal3d --cflags']
 cmdLflagsCAL3D = ['CAL3D.LDFLAGS', 'pkg-config cal3d --libs']
-cmdCEGUI = ['CEGUI', 'pkg-config CEGUI --atleast-version=0.5.0']
-cmdCflagsCEGUI = ['CEGUI.CXXFLAGS', 'pkg-config CEGUI --cflags']
-cmdLflagsCEGUI = ['CEGUI.LDFLAGS', 'pkg-config CEGUI --libs']
-cmdCEGUIOPENGL = ['CEGUI-OpenGL', 'pkg-config CEGUI-OPENGL --atleast-version=0.5.0']
-cmdCflagsCEGUIOPENGL = ['CEGUIOPENGL.CXXFLAGS', 'pkg-config CEGUI-OPENGL --cflags']
-cmdLflagsCEGUIOPENGL = ['CEGUIOPENGL.LDFLAGS', 'pkg-config CEGUI-OPENGL --libs']
+cmdCEGUI = ['CEGUI', 'pkg-config CEGUI-0 --atleast-version=0.8.0']
+cmdCflagsCEGUI = ['CEGUI.CXXFLAGS', 'pkg-config CEGUI-0 --cflags']
+cmdLflagsCEGUI = ['CEGUI.LDFLAGS', 'pkg-config CEGUI-0 --libs']
+cmdCEGUIOPENGL = ['CEGUI-OpenGL', 'pkg-config CEGUI-0-OPENGL --atleast-version=0.5.0']
+cmdCflagsCEGUIOPENGL = ['CEGUIOPENGL.CXXFLAGS', 'pkg-config CEGUI-0-OPENGL --cflags']
+cmdLflagsCEGUIOPENGL = ['CEGUIOPENGL.LDFLAGS', 'pkg-config CEGUI-0-OPENGL --libs']
 ######################################################################
 # </Special configuration>
 ######################################################################

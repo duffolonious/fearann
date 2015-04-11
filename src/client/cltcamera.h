@@ -22,8 +22,9 @@
 
 #include "common/patterns/singleton.h"
 
-#include <osgGA/CameraManipulator>
 #include <osg/Vec3>
+#include <osg/BoundingSphere>
+#include <osgGA/CameraManipulator>
 
 #include <deque>
 #include <list>
@@ -97,7 +98,7 @@ public:
 	 * (depending on camera mode and commands issued by player), and thus
 	 * control how do we view the scene.  This is where each camera mode
 	 * behaves different. */
-	virtual void updateCamera(osg::Matrix* cameraView, double elapsedSeconds) = 0;
+	virtual void updateCamera(osg::Camera& cameraView) = 0;
 
 protected:
 	/// Default
@@ -150,7 +151,7 @@ public:
 	/** @see CltCameraMode */
 	virtual void reset();
 	/** @see CltCameraMode */
-	virtual void updateCamera(osg::Matrix* cameraView, double elapsedSeconds);
+	virtual void updateCamera(osg::Camera& cameraView);
 
 private:
 	/// Speed of the zoom in/out
@@ -194,7 +195,7 @@ public:
 	/** @see CltCameraMode */
 	virtual void reset();
 	/** @see CltCameraMode */
-	virtual void updateCamera(osg::Matrix* cameraView, double elapsedSeconds);
+	virtual void updateCamera(osg::Camera& cameraView);
 
 private:
 	/// Speed of the zoom in/out (to set the radius)

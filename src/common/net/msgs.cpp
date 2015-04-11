@@ -98,9 +98,9 @@ void MsgTestDataTypes::serializeData()
 void MsgTestDataTypes::deserializeData()
 {
 	read(str1); LogDBG("String 1: '%s'", str1.c_str()); 
-	read(uint64_1); LogDBG("0xffffffffffffffff: '%llx'", uint64_1);
-	read(uint64_2); LogDBG("0: '%llu'", uint64_2);
-	read(uint64_3); LogDBG("+1234567890123456789: '%llu'", uint64_3);
+	read(uint64_1); LogDBG("0xffffffffffffffff: '%lx'", uint64_1);
+	read(uint64_2); LogDBG("0: '%lu'", uint64_2);
+	read(uint64_3); LogDBG("+1234567890123456789: '%lu'", uint64_3);
 	read(uint32_1); LogDBG("0xffffffff: '%x'", uint32_1); 
 	read(uint32_2); LogDBG("0: '%u'", uint32_2); 
 	read(uint32_3); LogDBG("+1234567890: '%u'", uint32_3); 

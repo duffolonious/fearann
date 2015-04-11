@@ -31,9 +31,9 @@
 
 #include <osg/Vec3>
 
+class BoundingSphere;
 
 namespace osg {
-	class BoundingSphere;
 	class Group;
 	class LightModel;
 	class LightSource;
@@ -44,7 +44,7 @@ namespace osgViewer {
 	class Viewer;
 }
 namespace osgGA {
-	class MatrixManipulator;
+	class CameraManipulator;
 }
 namespace osgParticle {
 	class PrecipitationEffect;
@@ -126,7 +126,7 @@ private:
 	osg::Group* mScene;
 
 	/// The camera manipulator
-	osgGA::MatrixManipulator* mCameraManipulator;
+        osgGA::CameraManipulator* mCameraManipulator;
 
 	/// Terrain node, to be able to find the height of it
 	osg::Node* mTerrainNode;

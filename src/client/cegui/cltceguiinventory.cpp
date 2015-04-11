@@ -21,14 +21,14 @@
 
 #include <cstdlib>
 
-#include <CEGUIWindowManager.h>
-#include <elements/CEGUIEditbox.h>
-#include <elements/CEGUIMultiColumnList.h>
-#include <elements/CEGUIPushButton.h>
-#include <elements/CEGUIScrollbar.h>
-#include <elements/CEGUITabControl.h>
-#include <elements/CEGUIListboxItem.h>
-#include <elements/CEGUIListboxTextItem.h>
+#include <CEGUI/WindowManager.h>
+#include <CEGUI/widgets/Editbox.h>
+#include <CEGUI/widgets/MultiColumnList.h>
+#include <CEGUI/widgets/PushButton.h>
+#include <CEGUI/widgets/Scrollbar.h>
+#include <CEGUI/widgets/TabControl.h>
+#include <CEGUI/widgets/ListboxItem.h>
+#include <CEGUI/widgets/ListboxTextItem.h>
 
 #include "common/net/msgs.h"
 
@@ -45,7 +45,6 @@ template <> CltCEGUIInventory* Singleton<CltCEGUIInventory>::INSTANCE = 0;
 
 CltCEGUIInventory::CltCEGUIInventory()
 {
-	CEGUI::WindowManager* mWinMgr = &CEGUI::WindowManager::getSingleton();
 	// installing events
 	CEGUI_EVENT("InGame/Inventory",
 		    CEGUI::Window::EventShown,
@@ -58,11 +57,11 @@ CltCEGUIInventory::CltCEGUIInventory()
 		    CltCEGUIInventory::Event_Drop);
 
 	// set list as child of the autopane
-	CEGUI::Window* autoPane = CEGUI::WindowManager::getSingleton().getWindow("InGame/Inventory/Tabs__auto_TabPane__");
+	CEGUI::Window* autoPane = CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("InGame/Inventory/Tabs__auto_TabPane__");
         PERM_ASSERT(autoPane);
-	CEGUI::Window* invList = CEGUI::WindowManager::getSingleton().getWindow("InGame/Inventory/List");
+	CEGUI::Window* invList = CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("InGame/Inventory/List");
         PERM_ASSERT(invList);
-	autoPane->addChildWindow(invList);
+	autoPane->addChild(invList);
 
 	// select the initial tab
 	updateWindow("All");
@@ -78,7 +77,7 @@ CltCEGUIInventory::~CltCEGUIInventory()
 bool CltCEGUIInventory::Event_TabSelectionChanged(const CEGUI::EventArgs& e)
 {
 	CEGUI::TabControl* tab = static_cast<CEGUI::TabControl*>
-                (CEGUI::WindowManager::getSingleton().getWindow("InGame/Inventory/Tabs"));
+                (CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("InGame/Inventory/Tabs"));
         PERM_ASSERT(tab);
 
 	// making the necessary changes to show the new tab
@@ -100,7 +99,7 @@ bool CltCEGUIInventory::Event_Shown(const CEGUI::EventArgs& e)
 bool CltCEGUIInventory::Event_Drop(const CEGUI::EventArgs& e)
 {
 	CEGUI::MultiColumnList* invList = static_cast<CEGUI::MultiColumnList*>
-		(CEGUI::WindowManager::getSingleton().getWindow("InGame/Inventory/List"));
+		(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("InGame/Inventory/List"));
         PERM_ASSERT(invList);
 
 	// check that there's something selected
@@ -124,8 +123,8 @@ void CltCEGUIInventory::createSlots()
 {
 	/// \todo mafm: not working
 
-//	CEGUI::Window* tabWdg = CEGUI::WindowManager::getSingleton().getWindow("InGame/Inventory/Tabs__auto_TabPane__");
-	CEGUI::Window* tabWdg = CEGUI::WindowManager::getSingleton().getWindow("InGame/Inventory/Pane");
+//	CEGUI::Window* tabWdg = CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("InGame/Inventory/Tabs__auto_TabPane__");
+	CEGUI::Window* tabWdg = CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("InGame/Inventory/Pane");
 	PERM_ASSERT(tabWdg);
 
 	int serial = 0;
@@ -136,7 +135,7 @@ void CltCEGUIInventory::createSlots()
 			string slotName = StrFmt("InGame/Inventory/Slot_%d", serial++);
 			CEGUI::Window* newSlot = CEGUI::WindowManager::getSingleton().createWindow("OnceInGameTheme/StaticText",
 								      slotName.c_str());
-			tabWdg->addChildWindow(newSlot);
+			tabWdg->addChild(newSlot);
 			newSlot->setText(slotName.c_str());
 			newSlot->setVisible(true);
 			/*CEGUI::Point pos(float(r*10.f), float(c*10.0f));
@@ -216,11 +215,12 @@ void CltCEGUIInventory::updateStats(const MsgPlayerData* msg)
 	CEGUI::WindowManager* winMgr = &CEGUI::WindowManager::getSingleton();
 	string text;
 
+	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
 	text = StrFmt("Load: %d/%d", msg->load_cur, msg->load_max);
-	winMgr->getWindow("InGame/Inventory/Load_Lbl")->setText(text.c_str());
+	root->getChild("InGame/Inventory/Load_Lbl")->setText(text.c_str());
 
 	text = StrFmt("Gold: %5d", msg->gold);
-	winMgr->getWindow("InGame/Inventory/Gold_Lbl")->setText(text.c_str());
+	root->getChild("InGame/Inventory/Gold_Lbl")->setText(text.c_str());
 }
 
 void CltCEGUIInventory::updateWindow(const char* tab)
@@ -238,7 +238,7 @@ void CltCEGUIInventory::updateWindow(const char* tab)
 	// at least coding time.
 
 	CEGUI::MultiColumnList* invList = static_cast<CEGUI::MultiColumnList*>
-		(CEGUI::WindowManager::getSingleton().getWindow("InGame/Inventory/List"));
+		(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("InGame/Inventory/List"));
         PERM_ASSERT(invList);
 
 	// only update if visible, otherwise it will be updated later
@@ -284,9 +284,9 @@ void CltCEGUIInventory::updateWindow(const char* tab)
 
 		// we have to set up this in order to get them
 		// highlighted
-		elemID->setSelectionBrushImage("FearannLook", "ListboxSelectionBrush");
-		elemName->setSelectionBrushImage("FearannLook", "ListboxSelectionBrush");
-		elemLoad->setSelectionBrushImage("FearannLook", "ListboxSelectionBrush");
+		elemID->setSelectionBrushImage("FearannLook/ListboxSelectionBrush");
+		elemName->setSelectionBrushImage("FearannLook/ListboxSelectionBrush");
+		elemLoad->setSelectionBrushImage("FearannLook/ListboxSelectionBrush");
 
 		unsigned int index = invList->addRow();
 		invList->setItem(elemID, 0, index);
@@ -301,7 +301,7 @@ void CltCEGUIInventory::updateWindow(const char* tab)
 /* mafm: useful when we have graphical slots
 
 	CEGUI::StaticImage* slotImg = static_cast<CEGUI::StaticImage*>
-		(CEGUI::WindowManager::getSingleton().getWindow("Slot_0"));
+		(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Slot_0"));
 	PERM_ASSERT(slotImg);
 	slotImg->setImage("InventoryIcons", "stick_0");
 	slotImg->show();

@@ -24,6 +24,7 @@
 
 
 namespace CEGUI {
+        class GUIContext;
 	class Window;
 	class WindowManager;
 	class EventArgs;

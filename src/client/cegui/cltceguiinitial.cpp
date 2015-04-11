@@ -32,17 +32,17 @@
 #include "client/net/cltnetmgr.h"
 #include "client/cltmain.h"
 
-#include <CEGUIWindow.h>
-#include <CEGUIWindowManager.h>
-#include <elements/CEGUICombobox.h>
-#include <elements/CEGUIEditbox.h>
-#include <elements/CEGUIListboxItem.h>
-#include <elements/CEGUIListboxTextItem.h>
-#include <elements/CEGUIMultiColumnList.h>
-#include <elements/CEGUIMultiLineEditbox.h>
-#include <elements/CEGUISpinner.h>
-#include <elements/CEGUIProgressBar.h>
-#include <elements/CEGUIPushButton.h>
+#include <CEGUI/Window.h>
+#include <CEGUI/WindowManager.h>
+#include <CEGUI/widgets/Combobox.h>
+#include <CEGUI/widgets/Editbox.h>
+#include <CEGUI/widgets/ListboxItem.h>
+#include <CEGUI/widgets/ListboxTextItem.h>
+#include <CEGUI/widgets/MultiColumnList.h>
+#include <CEGUI/widgets/MultiLineEditbox.h>
+#include <CEGUI/widgets/Spinner.h>
+#include <CEGUI/widgets/ProgressBar.h>
+#include <CEGUI/widgets/PushButton.h>
 
 #include "cltceguiinitial.h"
 
@@ -151,15 +151,16 @@ void CltCEGUIInitial::setup()
 	Login_LoadLoginData();
 	NewChar_LoadNewCharData();
 
+	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
 	// initial visibility
-	mWinMgr->getWindow("Initial/Background")->setVisible(false);
-	mWinMgr->getWindow("Initial/Connect")->setVisible(true);
-	mWinMgr->getWindow("Initial/Login")->setVisible(false);
-	mWinMgr->getWindow("Initial/NewUser")->setVisible(false);
-	mWinMgr->getWindow("Initial/Join")->setVisible(false);
-	mWinMgr->getWindow("Initial/NewChar")->setVisible(false);
-	mWinMgr->getWindow("Initial/Download")->setVisible(false);
-	mWinMgr->getWindow("Initial/LoadingBanner")->setVisible(false);
+	root->getChild("Initial/Background")->setVisible(false);
+	root->getChild("Initial/Connect")->setVisible(true);
+	root->getChild("Initial/Login")->setVisible(false);
+	root->getChild("Initial/NewUser")->setVisible(false);
+	root->getChild("Initial/Join")->setVisible(false);
+	root->getChild("Initial/NewChar")->setVisible(false);
+	root->getChild("Initial/Download")->setVisible(false);
+	root->getChild("Initial/LoadingBanner")->setVisible(false);
 
 	// subscribe events
 	CEGUI_EVENT("Initial/Connect/Quit",
@@ -240,7 +241,7 @@ void CltCEGUIInitial::setup()
 		// disabling Login button until content downloaded, we need to
 		// have the xml config files parsed for many functions in the
 		// initial menus
-		mWinMgr->getWindow("Initial/Login/Login")->disable();
+		root->getChild("Initial/Login/Login")->disable();
 	}
 }
 
@@ -252,7 +253,7 @@ void CltCEGUIInitial::Connect_LoadConnectData()
 {
 	// get the server list window in CEGUI
 	CEGUI::MultiColumnList* serverList = static_cast<CEGUI::MultiColumnList*>
-		(mWinMgr->getWindow("Initial/Connect/ServerList"));
+		(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Connect/ServerList"));
 	PERM_ASSERT(serverList);
 	serverList->setSelectionMode(CEGUI::MultiColumnList::RowSingle);
 
@@ -277,9 +278,9 @@ void CltCEGUIInitial::Connect_LoadConnectData()
 		CEGUI::ListboxTextItem* server_port = new CEGUI::ListboxTextItem(serverPort.c_str(), 0);
 		CEGUI::ListboxTextItem* server_ping = new CEGUI::ListboxTextItem("off-line", 0);
 		// we have to set up this in order to get them highlighted
-		server_name->setSelectionBrushImage("FearannLook", "ListboxSelectionBrush");
-		server_port->setSelectionBrushImage("FearannLook", "ListboxSelectionBrush");
-		server_ping->setSelectionBrushImage("FearannLook", "ListboxSelectionBrush");
+		server_name->setSelectionBrushImage("FearannLook/ListboxSelectionBrush");
+		server_port->setSelectionBrushImage("FearannLook/ListboxSelectionBrush");
+		server_ping->setSelectionBrushImage("FearannLook/ListboxSelectionBrush");
 		serverList->setItem(server_name, 0, row);
 		serverList->setItem(server_port, 1, row);
 		serverList->setItem(server_ping, 2, row);
@@ -298,7 +299,7 @@ void CltCEGUIInitial::Connect_LoadConnectData()
 	serverList->setItemSelectState(position, true);
 
 	// disabling Options button until we do something with them
-	static_cast<CEGUI::PushButton*>(mWinMgr->getWindow("Initial/Connect/Options"))->disable();
+	static_cast<CEGUI::PushButton*>(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Connect/Options"))->disable();
 }
 
 bool CltCEGUIInitial::Connect_Quit(const CEGUI::EventArgs& e)
@@ -316,7 +317,7 @@ bool CltCEGUIInitial::Connect_Options(const CEGUI::EventArgs& e)
 bool CltCEGUIInitial::Connect_Connect(const CEGUI::EventArgs& e)
 {
 	CEGUI::MultiColumnList* serverList = static_cast<CEGUI::MultiColumnList*>
-		(mWinMgr->getWindow("Initial/Connect/ServerList"));
+		(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Connect/ServerList"));
 	PERM_ASSERT(serverList);
 
 	if (serverList->getSelectedCount() == 0) {
@@ -326,7 +327,7 @@ bool CltCEGUIInitial::Connect_Connect(const CEGUI::EventArgs& e)
 	}
 
 	// disable while processing
-	static_cast<CEGUI::PushButton*>(mWinMgr->getWindow("Initial/Connect/Connect"))->disable();
+	static_cast<CEGUI::PushButton*>(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Connect/Connect"))->disable();
 
 	// get selected server
 	CEGUI::ListboxItem* address = serverList->getFirstSelectedItem();
@@ -337,7 +338,7 @@ bool CltCEGUIInitial::Connect_Connect(const CEGUI::EventArgs& e)
 		LogERR("Cannot connect to server");
 		CltCEGUIMgr::instance().Notification_DisplayMessage("Cannot connect to server");
 		// enable again
-		static_cast<CEGUI::PushButton*>(mWinMgr->getWindow("Initial/Connect/Connect"))->enable();
+		static_cast<CEGUI::PushButton*>(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Connect/Connect"))->enable();
 	} else {
 		// send initial message
 		MsgConnect msg;
@@ -362,23 +363,24 @@ void CltCEGUIInitial::Connect_to_Login(const char* uptime,
 		CltContentMgr::instance().sendUpdateQuery();
 	}
 
+	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
 	// change menu
-	mWinMgr->getWindow("Initial/Login")->setVisible(true);
-	mWinMgr->getWindow("Initial/Connect")->setVisible(false);
+	root->getChild("Initial/Login")->setVisible(true);
+	root->getChild("Initial/Connect")->setVisible(false);
 
 	// fill values of new menus
 	string text;
 	text = string("Uptime: ") + uptime;
-	mWinMgr->getWindow("Initial/Login/Uptime_Lbl")->setText(text.c_str());
+	root->getChild("Initial/Login/Uptime_Lbl")->setText(text.c_str());
 
 	text = string("Players on-line: ") + players;
-	mWinMgr->getWindow("Initial/Login/Players_Lbl")->setText(text.c_str());
+	root->getChild("Initial/Login/Players_Lbl")->setText(text.c_str());
 
 	text = string("Total Users: ") + users;
-	mWinMgr->getWindow("Initial/Login/TotalUsers_Lbl")->setText(text.c_str());
+	root->getChild("Initial/Login/TotalUsers_Lbl")->setText(text.c_str());
 
 	text = string("Total Chars: ") + chars;
-	mWinMgr->getWindow("Initial/Login/TotalChars_Lbl")->setText(text.c_str());
+	root->getChild("Initial/Login/TotalChars_Lbl")->setText(text.c_str());
 }
 
 void CltCEGUIInitial::Connect_ProcessPingReplies(float timestamp)
@@ -420,7 +422,7 @@ void CltCEGUIInitial::Connect_UpdatePingReply(uint32_t entry, const char* text)
 {
 	CEGUI::MultiColumnList* serverList =
 		static_cast<CEGUI::MultiColumnList*>
-		(mWinMgr->getWindow("Initial/Connect/ServerList"));
+		(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Connect/ServerList"));
 	PERM_ASSERT(serverList);
 
 	CEGUI::MCLGridRef position(entry, 2);
@@ -443,11 +445,11 @@ void CltCEGUIInitial::Login_LoadLoginData()
 	string storedUsername = ConfigMgr::instance().getConfigVar("Client.Settings.User", "");
 	string storedPassword = ConfigMgr::instance().getConfigVar("Client.Settings.Password", "");
 	if (storedUsername != "") {
-		mWinMgr->getWindow("Initial/Login/Username")->setText(storedUsername);
+		CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Login/Username")->setText(storedUsername);
 	}
 	if (storedPassword != "") {
 		storedPassword = "<stored>";
-		mWinMgr->getWindow("Initial/Login/Password")->setText(storedPassword);
+		CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Login/Password")->setText(storedPassword);
 	}
 }
 
@@ -465,8 +467,8 @@ bool CltCEGUIInitial::Login_NewUser(const CEGUI::EventArgs& e)
 
 bool CltCEGUIInitial::Login_Login(const CEGUI::EventArgs& e)
 {
-        CEGUI::Editbox* username = static_cast<CEGUI::Editbox*>(mWinMgr->getWindow("Initial/Login/Username"));
-        CEGUI::Editbox* password = static_cast<CEGUI::Editbox*>(mWinMgr->getWindow("Initial/Login/Password"));
+        CEGUI::Editbox* username = static_cast<CEGUI::Editbox*>(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Login/Username"));
+        CEGUI::Editbox* password = static_cast<CEGUI::Editbox*>(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Login/Password"));
 
         if (username->getText().size() == 0
 	    || password->getText().size() == 0) {
@@ -507,8 +509,8 @@ bool CltCEGUIInitial::Login_Login(const CEGUI::EventArgs& e)
 	}
 
 	// disable while processing
-	static_cast<CEGUI::PushButton*>(mWinMgr->getWindow("Initial/Login/Login"))->disable();
-	static_cast<CEGUI::PushButton*>(mWinMgr->getWindow("Initial/Login/NewUser"))->disable();
+	static_cast<CEGUI::PushButton*>(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Login/Login"))->disable();
+	static_cast<CEGUI::PushButton*>(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Login/NewUser"))->disable();
 
 	CltNetworkMgr::instance().sendToServer(msg);
 
@@ -518,15 +520,15 @@ bool CltCEGUIInitial::Login_Login(const CEGUI::EventArgs& e)
 void CltCEGUIInitial::Login_to_NewUser()
 {
 	// switch window shown
-	mWinMgr->getWindow("Initial/NewUser")->setVisible(true);
-	mWinMgr->getWindow("Initial/Login")->setVisible(false);
+	CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/NewUser")->setVisible(true);
+	CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Login")->setVisible(false);
 }
 
 void CltCEGUIInitial::Login_Failed()
 {
 	// enable buttons again
-	static_cast<CEGUI::PushButton*>(mWinMgr->getWindow("Initial/Login/Login"))->enable();
-	static_cast<CEGUI::PushButton*>(mWinMgr->getWindow("Initial/Login/NewUser"))->enable();
+	static_cast<CEGUI::PushButton*>(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Login/Login"))->enable();
+	static_cast<CEGUI::PushButton*>(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Login/NewUser"))->enable();
 }
 
 
@@ -539,22 +541,23 @@ bool CltCEGUIInitial::NewUser_Cancel(const CEGUI::EventArgs& e)
 void CltCEGUIInitial::NewUser_to_Login()
 {
 	// switch window shown
-	mWinMgr->getWindow("Initial/Login")->setVisible(true);
-	mWinMgr->getWindow("Initial/NewUser")->setVisible(false);
+	CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Login")->setVisible(true);
+	CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/NewUser")->setVisible(false);
 }
 
 bool CltCEGUIInitial::NewUser_Create(const CEGUI::EventArgs& e)
 {
+	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
         CEGUI::Editbox* username = static_cast<CEGUI::Editbox*>
-		(mWinMgr->getWindow("Initial/NewUser/Username"));
+		(root->getChild("Initial/NewUser/Username"));
         CEGUI::Editbox* password = static_cast<CEGUI::Editbox*>
-		(mWinMgr->getWindow("Initial/NewUser/Password"));
+		(root->getChild("Initial/NewUser/Password"));
         CEGUI::Editbox* password_rep = static_cast<CEGUI::Editbox*>
-		(mWinMgr->getWindow("Initial/NewUser/PasswordRep"));
+		(root->getChild("Initial/NewUser/PasswordRep"));
         CEGUI::Editbox* email = static_cast<CEGUI::Editbox*>
-		(mWinMgr->getWindow("Initial/NewUser/Email"));
+		(root->getChild("Initial/NewUser/Email"));
         CEGUI::Editbox* realname = static_cast<CEGUI::Editbox*>
-		(mWinMgr->getWindow("Initial/NewUser/RealName"));
+		(root->getChild("Initial/NewUser/RealName"));
         PERM_ASSERT(username && password && email && realname);
 
         if (username->getText().size() == 0
@@ -587,7 +590,7 @@ void CltCEGUIInitial::Login_to_Join(vector<MsgLoginReply::CharacterListEntry>& c
 	PERM_ASSERT(CltContentLoader::instance().isConfigLoaded());
 
 	CEGUI::MultiColumnList* charList = static_cast<CEGUI::MultiColumnList*>
-		(mWinMgr->getWindow("Initial/Join/CharList"));
+		(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Join/CharList"));
 	PERM_ASSERT(charList);
 	charList->setSelectionMode(CEGUI::MultiColumnList::RowSingle);
 
@@ -608,9 +611,9 @@ void CltCEGUIInitial::Login_to_Join(vector<MsgLoginReply::CharacterListEntry>& c
 		CEGUI::ListboxTextItem* charGender = new CEGUI::ListboxTextItem(genderLetter.c_str(), 0);
 		// we have to set up this in order to get them
 		// highlighted
-		charName->setSelectionBrushImage("FearannLook", "ListboxSelectionBrush");
-		charRace->setSelectionBrushImage("FearannLook", "ListboxSelectionBrush");
-		charGender->setSelectionBrushImage("FearannLook", "ListboxSelectionBrush");
+		charName->setSelectionBrushImage("FearannLook/ListboxSelectionBrush");
+		charRace->setSelectionBrushImage("FearannLook/ListboxSelectionBrush");
+		charGender->setSelectionBrushImage("FearannLook/ListboxSelectionBrush");
 		charList->setItem(charName, 0, row);
 		charList->setItem(charRace, 1, row);
 		charList->setItem(charGender, 2, row);
@@ -634,8 +637,8 @@ void CltCEGUIInitial::Login_to_Join(vector<MsgLoginReply::CharacterListEntry>& c
 	}
 
 	// now switch the window shown
-	mWinMgr->getWindow("Initial/Join")->setVisible(true);
-	mWinMgr->getWindow("Initial/Login")->setVisible(false);
+	CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Join")->setVisible(true);
+	CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Login")->setVisible(false);
 }
 
 bool CltCEGUIInitial::Join_FillNewChar(string charname,
@@ -645,7 +648,7 @@ bool CltCEGUIInitial::Join_FillNewChar(string charname,
 				       string area)
 {
 	CEGUI::MultiColumnList* charList = static_cast<CEGUI::MultiColumnList*>
-		(mWinMgr->getWindow("Initial/Join/CharList"));
+		(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Join/CharList"));
 	PERM_ASSERT(charList);
 
 	mCharListHelper->addCharacter(charname, race, gender, playerClass, area);
@@ -662,9 +665,9 @@ bool CltCEGUIInitial::Join_FillNewChar(string charname,
 	CEGUI::ListboxTextItem* charRace = new CEGUI::ListboxTextItem(raceLetter.c_str(), 0);
 	CEGUI::ListboxTextItem* charGender = new CEGUI::ListboxTextItem(genderLetter.c_str(), 0);
 	// we have to set up this in order to get them highlighted
-	charName->setSelectionBrushImage("FearannLook", "ListboxSelectionBrush");
-	charRace->setSelectionBrushImage("FearannLook", "ListboxSelectionBrush");
-	charGender->setSelectionBrushImage("FearannLook", "ListboxSelectionBrush");
+	charName->setSelectionBrushImage("FearannLook/ListboxSelectionBrush");
+	charRace->setSelectionBrushImage("FearannLook/ListboxSelectionBrush");
+	charGender->setSelectionBrushImage("FearannLook/ListboxSelectionBrush");
 	charList->setItem(charName, 0, row);
 	charList->setItem(charRace, 1, row);
 	charList->setItem(charGender, 2, row);
@@ -687,7 +690,7 @@ bool CltCEGUIInitial::Join_FillNewChar(string charname,
 bool CltCEGUIInitial::Join_RemoveDelChar(std::string charname)
 {
 	CEGUI::MultiColumnList* charList = static_cast<CEGUI::MultiColumnList*>
-		(mWinMgr->getWindow("Initial/Join/CharList"));
+		(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Join/CharList"));
 	PERM_ASSERT(charList);
 
 	mCharListHelper->delCharacter(charname);
@@ -711,8 +714,9 @@ bool CltCEGUIInitial::Join_RemoveDelChar(std::string charname)
 
 bool CltCEGUIInitial::Join_OnSelectionChanged(const CEGUI::EventArgs& e)
 {
+	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
 	CEGUI::MultiColumnList* charList = static_cast<CEGUI::MultiColumnList*>
-		(mWinMgr->getWindow("Initial/Join/CharList"));
+		(root->getChild("Initial/Join/CharList"));
 	PERM_ASSERT(charList);
 
 	// selected item (if nothing selected, we leave here silently, we have
@@ -728,33 +732,33 @@ bool CltCEGUIInitial::Join_OnSelectionChanged(const CEGUI::EventArgs& e)
 		if (charName.empty())
 			throw "Empty name";
 		string name = string(".: ") + charName + string(" :.");;
-		mWinMgr->getWindow("Initial/Join/CharName_Lbl")->setText(name.c_str());
+		root->getChild("Initial/Join/CharName_Lbl")->setText(name.c_str());
 
 		// race
 		string race = mCharListHelper->getRaceOf(charName);
 		if (race.empty())
 			throw "Empty race";
 		string textRace = string("Race: ") + race;
-		mWinMgr->getWindow("Initial/Join/CharRace_Lbl")->setText(textRace.c_str());
+		root->getChild("Initial/Join/CharRace_Lbl")->setText(textRace.c_str());
 
 		// gender
 		string gender = mCharListHelper->getGenderOf(charName);
 		if (gender.empty())
 			throw "Empty gender";
 		string textGender = string("Gender: ") + gender;
-		mWinMgr->getWindow("Initial/Join/CharGender_Lbl")->setText(textGender.c_str());
+		root->getChild("Initial/Join/CharGender_Lbl")->setText(textGender.c_str());
 
 		// area
 		string area = mCharListHelper->getAreaOf(charName);
 		if (area.empty())
 			throw "Empty area";
 		string textArea = string("Area: ") + area;
-		mWinMgr->getWindow("Initial/Join/CharArea_Lbl")->setText(textArea.c_str());
+		root->getChild("Initial/Join/CharArea_Lbl")->setText(textArea.c_str());
 
 		// image
 		string imageProperty = StrFmt("set:RacePictures image:%s_%s",
 					      race.c_str(), gender.c_str());
-		mWinMgr->getWindow("Initial/Join/CharImage")->setProperty("Image", imageProperty);
+		root->getChild("Initial/Join/CharImage")->setProperty("Image", imageProperty);
 
 	} catch (const char* data) {
 		LogWRN("Couldn't get data from the selected character: %s", data);
@@ -774,7 +778,7 @@ bool CltCEGUIInitial::Join_Quit(const CEGUI::EventArgs& e)
 bool CltCEGUIInitial::Join_Join(const CEGUI::EventArgs& e)
 {
 	CEGUI::MultiColumnList* charList = static_cast<CEGUI::MultiColumnList*>
-		(mWinMgr->getWindow("Initial/Join/CharList"));
+		(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Join/CharList"));
 	PERM_ASSERT(charList);
 
 	if (charList->getSelectedCount() == 0) {
@@ -800,7 +804,7 @@ bool CltCEGUIInitial::Join_Join(const CEGUI::EventArgs& e)
 	string imageProperty = StrFmt("set:RacePictures image:%s_%s-face",
 				      mCharListHelper->getRaceOf(msg.charname),
 				      mCharListHelper->getGenderOf(msg.charname));
-	mWinMgr->getWindow("InGame/PlayerStats/Picture")->setProperty("Image", imageProperty);
+	CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("InGame/PlayerStats/Picture")->setProperty("Image", imageProperty);
 
 	Join_to_LoadingGame();
 	return true;
@@ -815,16 +819,16 @@ bool CltCEGUIInitial::Join_NewChar(const CEGUI::EventArgs& e)
 void CltCEGUIInitial::Join_to_NewChar()
 {
 	// switch window shown
-	mWinMgr->getWindow("Initial/NewChar")->setVisible(true);
-	mWinMgr->getWindow("Initial/Join")->setVisible(false);
+	CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/NewChar")->setVisible(true);
+	CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Join")->setVisible(false);
 }
 
 void CltCEGUIInitial::Join_to_LoadingGame()
 {
 	// switch window shown
-	mWinMgr->getWindow("Initial/LoadingBanner")->setVisible(true);
-	mWinMgr->getWindow("Initial/Join")->setVisible(false);
-	mWinMgr->getWindow("Initial/Download")->setVisible(false);
+	CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/LoadingBanner")->setVisible(true);
+	CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Join")->setVisible(false);
+	CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Download")->setVisible(false);
 }
 
 void CltCEGUIInitial::LoadingGame_to_Game()
@@ -832,26 +836,27 @@ void CltCEGUIInitial::LoadingGame_to_Game()
 	// delete unneeded
 	delete mCharListHelper; mCharListHelper = 0;
 
+	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
 	// switch window shown
-	mWinMgr->getWindow("Initial/LoadingBanner")->setVisible(false);
-	mWinMgr->getWindow("Initial/Background")->setVisible(false);
+	root->getChild("Initial/LoadingBanner")->setVisible(false);
+	root->getChild("Initial/Background")->setVisible(false);
 
 	// destroy windows
-	mWinMgr->destroyWindow(mWinMgr->getWindow("Initial/Background"));
-	mWinMgr->destroyWindow(mWinMgr->getWindow("Initial/Connect"));
-	mWinMgr->destroyWindow(mWinMgr->getWindow("Initial/Login"));
-	mWinMgr->destroyWindow(mWinMgr->getWindow("Initial/NewUser"));
-	mWinMgr->destroyWindow(mWinMgr->getWindow("Initial/Join"));
-	mWinMgr->destroyWindow(mWinMgr->getWindow("Initial/NewChar"));
-	mWinMgr->destroyWindow(mWinMgr->getWindow("Initial/Download"));
-	mWinMgr->destroyWindow(mWinMgr->getWindow("Initial/LoadingBanner"));
+	mWinMgr->destroyWindow(root->getChild("Initial/Background"));
+	mWinMgr->destroyWindow(root->getChild("Initial/Connect"));
+	mWinMgr->destroyWindow(root->getChild("Initial/Login"));
+	mWinMgr->destroyWindow(root->getChild("Initial/NewUser"));
+	mWinMgr->destroyWindow(root->getChild("Initial/Join"));
+	mWinMgr->destroyWindow(root->getChild("Initial/NewChar"));
+	mWinMgr->destroyWindow(root->getChild("Initial/Download"));
+	mWinMgr->destroyWindow(root->getChild("Initial/LoadingBanner"));
 	mWinMgr->cleanDeadPool();
 }
 
 bool CltCEGUIInitial::Join_DelChar(const CEGUI::EventArgs& e)
 {
 	CEGUI::MultiColumnList* charList = static_cast<CEGUI::MultiColumnList*>
-		(mWinMgr->getWindow("Initial/Join/CharList"));
+		(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Join/CharList"));
 	PERM_ASSERT(charList);
 
 	if (charList->getSelectedCount() == 0) {
@@ -875,21 +880,22 @@ bool CltCEGUIInitial::Join_DelChar(const CEGUI::EventArgs& e)
 
 void CltCEGUIInitial::NewChar_LoadNewCharData()
 {
+	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
         CEGUI::Combobox* raceBox = static_cast<CEGUI::Combobox*>
-		(mWinMgr->getWindow("Initial/NewChar/CharRace"));
+		(root->getChild("Initial/NewChar/CharRace"));
         CEGUI::Combobox* genderBox = static_cast<CEGUI::Combobox*>
-		(mWinMgr->getWindow("Initial/NewChar/CharGender"));
+		(root->getChild("Initial/NewChar/CharGender"));
         CEGUI::Combobox* classBox = static_cast<CEGUI::Combobox*>
-		(mWinMgr->getWindow("Initial/NewChar/CharClass"));
+		(root->getChild("Initial/NewChar/CharClass"));
         PERM_ASSERT(raceBox && genderBox && classBox);
 
 	CEGUI::ListboxTextItem* raceD = new CEGUI::ListboxTextItem("Dwarf", 0);
 	CEGUI::ListboxTextItem* raceE = new CEGUI::ListboxTextItem("Elf", 0);
 	CEGUI::ListboxTextItem* raceH = new CEGUI::ListboxTextItem("Human", 0);
 	// we have to set up this in order to get them highlighted
-	raceD->setSelectionBrushImage("FearannLook", "ListboxSelectionBrush");
-	raceE->setSelectionBrushImage("FearannLook", "ListboxSelectionBrush");
-	raceH->setSelectionBrushImage("FearannLook", "ListboxSelectionBrush");
+	raceD->setSelectionBrushImage("ListboxSelectionBrush");
+	raceE->setSelectionBrushImage("ListboxSelectionBrush");
+	raceH->setSelectionBrushImage("ListboxSelectionBrush");
 	raceBox->addItem(raceD);
 	raceBox->addItem(raceE);
 	raceBox->addItem(raceH);
@@ -900,8 +906,8 @@ void CltCEGUIInitial::NewChar_LoadNewCharData()
 	CEGUI::ListboxTextItem* genderF = new CEGUI::ListboxTextItem("f", 0);
 	CEGUI::ListboxTextItem* genderM = new CEGUI::ListboxTextItem("m", 0);
 	// we have to set up this in order to get them highlighted
-	genderF->setSelectionBrushImage("FearannLook", "ListboxSelectionBrush");
-	genderM->setSelectionBrushImage("FearannLook", "ListboxSelectionBrush");
+	genderF->setSelectionBrushImage("ListboxSelectionBrush");
+	genderM->setSelectionBrushImage("ListboxSelectionBrush");
 	genderBox->addItem(genderF);
 	genderBox->addItem(genderM);
 	genderBox->clearAllSelections();
@@ -911,8 +917,8 @@ void CltCEGUIInitial::NewChar_LoadNewCharData()
 	CEGUI::ListboxTextItem* classFighter = new CEGUI::ListboxTextItem("fighter", 0);
 	CEGUI::ListboxTextItem* classSorcerer = new CEGUI::ListboxTextItem("sorcerer", 0);
 	// we have to set up this in order to get them highlighted
-	classFighter->setSelectionBrushImage("FearannLook", "ListboxSelectionBrush");
-	classSorcerer->setSelectionBrushImage("FearannLook", "ListboxSelectionBrush");
+	classFighter->setSelectionBrushImage("ListboxSelectionBrush");
+	classSorcerer->setSelectionBrushImage("ListboxSelectionBrush");
 	classBox->addItem(classFighter);
 	classBox->addItem(classSorcerer);
 	classBox->clearAllSelections();
@@ -922,7 +928,7 @@ void CltCEGUIInitial::NewChar_LoadNewCharData()
 	// points to use when creating a new char
 	pointsNewChar = 0;
 
-	mWinMgr->getWindow("Initial/NewChar/Points")->setText(StrFmt("%d", pointsNewChar));
+	root->getChild("Initial/NewChar/Points")->setText(StrFmt("%d", pointsNewChar));
 }
 
 bool CltCEGUIInitial::NewChar_Cancel(const CEGUI::EventArgs& e)
@@ -934,24 +940,25 @@ bool CltCEGUIInitial::NewChar_Cancel(const CEGUI::EventArgs& e)
 void CltCEGUIInitial::NewChar_to_Join()
 {
 	// switch window shown
-	mWinMgr->getWindow("Initial/Join")->setVisible(true);
-	mWinMgr->getWindow("Initial/NewChar")->setVisible(false);
+	CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Join")->setVisible(true);
+	CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/NewChar")->setVisible(false);
 }
 
 void CltCEGUIInitial::NewChar_RecalculateBonusPoints(const char* race)
 {
+	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
 	CEGUI::Editbox* bonus_str = static_cast<CEGUI::Editbox*>
-		(mWinMgr->getWindow("Initial/NewChar/Bonus_Str"));
+		(root->getChild("Initial/NewChar/Bonus_Str"));
 	CEGUI::Editbox* bonus_con = static_cast<CEGUI::Editbox*>
-		(mWinMgr->getWindow("Initial/NewChar/Bonus_Con"));
+		(root->getChild("Initial/NewChar/Bonus_Con"));
 	CEGUI::Editbox* bonus_dex = static_cast<CEGUI::Editbox*>
-		(mWinMgr->getWindow("Initial/NewChar/Bonus_Dex"));
+		(root->getChild("Initial/NewChar/Bonus_Dex"));
 	CEGUI::Editbox* bonus_int = static_cast<CEGUI::Editbox*>
-		(mWinMgr->getWindow("Initial/NewChar/Bonus_Int"));
+		(root->getChild("Initial/NewChar/Bonus_Int"));
 	CEGUI::Editbox* bonus_wis = static_cast<CEGUI::Editbox*>
-		(mWinMgr->getWindow("Initial/NewChar/Bonus_Wis"));
+		(root->getChild("Initial/NewChar/Bonus_Wis"));
 	CEGUI::Editbox* bonus_cha = static_cast<CEGUI::Editbox*>
-		(mWinMgr->getWindow("Initial/NewChar/Bonus_Cha"));
+		(root->getChild("Initial/NewChar/Bonus_Cha"));
 	PERM_ASSERT(bonus_str && bonus_con && bonus_dex
 		       && bonus_int && bonus_wis && bonus_cha);
 
@@ -969,47 +976,48 @@ void CltCEGUIInitial::NewChar_RecalculateBonusPoints(const char* race)
 
 void CltCEGUIInitial::NewChar_RecalculateTotalPoints()
 {
+	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
         CEGUI::Spinner* ab_str = static_cast<CEGUI::Spinner*>
-		(mWinMgr->getWindow("Initial/NewChar/Ab_Str"));
+		(root->getChild("Initial/NewChar/Ab_Str"));
         CEGUI::Spinner* ab_con = static_cast<CEGUI::Spinner*>
-		(mWinMgr->getWindow("Initial/NewChar/Ab_Con"));
+		(root->getChild("Initial/NewChar/Ab_Con"));
         CEGUI::Spinner* ab_dex = static_cast<CEGUI::Spinner*>
-		(mWinMgr->getWindow("Initial/NewChar/Ab_Dex"));
+		(root->getChild("Initial/NewChar/Ab_Dex"));
         CEGUI::Spinner* ab_int = static_cast<CEGUI::Spinner*>
-		(mWinMgr->getWindow("Initial/NewChar/Ab_Int"));
+		(root->getChild("Initial/NewChar/Ab_Int"));
         CEGUI::Spinner* ab_wis = static_cast<CEGUI::Spinner*>
-		(mWinMgr->getWindow("Initial/NewChar/Ab_Wis"));
+		(root->getChild("Initial/NewChar/Ab_Wis"));
         CEGUI::Spinner* ab_cha = static_cast<CEGUI::Spinner*>
-		(mWinMgr->getWindow("Initial/NewChar/Ab_Cha"));
+		(root->getChild("Initial/NewChar/Ab_Cha"));
         PERM_ASSERT(ab_str && ab_con && ab_dex && ab_int && ab_wis && ab_cha);
 
 	CEGUI::Editbox* bonus_str = static_cast<CEGUI::Editbox*>
-		(mWinMgr->getWindow("Initial/NewChar/Bonus_Str"));
+		(root->getChild("Initial/NewChar/Bonus_Str"));
 	CEGUI::Editbox* bonus_con = static_cast<CEGUI::Editbox*>
-		(mWinMgr->getWindow("Initial/NewChar/Bonus_Con"));
+		(root->getChild("Initial/NewChar/Bonus_Con"));
 	CEGUI::Editbox* bonus_dex = static_cast<CEGUI::Editbox*>
-		(mWinMgr->getWindow("Initial/NewChar/Bonus_Dex"));
+		(root->getChild("Initial/NewChar/Bonus_Dex"));
 	CEGUI::Editbox* bonus_int = static_cast<CEGUI::Editbox*>
-		(mWinMgr->getWindow("Initial/NewChar/Bonus_Int"));
+		(root->getChild("Initial/NewChar/Bonus_Int"));
 	CEGUI::Editbox* bonus_wis = static_cast<CEGUI::Editbox*>
-		(mWinMgr->getWindow("Initial/NewChar/Bonus_Wis"));
+		(root->getChild("Initial/NewChar/Bonus_Wis"));
 	CEGUI::Editbox* bonus_cha = static_cast<CEGUI::Editbox*>
-		(mWinMgr->getWindow("Initial/NewChar/Bonus_Cha"));
+		(root->getChild("Initial/NewChar/Bonus_Cha"));
 	PERM_ASSERT(bonus_str && bonus_con && bonus_dex
 		       && bonus_int && bonus_wis && bonus_cha);
 
 	CEGUI::Editbox* total_str = static_cast<CEGUI::Editbox*>
-		(mWinMgr->getWindow("Initial/NewChar/Total_Str"));
+		(root->getChild("Initial/NewChar/Total_Str"));
 	CEGUI::Editbox* total_con = static_cast<CEGUI::Editbox*>
-		(mWinMgr->getWindow("Initial/NewChar/Total_Con"));
+		(root->getChild("Initial/NewChar/Total_Con"));
 	CEGUI::Editbox* total_dex = static_cast<CEGUI::Editbox*>
-		(mWinMgr->getWindow("Initial/NewChar/Total_Dex"));
+		(root->getChild("Initial/NewChar/Total_Dex"));
 	CEGUI::Editbox* total_int = static_cast<CEGUI::Editbox*>
-		(mWinMgr->getWindow("Initial/NewChar/Total_Int"));
+		(root->getChild("Initial/NewChar/Total_Int"));
 	CEGUI::Editbox* total_wis = static_cast<CEGUI::Editbox*>
-		(mWinMgr->getWindow("Initial/NewChar/Total_Wis"));
+		(root->getChild("Initial/NewChar/Total_Wis"));
 	CEGUI::Editbox* total_cha = static_cast<CEGUI::Editbox*>
-		(mWinMgr->getWindow("Initial/NewChar/Total_Cha"));
+		(root->getChild("Initial/NewChar/Total_Cha"));
 	PERM_ASSERT(total_str && total_con && total_dex
 		       && total_int && total_wis && total_cha);
 
@@ -1023,18 +1031,19 @@ void CltCEGUIInitial::NewChar_RecalculateTotalPoints()
 
 bool CltCEGUIInitial::NewChar_SpinnerValueChanged(const CEGUI::EventArgs& e)
 {
+	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
         CEGUI::Spinner* ab_str = static_cast<CEGUI::Spinner*>
-		(mWinMgr->getWindow("Initial/NewChar/Ab_Str"));
+		(root->getChild("Initial/NewChar/Ab_Str"));
         CEGUI::Spinner* ab_con = static_cast<CEGUI::Spinner*>
-		(mWinMgr->getWindow("Initial/NewChar/Ab_Con"));
+		(root->getChild("Initial/NewChar/Ab_Con"));
         CEGUI::Spinner* ab_dex = static_cast<CEGUI::Spinner*>
-		(mWinMgr->getWindow("Initial/NewChar/Ab_Dex"));
+		(root->getChild("Initial/NewChar/Ab_Dex"));
         CEGUI::Spinner* ab_int = static_cast<CEGUI::Spinner*>
-		(mWinMgr->getWindow("Initial/NewChar/Ab_Int"));
+		(root->getChild("Initial/NewChar/Ab_Int"));
         CEGUI::Spinner* ab_wis = static_cast<CEGUI::Spinner*>
-		(mWinMgr->getWindow("Initial/NewChar/Ab_Wis"));
+		(root->getChild("Initial/NewChar/Ab_Wis"));
         CEGUI::Spinner* ab_cha = static_cast<CEGUI::Spinner*>
-		(mWinMgr->getWindow("Initial/NewChar/Ab_Cha"));
+		(root->getChild("Initial/NewChar/Ab_Cha"));
         PERM_ASSERT(ab_str && ab_con && ab_dex && ab_int && ab_wis && ab_cha);
 
 	int totalValue = 0;
@@ -1056,7 +1065,7 @@ bool CltCEGUIInitial::NewChar_SpinnerValueChanged(const CEGUI::EventArgs& e)
 		return true;
 	}
 
-	mWinMgr->getWindow("Initial/NewChar/Points")->setText(StrFmt("%d",
+	root->getChild("Initial/NewChar/Points")->setText(StrFmt("%d",
 								    pointsNewChar - (totalValue - 78)));
 
 	// recalculating total
@@ -1067,10 +1076,11 @@ bool CltCEGUIInitial::NewChar_SpinnerValueChanged(const CEGUI::EventArgs& e)
 
 bool CltCEGUIInitial::NewChar_ComboboxSelectionAccepted(const CEGUI::EventArgs& e)
 {
+	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
         CEGUI::Combobox* raceBox = static_cast<CEGUI::Combobox*>
-		(mWinMgr->getWindow("Initial/NewChar/CharRace"));
+		(root->getChild("Initial/NewChar/CharRace"));
         CEGUI::Combobox* genderBox = static_cast<CEGUI::Combobox*>
-		(mWinMgr->getWindow("Initial/NewChar/CharGender"));
+		(root->getChild("Initial/NewChar/CharGender"));
         PERM_ASSERT(raceBox && genderBox );
 
 	string race = raceBox->getText().c_str();
@@ -1084,7 +1094,7 @@ bool CltCEGUIInitial::NewChar_ComboboxSelectionAccepted(const CEGUI::EventArgs& 
 		if (gender != "G") {
 			string imageProperty = StrFmt("set:RacePictures image:%s_%s",
 						      race.c_str(), gender.c_str());
-			mWinMgr->getWindow("Initial/NewChar/CharImage")->setProperty("Image",
+			root->getChild("Initial/NewChar/CharImage")->setProperty("Image",
 										     imageProperty);
 		}
 	}
@@ -1094,26 +1104,27 @@ bool CltCEGUIInitial::NewChar_ComboboxSelectionAccepted(const CEGUI::EventArgs& 
 
 bool CltCEGUIInitial::NewChar_Create(const CEGUI::EventArgs& e)
 {
+	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
         CEGUI::Editbox* charName = static_cast<CEGUI::Editbox*>
-		(mWinMgr->getWindow("Initial/NewChar/CharName"));
+		(root->getChild("Initial/NewChar/CharName"));
         CEGUI::Combobox* charRace = static_cast<CEGUI::Combobox*>
-		(mWinMgr->getWindow("Initial/NewChar/CharRace"));
+		(root->getChild("Initial/NewChar/CharRace"));
         CEGUI::Combobox* charGender = static_cast<CEGUI::Combobox*>
-		(mWinMgr->getWindow("Initial/NewChar/CharGender"));
+		(root->getChild("Initial/NewChar/CharGender"));
         CEGUI::Combobox* charClass = static_cast<CEGUI::Combobox*>
-		(mWinMgr->getWindow("Initial/NewChar/CharClass"));
+		(root->getChild("Initial/NewChar/CharClass"));
         CEGUI::Spinner* ab_str = static_cast<CEGUI::Spinner*>
-		(mWinMgr->getWindow("Initial/NewChar/Ab_Str"));
+		(root->getChild("Initial/NewChar/Ab_Str"));
         CEGUI::Spinner* ab_con = static_cast<CEGUI::Spinner*>
-		(mWinMgr->getWindow("Initial/NewChar/Ab_Con"));
+		(root->getChild("Initial/NewChar/Ab_Con"));
         CEGUI::Spinner* ab_dex = static_cast<CEGUI::Spinner*>
-		(mWinMgr->getWindow("Initial/NewChar/Ab_Dex"));
+		(root->getChild("Initial/NewChar/Ab_Dex"));
         CEGUI::Spinner* ab_int = static_cast<CEGUI::Spinner*>
-		(mWinMgr->getWindow("Initial/NewChar/Ab_Int"));
+		(root->getChild("Initial/NewChar/Ab_Int"));
         CEGUI::Spinner* ab_wis = static_cast<CEGUI::Spinner*>
-		(mWinMgr->getWindow("Initial/NewChar/Ab_Wis"));
+		(root->getChild("Initial/NewChar/Ab_Wis"));
         CEGUI::Spinner* ab_cha = static_cast<CEGUI::Spinner*>
-		(mWinMgr->getWindow("Initial/NewChar/Ab_Cha"));
+		(root->getChild("Initial/NewChar/Ab_Cha"));
         PERM_ASSERT(charName && charRace && charGender
 		       && ab_str && ab_con && ab_dex && ab_int && ab_wis && ab_cha);
 
@@ -1175,10 +1186,10 @@ bool CltCEGUIInitial::NewChar_Create(const CEGUI::EventArgs& e)
 
 void CltCEGUIInitial::Download_RaiseWindow()
 {
-	mWinMgr->getWindow("Initial/Download/Filename")->setText("Asking the server for content updates...");
+	CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Download/Filename")->setText("Asking the server for content updates...");
 
 	// switch window shown
-	mWinMgr->getWindow("Initial/Download")->setVisible(true);
+	CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Download")->setVisible(true);
 
 	// content listener
 	class LocalContentListener : public CltContentListener
@@ -1204,19 +1215,19 @@ void CltCEGUIInitial::Download_RaiseWindow()
 void CltCEGUIInitial::Download_UpdateFileStats(const char* fileName,
 					      float pct)
 {
-	mWinMgr->getWindow("Initial/Download/FileNumber_Lbl")->setText(StrFmt("%.1f%%", pct*100.0f));
-	mWinMgr->getWindow("Initial/Download/Filename")->setText(fileName);
+	CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Download/FileNumber_Lbl")->setText(StrFmt("%.1f%%", pct*100.0f));
+	CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Download/Filename")->setText(fileName);
 
-	static_cast<CEGUI::ProgressBar*>(mWinMgr->getWindow("Initial/Download/FileProgress"))->setProgress(pct);
+	static_cast<CEGUI::ProgressBar*>(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Download/FileProgress"))->setProgress(pct);
 }
 
 void CltCEGUIInitial::Download_UpdateTotalStats(const char* fileName,
 						float pct)
 {
-	mWinMgr->getWindow("Initial/Download/TotalNumber_Lbl")->setText(StrFmt("%.1f%%", pct*100.0f));
-	mWinMgr->getWindow("Initial/Download/Filename")->setText(fileName);
+	CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Download/TotalNumber_Lbl")->setText(StrFmt("%.1f%%", pct*100.0f));
+	CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Download/Filename")->setText(fileName);
 
-	static_cast<CEGUI::ProgressBar*>(mWinMgr->getWindow("Initial/Download/TotalProgress"))->setProgress(pct);
+	static_cast<CEGUI::ProgressBar*>(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Download/TotalProgress"))->setProgress(pct);
 }
 
 void CltCEGUIInitial::Download_Completed(float sizeKB, float seconds, float avgSpeed)
@@ -1224,16 +1235,17 @@ void CltCEGUIInitial::Download_Completed(float sizeKB, float seconds, float avgS
 	string completed = StrFmt("Content update completed, %.02fKB in %0.1fs (%.02f kB/s)",
 				  sizeKB, seconds, avgSpeed);
 
-	mWinMgr->getWindow("Initial/Download/Filename")->setText(completed.c_str());
-	mWinMgr->getWindow("Initial/Download/FileNumber_Lbl")->setText("100%");
-	mWinMgr->getWindow("Initial/Download/TotalNumber_Lbl")->setText("100%");
+	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
+	root->getChild("Initial/Download/Filename")->setText(completed.c_str());
+	root->getChild("Initial/Download/FileNumber_Lbl")->setText("100%");
+	root->getChild("Initial/Download/TotalNumber_Lbl")->setText("100%");
 
-	static_cast<CEGUI::ProgressBar*>(mWinMgr->getWindow("Initial/Download/FileProgress"))->setProgress(1.0f);
-	static_cast<CEGUI::ProgressBar*>(mWinMgr->getWindow("Initial/Download/TotalProgress"))->setProgress(1.0f);
+	static_cast<CEGUI::ProgressBar*>(root->getChild("Initial/Download/FileProgress"))->setProgress(1.0f);
+	static_cast<CEGUI::ProgressBar*>(root->getChild("Initial/Download/TotalProgress"))->setProgress(1.0f);
 
 	// enabling login button now
 	if (mDoContentUpdate) {
-		static_cast<CEGUI::PushButton*>(mWinMgr->getWindow("Initial/Login/Login"))->enable();
+		static_cast<CEGUI::PushButton*>(root->getChild("Initial/Login/Login"))->enable();
 	}
 
 	mContentUpdateReady = true;

@@ -79,10 +79,10 @@ bool CltCombatMgr::handleResultMsg(MsgCombatResult* msg)
 	switch( msg->getResult() )
 	{
         case MsgCombatResult::HIT:
-		LogNTC("%llu hit for %d damage.", msg->target, msg->damage);
+		LogNTC("%lu hit for %d damage.", msg->target, msg->damage);
 		return true;
         case MsgCombatResult::MISS:
-		LogNTC("Attacker missed %llu.", msg->target);
+		LogNTC("Attacker missed %lu.", msg->target);
 		return true;
         case MsgCombatResult::OTHER:
 		LogNTC("Some other thing happended.");

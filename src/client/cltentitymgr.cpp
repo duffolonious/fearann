@@ -51,7 +51,7 @@ CltEntityMgr::~CltEntityMgr()
 
 void CltEntityMgr::entityCreate(const MsgEntityCreate* msg)
 {
-	LogNTC("New entity: id: %llu, name: %s, class %s, mesh: %s %s, pos: %.1f %.1f %.1f",
+	LogNTC("New entity: id: %lu, name: %s, class %s, mesh: %s %s, pos: %.1f %.1f %.1f",
 	       msg->entityID, msg->entityName.c_str(),
 	       msg->entityClass.c_str(),
 	       msg->meshType.c_str(), msg->meshSubtype.c_str(),
@@ -88,7 +88,7 @@ void CltEntityMgr::entityCreate(const MsgEntityCreate* msg)
 		playerNode->getOrCreateStateSet()->setMode(GL_LIGHTING,
 							   osg::StateAttribute::ON | osg::StateAttribute::OVERRIDE);
 		entity->getTransform()->addChild(playerNode);
-		playerNode->addDescription(StrFmt("%llu", msg->entityID));
+		playerNode->addDescription(StrFmt("%lu", msg->entityID));
 		//LogDBG("%s desc: '%s'", entity->getName(), entity->getTransform()->getDescription( 0 ).c_str() );
 		CltViewer::instance().addToScene(entity->getTransform());
   
@@ -115,7 +115,7 @@ void CltEntityMgr::entityCreate(const MsgEntityCreate* msg)
 		creatureNode->getOrCreateStateSet()->setMode(GL_LIGHTING,
 							   osg::StateAttribute::ON | osg::StateAttribute::OVERRIDE);
 		entity->getTransform()->addChild(creatureNode);
-		creatureNode->addDescription(StrFmt("%llu", msg->entityID));
+		creatureNode->addDescription(StrFmt("%lu", msg->entityID));
 		LogDBG("%s desc: '%s'", entity->getName(),
 		       entity->getTransform()->getDescription(0).c_str());
 		CltViewer::instance().addToScene(entity->getTransform());
@@ -142,7 +142,7 @@ void CltEntityMgr::entityCreate(const MsgEntityCreate* msg)
 		// load model and add to scene
 		osg::Node* node = entity->loadModel();
 		entity->getTransform()->addChild(node);
-		node->addDescription(StrFmt("%llu", msg->entityID));
+		node->addDescription(StrFmt("%lu", msg->entityID));
 		LogDBG("%s desc: '%s' - type '%s'",
 		       entity->getName(),
 		       entity->getTransform()->getDescription(0).c_str(),
@@ -170,14 +170,14 @@ void CltEntityMgr::entityCreate(const MsgEntityCreate* msg)
 
 void CltEntityMgr::entityMove(const MsgEntityMove* msg)
 {
-	LogDBG("Received EntityMove msg for entity (id: %llu)", msg->entityID);
+	LogDBG("Received EntityMove msg for entity (id: %lu)", msg->entityID);
 
 	// checking autenticity
 	if (mEntityList.find(msg->entityID) == mEntityList.end()) {
-		LogERR("Received entity move notification but entity unknown! (id: %llu)",
+		LogERR("Received entity move notification but entity unknown! (id: %lu)",
 		       msg->entityID);
 	} else {
-		LogDBG("Moving entity id '%llu'", msg->entityID);
+		LogDBG("Moving entity id '%lu'", msg->entityID);
 		CltEntityBase* entity = mEntityList.find(msg->entityID)->second;
 
 		if (string("MainPlayer") == entity->className()) {
@@ -196,10 +196,10 @@ void CltEntityMgr::entityDestroy(const MsgEntityDestroy* msg)
 	map<uint64_t, CltEntityBase*>::iterator it = mEntityList.find(msg->entityID);
 
 	if (it == mEntityList.end()) {
-		LogERR("Received entity destruction notification but entity unknown! (id: %llu)",
+		LogERR("Received entity destruction notification but entity unknown! (id: %lu)",
 		       msg->entityID);
 	} else {
-		LogDBG("Destroying entity id '%llu'", msg->entityID);
+		LogDBG("Destroying entity id '%lu'", msg->entityID);
 
 		// destroying entity entity
 		CltEntityBase* entity = it->second;

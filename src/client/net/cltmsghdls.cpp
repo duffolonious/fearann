@@ -79,7 +79,7 @@ void CltMsgHdlConnectReply::handleMsg(MsgBase& baseMsg, Netlink* /* netlink */)
 		string errmsg = StrFmt("Protocol versions of client (%s) and server (%s) differ",
 				       clientVersion.c_str(), msg->protocolVersion.c_str());
 		CltCEGUIMgr::instance().Notification_DisplayMessage(errmsg.c_str());
-		LogERR(errmsg.c_str());
+		LogERR("%s", errmsg.c_str());
 	} else if (msg->resultCode == MsgUtils::Errors::SUCCESS) {
 		CltCEGUIInitial::instance().Connect_to_Login(msg->uptime.c_str(),
 							     StrFmt("%u", msg->currentPlayers),
@@ -89,7 +89,7 @@ void CltMsgHdlConnectReply::handleMsg(MsgBase& baseMsg, Netlink* /* netlink */)
 		string errmsg = StrFmt("Failed to connect: %s",
 				       MsgUtils::Errors::getDescription(msg->resultCode));
 		CltCEGUIMgr::instance().Notification_DisplayMessage(errmsg.c_str());
-		LogERR(errmsg.c_str());
+		LogERR("%s", errmsg.c_str());
 	}
 }
 
@@ -112,7 +112,7 @@ void CltMsgHdlLoginReply::handleMsg(MsgBase& baseMsg, Netlink* /* netlink */)
 				       MsgUtils::Errors::getDescription(msg->resultCode));
 		CltCEGUIMgr::instance().Notification_DisplayMessage(errmsg.c_str());
 		CltCEGUIInitial::instance().Login_Failed();
-		LogERR(errmsg.c_str());
+		LogERR("%s", errmsg.c_str());
 	}
 }
 
@@ -133,7 +133,7 @@ void CltMsgHdlNewUserReply::handleMsg(MsgBase& baseMsg, Netlink* /* netlink */)
 		string errmsg = StrFmt("Failed to create new user: %s",
 				       MsgUtils::Errors::getDescription(msg->resultCode));
 		CltCEGUIMgr::instance().Notification_DisplayMessage(errmsg.c_str());
-		LogERR(errmsg.c_str());
+		LogERR("%s", errmsg.c_str());
 	}
 }
 
@@ -159,7 +159,7 @@ void CltMsgHdlNewCharReply::handleMsg(MsgBase& baseMsg, Netlink* /* netlink */)
 		string errmsg = StrFmt("Failed to create new char: %s",
 				       MsgUtils::Errors::getDescription(msg->resultCode));
 		CltCEGUIMgr::instance().Notification_DisplayMessage(errmsg.c_str());
-		LogERR(errmsg.c_str());
+		LogERR("%s", errmsg.c_str());
 	}
 }
 
@@ -179,7 +179,7 @@ void CltMsgHdlDelCharReply::handleMsg(MsgBase& baseMsg, Netlink* /* netlink */)
 		string errmsg = StrFmt("Failed to delete character: %s",
 				       MsgUtils::Errors::getDescription(msg->resultCode));
 		CltCEGUIMgr::instance().Notification_DisplayMessage(errmsg.c_str());
-		LogERR(errmsg.c_str());
+		LogERR("%s", errmsg.c_str());
 	}
 }
 
@@ -207,7 +207,7 @@ void CltMsgHdlJoinReply::handleMsg(MsgBase& baseMsg, Netlink* /* netlink */)
 		string errmsg = StrFmt("Failed to join: %s",
 				       MsgUtils::Errors::getDescription(msg->resultCode));
 		CltCEGUIMgr::instance().Notification_DisplayMessage(errmsg.c_str());
-		LogERR(errmsg.c_str());
+		LogERR("%s", errmsg.c_str());
 	}
 }
 
@@ -402,7 +402,7 @@ void CltMsgHdlInventoryDel::handleMsg(MsgBase& baseMsg, Netlink* /* netlink */)
 {
 	MsgInventoryDel* msg = dynamic_cast<MsgInventoryDel*>(&baseMsg);
 
-	LogDBG("InventoryDel received (itemID: %llu)", msg->itemID);
+	LogDBG("InventoryDel received (itemID: %lu)", msg->itemID);
 
 	CltEntityMainPlayer::instance().removeFromInventory(msg->itemID);
 }

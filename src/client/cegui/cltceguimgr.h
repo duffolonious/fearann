@@ -26,6 +26,7 @@
 class MsgPlayerData;
 class CltCameraListener;
 namespace CEGUI {
+  	class GUIContext;
 	class Window;
 	class WindowManager;
 	class EventArgs;
@@ -34,7 +35,7 @@ namespace CEGUI {
 
 
 #define CEGUI_EVENT(window,event,handler)				\
-	mWinMgr->getWindow(window)->subscribeEvent(event, CEGUI::Event::Subscriber(&handler, this));
+  CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild(window)->subscribeEvent(event, CEGUI::Event::Subscriber(&handler, this));
 
 
 /** CEGUI Manager is a kind of interface manager, but most of the important
@@ -58,6 +59,9 @@ public:
 	 * should be called whenever a Mouse-Push event is not catched by
 	 * CEGUI. */
 	void disableFocus();
+
+	/// Get GUIContext (instead of mWinMgr)
+	CEGUI::GUIContext* getGUIContext() { return mGUIContext; };
 
 	/// Display a warning/notification message
 	bool Notification_DisplayMessage(const char* msg);
@@ -108,6 +112,9 @@ private:
 
 	/// Pointer to the window manager
 	CEGUI::WindowManager* mWinMgr;
+
+	/// Pointer to GUIContext
+	CEGUI::GUIContext* mGUIContext;
 
 	/// Listener for camera events
 	CltCameraListener* mCameraListener;

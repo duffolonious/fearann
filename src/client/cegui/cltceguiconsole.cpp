@@ -19,12 +19,12 @@
 #include "config.h"
 #include "client/cltconfig.h"
 
-#include <CEGUIWindowManager.h>
-#include <elements/CEGUIEditbox.h>
-#include <elements/CEGUIMultiLineEditbox.h>
-#include <elements/CEGUITabButton.h>
-#include <elements/CEGUIScrollbar.h>
-#include <elements/CEGUITabControl.h>
+#include <CEGUI/WindowManager.h>
+#include <CEGUI/widgets/Editbox.h>
+#include <CEGUI/widgets/MultiLineEditbox.h>
+#include <CEGUI/widgets/TabButton.h>
+#include <CEGUI/widgets/Scrollbar.h>
+#include <CEGUI/widgets/TabControl.h>
 
 #include "common/command.h"
 #include "common/net/msgs.h"
@@ -82,16 +82,17 @@ void CltCEGUIConsole::changeTab(const string& tabName)
 
 	// put the multiline box accordingly with the tab (there's a different
 	// MLBox for each message type)
+	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
 	string screenTabName = StrFmt("InGame/Console/Screen%s", tabNameShort.c_str());
-	CEGUI::Window* screenTabW = mWinMgr->getWindow(screenTabName);
+	CEGUI::Window* screenTabW = root->getChild(screenTabName);
 	string screenName("InGame/Console/Screen");
-	CEGUI::MultiLineEditbox* screenW = dynamic_cast<CEGUI::MultiLineEditbox*>(mWinMgr->getWindow(screenName));
+	CEGUI::MultiLineEditbox* screenW = dynamic_cast<CEGUI::MultiLineEditbox*>(root->getChild(screenName));
 	screenW->setText(screenTabW->getText());
 	string screenScroll("InGame/Console/Screen__auto_vscrollbar__");
-	dynamic_cast<CEGUI::Scrollbar*>(mWinMgr->getWindow(screenScroll))->setScrollPosition(100000.0f);
+	dynamic_cast<CEGUI::Scrollbar*>(root->getChild(screenScroll))->setScrollPosition(100000.0f);
 
 	// un-highlight the selected tab button
-	CEGUI::TabButton* btn = dynamic_cast<CEGUI::TabButton*>(mWinMgr->getWindow(tabName));
+	CEGUI::TabButton* btn = dynamic_cast<CEGUI::TabButton*>(root->getChild(tabName));
 	btn->setProperty("NormalTextColour", "ffc0c0c0");
 }
 
@@ -128,22 +129,23 @@ void CltCEGUIConsole::printMessage(const MsgChat& msg)
 		return;
 	}
 
+	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
 	// add new line to correct tab
 	CEGUI::MultiLineEditbox* screen = dynamic_cast<CEGUI::MultiLineEditbox*>
-		(mWinMgr->getWindow(targetScreen));
+		(root->getChild(targetScreen));
 	string text = screen->getText().c_str();
 	text += line;
 	screen->setText(text);
 
 	// add new line to All tab
 	CEGUI::MultiLineEditbox* screenAll = dynamic_cast<CEGUI::MultiLineEditbox*>
-		(mWinMgr->getWindow("InGame/Console/ScreenAll"));
+		(root->getChild("InGame/Console/ScreenAll"));
 	text = screenAll->getText().c_str();
 	text += line;
 	screenAll->setText(text);
 
 	// update the text, simulating that tab changed
-	CEGUI::TabControl* tab = dynamic_cast<CEGUI::TabControl*>(mWinMgr->getWindow("InGame/Console/Tabs"));
+	CEGUI::TabControl* tab = dynamic_cast<CEGUI::TabControl*>(root->getChild("InGame/Console/Tabs"));
 	string tabName = tab->getTabContentsAtIndex(tab->getSelectedTabIndex())->getName().c_str();
 	changeTab(tabName);
 
@@ -154,7 +156,7 @@ void CltCEGUIConsole::printMessage(const MsgChat& msg)
 	/// probably...
 
 	// highlight the tab button
-	CEGUI::TabButton* btn = dynamic_cast<CEGUI::TabButton*>(mWinMgr->getWindow(targetButton));
+	CEGUI::TabButton* btn = dynamic_cast<CEGUI::TabButton*>(root->getChild(targetButton));
 	btn->setProperty("NormalTextColour", "ffff0000");
 	CEGUI::String selectedCol = btn->getProperty("SelectedTextColour");
 }
@@ -162,7 +164,7 @@ void CltCEGUIConsole::printMessage(const MsgChat& msg)
 bool CltCEGUIConsole::Event_TabSelectionChanged(const CEGUI::EventArgs& e)
 {
 	// find the tab which has been selected
-	CEGUI::TabControl* tab = dynamic_cast<CEGUI::TabControl*>(mWinMgr->getWindow("InGame/Console/Tabs"));
+	CEGUI::TabControl* tab = dynamic_cast<CEGUI::TabControl*>(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("InGame/Console/Tabs"));
 	string tabName = tab->getTabContentsAtIndex(tab->getSelectedTabIndex())->getName().c_str();
 	// call the function to do the real job
 	changeTab(tabName);
@@ -173,7 +175,7 @@ bool CltCEGUIConsole::Event_TabSelectionChanged(const CEGUI::EventArgs& e)
 bool CltCEGUIConsole::Event_KeyPressed(const CEGUI::EventArgs& e)
 {
 	// get the widget
-	CEGUI::Editbox* entry = dynamic_cast<CEGUI::Editbox*>(mWinMgr->getWindow("InGame/Console/Entrybox"));
+	CEGUI::Editbox* entry = dynamic_cast<CEGUI::Editbox*>(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("InGame/Console/Entrybox"));
 	const char* cmd = 0;
 
 	const CEGUI::KeyEventArgs& keyArgs = dynamic_cast<const CEGUI::KeyEventArgs&>(e);
@@ -201,7 +203,7 @@ bool CltCEGUIConsole::Event_KeyPressed(const CEGUI::EventArgs& e)
 
 bool CltCEGUIConsole::Event_EditTextAccepted(const CEGUI::EventArgs& e)
 {
-	CEGUI::Editbox* entry = dynamic_cast<CEGUI::Editbox*>(mWinMgr->getWindow("InGame/Console/Entrybox"));
+	CEGUI::Editbox* entry = dynamic_cast<CEGUI::Editbox*>(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("InGame/Console/Entrybox"));
 
 	// send the text as chat message
 	if (entry->getText().length() == 0) {
@@ -272,7 +274,7 @@ const char* CltCEGUIConsole::ChatHistory::getPrev()
 {
 	if (mIndex > 0)
 		--mIndex;
-      
+
 	LogDBG("ChatHistory: getPrev: [%zu] %s", mIndex, getByIndex(mIndex));
 	return getByIndex(mIndex);
 }

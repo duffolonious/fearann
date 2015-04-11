@@ -59,7 +59,7 @@ void LogMgr::Log(LogMsgType type, const char* msg)
 		snprintf(fullMsg, sizeof(fullMsg), "%s :: %s :: %s\n", ts, severity, msg);
 
 		/* print the message in the standard error stream */
-		fprintf(stderr, fullMsg);
+		fprintf(stderr, "%s", fullMsg);
 	}
 }
 

@@ -19,10 +19,10 @@
 #include "config.h"
 #include "client/cltconfig.h"
 
-#include <CEGUISystem.h>
-#include <CEGUIWindow.h>
-#include <CEGUIWindowManager.h>
-#include <RendererModules/OpenGLGUIRenderer/openglrenderer.h>
+#include <CEGUI/System.h>
+#include <CEGUI/Window.h>
+#include <CEGUI/WindowManager.h>
+#include <CEGUI/RendererModules/OpenGL/GLRenderer.h>
 
 #include <osg/Geode>
 #include <osg/Projection>
@@ -36,9 +36,9 @@
 
 
 //--------------------------- OSG2CEGUIKeys -----------------------------
-CEGUI::uint OSG2CEGUIKeys(int key)
+CEGUI::Key::Scan OSG2CEGUIKeys(int key)
 {
-	CEGUI::uint converted = 0;
+	CEGUI::Key::Scan converted = CEGUI::Key::Scan(0);
 	switch (key)
 	{
 	case osgGA::GUIEventAdapter::KEY_Escape:
@@ -286,18 +286,18 @@ bool CltCEGUIEventHandler::handle(const osgGA::GUIEventAdapter& ea,
 		// coordinates conversion
 		int x = static_cast<int>((1.0f + ea.getX()) * CltViewer::instance().getWindowWidth()/2);
 		int y = static_cast<int>((1.0f - ea.getY()) * CltViewer::instance().getWindowHeight()/2);
-		catched = CEGUI::System::getSingleton().injectMousePosition(x, y);
+		catched = CEGUI::System::getSingleton().getDefaultGUIContext().injectMousePosition(x, y);
 
 		return catched;
 	}
 	case(osgGA::GUIEventAdapter::PUSH):
 	{
                 if (ea.getButton() == osgGA::GUIEventAdapter::LEFT_MOUSE_BUTTON)
-			catched = CEGUI::System::getSingleton().injectMouseButtonDown(CEGUI::LeftButton);
+			catched = CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonDown(CEGUI::LeftButton);
                 else if (ea.getButton() == osgGA::GUIEventAdapter::MIDDLE_MOUSE_BUTTON)
-			catched = CEGUI::System::getSingleton().injectMouseButtonDown(CEGUI::MiddleButton);
+			catched = CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonDown(CEGUI::MiddleButton);
                 else if (ea.getButton() == osgGA::GUIEventAdapter::RIGHT_MOUSE_BUTTON)
-			catched = CEGUI::System::getSingleton().injectMouseButtonDown(CEGUI::RightButton);
+			catched = CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonDown(CEGUI::RightButton);
 
 		if (!catched) {
 			LogDBG("CEGUI -- focus disabled");
@@ -309,30 +309,30 @@ bool CltCEGUIEventHandler::handle(const osgGA::GUIEventAdapter& ea,
 	case(osgGA::GUIEventAdapter::RELEASE):
 	{
                 if (ea.getButton() == osgGA::GUIEventAdapter::LEFT_MOUSE_BUTTON)
-			catched = CEGUI::System::getSingleton().injectMouseButtonUp(CEGUI::LeftButton);
+			catched = CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonUp(CEGUI::LeftButton);
                 else if (ea.getButton() == osgGA::GUIEventAdapter::MIDDLE_MOUSE_BUTTON)
-			catched = CEGUI::System::getSingleton().injectMouseButtonUp(CEGUI::MiddleButton);
+			catched = CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonUp(CEGUI::MiddleButton);
                 else if (ea.getButton() == osgGA::GUIEventAdapter::RIGHT_MOUSE_BUTTON)
-			catched = CEGUI::System::getSingleton().injectMouseButtonUp(CEGUI::RightButton);
+			catched = CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonUp(CEGUI::RightButton);
 
 		return catched;
 	}
 	case(osgGA::GUIEventAdapter::DOUBLECLICK):
 	{
                 if (ea.getButton() == osgGA::GUIEventAdapter::LEFT_MOUSE_BUTTON)
-			catched = CEGUI::System::getSingleton().injectMouseButtonDown(CEGUI::LeftButton);
+			catched = CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonDown(CEGUI::LeftButton);
                 else if (ea.getButton() == osgGA::GUIEventAdapter::MIDDLE_MOUSE_BUTTON)
-			catched = CEGUI::System::getSingleton().injectMouseButtonDown(CEGUI::MiddleButton);
+			catched = CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonDown(CEGUI::MiddleButton);
                 else if (ea.getButton() == osgGA::GUIEventAdapter::RIGHT_MOUSE_BUTTON)
-			catched = CEGUI::System::getSingleton().injectMouseButtonDown(CEGUI::RightButton);
+			catched = CEGUI::System::getSingleton().getDefaultGUIContext().injectMouseButtonDown(CEGUI::RightButton);
 
 		return catched;
 	}
 	case(osgGA::GUIEventAdapter::KEYDOWN):
 	{
-		if (CEGUI::System::getSingleton().injectChar(static_cast<CEGUI::utf32>(ea.getKey()))) {
+		if (CEGUI::System::getSingleton().getDefaultGUIContext().injectChar(static_cast<CEGUI::utf32>(ea.getKey()))) {
 			return true;
-		} else if (CEGUI::System::getSingleton().injectKeyDown(OSG2CEGUIKeys(ea.getKey()))) {
+		} else if (CEGUI::System::getSingleton().getDefaultGUIContext().injectKeyDown(OSG2CEGUIKeys(ea.getKey()))) {
 			return true;
 		} else {
 			return false;
@@ -340,7 +340,7 @@ bool CltCEGUIEventHandler::handle(const osgGA::GUIEventAdapter& ea,
 	}
 	case(osgGA::GUIEventAdapter::KEYUP):
 	{
-		return CEGUI::System::getSingleton().injectKeyUp(OSG2CEGUIKeys(ea.getKey()));
+		return CEGUI::System::getSingleton().getDefaultGUIContext().injectKeyUp(OSG2CEGUIKeys(ea.getKey()));
 	}
 	case(osgGA::GUIEventAdapter::FRAME):
 	{
@@ -415,7 +415,7 @@ void CltCEGUIDrawable::drawImplementation(osg::RenderInfo& renderInfo) const
 */
 
 	// tell the UI to update and to render
-	CEGUI::System::getSingleton().renderGUI();
+	CEGUI::System::getSingleton().renderAllGUIContexts();
 	renderInfo.getState()->checkGLErrors("CEGUIDrawable::drawImplementation");
 /* mafm: apparently not needed
         renderInfo.getState()->setClientActiveTextureUnit(oldClientActiveTextureUnit);

@@ -21,12 +21,12 @@
 
 #include <cstdlib>
 
-#include <CEGUIWindowManager.h>
-#include <elements/CEGUIFrameWindow.h>
-#include <elements/CEGUIPushButton.h>
-#include <elements/CEGUIListboxItem.h>
-#include <elements/CEGUIListboxTextItem.h>
-#include <elements/CEGUIMultiColumnList.h>
+#include <CEGUI/WindowManager.h>
+#include <CEGUI/widgets/FrameWindow.h>
+#include <CEGUI/widgets/PushButton.h>
+#include <CEGUI/widgets/ListboxItem.h>
+#include <CEGUI/widgets/ListboxTextItem.h>
+#include <CEGUI/widgets/MultiColumnList.h>
 
 #include "common/net/msgs.h"
 
@@ -56,7 +56,8 @@ CltCEGUIDialog::CltCEGUIDialog()
 //		    CEGUI::FrameWindow::EventCloseClicked,
 //		    CltCEGUIDialog::Event_Close);
 
-	CEGUI::Window* menu = mWinMgr->getWindow("InGame/ActionMenu");
+	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
+	CEGUI::Window* menu = root->getChild("InGame/ActionMenu");
     PERM_ASSERT(menu);
 	menu->setVisible(false);
 }
@@ -68,8 +69,8 @@ CltCEGUIDialog::~CltCEGUIDialog()
 void CltCEGUIDialog::updateDialog( MsgNPCDialog* msg )
 {
 	///Update message
-	CEGUI::WindowManager* mWinMgr = &CEGUI::WindowManager::getSingleton();
-	CEGUI::Window* dialog = mWinMgr->getWindow("InGame/Dialog");
+	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
+	CEGUI::Window* dialog = root->getChild("InGame/Dialog");
     PERM_ASSERT(dialog);
 	if ( msg->done )
 	{
@@ -77,10 +78,10 @@ void CltCEGUIDialog::updateDialog( MsgNPCDialog* msg )
 		return;
 	}
 
-	CEGUI::Window* dialogText = mWinMgr->getWindow("InGame/Dialog/Dialog_Text");
+	CEGUI::Window* dialogText = root->getChild("InGame/Dialog/Dialog_Text");
     PERM_ASSERT(dialogText);
 
-	CEGUI::MultiColumnList* replyList = static_cast<CEGUI::MultiColumnList*> (mWinMgr->getWindow("InGame/Dialog/List"));
+	CEGUI::MultiColumnList* replyList = static_cast<CEGUI::MultiColumnList*> (root->getChild("InGame/Dialog/List"));
 	PERM_ASSERT(replyList);
 	replyList->setSelectionMode(CEGUI::MultiColumnList::RowSingle);
 
@@ -95,7 +96,7 @@ void CltCEGUIDialog::updateDialog( MsgNPCDialog* msg )
 	for (uint32_t i = 0; i < msg->options.size(); ++i )
 	{
 		CEGUI::ListboxTextItem* reply = new CEGUI::ListboxTextItem(msg->options[i].getText().c_str(), 0);
-		reply->setSelectionBrushImage("FearannLook", "ListboxSelectionBrush");
+		reply->setSelectionBrushImage("FearannLook/ListboxSelectionBrush");
 		unsigned int row = replyList->addRow();
 		replyList->setItem( reply, 0, row );
 	}
@@ -129,10 +130,11 @@ bool CltCEGUIDialog::Event_Shown(const CEGUI::EventArgs& e)
 bool CltCEGUIDialog::Event_Reply(const CEGUI::EventArgs& e)
 {
 	CEGUI::WindowManager* mWinMgr = &CEGUI::WindowManager::getSingleton();
-	CEGUI::Window* dialog = mWinMgr->getWindow("InGame/Dialog");
+	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
+	CEGUI::Window* dialog = root->getChild("InGame/Dialog");
 	PERM_ASSERT(dialog);
 
-	CEGUI::MultiColumnList* replyList = static_cast<CEGUI::MultiColumnList*> (mWinMgr->getWindow("InGame/Dialog/List"));
+	CEGUI::MultiColumnList* replyList = static_cast<CEGUI::MultiColumnList*> (root->getChild("InGame/Dialog/List"));
 	PERM_ASSERT(replyList);
 
 	if (replyList->getSelectedCount() == 0) {
@@ -154,8 +156,8 @@ bool CltCEGUIDialog::Event_Reply(const CEGUI::EventArgs& e)
 
 bool CltCEGUIDialog::Event_Close(const CEGUI::EventArgs& e)
 {
-	CEGUI::WindowManager* mWinMgr = &CEGUI::WindowManager::getSingleton();
-	CEGUI::Window* dialog = mWinMgr->getWindow("InGame/Dialog");
+	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
+	CEGUI::Window* dialog = root->getChild("InGame/Dialog");
 	PERM_ASSERT(dialog);
 
 	MsgNPCDialogReply msg;

@@ -22,12 +22,14 @@
 
 #include "common/net/msgs.h"
 
+class BoundingBox;
+
 namespace osg {
-	class BoundingBox;
 	class Node;
 	class MatrixTransform;
 }
 
+#include <osg/BoundingBox>
 
 /** Base class for entities in the client, which holds the basic data (class,
  * mesh type and so on).

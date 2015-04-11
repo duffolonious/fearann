@@ -26,7 +26,8 @@
 #include <osg/Matrix>
 #include <osg/MatrixTransform>
 #include <osg/Vec3>
-#include <osgGA/MatrixManipulator>
+#include <osg/BoundingSphere>
+#include <osgGA/CameraManipulator>
 
 
 //-------------------------- CltCameraManipulator -------------------------
@@ -41,10 +42,12 @@ bool CltCameraManipulator::handle(const osgGA::GUIEventAdapter& ea,
 	switch (ea.getEventType()) {
 	case (osgGA::GUIEventAdapter::FRAME):
 	{
+#if 0 //FIXME: mMatrix -> osg::Camera somehow
 		static double lastTime = 0.0;
 		if (lastTime != 0.0)
-			CltCameraMgr::instance().getActiveCameraMode().updateCamera(&mMatrix, ea.time() - lastTime);
+			CltCameraMgr::instance().getActiveCameraMode().updateCamera(&mMatrix);
 		lastTime = ea.time();
+#endif
 		return false;
 	}
 	default:
@@ -158,8 +161,18 @@ void CltCameraModeFollow::reset()
 	mVertRot = DEFAULT_VERTICAL_ROT;
 }
 
-void CltCameraModeFollow::updateCamera(osg::Camera* cameraView, double elapsedSeconds)
+void CltCameraModeFollow::updateCamera(osg::Camera& cameraView)
 {
+#if 0
+	/** FIXME: another hack - setting the camera if NULL
+	 */
+	if (!mCamera) {
+	  mCamera(cameraView);
+	}
+#endif
+	/** FIXME: hack to assume 30 FPS on how much time has elapsed because this
+	 * function should only take the Camera ptr */
+	double elapsedSeconds = 0.033;
 	// whether we're already in the game with a node assigned
 	if (!mTargetTransform)
 		return;
@@ -248,7 +261,7 @@ void CltCameraModeFollow::updateCamera(osg::Camera* cameraView, double elapsedSe
 				  fakeTargetMatrix.getTrans(),
 				  osg::Z_AXIS);
 	}
-	cameraView->set(osg::Matrix::inverse(lookAt));
+	cameraView.setViewMatrix(osg::Matrix::inverse(lookAt));
 }
 
 
@@ -275,8 +288,11 @@ void CltCameraModeOrbital::reset()
 	mVertRot = DEFAULT_VERTICAL_ROT;
 }
 
-void CltCameraModeOrbital::updateCamera(osg::Matrix* cameraView, double elapsedSeconds)
+void CltCameraModeOrbital::updateCamera(osg::Camera& cameraView)
 {
+	/** FIXME: hack to assume 30 FPS on how much time has elapsed because this
+	 * function should only take the Camera ptr */
+	double elapsedSeconds = 0.033;
 	// mafm: getting the node to follow some point in the orbit and so on
 	// isn't difficult, but at the time to implement this I couldn't get an
 	// easy way to rotate the camera towards the player, so the player is
@@ -350,7 +366,7 @@ void CltCameraModeOrbital::updateCamera(osg::Matrix* cameraView, double elapsedS
 	lookAt.makeLookAt(finalMatrix.getTrans(),
 			  targetMatrix.getTrans(),
 			  osg::Z_AXIS);
-	cameraView->set(osg::Matrix::inverse(lookAt));
+	cameraView.setViewMatrix(osg::Matrix::inverse(lookAt));
 }
 
 

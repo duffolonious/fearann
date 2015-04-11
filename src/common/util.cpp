@@ -40,7 +40,7 @@ const char* StrFmt(const char* fmt, ...)
 	va_start(arg, fmt);
 	int charsWritten = vsnprintf(strfmtBuffer, sizeof(strfmtBuffer), fmt, arg);
 	if (static_cast<size_t>(charsWritten) >= sizeof(strfmtBuffer)) {
-		LogWRN("String truncated: '%s', would write %d instead of the limit %d",
+		LogWRN("String truncated: '%s', would write %d instead of the limit %lu",
 		       strfmtBuffer, charsWritten, sizeof(strfmtBuffer));
 	}
 	va_end(arg);

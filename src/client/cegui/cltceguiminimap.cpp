@@ -24,8 +24,8 @@
 #include <osg/MatrixTransform>
 #include <osg/Projection>
 
-#include <CEGUISystem.h>
-#include <CEGUIWindowManager.h>
+#include <CEGUI/System.h>
+#include <CEGUI/WindowManager.h>
 
 #include "client/cltviewer.h"
 #include "cltceguimgr.h"

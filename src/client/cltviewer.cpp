@@ -40,6 +40,8 @@
 #include "cltcamera.h"
 #include "cltinput.h"
 
+#include <unistd.h>
+
 #include <osg/AlphaFunc>
 #include <osg/Billboard>
 #include <osg/BlendFunc>
@@ -205,7 +207,7 @@ void CltViewer::setup()
 	// the input events).  So it's this primary event handler who calls the
 	// other ones in the correct order.
 	mViewer->addEventHandler(new CltKeyboardHandler());
-	mViewer->addEventHandler(mCameraManipulator);
+	mViewer->addEventHandler((osgGA::GUIEventHandler *)mCameraManipulator);
 
 	// create the window, switch to fullscreen if apropriate
 	mViewer->realize();
@@ -286,19 +288,19 @@ void CltViewer::setup()
        /* mafm: for testing, readily available world without login into the
         * server
 	*/
-	bool connected = CltNetworkMgr::instance().connectToServer("wainu.ii.uned.es",
+	bool connected = CltNetworkMgr::instance().connectToServer("localhost",
 								   20768);
 
 	MsgConnect msgConnect;
 	CltNetworkMgr::instance().sendToServer(msgConnect);
 
 	MsgLogin msgLogin;
-        msgLogin.username = "Peerko";
+        msgLogin.username = "testuser";
 	msgLogin.pw_md5sum = "0e0e68cc27a6334256e0752d1243c4d894e56869";
 	CltNetworkMgr::instance().sendToServer(msgLogin);
 
 	MsgJoin msgJoin;
-        msgJoin.charname = "Peerko";
+        msgJoin.charname = "testuser";
 	CltNetworkMgr::instance().sendToServer(msgJoin);
 
 	/*
@@ -409,7 +411,7 @@ void CltViewer::loadScene(const std::string& area)
 	osg::Node* playerNode = CltEntityMainPlayer::instance().loadModel();
 	playerNode->getOrCreateStateSet()->setMode(GL_LIGHTING,
 					   osg::StateAttribute::ON | osg::StateAttribute::OVERRIDE);
-	playerNode->addDescription(StrFmt("%llu", CltEntityMainPlayer::instance().getID()));
+	playerNode->addDescription(StrFmt("%lu", CltEntityMainPlayer::instance().getID()));
 	osg::MatrixTransform* playerTransform = CltMainPlayerManipulator::instance().getMatrixTransform();
 	playerTransform->addChild(playerNode);
 	mScene->addChild(playerTransform);
@@ -754,7 +756,7 @@ uint32_t CltViewer::pick(float x, float y)
 			osg::Node* target = intersections.begin()->nodePath.back();
 			if (target->getNumDescriptions() > 0) {
 				uint64_t id = StrToUInt64(target->getDescription(0).c_str());
-				LogDBG("picking: hit '%s', id=%llu",
+				LogDBG("picking: hit '%s', id=%lu",
 				       target->getName().c_str(),
 				       id);
 				return id;

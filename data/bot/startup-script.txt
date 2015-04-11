@@ -1,4 +1,4 @@
-#auto connect
-#auto login
-#auto join
-#auto mode npc
+auto connect
+auto login
+auto join
+auto mode npc

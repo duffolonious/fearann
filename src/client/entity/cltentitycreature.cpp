@@ -60,26 +60,31 @@ osgCal::Model* CltEntityCreature::loadModel()
 	// load model with the help of the content loader
 	mOSGCal3DModel = new osgCal::Model();
 	mNode = mOSGCal3DModel;
+	osgCal::BasicMeshAdder* meshAdder(new osgCal::DefaultMeshAdder);
 	osgCal::CoreModel* coreModel = CltContentLoader::instance().loadCal3DCoreModel(mEntityBasicData.meshType,
 										       mEntityBasicData.meshSubtype);
+#if 0
 	if (!mOSGCal3DModel->setCoreModel(coreModel)) {
 		LogERR("Loading cal3d model: %s", CalError::getLastErrorDescription().c_str());
 		return 0;
 	}
 
-	for (int i = 0; i < mOSGCal3DModel->getCalCoreModel()->getCoreMeshCount(); ++i) {
+	for (int i = 0; i < mOSGCal3DModel->getCalModel()->getCalCoreModel()->getCoreMeshCount(); ++i) {
 		mOSGCal3DModel->getCalModel()->attachMesh(i);
 	}
 
 	// set the material set of the whole model
 	mOSGCal3DModel->getCalModel()->setMaterialSet(0);
 
+	// FIXME: create() has been removed - rely on this being done in the constructor?
 	// creating a concrete model using the core template
-	if (!mOSGCal3DModel->create()) {
+	if (!mOSGCal3DModel->load(coreModel, meshAdder)) {
 		LogERR("Creating cal3d model: %s", CalError::getLastErrorDescription().c_str());
 		return 0;
 	}
+#endif
 
+	mOSGCal3DModel->load(coreModel, meshAdder);
 	// set the node name as player name
 	mOSGCal3DModel->setName(mEntityBasicData.entityName);
 

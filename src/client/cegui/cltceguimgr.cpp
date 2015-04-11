@@ -19,20 +19,24 @@
 #include "config.h"
 #include "client/cltconfig.h"
 
-#include <CEGUIFont.h>
-#include <CEGUIFontManager.h>
-#include <CEGUISchemeManager.h>
-#include <CEGUIWindow.h>
-#include <CEGUIWindowManager.h>
-#include <RendererModules/OpenGLGUIRenderer/openglrenderer.h>
-#include <elements/CEGUIMultiColumnList.h>
-#include <elements/CEGUIMultiColumnListProperties.h>
-#include <elements/CEGUIListboxItem.h>
-#include <elements/CEGUIListboxTextItem.h>
-#include <elements/CEGUIEditbox.h>
-#include <elements/CEGUIListHeaderSegment.h>
-#include <elements/CEGUIProgressBar.h>
-#include <elements/CEGUIPushButton.h>
+#include <unistd.h>
+#include <errno.h>
+
+#include <CEGUI/Colour.h>
+#include <CEGUI/Font.h>
+#include <CEGUI/FontManager.h>
+#include <CEGUI/SchemeManager.h>
+#include <CEGUI/Size.h>
+#include <CEGUI/Window.h>
+#include <CEGUI/WindowManager.h>
+#include <CEGUI/RendererModules/OpenGL/GLRenderer.h>
+#include <CEGUI/widgets/MultiColumnList.h>
+#include <CEGUI/widgets/Listbox.h>
+#include <CEGUI/widgets/ListboxTextItem.h>
+#include <CEGUI/widgets/Editbox.h>
+#include <CEGUI/widgets/ListHeaderSegment.h>
+#include <CEGUI/widgets/ProgressBar.h>
+#include <CEGUI/widgets/PushButton.h>
 
 #include "common/net/msgs.h"
 
@@ -44,13 +48,11 @@
 
 #include "cltceguimgr.h"
 
-
-
 //----------------------- CltCEGUIMgr ----------------------------
 template <> CltCEGUIMgr* Singleton<CltCEGUIMgr>::INSTANCE = 0;
 
 CltCEGUIMgr::CltCEGUIMgr() :
-	mCEGUISystem(0), mWinMgr(0), mCameraListener(0)
+	mWinMgr(0), mGUIContext(0), mCameraListener(0)
 {
 }
 
@@ -58,39 +60,43 @@ CltCEGUIMgr::~CltCEGUIMgr()
 {
 	CltCameraMgr::instance().removeListener(mCameraListener);
 	delete mCameraListener;
-	delete mCEGUISystem;
 }
 
 void CltCEGUIMgr::setup(int screenWidth, int screenHeight)
 {
 	// initialize CEGUI system
-	CEGUI::OpenGLRenderer* ceguiRenderer = new CEGUI::OpenGLRenderer(0, screenWidth, screenHeight);
-	mCEGUISystem = new CEGUI::System(ceguiRenderer);
+	/* CEGUI::OpenGLRenderer* ceguiRenderer = & */CEGUI::OpenGLRenderer::bootstrapSystem(CEGUI::Sizef(640, 480));
 	CEGUI::Logger::getSingleton().setLoggingLevel(CEGUI::Informative);
 
 	// set CWD to the directory containing CEGUI files, so we don't have the
 	// data/client/cegui/ part in the data files
 	char cwd[1024];
-	getcwd(cwd, sizeof(cwd));
-	chdir(CEGUI_DATA_DIR);
+	if(getcwd(cwd, sizeof(cwd)) == NULL) {
+		LogERR("getcwd failed: %s", strerror(errno));
+	}
+	if(chdir(CEGUI_DATA_DIR)) {
+		LogERR("CEGUI chdir failed: %s", strerror(errno));
+	}
 
 	// font
-	CEGUI::Font* font = CEGUI::FontManager::getSingleton().createFont("FreeType",
-									  "Vera",
-									  "../fonts/vera/Vera.ttf");
-	font->setProperty("PointSize", "10");
-	font->load();
-	CEGUI::System::getSingleton().setDefaultFont("Vera");
-	
-	
+	CEGUI::FontManager::getSingleton().createFreeTypeFont("Vera",
+								10,
+								false,
+								"../fonts/vera/Vera.ttf");
+
 	// load and set CEGUI resources
-	CEGUI::SchemeManager::getSingleton().loadScheme("fearann.scheme");
-	CEGUI::System::getSingleton().setDefaultMouseCursor("FearannLook", "MouseArrow");
+	CEGUI::SchemeManager::getSingleton().createFromFile("fearann.scheme");
 	mWinMgr = &CEGUI::WindowManager::getSingleton();
-	CEGUI::System::getSingleton().setGUISheet(mWinMgr->loadWindowLayout("fearann.layout"));
+	CEGUI::Window* root = mWinMgr->createWindow("DefaultWindow", "root");
+	mGUIContext = &CEGUI::System::getSingleton().getDefaultGUIContext();
+	mGUIContext->setDefaultFont("Vera");
+	mGUIContext->getMouseCursor().setDefaultImage("FearannLook/MouseArrow");
+	mGUIContext->setRootWindow(root);
 
 	// restore directory settings
-	chdir(cwd);
+	if(chdir(cwd)) {
+		LogERR("chdir failed: %s", strerror(errno));
+	}
 
 	// register events
 	CEGUI_EVENT("Dialog/Notification/Close",
@@ -134,17 +140,17 @@ void CltCEGUIMgr::setup(int screenWidth, int screenHeight)
 		    CltCEGUIMgr::PlayerStats_Camera);
 
 	// dialogs
-	mWinMgr->getWindow("Dialog/Notification")->setVisible(false);
-	mWinMgr->getWindow("Dialog/Quit")->setVisible(false);
+	root->getChild("Dialog/Notification")->setVisible(false);
+	root->getChild("Dialog/Quit")->setVisible(false);
 
 	// in game windows
-	mWinMgr->getWindow("InGame/Console")->setVisible(false);
-	mWinMgr->getWindow("InGame/Panel")->setVisible(false);
-	mWinMgr->getWindow("InGame/PlayerStats")->setVisible(false);
-	mWinMgr->getWindow("InGame/Calendar")->setVisible(false);
-	mWinMgr->getWindow("InGame/Minimap")->setVisible(false);
-	mWinMgr->getWindow("InGame/ContactList")->setVisible(false);
-	mWinMgr->getWindow("InGame/Inventory")->setVisible(false);
+	root->getChild("InGame/Console")->setVisible(false);
+	root->getChild("InGame/Panel")->setVisible(false);
+	root->getChild("InGame/PlayerStats")->setVisible(false);
+	root->getChild("InGame/Calendar")->setVisible(false);
+	root->getChild("InGame/Minimap")->setVisible(false);
+	root->getChild("InGame/ContactList")->setVisible(false);
+	root->getChild("InGame/Inventory")->setVisible(false);
 
 	// camera mode name and listener
 	PlayerStats_SetCameraModeName(CltCameraMgr::instance().getActiveCameraMode().getName());
@@ -163,12 +169,12 @@ void CltCEGUIMgr::setup(int screenWidth, int screenHeight)
 
 void CltCEGUIMgr::render()
 {
-	CEGUI::System::getSingleton().renderGUI();
+	CEGUI::System::getSingleton().renderAllGUIContexts();
 }
 
 void CltCEGUIMgr::disableFocus()
 {
-	CEGUI::Window* window = mWinMgr->getWindow("root")->getActiveChild();
+	CEGUI::Window* window = mGUIContext->getRootWindow()->getActiveChild();
 	if (window) {
 		window->deactivate();
 	}
@@ -176,21 +182,21 @@ void CltCEGUIMgr::disableFocus()
 
 bool CltCEGUIMgr::Notification_DisplayMessage(const char* msg)
 {
-	mWinMgr->getWindow("Dialog/Notification/Message")->setText(msg);
-	mWinMgr->getWindow("Dialog/Notification")->setVisible(true);
+	mGUIContext->getRootWindow()->getChild("Dialog/Notification/Message")->setText(msg);
+	mGUIContext->getRootWindow()->getChild("Dialog/Notification")->setVisible(true);
 	return true;
 }
 
 bool CltCEGUIMgr::Notification_Close(const CEGUI::EventArgs& e)
 {
-	mWinMgr->getWindow("Dialog/Notification")->setVisible(false);
+	mGUIContext->getRootWindow()->getChild("Dialog/Notification")->setVisible(false);
 	return true;
 }
 
 
 bool CltCEGUIMgr::Quit_Cancel(const CEGUI::EventArgs& e)
 {
-	mWinMgr->getWindow("Dialog/Quit")->setVisible(false);
+	mGUIContext->getRootWindow()->getChild("Dialog/Quit")->setVisible(false);
 	return true;
 }
 
@@ -202,13 +208,13 @@ bool CltCEGUIMgr::Quit_Quit(const CEGUI::EventArgs& e)
 
 void CltCEGUIMgr::Combat_DisplayMessage( const char * msg )
 {
-	mWinMgr->getWindow("Dialog/Combat/Message")->setText( msg );
-	mWinMgr->getWindow("Dialog/Combat")->setVisible(true);
+	mGUIContext->getRootWindow()->getChild("Dialog/Combat/Message")->setText( msg );
+	mGUIContext->getRootWindow()->getChild("Dialog/Combat")->setVisible(true);
 }
 
 bool CltCEGUIMgr::Combat_Cancel(const CEGUI::EventArgs& e)
 {
-	mWinMgr->getWindow("Dialog/Combat")->setVisible(false);
+	mGUIContext->getRootWindow()->getChild("Dialog/Combat")->setVisible(false);
 	//Send combat end message.
 	CltCombatMgr::instance().combatAction(MsgCombat::END);
 	return true;
@@ -216,7 +222,7 @@ bool CltCEGUIMgr::Combat_Cancel(const CEGUI::EventArgs& e)
 
 bool CltCEGUIMgr::Combat_Accept(const CEGUI::EventArgs& e)
 {
-	mWinMgr->getWindow("Dialog/Combat")->setVisible(false);
+	mGUIContext->getRootWindow()->getChild("Dialog/Combat")->setVisible(false);
 	//Send combat accept message.
 	CltCombatMgr::instance().combatAction(MsgCombat::ACCEPTED);
 	return true;
@@ -230,7 +236,7 @@ bool CltCEGUIMgr::Panel_InventoryButton(const CEGUI::EventArgs& e)
 
 bool CltCEGUIMgr::Panel_ContactsButton(const CEGUI::EventArgs& e)
 {
-	CEGUI::Window* contacts = mWinMgr->getWindow("InGame/ContactList");
+	CEGUI::Window* contacts = mGUIContext->getRootWindow()->getChild("InGame/ContactList");
 	PERM_ASSERT(contacts);
 
 	if (contacts->isVisible())
@@ -252,12 +258,12 @@ void CltCEGUIMgr::Contacts_AddToList(const char* name, char type, char _status,
 				    const char* last_login, const char* comment)
 {
 	CEGUI::MultiColumnList* contactList = static_cast<CEGUI::MultiColumnList*>
-		(mWinMgr->getWindow("InGame/ContactList/List"));
+		(mGUIContext->getRootWindow()->getChild("InGame/ContactList/List"));
 	PERM_ASSERT(contactList);
 
 	string typeStr = StrFmt("%c", type);
 	const char* status = 0;
-	CEGUI::colour col;
+	CEGUI::Colour col;
 	if (_status == 'C') {
 		status = "On-line";
 		col.setRGB(0.0f, 1.0f, 0.0f);
@@ -274,6 +280,7 @@ void CltCEGUIMgr::Contacts_AddToList(const char* name, char type, char _status,
 	CEGUI::String tooltip = tooltipStr.c_str();
 
 	*/
+	LogERR("Contact status '%s'", status);
 
         CEGUI::ListboxTextItem* charType = 0;
         CEGUI::ListboxTextItem* charName = static_cast<CEGUI::ListboxTextItem*>
@@ -286,8 +293,8 @@ void CltCEGUIMgr::Contacts_AddToList(const char* name, char type, char _status,
 		charName = new CEGUI::ListboxTextItem(name, 0);
 
 		// we have to set up this in order to get them highlighted
-		charType->setSelectionBrushImage("FearannLook", "ListboxSelectionBrush");
-		charName->setSelectionBrushImage("FearannLook", "ListboxSelectionBrush");
+		charType->setSelectionBrushImage("FearannLook/ListboxSelectionBrush");
+		charName->setSelectionBrushImage("FearannLook/ListboxSelectionBrush");
 
 		// putting the elements in the list
 		contactList->setItem(charType, 0, row);
@@ -314,7 +321,7 @@ void CltCEGUIMgr::Contacts_AddToList(const char* name, char type, char _status,
 bool CltCEGUIMgr::Contacts_Remove(const CEGUI::EventArgs& e)
 {
 	CEGUI::MultiColumnList* contactList = static_cast<CEGUI::MultiColumnList*>
-		(mWinMgr->getWindow("InGame/ContactList"));
+		(mGUIContext->getRootWindow()->getChild("InGame/ContactList"));
 	PERM_ASSERT(contactList);
 
 	if (contactList->getSelectedCount() == 0) {
@@ -374,57 +381,58 @@ bool CltCEGUIMgr::PlayerStats_Camera(const CEGUI::EventArgs& e)
 void CltCEGUIMgr::PlayerStats_Update(MsgPlayerData* msg)
 {
 	float health = float(msg->health_cur)/float(msg->health_max);
-	dynamic_cast<CEGUI::ProgressBar*>(mWinMgr->getWindow("InGame/PlayerStats/Health"))->setProgress(health);
+	dynamic_cast<CEGUI::ProgressBar*>(mGUIContext->getRootWindow()->getChild("InGame/PlayerStats/Health"))->setProgress(health);
 
 	float magic = float(msg->magic_cur)/float(msg->magic_max);
-	dynamic_cast<CEGUI::ProgressBar*>(mWinMgr->getWindow("InGame/PlayerStats/Magic"))->setProgress(magic);
+	dynamic_cast<CEGUI::ProgressBar*>(mGUIContext->getRootWindow()->getChild("InGame/PlayerStats/Magic"))->setProgress(magic);
 
 	float stamina = float(msg->stamina)/100.0f;
-	dynamic_cast<CEGUI::ProgressBar*>(mWinMgr->getWindow("InGame/PlayerStats/Stamina"))->setProgress(stamina);
+	dynamic_cast<CEGUI::ProgressBar*>(mGUIContext->getRootWindow()->getChild("InGame/PlayerStats/Stamina"))->setProgress(stamina);
 
 	float load = float(msg->load_cur)/float(msg->load_max);
-	dynamic_cast<CEGUI::ProgressBar*>(mWinMgr->getWindow("InGame/PlayerStats/Load"))->setProgress(load);
+	dynamic_cast<CEGUI::ProgressBar*>(mGUIContext->getRootWindow()->getChild("InGame/PlayerStats/Load"))->setProgress(load);
 
-	mWinMgr->getWindow("InGame/PlayerStats/Gold")->setText(StrFmt("G: %d", msg->gold));
+	mGUIContext->getRootWindow()->getChild("InGame/PlayerStats/Gold")->setText(StrFmt("G: %d", msg->gold));
 }
 
 void CltCEGUIMgr::PlayerStats_SetCameraModeName(const char* name)
 {
-	CEGUI::WindowManager::getSingleton().getWindow("InGame/PlayerStats/Camera")->setText(name);
+	CltCEGUIMgr::instance().getGUIContext()
+	  ->getRootWindow()->getChild("InGame/PlayerStats/Camera")->setText(name);
 }
 
 void CltCEGUIMgr::Calendar_SetTime(const string& time, const string& date, const string& year)
 {
-	mWinMgr->getWindow("InGame/Calendar/Time_Lbl")->setText(time.c_str());
-	mWinMgr->getWindow("InGame/Calendar/Date_Lbl")->setText(date.c_str());
-	mWinMgr->getWindow("InGame/Calendar/Year_Lbl")->setText(year.c_str());
+	mGUIContext->getRootWindow()->getChild("InGame/Calendar/Time_Lbl")->setText(time.c_str());
+	mGUIContext->getRootWindow()->getChild("InGame/Calendar/Date_Lbl")->setText(date.c_str());
+	mGUIContext->getRootWindow()->getChild("InGame/Calendar/Year_Lbl")->setText(year.c_str());
 }
 
 void CltCEGUIMgr::Calendar_SetMoonPicture(const string& moonPictureName)
 {
 	string imageProperty = StrFmt("set:InterfaceDecorations image:%s", moonPictureName.c_str());
-	mWinMgr->getWindow("InGame/Calendar/Moon")->setProperty("Image", imageProperty);
+	mGUIContext->getRootWindow()->getChild("InGame/Calendar/Moon")->setProperty("Image", imageProperty);
 }
 
 void CltCEGUIMgr::Quit_DisplayDialog()
 {
 	// just raising the window
-	mWinMgr->getWindow("Dialog/Quit")->setVisible(true);
+	mGUIContext->getRootWindow()->getChild("Dialog/Quit")->setVisible(true);
 }
 
 void CltCEGUIMgr::StartPlaying()
 {
 	// raising the default windows when entering the game
-	mWinMgr->getWindow("InGame/Console")->setVisible(true);
-	mWinMgr->getWindow("InGame/Panel")->setVisible(true);
-	mWinMgr->getWindow("InGame/PlayerStats")->setVisible(true);
-	mWinMgr->getWindow("InGame/Calendar")->setVisible(true);
-	mWinMgr->getWindow("InGame/Minimap")->setVisible(true);
+	mGUIContext->getRootWindow()->getChild("InGame/Console")->setVisible(true);
+	mGUIContext->getRootWindow()->getChild("InGame/Panel")->setVisible(true);
+	mGUIContext->getRootWindow()->getChild("InGame/PlayerStats")->setVisible(true);
+	mGUIContext->getRootWindow()->getChild("InGame/Calendar")->setVisible(true);
+	mGUIContext->getRootWindow()->getChild("InGame/Minimap")->setVisible(true);
 }
 
 void CltCEGUIMgr::ToggleWindow_Inventory()
 {
-	CEGUI::Window* inv = mWinMgr->getWindow("InGame/Inventory");
+	CEGUI::Window* inv = mGUIContext->getRootWindow()->getChild("InGame/Inventory");
 	PERM_ASSERT(inv);
 
 	if (inv->isVisible())
