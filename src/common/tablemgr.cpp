@@ -95,7 +95,8 @@ const char* Table::getValue(const string& keyVal, const string& col) const
 	    || c == -1
 	    || static_cast<unsigned int>(r) > mData.size()
 	    || static_cast<unsigned int>(c) > mData[r].size()) {
-		LogDBG("Requested cell not found in table: (%d, %d)", r, c);
+		LogDBG("Requested cell not found in table ('%s'): (%d, %d)",
+			mTableName.c_str(), r, c);
 		return 0;
 	} else {
 		return mData[r][c].c_str();

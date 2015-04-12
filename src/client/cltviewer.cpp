@@ -300,7 +300,7 @@ void CltViewer::setup()
 	CltNetworkMgr::instance().sendToServer(msgLogin);
 
 	MsgJoin msgJoin;
-        msgJoin.charname = "testuser";
+        msgJoin.charname = "testchar";
 	CltNetworkMgr::instance().sendToServer(msgJoin);
 
 	/*

@@ -683,7 +683,7 @@ void SrvLoginMgr::joinGame(LoginData* loginData, string charname)
 
 		// 2- check if the usr/char already joined the game with any character
 		if (loginData->charname != "<none>") {
-			string logMsg = StrFmt("Joing game: already playing (char '%s')",
+			string logMsg = StrFmt("Joining game: already playing (char '%s')",
 					       loginData->charname.c_str());
 			throw SrvLoginError(MsgUtils::Errors::EALREADYPLAYING, logMsg);
 		}
@@ -693,6 +693,7 @@ void SrvLoginMgr::joinGame(LoginData* loginData, string charname)
 		MsgEntityMove msgMove;
 		MsgPlayerData msgPlayer;
 		{
+			LogNTC("uid: %s; charname '%s'", loginData->uid.c_str(), charname.c_str());
 			SrvDBQuery query;
 			query.setTables("usr_chars,usr_accts");
 			string condition = "charname='" + charname
@@ -711,7 +712,7 @@ void SrvLoginMgr::joinGame(LoginData* loginData, string charname)
 			query.addColumnWithoutValue("roles");
 			int numresults = mDBMgr->querySelect(&query);
 			if (numresults != 1) {
-				string logMsg = StrFmt("Joing game: no such char (char '%s', numresults %d)",
+				string logMsg = StrFmt("Joining game: no such char (char '%s', numresults %d)",
 						       loginData->charname.c_str(), numresults);
 				throw SrvLoginError(MsgUtils::Errors::ENOSUCHCHAR, logMsg);
 			}
@@ -765,7 +766,7 @@ void SrvLoginMgr::joinGame(LoginData* loginData, string charname)
 			query2.addColumnWithoutValue("ab_cha");
 			numresults = mDBMgr->querySelect(&query2);
 			if (numresults != 1) {
-				string logMsg = StrFmt("Joing game: no such char (char '%s', numresults %d)",
+				string logMsg = StrFmt("Joining game: no such char stats (char '%s', numresults %d)",
 						       loginData->charname.c_str(), numresults);
 				throw SrvLoginError(MsgUtils::Errors::ENOSUCHCHAR, logMsg);
 			}
@@ -817,7 +818,7 @@ void SrvLoginMgr::joinGame(LoginData* loginData, string charname)
 			query.addColumnWithValue("number_logins", "number_logins+1", false);
 			bool success = mDBMgr->queryUpdate(&query);
 			if (!success) {
-				string logMsg = StrFmt("Joing game: DB failure (char '%s')",
+				string logMsg = StrFmt("Joining game: DB failure (char '%s')",
 						       loginData->charname.c_str());
 				throw SrvLoginError(MsgUtils::Errors::EDATABASE, logMsg);
 			}
@@ -871,7 +872,7 @@ LoginData* SrvLoginMgr::findPlayer(EntityID id) const
 			return *it;
 		}
 	}
-	LogWRN("Cannot find LoginData for player id '%llu')", id);
+	LogWRN("Cannot find LoginData for player id '%lu')", id);
 	return 0;
 }
 
