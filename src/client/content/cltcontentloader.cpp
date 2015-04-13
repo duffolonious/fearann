@@ -136,7 +136,9 @@ osgCal::CoreModel* CltContentLoader::loadCal3DCoreModel(const string& meshType, 
 
 	// load cal3d model
 	string modelFile(StrFmt("%s/%s_%s.cfg", cal3dDir.c_str(), meshType.c_str(), meshSubtype.c_str()));
-	osgCal::CoreModel* coreModel = dynamic_cast<osgCal::CoreModel*>(osgDB::readObjectFile(modelFile.c_str()));
+	osgCal::CoreModel* coreModel(new osgCal::CoreModel());
+	osgCal::MeshParameters* param(new osgCal::MeshParameters);
+	coreModel->load(modelFile, param);
 	PERM_ASSERT(coreModel);
 
 	// scale, if needed
