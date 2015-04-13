@@ -11,7 +11,6 @@
 	    <Property Name="Image" Value="set:InitialBG image:InitialBG" />
 	</Window>
 
-	
         <Window Type="FearannLook/FrameWindow" Name="Initial/Connect">
             <Property Name="Text" Value="Select a server" />
             <Property Name="CloseButtonEnabled" Value="False" />

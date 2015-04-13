@@ -7,7 +7,7 @@
 
 	<LookNFeel filename="FearannLook.looknfeel" />
 
-	<WindowSet filename="CEGUIFalagardWRBase" />
+	<WindowRendererSet filename="CEGUICoreWindowRendererSet" />
 	<FalagardMapping lookNFeel="FearannLook/Button" renderer="Core/Button" targetType="CEGUI/PushButton" windowType="FearannLook/Button" />
 	<FalagardMapping lookNFeel="FearannLook/Checkbox" renderer="Core/ToggleButton" targetType="CEGUI/ToggleButton" windowType="FearannLook/Checkbox" />
 	<FalagardMapping lookNFeel="FearannLook/ImageButton" renderer="Core/Button" targetType="CEGUI/PushButton" windowType="FearannLook/ImageButton" />
