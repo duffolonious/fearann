@@ -177,6 +177,9 @@ void CltViewer::setup()
 	traits->useCursor = true;
 	traits->windowName = "Fearann Muin Client";
 	osg::ref_ptr<osg::GraphicsContext> gc = osg::GraphicsContext::createGraphicsContext(traits.get());
+	/** duffolonious: following lines added so that glewInit() doesn't fail, because multithreading? */
+	gc->realize();
+	gc->makeCurrent();
 
 	// set up viewer and camera
 	mViewer = new osgViewer::Viewer();
@@ -279,8 +282,8 @@ void CltViewer::setup()
 	/// \todo mafm: CEGUI disabled
 
 	// add the GUI
-	//CltCEGUIDrawable* ceguiDrawable = new CltCEGUIDrawable(mWindowWidth, mWindowHeight);
-	//mScene->addChild(ceguiDrawable->getNode());
+	CltCEGUIDrawable* ceguiDrawable = new CltCEGUIDrawable(mWindowWidth, mWindowHeight);
+	mScene->addChild(ceguiDrawable->getNode());
 
 	// finally, set up the scene in the viewer
 	mViewer->setSceneData(mScene);

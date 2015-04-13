@@ -1,25 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<Imageset autoScaled="true" imagefile="InterfaceDecorations.png" name="InterfaceDecorations" nativeHorzRes="512" nativeVertRes="512" version="2">
+	<Image height="120" name="PlayerStatsBG" width="160" xPos="0" yPos="0" />
+	<Image height="80" name="CalendarBG" width="80" xPos="160" yPos="0" />
+	<Image height="150" name="MinimapBG" width="150" xPos="0" yPos="120" />
+	<Image height="150" name="MinimapCompassCase" width="150" xPos="0" yPos="270" />
 
-<Imageset Name="InterfaceDecorations" Imagefile="InterfaceDecorations.png" NativeHorzRes="512" NativeVertRes="512" AutoScaled="true">
-	<Image Name="PlayerStatsBG" XPos="0" YPos="0" Width="160" Height="120" />
-	<Image Name="CalendarBG" XPos="160" YPos="0" Width="80" Height="80" />
-	<Image Name="MinimapBG" XPos="0" YPos="120" Width="150" Height="150" />
-	<Image Name="MinimapCompassCase" XPos="0" YPos="270" Width="150" Height="150" />
-
-	<Image Name="Moon_00" XPos="255" YPos="255" Width="64" Height="64" />
-	<Image Name="Moon_01" XPos="319" YPos="255" Width="64" Height="64" />
-	<Image Name="Moon_02" XPos="383" YPos="255" Width="64" Height="64" />
-	<Image Name="Moon_03" XPos="447" YPos="255" Width="64" Height="64" />
-	<Image Name="Moon_04" XPos="255" YPos="319" Width="64" Height="64" />
-	<Image Name="Moon_05" XPos="319" YPos="319" Width="64" Height="64" />
-	<Image Name="Moon_06" XPos="383" YPos="319" Width="64" Height="64" />
-	<Image Name="Moon_07" XPos="447" YPos="319" Width="64" Height="64" />
-	<Image Name="Moon_08" XPos="255" YPos="383" Width="64" Height="64" />
-	<Image Name="Moon_09" XPos="319" YPos="383" Width="64" Height="64" />
-	<Image Name="Moon_10" XPos="383" YPos="383" Width="64" Height="64" />
-	<Image Name="Moon_11" XPos="447" YPos="383" Width="64" Height="64" />
-	<Image Name="Moon_12" XPos="255" YPos="447" Width="64" Height="64" />
-	<Image Name="Moon_13" XPos="319" YPos="447" Width="64" Height="64" />
-	<Image Name="Moon_14" XPos="383" YPos="447" Width="64" Height="64" />
-	<Image Name="Moon_15" XPos="447" YPos="447" Width="64" Height="64" />
+	<Image height="64" name="Moon_00" width="64" xPos="255" yPos="255" />
+	<Image height="64" name="Moon_01" width="64" xPos="319" yPos="255" />
+	<Image height="64" name="Moon_02" width="64" xPos="383" yPos="255" />
+	<Image height="64" name="Moon_03" width="64" xPos="447" yPos="255" />
+	<Image height="64" name="Moon_04" width="64" xPos="255" yPos="319" />
+	<Image height="64" name="Moon_05" width="64" xPos="319" yPos="319" />
+	<Image height="64" name="Moon_06" width="64" xPos="383" yPos="319" />
+	<Image height="64" name="Moon_07" width="64" xPos="447" yPos="319" />
+	<Image height="64" name="Moon_08" width="64" xPos="255" yPos="383" />
+	<Image height="64" name="Moon_09" width="64" xPos="319" yPos="383" />
+	<Image height="64" name="Moon_10" width="64" xPos="383" yPos="383" />
+	<Image height="64" name="Moon_11" width="64" xPos="447" yPos="383" />
+	<Image height="64" name="Moon_12" width="64" xPos="255" yPos="447" />
+	<Image height="64" name="Moon_13" width="64" xPos="319" yPos="447" />
+	<Image height="64" name="Moon_14" width="64" xPos="383" yPos="447" />
+	<Image height="64" name="Moon_15" width="64" xPos="447" yPos="447" />
 </Imageset>
