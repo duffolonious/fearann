@@ -19,7 +19,7 @@
 #include "config.h"
 #include "client/cltconfig.h"
 
-#include <CEGUI/WindowManager.h>
+#include <CEGUI/CEGUI.h>
 #include <CEGUI/widgets/Editbox.h>
 #include <CEGUI/widgets/MultiLineEditbox.h>
 #include <CEGUI/widgets/TabButton.h>

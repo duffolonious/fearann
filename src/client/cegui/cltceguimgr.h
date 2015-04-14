@@ -50,6 +50,10 @@ public:
 	 * because it needs to be set up after the window is created, otherwise
 	 * some OpenGL functions are broken. */
 	void setup(int screenWidth, int screenHeight);
+
+	/** CEGUI has been initialized and is ready to use (for input as an example) */
+	bool isReady();
+
 	/** Called in the main render loop every frame, to render the CEGUI
 	 * windows above the rest of the scene. */
 	void render();
@@ -119,6 +123,8 @@ private:
 	/// Listener for camera events
 	CltCameraListener* mCameraListener;
 
+	/// True if CEGUI is ready to use
+	bool mReady;
 
 	/** Default constructor */
 	CltCEGUIMgr();

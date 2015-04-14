@@ -174,12 +174,9 @@ void CltViewer::setup()
 	traits->windowDecoration = true;
 	traits->doubleBuffer = true;
 	traits->sharedContext = 0;
-	traits->useCursor = true;
+	traits->useCursor = false; //Use the CEGUI cursor instead.
 	traits->windowName = "Fearann Muin Client";
 	osg::ref_ptr<osg::GraphicsContext> gc = osg::GraphicsContext::createGraphicsContext(traits.get());
-	/** duffolonious: following lines added so that glewInit() doesn't fail, because multithreading? */
-	gc->realize();
-	gc->makeCurrent();
 
 	// set up viewer and camera
 	mViewer = new osgViewer::Viewer();
@@ -193,7 +190,7 @@ void CltViewer::setup()
 	// duffolonious: doesn't show anything without this line:
 	mViewer->addSlave(camera,
 			  osg::Matrixd::translate(0, 0, 0),
-			  osg::Matrixd()); 
+			  osg::Matrixd());
 
 	/// \note mafm: quick exit, mainly for devel purposes
 	mViewer->setKeyEventSetsDone(osgGA::GUIEventAdapter::KEY_Escape);
@@ -770,6 +767,10 @@ uint32_t CltViewer::pick(float x, float y)
 	return 0;
 }
 
+osg::Camera& CltViewer::getCamera()
+{
+	return *mViewer->getCamera();
+}
 
 // Local Variables: ***
 // mode: C++ ***

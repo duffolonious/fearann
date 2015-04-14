@@ -153,87 +153,87 @@ void CltCEGUIInitial::setup()
 
 	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
 	// initial visibility
-	root->getChild("Initial/Background")->setVisible(false);
-	root->getChild("Initial/Connect")->setVisible(true);
-	root->getChild("Initial/Login")->setVisible(false);
-	root->getChild("Initial/NewUser")->setVisible(false);
-	root->getChild("Initial/Join")->setVisible(false);
-	root->getChild("Initial/NewChar")->setVisible(false);
-	root->getChild("Initial/Download")->setVisible(false);
-	root->getChild("Initial/LoadingBanner")->setVisible(false);
+	root->getChild("Background")->setVisible(false);
+	root->getChild("Connect")->setVisible(false); //set to false for now
+	root->getChild("Login")->setVisible(false);
+	root->getChild("NewUser")->setVisible(false);
+	root->getChild("Join")->setVisible(false);
+	root->getChild("NewChar")->setVisible(false);
+	root->getChild("Download")->setVisible(false);
+	root->getChild("LoadingBanner")->setVisible(false);
 
 	// subscribe events
-	CEGUI_EVENT("Initial/Connect/Quit",
+	CEGUI_EVENT("Connect/Quit",
 		    CEGUI::PushButton::EventClicked,
 		    CltCEGUIInitial::Connect_Quit);
-	CEGUI_EVENT("Initial/Connect/Options",
+	CEGUI_EVENT("Connect/Options",
 		    CEGUI::PushButton::EventClicked,
 		    CltCEGUIInitial::Connect_Options);
-	CEGUI_EVENT("Initial/Connect/Connect",
+	CEGUI_EVENT("Connect/Connect",
 		    CEGUI::PushButton::EventClicked,
 		    CltCEGUIInitial::Connect_Connect);
 
-	CEGUI_EVENT("Initial/Login/Quit",
+	CEGUI_EVENT("Login/Quit",
 		    CEGUI::PushButton::EventClicked,
 		    CltCEGUIInitial::Login_Quit);
-	CEGUI_EVENT("Initial/Login/NewUser",
+	CEGUI_EVENT("Login/NewUser",
 		    CEGUI::PushButton::EventClicked,
 		    CltCEGUIInitial::Login_NewUser);
-	CEGUI_EVENT("Initial/Login/Login",
+	CEGUI_EVENT("Login/Login",
 		    CEGUI::PushButton::EventClicked,
 		    CltCEGUIInitial::Login_Login);
 
-	CEGUI_EVENT("Initial/NewUser/Cancel",
+	CEGUI_EVENT("NewUser/Cancel",
 		    CEGUI::PushButton::EventClicked,
 		    CltCEGUIInitial::NewUser_Cancel);
-	CEGUI_EVENT("Initial/NewUser/Create",
+	CEGUI_EVENT("NewUser/Create",
 		    CEGUI::PushButton::EventClicked,
 		    CltCEGUIInitial::NewUser_Create);
 
-	CEGUI_EVENT("Initial/Join/CharList",
+	CEGUI_EVENT("Join/CharList",
 		    CEGUI::MultiColumnList::EventSelectionChanged,
 		    CltCEGUIInitial::Join_OnSelectionChanged);
-	CEGUI_EVENT("Initial/Join/Quit",
+	CEGUI_EVENT("Join/Quit",
 		    CEGUI::PushButton::EventClicked,
 		    CltCEGUIInitial::Join_Quit);
-	CEGUI_EVENT("Initial/Join/Join",
+	CEGUI_EVENT("Join/Join",
 		    CEGUI::PushButton::EventClicked,
 		    CltCEGUIInitial::Join_Join);
-	CEGUI_EVENT("Initial/Join/NewChar",
+	CEGUI_EVENT("Join/NewChar",
 		    CEGUI::PushButton::EventClicked,
 		    CltCEGUIInitial::Join_NewChar);
-	CEGUI_EVENT("Initial/Join/DelChar",
+	CEGUI_EVENT("Join/DelChar",
 		    CEGUI::PushButton::EventClicked,
 		    CltCEGUIInitial::Join_DelChar);
 
-	CEGUI_EVENT("Initial/NewChar/Cancel",
+	CEGUI_EVENT("NewChar/Cancel",
 		    CEGUI::PushButton::EventClicked,
 		    CltCEGUIInitial::NewChar_Cancel);
-	CEGUI_EVENT("Initial/NewChar/Create",
+	CEGUI_EVENT("NewChar/Create",
 		    CEGUI::PushButton::EventClicked,
 		    CltCEGUIInitial::NewChar_Create);
-	CEGUI_EVENT("Initial/NewChar/Ab_Str",
+	CEGUI_EVENT("NewChar/Ab_Str",
 		    CEGUI::Spinner::EventValueChanged,
 		    CltCEGUIInitial::NewChar_SpinnerValueChanged);
-	CEGUI_EVENT("Initial/NewChar/Ab_Con",
+	CEGUI_EVENT("NewChar/Ab_Con",
 		    CEGUI::Spinner::EventValueChanged,
 		    CltCEGUIInitial::NewChar_SpinnerValueChanged);
-	CEGUI_EVENT("Initial/NewChar/Ab_Dex",
+	CEGUI_EVENT("NewChar/Ab_Dex",
 		    CEGUI::Spinner::EventValueChanged,
 		    CltCEGUIInitial::NewChar_SpinnerValueChanged);
-	CEGUI_EVENT("Initial/NewChar/Ab_Int",
+	CEGUI_EVENT("NewChar/Ab_Int",
 		    CEGUI::Spinner::EventValueChanged,
 		    CltCEGUIInitial::NewChar_SpinnerValueChanged);
-	CEGUI_EVENT("Initial/NewChar/Ab_Wis",
+	CEGUI_EVENT("NewChar/Ab_Wis",
 		    CEGUI::Spinner::EventValueChanged,
 		    CltCEGUIInitial::NewChar_SpinnerValueChanged);
-	CEGUI_EVENT("Initial/NewChar/Ab_Cha",
+	CEGUI_EVENT("NewChar/Ab_Cha",
 		    CEGUI::Spinner::EventValueChanged,
 		    CltCEGUIInitial::NewChar_SpinnerValueChanged);
-	CEGUI_EVENT("Initial/NewChar/CharRace",
+	CEGUI_EVENT("NewChar/CharRace",
 		    CEGUI::Combobox::EventListSelectionAccepted,
 		    CltCEGUIInitial::NewChar_ComboboxSelectionAccepted);
-	CEGUI_EVENT("Initial/NewChar/CharGender",
+	CEGUI_EVENT("NewChar/CharGender",
 		    CEGUI::Combobox::EventListSelectionAccepted,
 		    CltCEGUIInitial::NewChar_ComboboxSelectionAccepted);
 
@@ -241,7 +241,7 @@ void CltCEGUIInitial::setup()
 		// disabling Login button until content downloaded, we need to
 		// have the xml config files parsed for many functions in the
 		// initial menus
-		root->getChild("Initial/Login/Login")->disable();
+		root->getChild("Login/Login")->disable();
 	}
 }
 
@@ -253,7 +253,7 @@ void CltCEGUIInitial::Connect_LoadConnectData()
 {
 	// get the server list window in CEGUI
 	CEGUI::MultiColumnList* serverList = static_cast<CEGUI::MultiColumnList*>
-		(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Connect/ServerList"));
+		(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Connect/ServerList"));
 	PERM_ASSERT(serverList);
 	serverList->setSelectionMode(CEGUI::MultiColumnList::RowSingle);
 
@@ -299,7 +299,7 @@ void CltCEGUIInitial::Connect_LoadConnectData()
 	serverList->setItemSelectState(position, true);
 
 	// disabling Options button until we do something with them
-	static_cast<CEGUI::PushButton*>(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Connect/Options"))->disable();
+	static_cast<CEGUI::PushButton*>(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Connect/Options"))->disable();
 }
 
 bool CltCEGUIInitial::Connect_Quit(const CEGUI::EventArgs& e)
@@ -317,7 +317,7 @@ bool CltCEGUIInitial::Connect_Options(const CEGUI::EventArgs& e)
 bool CltCEGUIInitial::Connect_Connect(const CEGUI::EventArgs& e)
 {
 	CEGUI::MultiColumnList* serverList = static_cast<CEGUI::MultiColumnList*>
-		(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Connect/ServerList"));
+		(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Connect/ServerList"));
 	PERM_ASSERT(serverList);
 
 	if (serverList->getSelectedCount() == 0) {
@@ -327,7 +327,7 @@ bool CltCEGUIInitial::Connect_Connect(const CEGUI::EventArgs& e)
 	}
 
 	// disable while processing
-	static_cast<CEGUI::PushButton*>(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Connect/Connect"))->disable();
+	static_cast<CEGUI::PushButton*>(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Connect/Connect"))->disable();
 
 	// get selected server
 	CEGUI::ListboxItem* address = serverList->getFirstSelectedItem();
@@ -338,7 +338,7 @@ bool CltCEGUIInitial::Connect_Connect(const CEGUI::EventArgs& e)
 		LogERR("Cannot connect to server");
 		CltCEGUIMgr::instance().Notification_DisplayMessage("Cannot connect to server");
 		// enable again
-		static_cast<CEGUI::PushButton*>(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Connect/Connect"))->enable();
+		static_cast<CEGUI::PushButton*>(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Connect/Connect"))->enable();
 	} else {
 		// send initial message
 		MsgConnect msg;
@@ -445,11 +445,11 @@ void CltCEGUIInitial::Login_LoadLoginData()
 	string storedUsername = ConfigMgr::instance().getConfigVar("Client.Settings.User", "");
 	string storedPassword = ConfigMgr::instance().getConfigVar("Client.Settings.Password", "");
 	if (storedUsername != "") {
-		CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Login/Username")->setText(storedUsername);
+		CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Login/Username")->setText(storedUsername);
 	}
 	if (storedPassword != "") {
 		storedPassword = "<stored>";
-		CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Initial/Login/Password")->setText(storedPassword);
+		CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Login/Password")->setText(storedPassword);
 	}
 }
 
@@ -882,20 +882,20 @@ void CltCEGUIInitial::NewChar_LoadNewCharData()
 {
 	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
         CEGUI::Combobox* raceBox = static_cast<CEGUI::Combobox*>
-		(root->getChild("Initial/NewChar/CharRace"));
+		(root->getChild("NewChar/CharRace"));
         CEGUI::Combobox* genderBox = static_cast<CEGUI::Combobox*>
-		(root->getChild("Initial/NewChar/CharGender"));
+		(root->getChild("NewChar/CharGender"));
         CEGUI::Combobox* classBox = static_cast<CEGUI::Combobox*>
-		(root->getChild("Initial/NewChar/CharClass"));
+		(root->getChild("NewChar/CharClass"));
         PERM_ASSERT(raceBox && genderBox && classBox);
 
 	CEGUI::ListboxTextItem* raceD = new CEGUI::ListboxTextItem("Dwarf", 0);
 	CEGUI::ListboxTextItem* raceE = new CEGUI::ListboxTextItem("Elf", 0);
 	CEGUI::ListboxTextItem* raceH = new CEGUI::ListboxTextItem("Human", 0);
 	// we have to set up this in order to get them highlighted
-	raceD->setSelectionBrushImage("ListboxSelectionBrush");
-	raceE->setSelectionBrushImage("ListboxSelectionBrush");
-	raceH->setSelectionBrushImage("ListboxSelectionBrush");
+	raceD->setSelectionBrushImage("FearannLook/ListboxSelectionBrush");
+	raceE->setSelectionBrushImage("FearannLook/ListboxSelectionBrush");
+	raceH->setSelectionBrushImage("FearannLook/ListboxSelectionBrush");
 	raceBox->addItem(raceD);
 	raceBox->addItem(raceE);
 	raceBox->addItem(raceH);
@@ -906,8 +906,8 @@ void CltCEGUIInitial::NewChar_LoadNewCharData()
 	CEGUI::ListboxTextItem* genderF = new CEGUI::ListboxTextItem("f", 0);
 	CEGUI::ListboxTextItem* genderM = new CEGUI::ListboxTextItem("m", 0);
 	// we have to set up this in order to get them highlighted
-	genderF->setSelectionBrushImage("ListboxSelectionBrush");
-	genderM->setSelectionBrushImage("ListboxSelectionBrush");
+	genderF->setSelectionBrushImage("FearannLook/ListboxSelectionBrush");
+	genderM->setSelectionBrushImage("FearannLook/ListboxSelectionBrush");
 	genderBox->addItem(genderF);
 	genderBox->addItem(genderM);
 	genderBox->clearAllSelections();
@@ -917,8 +917,8 @@ void CltCEGUIInitial::NewChar_LoadNewCharData()
 	CEGUI::ListboxTextItem* classFighter = new CEGUI::ListboxTextItem("fighter", 0);
 	CEGUI::ListboxTextItem* classSorcerer = new CEGUI::ListboxTextItem("sorcerer", 0);
 	// we have to set up this in order to get them highlighted
-	classFighter->setSelectionBrushImage("ListboxSelectionBrush");
-	classSorcerer->setSelectionBrushImage("ListboxSelectionBrush");
+	classFighter->setSelectionBrushImage("FearannLook/ListboxSelectionBrush");
+	classSorcerer->setSelectionBrushImage("FearannLook/ListboxSelectionBrush");
 	classBox->addItem(classFighter);
 	classBox->addItem(classSorcerer);
 	classBox->clearAllSelections();
@@ -928,7 +928,7 @@ void CltCEGUIInitial::NewChar_LoadNewCharData()
 	// points to use when creating a new char
 	pointsNewChar = 0;
 
-	root->getChild("Initial/NewChar/Points")->setText(StrFmt("%d", pointsNewChar));
+	root->getChild("NewChar/Points")->setText(StrFmt("%d", pointsNewChar));
 }
 
 bool CltCEGUIInitial::NewChar_Cancel(const CEGUI::EventArgs& e)
@@ -1065,7 +1065,7 @@ bool CltCEGUIInitial::NewChar_SpinnerValueChanged(const CEGUI::EventArgs& e)
 		return true;
 	}
 
-	root->getChild("Initial/NewChar/Points")->setText(StrFmt("%d",
+	root->getChild("NewChar/Points")->setText(StrFmt("%d",
 								    pointsNewChar - (totalValue - 78)));
 
 	// recalculating total
@@ -1078,7 +1078,7 @@ bool CltCEGUIInitial::NewChar_ComboboxSelectionAccepted(const CEGUI::EventArgs& 
 {
 	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
         CEGUI::Combobox* raceBox = static_cast<CEGUI::Combobox*>
-		(root->getChild("Initial/NewChar/CharRace"));
+		(root->getChild("NewChar/CharRace"));
         CEGUI::Combobox* genderBox = static_cast<CEGUI::Combobox*>
 		(root->getChild("Initial/NewChar/CharGender"));
         PERM_ASSERT(raceBox && genderBox );

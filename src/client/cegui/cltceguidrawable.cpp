@@ -19,6 +19,8 @@
 #include "config.h"
 #include "client/cltconfig.h"
 
+#include <limits.h>
+
 #include <CEGUI/System.h>
 #include <CEGUI/Window.h>
 #include <CEGUI/WindowManager.h>
@@ -277,15 +279,19 @@ bool CltCEGUIEventHandler::handle(const osgGA::GUIEventAdapter& ea,
 				  osgGA::GUIActionAdapter& /* aa */)
 {
 	bool catched = false;
+	if(!CltCEGUIMgr::instance().isReady()) {
+		LogDBG("CEGUI not ready");
+		return false;
+	}
 
 	switch(ea.getEventType())
         {
 	case(osgGA::GUIEventAdapter::DRAG):
 	case(osgGA::GUIEventAdapter::MOVE):
 	{
-		// coordinates conversion
-		int x = static_cast<int>((1.0f + ea.getX()) * CltViewer::instance().getWindowWidth()/2);
-		int y = static_cast<int>((1.0f - ea.getY()) * CltViewer::instance().getWindowHeight()/2);
+		// coordinates conversion - the only thing is the the y is inverted
+		int x = static_cast<int>(ea.getX());
+		int y = static_cast<int>(CltViewer::instance().getWindowHeight() - ea.getY());
 		catched = CEGUI::System::getSingleton().getDefaultGUIContext().injectMousePosition(x, y);
 
 		return catched;
@@ -345,7 +351,7 @@ bool CltCEGUIEventHandler::handle(const osgGA::GUIEventAdapter& ea,
 	case(osgGA::GUIEventAdapter::FRAME):
 	{
 		static double lastTime = 0.0;
-		CEGUI::System::getSingletonPtr()->injectTimePulse(ea.time() - lastTime);
+		CEGUI::System::getSingleton().getDefaultGUIContext().injectTimePulse(ea.time() - lastTime);
 		lastTime = ea.time();
 		return false;
 	}
@@ -360,7 +366,7 @@ bool CltCEGUIEventHandler::handle(const osgGA::GUIEventAdapter& ea,
 
 //------------------------------- CltCEGUIDrawable ---------------------
 CltCEGUIDrawable::CltCEGUIDrawable(unsigned int windowWidth, unsigned int windowHeight) :
-	mWindowWidth(windowWidth), mWindowHeight(windowHeight)
+	mWindowWidth(windowWidth), mWindowHeight(windowHeight), mActiveContextID(UINT_MAX)
 {
 	// basic setup of this drawable
 	setSupportsDisplayList(false);
@@ -369,6 +375,7 @@ CltCEGUIDrawable::CltCEGUIDrawable(unsigned int windowWidth, unsigned int window
 	// projection: occupying the full screen
 	mTransform = new osg::MatrixTransform(osg::Matrix::identity());
 	mTransform->setReferenceFrame(osg::Transform::ABSOLUTE_RF);
+	//FIXME: If the window manager changes the size, these dimensions will be wrong
 	mProjection = new osg::Projection(osg::Matrix::ortho2D(0, mWindowWidth, 0, mWindowHeight));
 	mProjection->addChild(mTransform);
 
@@ -380,9 +387,6 @@ CltCEGUIDrawable::CltCEGUIDrawable(unsigned int windowWidth, unsigned int window
 	stateset->setMode(GL_DEPTH_TEST, osg::StateAttribute::OFF);
 	stateset->setMode(GL_BLEND, osg::StateAttribute::ON);
 	stateset->setRenderBinDetails(11, "RenderBin");
-
-	// setup CEGUI (load data files, etc)
-	CltCEGUIMgr::instance().setup(mWindowWidth, mWindowHeight);
 
 	// setup the event handler, to render the GUI every frame and capture
 	// other events
@@ -406,21 +410,28 @@ osg::Node* CltCEGUIDrawable::getNode() const
 
 void CltCEGUIDrawable::drawImplementation(osg::RenderInfo& renderInfo) const
 {
-/* mafm: apparently not needed
-	unsigned int oldClientActiveTextureUnit = renderInfo.getState()->getClientActiveTextureUnit();
-        renderInfo.getState()->setClientActiveTextureUnit(0);
-	glDisable(GL_TEXTURE_2D);
-	renderInfo.getState()->setActiveTextureUnit(0);
-	glEnable(GL_TEXTURE_2D);
-*/
+	unsigned int contextID = renderInfo.getContextID();
+	if(mActiveContextID == UINT_MAX) {
+		osg::Viewport* viewport = renderInfo.getCurrentCamera()->getViewport();
+		mWindowWidth = (unsigned int)viewport->width();
+	  	mWindowHeight = (unsigned int)viewport->height();
+	  	LogDBG("Setup CEGUI %ux%u", mWindowWidth, mWindowHeight);
+		// Now that we have a context - setup CEGUI (load data files, etc)
+		CltCEGUIMgr::instance().setup(mWindowWidth, mWindowHeight);
+		mActiveContextID = contextID;
+	  	LogDBG("CEGUI contextID %u (%u)", mActiveContextID, contextID);
+		CEGUI::System::getSingleton().notifyDisplaySizeChanged(
+			        CEGUI::Sizef(viewport->width(), viewport->height()));
+		//FIXME: This doesn't appear to adjust for a change in window dimensions.
+		mProjection->setMatrix(osg::Matrix::ortho2D(0, mWindowWidth, 0, mWindowHeight));
+	}
+	if(mActiveContextID != contextID) {
+		return;
+	}
 
 	// tell the UI to update and to render
 	CEGUI::System::getSingleton().renderAllGUIContexts();
 	renderInfo.getState()->checkGLErrors("CEGUIDrawable::drawImplementation");
-/* mafm: apparently not needed
-        renderInfo.getState()->setClientActiveTextureUnit(oldClientActiveTextureUnit);
-        renderInfo.getState()->setActiveTextureUnit(oldClientActiveTextureUnit);
-*/
 }
 
 

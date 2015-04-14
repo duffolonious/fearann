@@ -46,23 +46,23 @@ template <> CltCEGUIInventory* Singleton<CltCEGUIInventory>::INSTANCE = 0;
 CltCEGUIInventory::CltCEGUIInventory()
 {
 	// installing events
-	CEGUI_EVENT("InGame/Inventory",
+	CEGUI_EVENT("Inventory",
 		    CEGUI::Window::EventShown,
 		    CltCEGUIInventory::Event_Shown);
-	CEGUI_EVENT("InGame/Inventory/Tabs",
+	CEGUI_EVENT("Inventory/Tabs",
 		    CEGUI::TabControl::EventSelectionChanged,
 		    CltCEGUIInventory::Event_TabSelectionChanged);
-	CEGUI_EVENT("InGame/Inventory/Drop",
+	CEGUI_EVENT("Inventory/Drop",
 		    CEGUI::PushButton::EventClicked,
 		    CltCEGUIInventory::Event_Drop);
-
+#if 0 //FIXME: tabs auto pane?
 	// set list as child of the autopane
-	CEGUI::Window* autoPane = CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("InGame/Inventory/Tabs__auto_TabPane__");
+	CEGUI::Window* autoPane = CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Inventory/Tabs__auto_TabPane__");
         PERM_ASSERT(autoPane);
-	CEGUI::Window* invList = CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("InGame/Inventory/List");
+	CEGUI::Window* invList = CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Inventory/List");
         PERM_ASSERT(invList);
 	autoPane->addChild(invList);
-
+#endif
 	// select the initial tab
 	updateWindow("All");
 }
@@ -77,12 +77,12 @@ CltCEGUIInventory::~CltCEGUIInventory()
 bool CltCEGUIInventory::Event_TabSelectionChanged(const CEGUI::EventArgs& e)
 {
 	CEGUI::TabControl* tab = static_cast<CEGUI::TabControl*>
-                (CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("InGame/Inventory/Tabs"));
+                (CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Inventory/Tabs"));
         PERM_ASSERT(tab);
 
 	// making the necessary changes to show the new tab
         string tabName = tab->getTabContentsAtIndex(tab->getSelectedTabIndex())->getName().c_str();
-        string baseName = "InGame/Inventory/Tab";
+        string baseName = "Inventory/Tab";
         tabName.erase(0, baseName.size());
 
 	updateWindow(tabName.c_str());
@@ -99,7 +99,7 @@ bool CltCEGUIInventory::Event_Shown(const CEGUI::EventArgs& e)
 bool CltCEGUIInventory::Event_Drop(const CEGUI::EventArgs& e)
 {
 	CEGUI::MultiColumnList* invList = static_cast<CEGUI::MultiColumnList*>
-		(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("InGame/Inventory/List"));
+		(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Inventory/List"));
         PERM_ASSERT(invList);
 
 	// check that there's something selected
@@ -123,8 +123,8 @@ void CltCEGUIInventory::createSlots()
 {
 	/// \todo mafm: not working
 
-//	CEGUI::Window* tabWdg = CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("InGame/Inventory/Tabs__auto_TabPane__");
-	CEGUI::Window* tabWdg = CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("InGame/Inventory/Pane");
+//	CEGUI::Window* tabWdg = CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Inventory/Tabs__auto_TabPane__");
+	CEGUI::Window* tabWdg = CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Inventory/Pane");
 	PERM_ASSERT(tabWdg);
 
 	int serial = 0;
@@ -132,7 +132,7 @@ void CltCEGUIInventory::createSlots()
 	{
 		for (size_t c = 0; c < 1; ++c)
 		{
-			string slotName = StrFmt("InGame/Inventory/Slot_%d", serial++);
+			string slotName = StrFmt("Inventory/Slot_%d", serial++);
 			CEGUI::Window* newSlot = CEGUI::WindowManager::getSingleton().createWindow("OnceInGameTheme/StaticText",
 								      slotName.c_str());
 			tabWdg->addChild(newSlot);
@@ -217,10 +217,10 @@ void CltCEGUIInventory::updateStats(const MsgPlayerData* msg)
 
 	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
 	text = StrFmt("Load: %d/%d", msg->load_cur, msg->load_max);
-	root->getChild("InGame/Inventory/Load_Lbl")->setText(text.c_str());
+	root->getChild("Inventory/Load_Lbl")->setText(text.c_str());
 
 	text = StrFmt("Gold: %5d", msg->gold);
-	root->getChild("InGame/Inventory/Gold_Lbl")->setText(text.c_str());
+	root->getChild("Inventory/Gold_Lbl")->setText(text.c_str());
 }
 
 void CltCEGUIInventory::updateWindow(const char* tab)
@@ -238,7 +238,7 @@ void CltCEGUIInventory::updateWindow(const char* tab)
 	// at least coding time.
 
 	CEGUI::MultiColumnList* invList = static_cast<CEGUI::MultiColumnList*>
-		(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("InGame/Inventory/List"));
+		(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Inventory/List"));
         PERM_ASSERT(invList);
 
 	// only update if visible, otherwise it will be updated later

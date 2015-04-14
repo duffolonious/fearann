@@ -42,12 +42,10 @@ bool CltCameraManipulator::handle(const osgGA::GUIEventAdapter& ea,
 	switch (ea.getEventType()) {
 	case (osgGA::GUIEventAdapter::FRAME):
 	{
-#if 0 //FIXME: mMatrix -> osg::Camera somehow
 		static double lastTime = 0.0;
 		if (lastTime != 0.0)
-			CltCameraMgr::instance().getActiveCameraMode().updateCamera(&mMatrix);
+			CltCameraMgr::instance().getActiveCameraMode().updateCamera(CltViewer::instance().getCamera());
 		lastTime = ea.time();
-#endif
 		return false;
 	}
 	default:
@@ -84,8 +82,8 @@ const osg::Vec3 CltCameraMode::DEFAULT_GROUND_TO_EYE(0.0f, 0.0f, 1.60f);
 CltCameraMode::CltCameraMode() :
 	mName("Base"),
 	mZoomingIn(false), mZoomingOut(false),
-	mLookingUp(false), mLookingDown(false), 
-	mLookingLeft(false), mLookingRight(false), 
+	mLookingUp(false), mLookingDown(false),
+	mLookingLeft(false), mLookingRight(false),
 	mRequestToCenter(false),
 	mTargetTransform(0)
 {
@@ -163,13 +161,6 @@ void CltCameraModeFollow::reset()
 
 void CltCameraModeFollow::updateCamera(osg::Camera& cameraView)
 {
-#if 0
-	/** FIXME: another hack - setting the camera if NULL
-	 */
-	if (!mCamera) {
-	  mCamera(cameraView);
-	}
-#endif
 	/** FIXME: hack to assume 30 FPS on how much time has elapsed because this
 	 * function should only take the Camera ptr */
 	double elapsedSeconds = 0.033;

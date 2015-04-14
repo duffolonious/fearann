@@ -76,7 +76,7 @@ public:
 	{ return new CltCEGUIDrawable(mWindowWidth, mWindowHeight); }
 	/** osg::Drawable interface */
 	virtual osg::Object* clone(const osg::CopyOp& copyop) const
-	{ return new CltCEGUIDrawable(*this, copyop); }        
+	{ return new CltCEGUIDrawable(*this, copyop); }
 	/** osg::Drawable interface */
 	virtual void drawImplementation(osg::RenderInfo& renderInfo) const;
 
@@ -90,9 +90,11 @@ private:
 	osg::MatrixTransform* mTransform;
 
 	/// Window dimension/resolution
-	unsigned int mWindowWidth;
+	mutable unsigned int mWindowWidth;
 	/// Window dimension/resolution
-	unsigned int mWindowHeight;
+	mutable unsigned int mWindowHeight;
+	/// GL context for CEGUI
+	mutable unsigned int mActiveContextID;
 };
 
 

@@ -24,6 +24,7 @@
 
 #include <osg/Vec3>
 #include <osg/BoundingSphere>
+#include <osg/Camera>
 #include <osgGA/CameraManipulator>
 
 #include <deque>
@@ -245,7 +246,7 @@ public:
 	/** Set the transformation of the node that the cameras should follow
 	 * (typically the player) */
 	void setTargetTransform(const osg::MatrixTransform* targetTransform);
-  
+
 	/** Get the active camera mode */
 	CltCameraMode& getActiveCameraMode();
 	/** Cycle the camera mode to the next one */

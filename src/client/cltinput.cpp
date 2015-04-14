@@ -72,11 +72,11 @@ bool CltKeyboardHandler::handle(const osgGA::GUIEventAdapter& ea,
 	// passing events to CEGUI first
 
 	/// \todo mafm: CEGUI not working, disable to avoid segfaults
-	/*
-	  bool handled = mCEGUIEventHandler->handle(ea, aa);
-	  if (handled)
+	bool handled = mCEGUIEventHandler->handle(ea, aa);
+	if (handled)
+	{
 		return true;
-	*/
+	}
 
 	switch (ea.getEventType()) {
 	case (osgGA::GUIEventAdapter::KEYDOWN) :

@@ -34,6 +34,7 @@
 class BoundingSphere;
 
 namespace osg {
+	class Camera;
 	class Group;
 	class LightModel;
 	class LightSource;
@@ -113,6 +114,8 @@ public:
 	void setEnvironment(uint32_t timeOfDay);
 	/** Select something in the environment */
 	uint32_t pick(float x, float y);
+
+	osg::Camera& getCamera();
 
 private:
 	/** Singleton friend access */

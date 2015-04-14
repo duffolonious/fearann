@@ -421,7 +421,7 @@ MsgType CltMsgHdlPlayerData::getMsgType() const
 void CltMsgHdlPlayerData::handleMsg(MsgBase& baseMsg, Netlink* /* netlink */)
 {
 	MsgPlayerData* msg = dynamic_cast<MsgPlayerData*>(&baseMsg);
-	return;
+	//return;
 
 	// player itself
 	CltEntityMainPlayer::instance().setPlayerData(msg);
