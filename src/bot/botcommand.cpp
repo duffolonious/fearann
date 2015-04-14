@@ -449,7 +449,7 @@ public:
 				BotTradeInv::instance().AddItem( item, false );
 				LogDBG("Adding item %d to the update list.", itemid);
 			}
-			LogDBG("msg itemList size: %d", msg.itemList.size() );
+			LogDBG("msg itemList size: %lu", msg.itemList.size() );
 		}
 		else if (tmp.compare("select") == 0)
 		{
@@ -574,7 +574,7 @@ public:
 
 		if (args[0].compare("start") == 0)
 		{
-			LogNTC("Starting new combat with '%llu'", msg.target );
+			LogNTC("Starting new combat with '%lu'", msg.target );
 			// start combat with another player
 			//if ( args[2].compare("duel") )
 			msg.type = MsgCombat::DUEL;
