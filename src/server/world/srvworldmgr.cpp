@@ -316,7 +316,7 @@ void SrvWorldMgr::addPlayer(LoginData* loginData)
 	msg.text = StrFmt("'%s' joining the game (in '%s')",
 			  player->getName(), player->getArea());
 	SrvNetworkMgr::instance().sendToAllButPlayer(msg, loginData);
-	LogNTC("Player joined the game: '%s' (entity id: %llu)",
+	LogNTC("Player joined the game: '%s' (entity id: %lu)",
 	       player->getName(), player->getID());
 }
 
@@ -380,7 +380,7 @@ void SrvWorldMgr::getNearbyPlayers(const LoginData* player,
 
 void SrvWorldMgr::addEntity(SrvEntityBase* entity)
 {
-	LogNTC("Adding entity '%llu' to world manager, class '%s'",
+	LogNTC("Adding entity '%lu' to world manager, class '%s'",
 	       entity->getID(), entity->getEntityClass());
 
 	// mafm: just subscribing everybody, do something more elaborate in the
@@ -395,14 +395,14 @@ void SrvWorldMgr::addEntity(SrvEntityBase* entity)
 	} else if (SrvEntityObject* o = dynamic_cast<SrvEntityObject*>(entity)) {
 		mObjectList.push_back(o);
 	} else {
-		LogERR("Class '%s' is unknown, for entity '%llu'",
+		LogERR("Class '%s' is unknown, for entity '%lu'",
 		       entity->getEntityClass(), entity->getID());
 	}
 }
 
 void SrvWorldMgr::removeEntity(SrvEntityBase* entity)
 {
-	LogNTC("Removing entity '%llu' from world manager, class '%s'",
+	LogNTC("Removing entity '%lu' from world manager, class '%s'",
 	       entity->getID(), entity->getEntityClass());
 
 	// subscribers: the entity already informs the subscribers in the
@@ -416,7 +416,7 @@ void SrvWorldMgr::removeEntity(SrvEntityBase* entity)
 		mObjectList.erase(std::remove(mObjectList.begin(), mObjectList.end(), entity),
 				    mObjectList.end());
 	} else {
-		LogERR("Class '%s' is unknown, for entity '%llu'",
+		LogERR("Class '%s' is unknown, for entity '%lu'",
 		       entity->getEntityClass(), entity->getID());
 	}
 
@@ -451,7 +451,7 @@ void SrvWorldMgr::playerGetItem(SrvEntityPlayer* player, EntityID entityID)
 		}
 
 		// everything ok, send notifications
-		string text = StrFmt("'%s' getting item (name: '%s', id %llu)",
+		string text = StrFmt("'%s' getting item (name: '%s', id %lu)",
 				     player->getName(),
 				     object->getName(), object->getID());
 		LogDBG("%s", text.c_str());
@@ -511,7 +511,7 @@ void SrvWorldMgr::playerDropItem(SrvEntityPlayer* player, EntityID entityID)
 		}
 
 		// everything ok, send notifications
-		string text = StrFmt("'%s' dropping item (type: '%s', id %llu)",
+		string text = StrFmt("'%s' dropping item (type: '%s', id %lu)",
 				     player->getName(),
 				     invItem.getType(),
 				     entityID);
@@ -541,7 +541,7 @@ void SrvWorldMgr::playerDropItem(SrvEntityPlayer* player, EntityID entityID)
 
 bool SrvWorldMgr::changeObjectOwner(EntityID entityID, const std::string& charname)
 {
-	string id = StrFmt("%llu", entityID);
+	string id = StrFmt("%lu", entityID);
 
 	SrvDBQuery query;
 	query.setTables("entities");
@@ -549,7 +549,7 @@ bool SrvWorldMgr::changeObjectOwner(EntityID entityID, const std::string& charna
 	query.addColumnWithValue("owner", charname);
 	bool success = SrvDBMgr::instance().queryUpdate(&query);
 	if (!success) {
-		LogERR("Error setting object '%llu' ownership to player '%s' in the DB",
+		LogERR("Error setting object '%lu' ownership to player '%s' in the DB",
 		       entityID, charname.c_str());
 		return false;
 	}
@@ -577,7 +577,7 @@ bool SrvWorldMgr::dropObjectFromInventory(EntityID entityID,
 	// 1- get data from the db
 	MsgEntityCreate msgBasic;
 	MsgEntityMove msgMove;
-	string id = StrFmt("%llu", entityID);
+	string id = StrFmt("%lu", entityID);
 
 	SrvDBQuery query;
 	query.setTables("entities");

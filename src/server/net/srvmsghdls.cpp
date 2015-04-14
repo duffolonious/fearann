@@ -241,7 +241,7 @@ void MsgHdlNPCDialogReply::handleMsg(MsgBase& baseMsg, Netlink* netlink)
 
 	msg->origin = player->getPlayerName();
 
-	LogDBG("%s sending msg to '%llu'", msg->origin.c_str(), msg->target);
+	LogDBG("%s sending msg to '%lu'", msg->origin.c_str(), msg->target);
 
 	SrvNetworkMgr::instance().sendToPlayer( *msg, target );
 }

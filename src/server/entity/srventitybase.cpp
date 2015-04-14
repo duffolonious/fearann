@@ -148,7 +148,7 @@ SrvEntityBaseObservable::SrvEntityBaseObservable(const MsgEntityCreate& basic,
 
 void SrvEntityBaseObservable::onAttachObserver(Observer* observer)
 {
-	LogDBG("Subscribing observer '%s' to entity: name='%s', id='%llu',"
+	LogDBG("Subscribing observer '%s' to entity: name='%s', id='%lu',"
 	       " pos(%.1f, %.1f, %.1f)",
 	       observer->_name.c_str(), mBasic.entityName.c_str(), mBasic.entityID,
 	       mMov.position.x, mMov.position.y, mMov.position.z);
@@ -163,7 +163,7 @@ void SrvEntityBaseObservable::onAttachObserver(Observer* observer)
 
 void SrvEntityBaseObservable::onDetachObserver(Observer* observer)
 {
-	LogDBG("Unsubscribing observer '%s' from entity: name='%s', id='%llu'",
+	LogDBG("Unsubscribing observer '%s' from entity: name='%s', id='%lu'",
 	       observer->_name.c_str(), mBasic.entityName.c_str(), mBasic.entityID);
 
 	MsgEntityDestroy msg;
@@ -189,7 +189,7 @@ void SrvEntityBase::saveToDB()
 
 	// mafm: sometimes works bad with the "exact" data, +=0.5 for pos3=z
 	// (height)
-	string id = StrFmt("%llu", mBasic.entityID);
+	string id = StrFmt("%lu", mBasic.entityID);
 	string area = mMov.area;
 	string pos1 = StrFmt("%.1f", mMov.position.x);
 	string pos2 = StrFmt("%.1f", mMov.position.y);

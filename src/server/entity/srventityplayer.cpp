@@ -292,7 +292,7 @@ void SrvEntityPlayer::updateMovementFromClient(MsgEntityMove* msg)
 	SrvEntityBaseObserverEvent event(SrvEntityBaseObserverEvent::ENTITY_CREATE, *msg);
 	notifyObservers(event);
 
-	LogDBG("Updating position: '%s' id=%llu, pos (%.1f, %.1f, %.1f) rot=%.1f"
+	LogDBG("Updating position: '%s' id=%lu, pos (%.1f, %.1f, %.1f) rot=%.1f"
 	       " RUN=%d FW=%d BW=%d RL=%d RR=%d",
 	       getName(), mMov.entityID,
 	       mMov.position.x, mMov.position.y, mMov.position.z, mMov.rot,

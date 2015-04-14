@@ -504,14 +504,14 @@ void SrvTradeMgr::swapSelected( SrvTradeSession * trade )
 	for ( it = trade->playerSelectedList.begin(); it!=trade->playerSelectedList.end(); ++it )
 	{
 		entityID = *it;
-		LogDBG("Giving %llu to %s", entityID, trade->target.c_str() );
+		LogDBG("Giving %lu to %s", entityID, trade->target.c_str() );
 		giveSelectedItem( playerEntity, targetEntity, entityID );
 	}
 	// Give targets selected items to player
 	for ( it = trade->targetSelectedList.begin(); it!=trade->targetSelectedList.end(); ++it )
 	{
 		entityID = *it;
-		LogDBG("Giving %llu to %s", entityID, trade->player.c_str() );
+		LogDBG("Giving %lu to %s", entityID, trade->player.c_str() );
 		giveSelectedItem( targetEntity, playerEntity, entityID );
 	}
 }

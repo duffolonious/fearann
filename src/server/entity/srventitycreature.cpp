@@ -151,7 +151,7 @@ void SrvEntityCreature::saveToDB()
 	string pos2 = StrFmt("%.1f", mMov.position.y);
 	string pos3 = StrFmt("%.1f", mMov.position.z + 0.5f);
 	string rot = StrFmt("%.3f", mMov.rot);
-	string id = StrFmt("%llu", getID());
+	string id = StrFmt("%lu", getID());
 
 	SrvDBQuery query;
 	query.setTables("creatures");
@@ -184,7 +184,7 @@ void SrvEntityCreature::updateMovementFromClient(MsgEntityMove* msg)
     SrvEntityBaseObserverEvent event(SrvEntityBaseObserverEvent::ENTITY_CREATE, *msg);
     notifyObservers(event);
 
-	LogDBG("Updating position: '%s' id=%llu, pos (%.1f, %.1f, %.1f) rot=%.1f"
+	LogDBG("Updating position: '%s' id=%lu, pos (%.1f, %.1f, %.1f) rot=%.1f"
 	       " RUN=%d FW=%d BW=%d RL=%d RR=%d",
 	       getName(), mMov.entityID,
 	       mMov.position.x, mMov.position.y, mMov.position.z, mMov.rot,

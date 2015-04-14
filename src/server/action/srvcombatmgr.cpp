@@ -310,7 +310,7 @@ void SrvCombatBattle::performAction( SrvEntityPlayer * playerEntity )
 		       playerEntity->getName(),
 		       targetEntity->getName());
 
-		LogDBG("- target: '%llu'", playerInfo->getTarget() );
+		LogDBG("- target: '%lu'", playerInfo->getTarget() );
 
 		/// Setup result message from action...
 		MsgCombatResult msgresult;
@@ -572,7 +572,7 @@ bool SrvCombatMgr::handleMsg( MsgCombat* msg )
 		///The target for the player receiving the message
 		msgcombat.target = msg->player;
 
-		LogDBG("Sending message to '%llu'", msg->target);
+		LogDBG("Sending message to '%lu'", msg->target);
 
 		LoginData * target = SrvLoginMgr::instance().findPlayer( msg->target );
 		if ( !target )
@@ -610,7 +610,7 @@ bool SrvCombatMgr::handleMsg( MsgCombat* msg )
 	}
 	case MsgCombat::ACCEPTED:
 	{
-		LogDBG("player '%llu' accepted combat from '%llu'", 
+		LogDBG("player '%lu' accepted combat from '%lu'", 
 		       msg->player,
 		       msg->target);
 
@@ -712,7 +712,7 @@ void SrvCombatMgr::addBattle( MsgCombat* msg )
 	target->getPlayerInfo()->setTarget( 
 		player->getID() );
 
-	LogDBG("new battle: player: '%llu', target: '%llu'",
+	LogDBG("new battle: player: '%lu', target: '%lu'",
 	       player->getPlayerInfo()->getTarget(),
 	       target->getPlayerInfo()->getTarget() );
 
