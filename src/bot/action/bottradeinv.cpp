@@ -102,8 +102,8 @@ bool BotTradeInv::handleMsg(MsgTrade* msg)
 		        targetInventory.erase(it);
 			}
 			targetInventory.clear();
-			LogDBG("Assign to targets inventory, itemList size: %d.", 
-														msg->itemList.size());
+			LogDBG("Assign to targets inventory, itemList size: %lu.",
+				msg->itemList.size());
 			targetInventory.assign( msg->itemList.begin(), msg->itemList.end() );
 			return true;
         case MsgTrade::COMMIT:

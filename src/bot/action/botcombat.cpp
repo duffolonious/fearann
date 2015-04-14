@@ -37,20 +37,20 @@ bool BotCombatMgr::handleMsg(MsgCombat* msg)
 			/// other player has initiated trade.
 			/// need to accept or end.
 			target = msg->target;
-			LogNTC("Will you accept a duel from '%llu'?",
+			LogNTC("Will you accept a duel from '%lu'?",
                                                         msg->target );
 			return true;
         case MsgCombat::END:
 			mState = msg->getState();
 			///Clear all lists.
-			LogNTC("Combat ended by '%llu'.", target );
+			LogNTC("Combat ended by '%lu'.", target );
 			target = 0;
 			return true;
         case MsgCombat::ACCEPTED:
 			//set state
 			mState = msg->getState();
 			target = msg->target;
-			LogNTC("Combat accepted from '%llu'.", target );
+			LogNTC("Combat accepted from '%lu'.", target );
 			return true;
         default:
             return false;
@@ -82,10 +82,10 @@ bool BotCombatMgr::handleResultMsg(MsgCombatResult* msg)
 	switch( msg->getResult() )
     {
         case MsgCombatResult::HIT:
-			LogNTC("%llu hit for %d damage.", msg->target, msg->damage);
+			LogNTC("%lu hit for %d damage.", msg->target, msg->damage);
 			return true;
         case MsgCombatResult::MISS:
-			LogNTC("Attacker missed %llu.", msg->target );
+			LogNTC("Attacker missed %lu.", msg->target );
 			return true;
         case MsgCombatResult::OTHER:
 			LogNTC("Some other thing happended.");
@@ -98,7 +98,7 @@ bool BotCombatMgr::handleResultMsg(MsgCombatResult* msg)
 
 void BotCombatMgr::listCombatInfo()
 {
-	LogNTC("Target (%llu).", target);
+	LogNTC("Target (%lu).", target);
 	return;
 }
 

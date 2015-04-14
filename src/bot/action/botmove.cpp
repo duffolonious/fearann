@@ -50,9 +50,9 @@ void *halt(void *arg)
   free(req);
   //after time elapsed, stop movement.
   MsgEntityMove move = BotMoveMgr::instance().getMove();
-	LogNTC("halt: rot: %f, id: %llu",
-      move.rot,
-			move.entityID);
+	LogNTC("halt: rot: %f, id: %lu",
+		move.rot,
+		move.entityID);
 
   move.rotSpeed = 0.0f;
   move.rot_left = false;
@@ -127,7 +127,7 @@ bool BotMoveMgr::handleCreateMsg(MsgEntityCreate* msg)
 {
   const char *name;
 	LogNTC("entityName: %s, meshtype: %s\n"
-			"pos -> x: %f, y: %f, z: %f, rot: %f, id: %llu",
+			"pos -> x: %f, y: %f, z: %f, rot: %f, id: %lu",
 			msg->entityName.c_str(), msg->meshType.c_str(),
 			msg->position.x, msg->position.y, msg->position.z,
 			msg->rot, msg->entityID);
@@ -153,7 +153,7 @@ bool BotMoveMgr::handleCreateMsg(MsgEntityCreate* msg)
 
 bool BotMoveMgr::handleMoveMsg(MsgEntityMove* msg)
 {
-	LogNTC("pos -> x: %f, y: %f, z: %f, dir -> x: %f, y: %f, z: %f, rot: %f, id: %llu",
+	LogNTC("pos -> x: %f, y: %f, z: %f, dir -> x: %f, y: %f, z: %f, rot: %f, id: %lu",
 			msg->position.x, msg->position.y, msg->position.z,
 			msg->direction.x, msg->direction.y, msg->direction.z,
       msg->rot,
@@ -173,10 +173,10 @@ bool BotMoveMgr::handleMoveMsg(MsgEntityMove* msg)
 void BotMoveMgr::listMoveInfo()
 {
   LogNTC("Move info:");
-	LogNTC("pos -> x: %f, y: %f, z: %f, dir -> x: %f, y: %f, z: %f, rot: %f, id: %llu",
+	LogNTC("pos -> x: %f, y: %f, z: %f, dir -> x: %f, y: %f, z: %f, rot: %f, id: %lu",
 			move.position.x, move.position.y, move.position.z,
 			move.direction.x, move.direction.y, move.direction.z,
-      move.rot,
+			move.rot,
 			move.entityID);
 
 	return;
