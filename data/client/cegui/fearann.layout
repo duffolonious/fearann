@@ -1,1107 +1,1108 @@
-<?xml version="1.0" ?>
-<GUILayout>
-    <Window Type="DefaultWindow" Name="root">
+<?xml version="1.0" encoding="UTF-8"?>
 
-	<!-- Initial -->
-        <Window Type="FearannLook/StaticImage" Name="Initial/Background">
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="BackgroundEnabled" Value="False" />
-            <Property Name="Disabled" Value="True" />
-            <Property Name="UnifiedSize" Value="{{1,0},{1,0}}" />
-	    <Property Name="Image" Value="set:InitialBG image:InitialBG" />
+<GUILayout version="4">
+    <Window name="root" type="DefaultWindow">
+
+	
+        <Window name="Background" type="FearannLook/StaticImage">
+            <Property name="FrameEnabled" value="False" />
+            <Property name="BackgroundEnabled" value="False" />
+            <Property name="Disabled" value="True" />
+            <Property name="Size" value="{{1,0},{1,0}}" />
+	    <Property name="Image" value="InitialBG/InitialBG" />
 	</Window>
 
-        <Window Type="FearannLook/FrameWindow" Name="Initial/Connect">
-            <Property Name="Text" Value="Select a server" />
-            <Property Name="CloseButtonEnabled" Value="False" />
-            <Property Name="UnifiedPosition" Value="{{0.20,0},{0.30,0}}" />
-            <Property Name="UnifiedSize" Value="{{0.60,0},{0.40,0}}" />
+        <Window name="Connect" type="FearannLook/FrameWindow">
+            <Property name="Text" value="Select a server" />
+            <Property name="CloseButtonEnabled" value="False" />
+            <Property name="Position" value="{{0.20,0},{0.30,0}}" />
+            <Property name="Size" value="{{0.60,0},{0.40,0}}" />
 
-            <Window Type="FearannLook/MultiColumnList" Name="Initial/Connect/ServerList">
-                <Property Name="UnifiedSize" Value="{{0.9,0},{0.60,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.05,0},{0.15,0.1}}" />
-                <Property Name="SelectionMode" Value="RowSingle" />
-                <Property Name="ColumnHeader" Value="text:Server Name width:{0.5,0} id:0" />
-                <Property Name="ColumnHeader" Value="text:Port width:{0.23,0} id:1" />
-                <Property Name="ColumnHeader" Value="text:Ping width:{0.23,0} id:2" />
+            <Window name="ServerList" type="FearannLook/MultiColumnList">
+                <Property name="Size" value="{{0.9,0},{0.60,0}}" />
+                <Property name="Position" value="{{0.05,0},{0.15,0.1}}" />
+                <Property name="SelectionMode" value="RowSingle" />
+                <Property name="ColumnHeader" value="text:Server Name width:{0.5,0} id:0" />
+                <Property name="ColumnHeader" value="text:Port width:{0.23,0} id:1" />
+                <Property name="ColumnHeader" value="text:Ping width:{0.23,0} id:2" />
             </Window>
 
-            <Window Type="FearannLook/Button" Name="Initial/Connect/Quit">
-                <Property Name="UnifiedSize" Value="{{0.17,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.04,0},{0.85,0}}" />
-                <Property Name="Text" Value="Quit" />
+            <Window name="Quit" type="FearannLook/Button">
+                <Property name="Size" value="{{0.17,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.04,0},{0.85,0}}" />
+                <Property name="Text" value="Quit" />
             </Window>
 
-            <Window Type="FearannLook/Button" Name="Initial/Connect/Options">
-                <Property Name="UnifiedSize" Value="{{0.17,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.54,0},{0.85,0}}" />
-                <Property Name="Text" Value="Options" />
+            <Window name="Options" type="FearannLook/Button">
+                <Property name="Size" value="{{0.17,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.54,0},{0.85,0}}" />
+                <Property name="Text" value="Options" />
             </Window>
 
-            <Window Type="FearannLook/Button" Name="Initial/Connect/Connect">
-                <Property Name="UnifiedSize" Value="{{0.17,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.79,0},{0.85,0}}" />
-                <Property Name="Text" Value="Connect" />
-            </Window>
-        </Window>
-
-
-        <Window Type="FearannLook/FrameWindow" Name="Initial/Login">
-            <Property Name="Text" Value="Log in or create a new user" />
-            <Property Name="CloseButtonEnabled" Value="False" />
-            <Property Name="UnifiedSize" Value="{{0.60,0},{0.40,0}}" />
-            <Property Name="UnifiedPosition" Value="{{0.20,0},{0.30,0}}" />
-
-            <Window Type="FearannLook/StaticText" Name="Initial/Login/Username_Lbl">
-                <Property Name="UnifiedSize" Value="{{0.2,0},{0.18,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.05,0},{0.12,0}}" />
-		<Property Name="Text" Value="User Name:" />
-            </Window>
-
-            <Window Type="FearannLook/Editbox" Name="Initial/Login/Username">
-                <Property Name="UnifiedSize" Value="{{0.3,0},{0.12,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.25,0},{0.15,0}}" />
-                <Property Name="Text" Value="" />
-            </Window>
-
-            <Window Type="FearannLook/StaticText" Name="Initial/Login/Password_Lbl">
-                <Property Name="UnifiedSize" Value="{{0.2,0},{0.18,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.05,0},{0.27,0}}" />
-		<Property Name="Text" Value="Password:" />
-            </Window>
-
-            <Window Type="FearannLook/Editbox" Name="Initial/Login/Password">
-                <Property Name="UnifiedSize" Value="{{0.3,0},{0.12,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.25,0},{0.30,0}}" />
-                <Property Name="MaskText" Value="true" />
-                <Property Name="Text" Value="" />
-            </Window>
-
-            <Window Type="FearannLook/StaticText" Name="Initial/Login/Uptime_Lbl">
-                <Property Name="UnifiedSize" Value="{{0.4,0},{0.18,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.05,0},{0.45,0}}" />
-		<Property Name="Text" Value="Uptime:" />
-            </Window>
-
-            <Window Type="FearannLook/StaticText" Name="Initial/Login/Players_Lbl">
-                <Property Name="UnifiedSize" Value="{{0.4,0},{0.18,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.05,0},{0.60,0}}" />
-		<Property Name="Text" Value="Players On-line:" />
-            </Window>
-
-            <Window Type="FearannLook/StaticText" Name="Initial/Login/TotalUsers_Lbl">
-                <Property Name="UnifiedSize" Value="{{0.4,0},{0.18,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.55,0},{0.45,0}}" />
-		<Property Name="Text" Value="Total Users:" />
-            </Window>
-
-            <Window Type="FearannLook/StaticText" Name="Initial/Login/TotalChars_Lbl">
-                <Property Name="UnifiedSize" Value="{{0.4,0},{0.18,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.55,0},{0.60,0}}" />
-		<Property Name="Text" Value="Total Chars:" />
-            </Window>
-
-            <Window Type="FearannLook/Button" Name="Initial/Login/Quit">
-                <Property Name="UnifiedSize" Value="{{0.17,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.04,0},{0.85,0}}" />
-                <Property Name="Text" Value="Quit" />
-            </Window>
-
-            <Window Type="FearannLook/Button" Name="Initial/Login/NewUser">
-                <Property Name="UnifiedSize" Value="{{0.17,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.54,0},{0.85,0}}" />
-                <Property Name="Text" Value="New User" />
-            </Window>
-
-            <Window Type="FearannLook/Button" Name="Initial/Login/Login">
-                <Property Name="UnifiedSize" Value="{{0.17,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.79,0},{0.85,0}}" />
-                <Property Name="Text" Value="Login" />
+            <Window name="Connect" type="FearannLook/Button">
+                <Property name="Size" value="{{0.17,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.79,0},{0.85,0}}" />
+                <Property name="Text" value="Connect" />
             </Window>
         </Window>
 
 
-        <Window Type="FearannLook/FrameWindow" Name="Initial/NewUser">
-            <Property Name="Text" Value="Fill in the account data" />
-            <Property Name="CloseButtonEnabled" Value="False" />
-            <Property Name="UnifiedSize" Value="{{0.60,0},{0.40,0}}" />
-            <Property Name="UnifiedPosition" Value="{{0.20,0},{0.30,0}}" />
+        <Window name="Login" type="FearannLook/FrameWindow">
+            <Property name="Text" value="Log in or create a new user" />
+            <Property name="CloseButtonEnabled" value="False" />
+            <Property name="Size" value="{{0.60,0},{0.40,0}}" />
+            <Property name="Position" value="{{0.20,0},{0.30,0}}" />
 
-            <Window Type="FearannLook/StaticText" Name="Initial/NewUser/Username_Lbl">
-                <Property Name="UnifiedSize" Value="{{0.2,0},{0.18,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.05,0},{0.12,0}}" />
-		<Property Name="Text" Value="User Name:" />
+            <Window name="Username_Lbl" type="FearannLook/StaticText">
+                <Property name="Size" value="{{0.2,0},{0.18,0}}" />
+                <Property name="Position" value="{{0.05,0},{0.12,0}}" />
+		<Property name="Text" value="User Name:" />
             </Window>
 
-            <Window Type="FearannLook/Editbox" Name="Initial/NewUser/Username">
-                <Property Name="UnifiedSize" Value="{{0.3,0},{0.12,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.25,0},{0.15,0}}" />
-                <Property Name="Text" Value="" />
+            <Window name="Username" type="FearannLook/Editbox">
+                <Property name="Size" value="{{0.3,0},{0.12,0}}" />
+                <Property name="Position" value="{{0.25,0},{0.15,0}}" />
+                <Property name="Text" value="" />
             </Window>
 
-            <Window Type="FearannLook/StaticText" Name="Initial/NewUser/Password_Lbl">
-                <Property Name="UnifiedSize" Value="{{0.2,0},{0.18,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.05,0},{0.27,0}}" />
-		<Property Name="Text" Value="Password:" />
+            <Window name="Password_Lbl" type="FearannLook/StaticText">
+                <Property name="Size" value="{{0.2,0},{0.18,0}}" />
+                <Property name="Position" value="{{0.05,0},{0.27,0}}" />
+		<Property name="Text" value="Password:" />
             </Window>
 
-            <Window Type="FearannLook/Editbox" Name="Initial/NewUser/Password">
-                <Property Name="UnifiedSize" Value="{{0.3,0},{0.12,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.25,0},{0.30,0}}" />
-                <Property Name="MaskText" Value="true" />
-                <Property Name="Text" Value="" />
+            <Window name="Password" type="FearannLook/Editbox">
+                <Property name="Size" value="{{0.3,0},{0.12,0}}" />
+                <Property name="Position" value="{{0.25,0},{0.30,0}}" />
+                <Property name="MaskText" value="true" />
+                <Property name="Text" value="" />
             </Window>
 
-            <Window Type="FearannLook/Editbox" Name="Initial/NewUser/PasswordRep">
-                <Property Name="UnifiedSize" Value="{{0.3,0},{0.12,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.55,0},{0.30,0}}" />
-                <Property Name="MaskText" Value="true" />
-                <Property Name="Text" Value="" />
+            <Window name="Uptime_Lbl" type="FearannLook/StaticText">
+                <Property name="Size" value="{{0.4,0},{0.18,0}}" />
+                <Property name="Position" value="{{0.05,0},{0.45,0}}" />
+		<Property name="Text" value="Uptime:" />
             </Window>
 
-            <Window Type="FearannLook/StaticText" Name="Initial/NewUser/Email_Lbl">
-                <Property Name="UnifiedSize" Value="{{0.2,0},{0.18,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.05,0},{0.42,0}}" />
-		<Property Name="Text" Value="E-mail:" />
+            <Window name="Players_Lbl" type="FearannLook/StaticText">
+                <Property name="Size" value="{{0.4,0},{0.18,0}}" />
+                <Property name="Position" value="{{0.05,0},{0.60,0}}" />
+		<Property name="Text" value="Players On-line:" />
             </Window>
 
-            <Window Type="FearannLook/Editbox" Name="Initial/NewUser/Email">
-                <Property Name="UnifiedSize" Value="{{0.6,0},{0.12,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.25,0},{0.45,0}}" />
-                <Property Name="Text" Value="" />
+            <Window name="TotalUsers_Lbl" type="FearannLook/StaticText">
+                <Property name="Size" value="{{0.4,0},{0.18,0}}" />
+                <Property name="Position" value="{{0.55,0},{0.45,0}}" />
+		<Property name="Text" value="Total Users:" />
             </Window>
 
-            <Window Type="FearannLook/StaticText" Name="Initial/NewUser/RealName_Lbl">
-                <Property Name="UnifiedSize" Value="{{0.2,0},{0.18,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.05,0},{0.57,0}}" />
-		<Property Name="Text" Value="Real Name:" />
+            <Window name="TotalChars_Lbl" type="FearannLook/StaticText">
+                <Property name="Size" value="{{0.4,0},{0.18,0}}" />
+                <Property name="Position" value="{{0.55,0},{0.60,0}}" />
+		<Property name="Text" value="Total Chars:" />
             </Window>
 
-            <Window Type="FearannLook/Editbox" Name="Initial/NewUser/RealName">
-                <Property Name="UnifiedSize" Value="{{0.6,0},{0.12,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.25,0},{0.60,0}}" />
-                <Property Name="Text" Value="" />
+            <Window name="Quit" type="FearannLook/Button">
+                <Property name="Size" value="{{0.17,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.04,0},{0.85,0}}" />
+                <Property name="Text" value="Quit" />
             </Window>
 
-            <Window Type="FearannLook/Button" Name="Initial/NewUser/Cancel">
-                <Property Name="UnifiedSize" Value="{{0.17,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.04,0},{0.85,0}}" />
-                <Property Name="Text" Value="Cancel" />
+            <Window name="NewUser" type="FearannLook/Button">
+                <Property name="Size" value="{{0.17,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.54,0},{0.85,0}}" />
+                <Property name="Text" value="New User" />
             </Window>
 
-            <Window Type="FearannLook/Button" Name="Initial/NewUser/Create">
-                <Property Name="UnifiedSize" Value="{{0.17,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.79,0},{0.85,0}}" />
-                <Property Name="Text" Value="Create" />
+            <Window name="Login" type="FearannLook/Button">
+                <Property name="Size" value="{{0.17,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.79,0},{0.85,0}}" />
+                <Property name="Text" value="Login" />
             </Window>
         </Window>
 
 
-        <Window Type="FearannLook/FrameWindow" Name="Initial/Join">
-            <Property Name="Text" Value="Choose a character" />
-            <Property Name="CloseButtonEnabled" Value="False" />
-            <Property Name="UnifiedSize" Value="{{0.60,0},{0.40,0}}" />
-            <Property Name="UnifiedPosition" Value="{{0.20,0},{0.30,0}}" />
+        <Window name="NewUser" type="FearannLook/FrameWindow">
+            <Property name="Text" value="Fill in the account data" />
+            <Property name="CloseButtonEnabled" value="False" />
+            <Property name="Size" value="{{0.60,0},{0.40,0}}" />
+            <Property name="Position" value="{{0.20,0},{0.30,0}}" />
 
-            <Window Type="FearannLook/MultiColumnList" Name="Initial/Join/CharList">
-                <Property Name="UnifiedSize" Value="{{0.42,0},{0.50,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.04,0},{0.15,0}}" />
-                <Property Name="SelectionMode" Value="RowSingle" />
-                <Property Name="ColumnHeader" Value="text:Character width:{0.65,0} id:0" />
-                <Property Name="ColumnHeader" Value="text:R width:{0.14,0} id:1" />
-                <Property Name="ColumnHeader" Value="text:G width:{0.14,0} id:2" />
+            <Window name="Username_Lbl" type="FearannLook/StaticText">
+                <Property name="Size" value="{{0.2,0},{0.18,0}}" />
+                <Property name="Position" value="{{0.05,0},{0.12,0}}" />
+		<Property name="Text" value="User Name:" />
             </Window>
 
-            <Window Type="FearannLook/Button" Name="Initial/Join/NewChar">
-                <Property Name="UnifiedSize" Value="{{0.17,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.04,0},{0.70,0}}" />
-                <Property Name="Text" Value="New" />
+            <Window name="Username" type="FearannLook/Editbox">
+                <Property name="Size" value="{{0.3,0},{0.12,0}}" />
+                <Property name="Position" value="{{0.25,0},{0.15,0}}" />
+                <Property name="Text" value="" />
             </Window>
 
-            <Window Type="FearannLook/Button" Name="Initial/Join/DelChar">
-                <Property Name="UnifiedSize" Value="{{0.17,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.25,0},{0.70,0}}" />
-                <Property Name="Text" Value="Delete" />
+            <Window name="Password_Lbl" type="FearannLook/StaticText">
+                <Property name="Size" value="{{0.2,0},{0.18,0}}" />
+                <Property name="Position" value="{{0.05,0},{0.27,0}}" />
+		<Property name="Text" value="Password:" />
             </Window>
 
-            <Window Type="FearannLook/StaticText" Name="Initial/Join/CharName_Lbl">
-                <Property Name="UnifiedSize" Value="{{0.40,0},{0.16,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.50,0},{0.08,0}}" />
-		<Property Name="HorzFormatting" Value="HorzCentred" />
-		<Property Name="VertFormatting" Value="VertCentred" />
-		<Property Name="Text" Value="&lt; Character Name &gt;" />
+            <Window name="Password" type="FearannLook/Editbox">
+                <Property name="Size" value="{{0.3,0},{0.12,0}}" />
+                <Property name="Position" value="{{0.25,0},{0.30,0}}" />
+                <Property name="MaskText" value="true" />
+                <Property name="Text" value="" />
             </Window>
 
-	    <Window Type="FearannLook/StaticImage" Name="Initial/Join/CharImage">
-		<Property Name="UnifiedSize" Value="{{0.20,0},{0.60,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.50,0},{0.25,0}}" />
-		<Property Name="FrameEnabled" Value="False" />
-		<Property Name="BackgroundEnabled" Value="False" />
-		<Property Name="Image" Value="set:InitialBG image:InitialBG" />
+            <Window name="PasswordRep" type="FearannLook/Editbox">
+                <Property name="Size" value="{{0.3,0},{0.12,0}}" />
+                <Property name="Position" value="{{0.55,0},{0.30,0}}" />
+                <Property name="MaskText" value="true" />
+                <Property name="Text" value="" />
+            </Window>
+
+            <Window name="Email_Lbl" type="FearannLook/StaticText">
+                <Property name="Size" value="{{0.2,0},{0.18,0}}" />
+                <Property name="Position" value="{{0.05,0},{0.42,0}}" />
+		<Property name="Text" value="E-mail:" />
+            </Window>
+
+            <Window name="Email" type="FearannLook/Editbox">
+                <Property name="Size" value="{{0.6,0},{0.12,0}}" />
+                <Property name="Position" value="{{0.25,0},{0.45,0}}" />
+                <Property name="Text" value="" />
+            </Window>
+
+            <Window name="RealName_Lbl" type="FearannLook/StaticText">
+                <Property name="Size" value="{{0.2,0},{0.18,0}}" />
+                <Property name="Position" value="{{0.05,0},{0.57,0}}" />
+		<Property name="Text" value="Real Name:" />
+            </Window>
+
+            <Window name="RealName" type="FearannLook/Editbox">
+                <Property name="Size" value="{{0.6,0},{0.12,0}}" />
+                <Property name="Position" value="{{0.25,0},{0.60,0}}" />
+                <Property name="Text" value="" />
+            </Window>
+
+            <Window name="Cancel" type="FearannLook/Button">
+                <Property name="Size" value="{{0.17,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.04,0},{0.85,0}}" />
+                <Property name="Text" value="Cancel" />
+            </Window>
+
+            <Window name="Create" type="FearannLook/Button">
+                <Property name="Size" value="{{0.17,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.79,0},{0.85,0}}" />
+                <Property name="Text" value="Create" />
+            </Window>
+        </Window>
+
+
+        <Window name="Join" type="FearannLook/FrameWindow">
+            <Property name="Text" value="Choose a character" />
+            <Property name="CloseButtonEnabled" value="False" />
+            <Property name="Size" value="{{0.60,0},{0.40,0}}" />
+            <Property name="Position" value="{{0.20,0},{0.30,0}}" />
+
+            <Window name="CharList" type="FearannLook/MultiColumnList">
+                <Property name="Size" value="{{0.42,0},{0.50,0}}" />
+                <Property name="Position" value="{{0.04,0},{0.15,0}}" />
+                <Property name="SelectionMode" value="RowSingle" />
+                <Property name="ColumnHeader" value="text:Character width:{0.65,0} id:0" />
+                <Property name="ColumnHeader" value="text:R width:{0.14,0} id:1" />
+                <Property name="ColumnHeader" value="text:G width:{0.14,0} id:2" />
+            </Window>
+
+            <Window name="NewChar" type="FearannLook/Button">
+                <Property name="Size" value="{{0.17,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.04,0},{0.70,0}}" />
+                <Property name="Text" value="New" />
+            </Window>
+
+            <Window name="DelChar" type="FearannLook/Button">
+                <Property name="Size" value="{{0.17,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.25,0},{0.70,0}}" />
+                <Property name="Text" value="Delete" />
+            </Window>
+
+            <Window name="CharName_Lbl" type="FearannLook/StaticText">
+                <Property name="Size" value="{{0.40,0},{0.16,0}}" />
+                <Property name="Position" value="{{0.50,0},{0.08,0}}" />
+		<Property name="HorzFormatting" value="HorzCentred" />
+		<Property name="VertFormatting" value="VertCentred" />
+		<Property name="Text" value="&lt; Character Name &gt;" />
+            </Window>
+
+	    <Window name="CharImage" type="FearannLook/StaticImage">
+		<Property name="Size" value="{{0.20,0},{0.60,0}}" />
+		<Property name="Position" value="{{0.50,0},{0.25,0}}" />
+		<Property name="FrameEnabled" value="False" />
+		<Property name="BackgroundEnabled" value="False" />
+		<Property name="Image" value="InitialBG/InitialBG" />
 	    </Window>
 
-            <Window Type="FearannLook/StaticText" Name="Initial/Join/CharRace_Lbl">
-		<Property Name="UnifiedSize" Value="{{0.28,0},{0.16,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.72,0},{0.30,0}}" />
-		<Property Name="Text" Value="&lt; Race &gt;" />
+            <Window name="CharRace_Lbl" type="FearannLook/StaticText">
+		<Property name="Size" value="{{0.28,0},{0.16,0}}" />
+		<Property name="Position" value="{{0.72,0},{0.30,0}}" />
+		<Property name="Text" value="&lt; Race &gt;" />
             </Window>
 
-            <Window Type="FearannLook/StaticText" Name="Initial/Join/CharGender_Lbl">
-		<Property Name="UnifiedSize" Value="{{0.28,0},{0.16,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.72,0},{0.45,0}}" />
-		<Property Name="Text" Value="&lt; Gender &gt;" />
+            <Window name="CharGender_Lbl" type="FearannLook/StaticText">
+		<Property name="Size" value="{{0.28,0},{0.16,0}}" />
+		<Property name="Position" value="{{0.72,0},{0.45,0}}" />
+		<Property name="Text" value="&lt; Gender &gt;" />
             </Window>
 
-            <Window Type="FearannLook/StaticText" Name="Initial/Join/CharArea_Lbl">
-		<Property Name="UnifiedSize" Value="{{0.28,0},{0.16,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.72,0},{0.60,0}}" />
-		<Property Name="Text" Value="&lt; Area &gt;" />
+            <Window name="CharArea_Lbl" type="FearannLook/StaticText">
+		<Property name="Size" value="{{0.28,0},{0.16,0}}" />
+		<Property name="Position" value="{{0.72,0},{0.60,0}}" />
+		<Property name="Text" value="&lt; Area &gt;" />
             </Window>
 
-            <Window Type="FearannLook/Button" Name="Initial/Join/Quit">
-                <Property Name="UnifiedSize" Value="{{0.17,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.04,0},{0.85,0}}" />
-                <Property Name="Text" Value="Quit" />
+            <Window name="Quit" type="FearannLook/Button">
+                <Property name="Size" value="{{0.17,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.04,0},{0.85,0}}" />
+                <Property name="Text" value="Quit" />
             </Window>
 
-            <Window Type="FearannLook/Button" Name="Initial/Join/Join">
-                <Property Name="UnifiedSize" Value="{{0.17,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.79,0},{0.85,0}}" />
-                <Property Name="Text" Value="Join" />
+            <Window name="Join" type="FearannLook/Button">
+                <Property name="Size" value="{{0.17,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.79,0},{0.85,0}}" />
+                <Property name="Text" value="Join" />
             </Window>
         </Window>
 
 
-        <Window Type="FearannLook/FrameWindow" Name="Initial/NewChar">
-            <Property Name="Text" Value="Fill in the character data" />
-            <Property Name="CloseButtonEnabled" Value="False" />
-            <Property Name="UnifiedSize" Value="{{0.6,0},{0.5,0}}" />
-            <Property Name="UnifiedPosition" Value="{{0.2,0},{0.25,0}}" />
+        <Window name="NewChar" type="FearannLook/FrameWindow">
+            <Property name="Text" value="Fill in the character data" />
+            <Property name="CloseButtonEnabled" value="False" />
+            <Property name="Size" value="{{0.6,0},{0.5,0}}" />
+            <Property name="Position" value="{{0.2,0},{0.25,0}}" />
 
-            <Window Type="FearannLook/StaticText" Name="Initial/NewChar/Points_Lbl">
-                <Property Name="UnifiedSize" Value="{{0.3,0},{0.2,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.01,0},{0.05,0}}" />
-                <Property Name="Text" Value="Abilities:" />
-		<Property Name="HorzFormatting" Value="HorzRight" />
+            <Window name="Points_Lbl" type="FearannLook/StaticText">
+                <Property name="Size" value="{{0.3,0},{0.2,0}}" />
+                <Property name="Position" value="{{0.01,0},{0.05,0}}" />
+                <Property name="Text" value="Abilities:" />
+		<Property name="HorzFormatting" value="HorzRight" />
             </Window>
 
-            <Window Type="FearannLook/StaticText" Name="Initial/NewChar/Points">
-                <Property Name="UnifiedSize" Value="{{0.1,0},{0.2,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.17,0},{0.05,0}}" />
-                <Property Name="Text" Value="-" />
+            <Window name="Points" type="FearannLook/StaticText">
+                <Property name="Size" value="{{0.1,0},{0.2,0}}" />
+                <Property name="Position" value="{{0.17,0},{0.05,0}}" />
+                <Property name="Text" value="-" />
             </Window>
 
-            <Window Type="FearannLook/StaticText" Name="Initial/NewChar/RaceBonus_Lbl">
-                <Property Name="UnifiedSize" Value="{{0.1,0},{0.2,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.23,0},{0.05,0}}" />
-                <Property Name="Text" Value="RB" />
+            <Window name="RaceBonus_Lbl" type="FearannLook/StaticText">
+                <Property name="Size" value="{{0.1,0},{0.2,0}}" />
+                <Property name="Position" value="{{0.23,0},{0.05,0}}" />
+                <Property name="Text" value="RB" />
             </Window>
 
-            <Window Type="FearannLook/StaticText" Name="Initial/NewChar/Total_Lbl">
-                <Property Name="UnifiedSize" Value="{{0.1,0},{0.2,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.30,0},{0.05,0}}" />
-                <Property Name="Text" Value="Tot." />
+            <Window name="Total_Lbl" type="FearannLook/StaticText">
+                <Property name="Size" value="{{0.1,0},{0.2,0}}" />
+                <Property name="Position" value="{{0.30,0},{0.05,0}}" />
+                <Property name="Text" value="Tot." />
             </Window>
 
-            <Window Type="FearannLook/StaticText" Name="Initial/NewChar/Ab_Str_Lbl">
-                <Property Name="UnifiedSize" Value="{{0.15,0},{0.2,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.01,0},{0.15,0}}" />
-                <Property Name="Text" Value="Strength" />
+            <Window name="Ab_Str_Lbl" type="FearannLook/StaticText">
+                <Property name="Size" value="{{0.15,0},{0.2,0}}" />
+                <Property name="Position" value="{{0.01,0},{0.15,0}}" />
+                <Property name="Text" value="Strength" />
             </Window>
 
-            <Window Type="FearannLook/StaticText" Name="Initial/NewChar/Ab_Con_Lbl">
-                <Property Name="UnifiedSize" Value="{{0.15,0},{0.2,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.01,0},{0.25,0}}" />
-                <Property Name="Text" Value="Constit." />
+            <Window name="Ab_Con_Lbl" type="FearannLook/StaticText">
+                <Property name="Size" value="{{0.15,0},{0.2,0}}" />
+                <Property name="Position" value="{{0.01,0},{0.25,0}}" />
+                <Property name="Text" value="Constit." />
             </Window>
 
-            <Window Type="FearannLook/StaticText" Name="Initial/NewChar/Ab_Dex_Lbl">
-                <Property Name="UnifiedSize" Value="{{0.15,0},{0.2,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.01,0},{0.35,0}}" />
-                <Property Name="Text" Value="Dexter." />
+            <Window name="Ab_Dex_Lbl" type="FearannLook/StaticText">
+                <Property name="Size" value="{{0.15,0},{0.2,0}}" />
+                <Property name="Position" value="{{0.01,0},{0.35,0}}" />
+                <Property name="Text" value="Dexter." />
             </Window>
 
-            <Window Type="FearannLook/StaticText" Name="Initial/NewChar/Ab_Int_Lbl">
-                <Property Name="UnifiedSize" Value="{{0.15,0},{0.2,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.01,0},{0.45,0}}" />
-                <Property Name="Text" Value="Intellig." />
+            <Window name="Ab_Int_Lbl" type="FearannLook/StaticText">
+                <Property name="Size" value="{{0.15,0},{0.2,0}}" />
+                <Property name="Position" value="{{0.01,0},{0.45,0}}" />
+                <Property name="Text" value="Intellig." />
             </Window>
 
-            <Window Type="FearannLook/StaticText" Name="Initial/NewChar/Ab_Wis_Lbl">
-                <Property Name="UnifiedSize" Value="{{0.15,0},{0.2,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.01,0},{0.55,0}}" />
-                <Property Name="Text" Value="Wisdom" />
+            <Window name="Ab_Wis_Lbl" type="FearannLook/StaticText">
+                <Property name="Size" value="{{0.15,0},{0.2,0}}" />
+                <Property name="Position" value="{{0.01,0},{0.55,0}}" />
+                <Property name="Text" value="Wisdom" />
             </Window>
 
-            <Window Type="FearannLook/StaticText" Name="Initial/NewChar/Ab_Cha_Lbl">
-                <Property Name="UnifiedSize" Value="{{0.15,0},{0.2,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.01,0},{0.65,0}}" />
-                <Property Name="Text" Value="Charisma" />
+            <Window name="Ab_Cha_Lbl" type="FearannLook/StaticText">
+                <Property name="Size" value="{{0.15,0},{0.2,0}}" />
+                <Property name="Position" value="{{0.01,0},{0.65,0}}" />
+                <Property name="Text" value="Charisma" />
             </Window>
 
-            <Window Type="FearannLook/Spinner" Name="Initial/NewChar/Ab_Str">
-                <Property Name="UnifiedSize" Value="{{0.1,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.12,0},{0.2,0}}" />
-                <Property Name="Text" Value="13" />
-		<Property Name="MinimumValue" Value="3" />
-		<Property Name="MaximumValue" Value="18" />
+            <Window name="Ab_Str" type="FearannLook/Spinner">
+                <Property name="Size" value="{{0.1,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.12,0},{0.2,0}}" />
+                <Property name="Text" value="13" />
+		<Property name="MinimumValue" value="3" />
+		<Property name="MaximumValue" value="18" />
             </Window>
 
-            <Window Type="FearannLook/Spinner" Name="Initial/NewChar/Ab_Con">
-                <Property Name="UnifiedSize" Value="{{0.1,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.12,0},{0.3,0}}" />
-                <Property Name="Text" Value="13" />
-		<Property Name="MinimumValue" Value="3" />
-		<Property Name="MaximumValue" Value="18" />
+            <Window name="Ab_Con" type="FearannLook/Spinner">
+                <Property name="Size" value="{{0.1,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.12,0},{0.3,0}}" />
+                <Property name="Text" value="13" />
+		<Property name="MinimumValue" value="3" />
+		<Property name="MaximumValue" value="18" />
             </Window>
 
-            <Window Type="FearannLook/Spinner" Name="Initial/NewChar/Ab_Dex">
-                <Property Name="UnifiedSize" Value="{{0.1,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.12,0},{0.4,0}}" />
-                <Property Name="Text" Value="13" />
-		<Property Name="MinimumValue" Value="3" />
-		<Property Name="MaximumValue" Value="18" />
+            <Window name="Ab_Dex" type="FearannLook/Spinner">
+                <Property name="Size" value="{{0.1,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.12,0},{0.4,0}}" />
+                <Property name="Text" value="13" />
+		<Property name="MinimumValue" value="3" />
+		<Property name="MaximumValue" value="18" />
             </Window>
 
-            <Window Type="FearannLook/Spinner" Name="Initial/NewChar/Ab_Int">
-                <Property Name="UnifiedSize" Value="{{0.1,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.12,0},{0.5,0}}" />
-                <Property Name="Text" Value="13" />
-		<Property Name="MinimumValue" Value="3" />
-		<Property Name="MaximumValue" Value="18" />
+            <Window name="Ab_Int" type="FearannLook/Spinner">
+                <Property name="Size" value="{{0.1,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.12,0},{0.5,0}}" />
+                <Property name="Text" value="13" />
+		<Property name="MinimumValue" value="3" />
+		<Property name="MaximumValue" value="18" />
             </Window>
 
-            <Window Type="FearannLook/Spinner" Name="Initial/NewChar/Ab_Wis">
-                <Property Name="UnifiedSize" Value="{{0.1,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.12,0},{0.6,0}}" />
-                <Property Name="Text" Value="13" />
-		<Property Name="MinimumValue" Value="3" />
-		<Property Name="MaximumValue" Value="18" />
+            <Window name="Ab_Wis" type="FearannLook/Spinner">
+                <Property name="Size" value="{{0.1,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.12,0},{0.6,0}}" />
+                <Property name="Text" value="13" />
+		<Property name="MinimumValue" value="3" />
+		<Property name="MaximumValue" value="18" />
             </Window>
 
-            <Window Type="FearannLook/Spinner" Name="Initial/NewChar/Ab_Cha">
-                <Property Name="UnifiedSize" Value="{{0.1,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.12,0},{0.7,0}}" />
-                <Property Name="Text" Value="13" />
-		<Property Name="MinimumValue" Value="3" />
-		<Property Name="MaximumValue" Value="18" />
-            </Window>
-
-
-            <Window Type="FearannLook/Editbox" Name="Initial/NewChar/Bonus_Str">
-                <Property Name="UnifiedSize" Value="{{0.07,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.23,0},{0.2,0}}" />
-                <Property Name="Text" Value="0" />
-		<Property Name="ReadOnly" Value="True" />
-            </Window>
-
-            <Window Type="FearannLook/Editbox" Name="Initial/NewChar/Bonus_Con">
-                <Property Name="UnifiedSize" Value="{{0.07,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.23,0},{0.3,0}}" />
-                <Property Name="Text" Value="0" />
-		<Property Name="ReadOnly" Value="True" />
-            </Window>
-
-            <Window Type="FearannLook/Editbox" Name="Initial/NewChar/Bonus_Dex">
-                <Property Name="UnifiedSize" Value="{{0.07,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.23,0},{0.4,0}}" />
-                <Property Name="Text" Value="0" />
-		<Property Name="ReadOnly" Value="True" />
-            </Window>
-
-            <Window Type="FearannLook/Editbox" Name="Initial/NewChar/Bonus_Int">
-                <Property Name="UnifiedSize" Value="{{0.07,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.23,0},{0.5,0}}" />
-                <Property Name="Text" Value="0" />
-		<Property Name="ReadOnly" Value="True" />
-            </Window>
-
-            <Window Type="FearannLook/Editbox" Name="Initial/NewChar/Bonus_Wis">
-                <Property Name="UnifiedSize" Value="{{0.07,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.23,0},{0.6,0}}" />
-                <Property Name="Text" Value="0" />
-		<Property Name="ReadOnly" Value="True" />
-            </Window>
-
-            <Window Type="FearannLook/Editbox" Name="Initial/NewChar/Bonus_Cha">
-                <Property Name="UnifiedSize" Value="{{0.07,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.23,0},{0.7,0}}" />
-                <Property Name="Text" Value="0" />
-		<Property Name="ReadOnly" Value="True" />
+            <Window name="Ab_Cha" type="FearannLook/Spinner">
+                <Property name="Size" value="{{0.1,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.12,0},{0.7,0}}" />
+                <Property name="Text" value="13" />
+		<Property name="MinimumValue" value="3" />
+		<Property name="MaximumValue" value="18" />
             </Window>
 
 
-            <Window Type="FearannLook/Editbox" Name="Initial/NewChar/Total_Str">
-                <Property Name="UnifiedSize" Value="{{0.07,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.32,0},{0.2,0}}" />
-                <Property Name="Text" Value="0" />
-		<Property Name="ReadOnly" Value="True" />
+            <Window name="Bonus_Str" type="FearannLook/Editbox">
+                <Property name="Size" value="{{0.07,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.23,0},{0.2,0}}" />
+                <Property name="Text" value="0" />
+		<Property name="ReadOnly" value="True" />
             </Window>
 
-            <Window Type="FearannLook/Editbox" Name="Initial/NewChar/Total_Con">
-                <Property Name="UnifiedSize" Value="{{0.07,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.32,0},{0.3,0}}" />
-                <Property Name="Text" Value="0" />
-		<Property Name="ReadOnly" Value="True" />
+            <Window name="Bonus_Con" type="FearannLook/Editbox">
+                <Property name="Size" value="{{0.07,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.23,0},{0.3,0}}" />
+                <Property name="Text" value="0" />
+		<Property name="ReadOnly" value="True" />
             </Window>
 
-            <Window Type="FearannLook/Editbox" Name="Initial/NewChar/Total_Dex">
-                <Property Name="UnifiedSize" Value="{{0.07,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.32,0},{0.4,0}}" />
-                <Property Name="Text" Value="0" />
-		<Property Name="ReadOnly" Value="True" />
+            <Window name="Bonus_Dex" type="FearannLook/Editbox">
+                <Property name="Size" value="{{0.07,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.23,0},{0.4,0}}" />
+                <Property name="Text" value="0" />
+		<Property name="ReadOnly" value="True" />
             </Window>
 
-            <Window Type="FearannLook/Editbox" Name="Initial/NewChar/Total_Int">
-                <Property Name="UnifiedSize" Value="{{0.07,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.32,0},{0.5,0}}" />
-                <Property Name="Text" Value="0" />
-		<Property Name="ReadOnly" Value="True" />
+            <Window name="Bonus_Int" type="FearannLook/Editbox">
+                <Property name="Size" value="{{0.07,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.23,0},{0.5,0}}" />
+                <Property name="Text" value="0" />
+		<Property name="ReadOnly" value="True" />
             </Window>
 
-            <Window Type="FearannLook/Editbox" Name="Initial/NewChar/Total_Wis">
-                <Property Name="UnifiedSize" Value="{{0.07,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.32,0},{0.6,0}}" />
-                <Property Name="Text" Value="0" />
-		<Property Name="ReadOnly" Value="True" />
+            <Window name="Bonus_Wis" type="FearannLook/Editbox">
+                <Property name="Size" value="{{0.07,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.23,0},{0.6,0}}" />
+                <Property name="Text" value="0" />
+		<Property name="ReadOnly" value="True" />
             </Window>
 
-            <Window Type="FearannLook/Editbox" Name="Initial/NewChar/Total_Cha">
-                <Property Name="UnifiedSize" Value="{{0.07,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.32,0},{0.7,0}}" />
-                <Property Name="Text" Value="0" />
-		<Property Name="ReadOnly" Value="True" />
+            <Window name="Bonus_Cha" type="FearannLook/Editbox">
+                <Property name="Size" value="{{0.07,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.23,0},{0.7,0}}" />
+                <Property name="Text" value="0" />
+		<Property name="ReadOnly" value="True" />
             </Window>
 
 
-            <Window Type="FearannLook/Editbox" Name="Initial/NewChar/CharName">
-                <Property Name="UnifiedSize" Value="{{0.25,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.4,0},{0.12,0}}" />
-                <Property Name="Text" Value="" />
+            <Window name="Total_Str" type="FearannLook/Editbox">
+                <Property name="Size" value="{{0.07,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.32,0},{0.2,0}}" />
+                <Property name="Text" value="0" />
+		<Property name="ReadOnly" value="True" />
             </Window>
 
-            <Window Type="FearannLook/Combobox" Name="Initial/NewChar/CharRace">
-                <Property Name="UnifiedSize" Value="{{0.2,0},{0.35,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.66,0},{0.12,0}}" />
-		<Property Name="ReadOnly" Value="True" />
+            <Window name="Total_Con" type="FearannLook/Editbox">
+                <Property name="Size" value="{{0.07,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.32,0},{0.3,0}}" />
+                <Property name="Text" value="0" />
+		<Property name="ReadOnly" value="True" />
             </Window>
 
-            <Window Type="FearannLook/Combobox" Name="Initial/NewChar/CharGender">
-                <Property Name="UnifiedSize" Value="{{0.1,0},{0.28,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.87,0},{0.12,0}}" />
-		<Property Name="ReadOnly" Value="True" />
+            <Window name="Total_Dex" type="FearannLook/Editbox">
+                <Property name="Size" value="{{0.07,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.32,0},{0.4,0}}" />
+                <Property name="Text" value="0" />
+		<Property name="ReadOnly" value="True" />
             </Window>
 
-            <Window Type="FearannLook/Combobox" Name="Initial/NewChar/CharClass">
-                <Property Name="UnifiedSize" Value="{{0.2,0},{0.35,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.66,0},{0.24,0}}" />
-		<Property Name="ReadOnly" Value="True" />
+            <Window name="Total_Int" type="FearannLook/Editbox">
+                <Property name="Size" value="{{0.07,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.32,0},{0.5,0}}" />
+                <Property name="Text" value="0" />
+		<Property name="ReadOnly" value="True" />
             </Window>
 
-	    <Window Type="FearannLook/StaticImage" Name="Initial/NewChar/CharImage">
-                <Property Name="UnifiedSize" Value="{{0.2,0},{0.48,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.4,0},{0.35,0}}" />
-		<Property Name="FrameEnabled" Value="False" />
-		<Property Name="BackgroundEnabled" Value="False" />
-		<Property Name="Image" Value="set:InitialBG image:InitialBG" />
+            <Window name="Total_Wis" type="FearannLook/Editbox">
+                <Property name="Size" value="{{0.07,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.32,0},{0.6,0}}" />
+                <Property name="Text" value="0" />
+		<Property name="ReadOnly" value="True" />
+            </Window>
+
+            <Window name="Total_Cha" type="FearannLook/Editbox">
+                <Property name="Size" value="{{0.07,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.32,0},{0.7,0}}" />
+                <Property name="Text" value="0" />
+		<Property name="ReadOnly" value="True" />
+            </Window>
+
+
+            <Window name="CharName" type="FearannLook/Editbox">
+                <Property name="Size" value="{{0.25,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.4,0},{0.12,0}}" />
+                <Property name="Text" value="" />
+            </Window>
+
+            <Window name="CharRace" type="FearannLook/Combobox">
+                <Property name="Size" value="{{0.2,0},{0.35,0}}" />
+                <Property name="Position" value="{{0.66,0},{0.12,0}}" />
+		<Property name="ReadOnly" value="True" />
+            </Window>
+
+            <Window name="CharGender" type="FearannLook/Combobox">
+                <Property name="Size" value="{{0.1,0},{0.28,0}}" />
+                <Property name="Position" value="{{0.87,0},{0.12,0}}" />
+		<Property name="ReadOnly" value="True" />
+            </Window>
+
+            <Window name="CharClass" type="FearannLook/Combobox">
+                <Property name="Size" value="{{0.2,0},{0.35,0}}" />
+                <Property name="Position" value="{{0.66,0},{0.24,0}}" />
+		<Property name="ReadOnly" value="True" />
+            </Window>
+
+	    <Window name="CharImage" type="FearannLook/StaticImage">
+                <Property name="Size" value="{{0.2,0},{0.48,0}}" />
+                <Property name="Position" value="{{0.4,0},{0.35,0}}" />
+		<Property name="FrameEnabled" value="False" />
+		<Property name="BackgroundEnabled" value="False" />
+		<Property name="Image" value="InitialBG/InitialBG" />
 	    </Window>
 
-	    <Window Type="FearannLook/MultiLineEditbox" Name="Initial/NewChar/Tip">
-                <Property Name="UnifiedSize" Value="{{0.35,0},{0.48,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.62,0},{0.35,0}}" />
-		<Property Name="ReadOnly" Value="True" />
-                <Property Name="Text" Value="You have to set the character name, race and gender; and spend all the points in abilities for your character." />
+	    <Window name="Tip" type="FearannLook/MultiLineEditbox">
+                <Property name="Size" value="{{0.35,0},{0.48,0}}" />
+                <Property name="Position" value="{{0.62,0},{0.35,0}}" />
+		<Property name="ReadOnly" value="True" />
+                <Property name="Text" value="You have to set the character name, race and gender; and spend all the points in abilities for your character." />
 	    </Window>
 
-            <Window Type="FearannLook/Button" Name="Initial/NewChar/Cancel">
-                <Property Name="UnifiedSize" Value="{{0.17,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.04,0},{0.85,0}}" />
-                <Property Name="Text" Value="Cancel" />
+            <Window name="Cancel" type="FearannLook/Button">
+                <Property name="Size" value="{{0.17,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.04,0},{0.85,0}}" />
+                <Property name="Text" value="Cancel" />
             </Window>
 
-            <Window Type="FearannLook/Button" Name="Initial/NewChar/Create">
-                <Property Name="UnifiedSize" Value="{{0.17,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.79,0},{0.85,0}}" />
-                <Property Name="Text" Value="Create" />
-            </Window>
-        </Window>
-
-
-        <Window Type="FearannLook/FrameWindow" Name="Initial/Download">
-            <Property Name="Text" Value="Downloading new content from server" />
-            <Property Name="CloseButtonEnabled" Value="False" />
-            <Property Name="UnifiedSize" Value="{{0.80,0},{0.15,0}}" />
-            <Property Name="UnifiedPosition" Value="{{0.10,0},{0.80,0}}" />
-
-            <Window Type="FearannLook/StaticText" Name="Initial/Download/Filename_Lbl">
-                <Property Name="UnifiedSize" Value="{{0.15,0},{0.4,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.05,0},{0.20,0}}" />
-		<Property Name="Text" Value="Filename:" />
-            </Window>
-
-            <Window Type="FearannLook/StaticText" Name="Initial/Download/Filename">
-                <Property Name="UnifiedSize" Value="{{0.8,0},{0.4,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.18,0},{0.20,0}}" />
-		<Property Name="Text" Value="-" />
-            </Window>
-
-            <Window Type="FearannLook/StaticText" Name="Initial/Download/File_Lbl">
-                <Property Name="UnifiedSize" Value="{{0.10,0},{0.4,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.05,0},{0.50,0}}" />
-		<Property Name="Text" Value="File:" />
-            </Window>
-
-            <Window Type="FearannLook/ProgressBar" Name="Initial/Download/FileProgress">
-                <Property Name="UnifiedSize" Value="{{0.28,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.12,0},{0.65,0}}" />
-                <Property Name="CurrentProgress" Value="0.00" />
-            </Window>
-
-            <Window Type="FearannLook/StaticText" Name="Initial/Download/FileNumber_Lbl">
-                <Property Name="UnifiedSize" Value="{{0.1,0},{0.4,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.38,0},{0.5,0}}" />
-		<Property Name="Text" Value="0%" />
-		<Property Name="HorzFormatting" Value="RightAligned" />
-            </Window>
-
-            <Window Type="FearannLook/StaticText" Name="Initial/Download/Total_Lbl">
-                <Property Name="UnifiedSize" Value="{{0.10,0},{0.4,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.55,0},{0.5,0}}" />
-		<Property Name="Text" Value="Total:" />
-            </Window>
-
-            <Window Type="FearannLook/ProgressBar" Name="Initial/Download/TotalProgress">
-                <Property Name="UnifiedSize" Value="{{0.28,0},{0.1,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.62,0},{0.65,0}}" />
-                <Property Name="CurrentProgress" Value="0.00" />
-            </Window>
-
-            <Window Type="FearannLook/StaticText" Name="Initial/Download/TotalNumber_Lbl">
-                <Property Name="UnifiedSize" Value="{{0.1,0},{0.4,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.88,0},{0.5,0}}" />
-		<Property Name="Text" Value="0%" />
-		<Property Name="HorzFormatting" Value="RightAligned" />
+            <Window name="Create" type="FearannLook/Button">
+                <Property name="Size" value="{{0.17,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.79,0},{0.85,0}}" />
+                <Property name="Text" value="Create" />
             </Window>
         </Window>
 
 
-        <Window Type="FearannLook/FrameWindow" Name="Initial/LoadingBanner">
-            <Property Name="Text" Value="Loading game, please wait" />
-            <Property Name="CloseButtonEnabled" Value="False" />
-            <Property Name="UnifiedSize" Value="{{0.30,0},{0.05,0}}" />
-            <Property Name="UnifiedPosition" Value="{{0.35,0},{0.45,0}}" />
+        <Window name="Download" type="FearannLook/FrameWindow">
+            <Property name="Text" value="Downloading new content from server" />
+            <Property name="CloseButtonEnabled" value="False" />
+            <Property name="Size" value="{{0.80,0},{0.15,0}}" />
+            <Property name="Position" value="{{0.10,0},{0.80,0}}" />
+
+            <Window name="Filename_Lbl" type="FearannLook/StaticText">
+                <Property name="Size" value="{{0.15,0},{0.4,0}}" />
+                <Property name="Position" value="{{0.05,0},{0.20,0}}" />
+		<Property name="Text" value="Filename:" />
+            </Window>
+
+            <Window name="Filename" type="FearannLook/StaticText">
+                <Property name="Size" value="{{0.8,0},{0.4,0}}" />
+                <Property name="Position" value="{{0.18,0},{0.20,0}}" />
+		<Property name="Text" value="-" />
+            </Window>
+
+            <Window name="File_Lbl" type="FearannLook/StaticText">
+                <Property name="Size" value="{{0.10,0},{0.4,0}}" />
+                <Property name="Position" value="{{0.05,0},{0.50,0}}" />
+		<Property name="Text" value="File:" />
+            </Window>
+
+            <Window name="FileProgress" type="FearannLook/ProgressBar">
+                <Property name="Size" value="{{0.28,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.12,0},{0.65,0}}" />
+                <Property name="CurrentProgress" value="0.00" />
+            </Window>
+
+            <Window name="FileNumber_Lbl" type="FearannLook/StaticText">
+                <Property name="Size" value="{{0.1,0},{0.4,0}}" />
+                <Property name="Position" value="{{0.38,0},{0.5,0}}" />
+		<Property name="Text" value="0%" />
+		<Property name="HorzFormatting" value="RightAligned" />
+            </Window>
+
+            <Window name="Total_Lbl" type="FearannLook/StaticText">
+                <Property name="Size" value="{{0.10,0},{0.4,0}}" />
+                <Property name="Position" value="{{0.55,0},{0.5,0}}" />
+		<Property name="Text" value="Total:" />
+            </Window>
+
+            <Window name="TotalProgress" type="FearannLook/ProgressBar">
+                <Property name="Size" value="{{0.28,0},{0.1,0}}" />
+                <Property name="Position" value="{{0.62,0},{0.65,0}}" />
+                <Property name="CurrentProgress" value="0.00" />
+            </Window>
+
+            <Window name="TotalNumber_Lbl" type="FearannLook/StaticText">
+                <Property name="Size" value="{{0.1,0},{0.4,0}}" />
+                <Property name="Position" value="{{0.88,0},{0.5,0}}" />
+		<Property name="Text" value="0%" />
+		<Property name="HorzFormatting" value="RightAligned" />
+            </Window>
+        </Window>
+
+
+        <Window name="LoadingBanner" type="FearannLook/FrameWindow">
+            <Property name="Text" value="Loading game, please wait" />
+            <Property name="CloseButtonEnabled" value="False" />
+            <Property name="Size" value="{{0.30,0},{0.05,0}}" />
+            <Property name="Position" value="{{0.35,0},{0.45,0}}" />
 	</Window>
 
 
-	<!-- Dialogs -->
+	
 
-        <Window Type="FearannLook/FrameWindow" Name="Dialog/Notification">
-            <Property Name="Text" Value="Notification Dialog" />
-            <Property Name="CloseButtonEnabled" Value="False" />
-            <Property Name="UnifiedSize" Value="{{0.5,0},{0.3,0}}" />
-            <Property Name="UnifiedPosition" Value="{{0.25,0},{0.35,0}}" />
-            <Property Name="AlwaysOnTop" Value="True" />
+        <Window name="Notification" type="FearannLook/FrameWindow">
+            <Property name="Text" value="Notification Dialog" />
+            <Property name="CloseButtonEnabled" value="False" />
+            <Property name="Size" value="{{0.5,0},{0.3,0}}" />
+            <Property name="Position" value="{{0.25,0},{0.35,0}}" />
+            <Property name="AlwaysOnTop" value="True" />
 
-            <Window Type="FearannLook/MultiLineEditbox" Name="Dialog/Notification/Message">
-		<Property Name="UnifiedSize" Value="{{0.9,0},{0.6,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.05,0},{0.15,0}}" />
-		<Property Name="Text" Value="&lt; empty &gt;" />
-		<Property Name="ReadOnly" Value="True" />
+            <Window name="Message" type="FearannLook/MultiLineEditbox">
+		<Property name="Size" value="{{0.9,0},{0.6,0}}" />
+		<Property name="Position" value="{{0.05,0},{0.15,0}}" />
+		<Property name="Text" value="&lt; empty &gt;" />
+		<Property name="ReadOnly" value="True" />
             </Window>
 
-            <Window Type="FearannLook/Button" Name="Dialog/Notification/Close">
-		<Property Name="UnifiedSize" Value="{{0.2,0},{0.15,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.4,0},{0.8,0}}" />
-                <Property Name="Text" Value="Close" />
-            </Window>
-	</Window>
-
-
-        <Window Type="FearannLook/FrameWindow" Name="Dialog/Quit">
-            <Property Name="Text" Value="Quit Dialog" />
-            <Property Name="CloseButtonEnabled" Value="False" />
-            <Property Name="UnifiedSize" Value="{{0.5,0},{0.3,0}}" />
-            <Property Name="UnifiedPosition" Value="{{0.25,0},{0.35,0}}" />
-            <Property Name="AlwaysOnTop" Value="True" />
-
-            <Window Type="FearannLook/StaticText" Name="Dialog/Quit/Message">
-		<Property Name="UnifiedSize" Value="{{0.9,0},{0.6,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.05,0},{0.1,0}}" />
-		<Property Name="Text" Value="Do you really want to quit?" />
-            </Window>
-
-            <Window Type="FearannLook/Button" Name="Dialog/Quit/Cancel">
-		<Property Name="UnifiedSize" Value="{{0.2,0},{0.15,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.1,0},{0.8,0}}" />
-                <Property Name="Text" Value="Cancel" />
-            </Window>
-
-            <Window Type="FearannLook/Button" Name="Dialog/Quit/Quit">
-		<Property Name="UnifiedSize" Value="{{0.2,0},{0.15,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.7,0},{0.8,0}}" />
-                <Property Name="Text" Value="Quit" />
-            </Window>
-	</Window>
-
-
-        <Window Type="FearannLook/FrameWindow" Name="Dialog/Combat">
-            <Property Name="Text" Value="Quit Dialog" />
-            <Property Name="CloseButtonEnabled" Value="False" />
-            <Property Name="UnifiedSize" Value="{{0.5,0},{0.3,0}}" />
-            <Property Name="UnifiedPosition" Value="{{0.25,0},{0.35,0}}" />
-            <Property Name="AlwaysOnTop" Value="True" />
-            <Property Name="Visible" Value="False" />
-
-            <Window Type="FearannLook/StaticText" Name="Dialog/Combat/Message">
-		<Property Name="UnifiedSize" Value="{{0.9,0},{0.6,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.05,0},{0.1,0}}" />
-		<Property Name="Text" Value="Do you accept combat?" />
-            </Window>
-
-            <Window Type="FearannLook/Button" Name="Dialog/Combat/No">
-		<Property Name="UnifiedSize" Value="{{0.2,0},{0.15,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.1,0},{0.8,0}}" />
-                <Property Name="Text" Value="No" />
-            </Window>
-
-            <Window Type="FearannLook/Button" Name="Dialog/Combat/Yes">
-		<Property Name="UnifiedSize" Value="{{0.2,0},{0.15,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.7,0},{0.8,0}}" />
-                <Property Name="Text" Value="Yes" />
-            </Window>
-	</Window>
-
-
-        <Window Type="FearannLook/FrameWindow" Name="Dialog/Trade">
-            <Property Name="Text" Value="Quit Dialog" />
-            <Property Name="CloseButtonEnabled" Value="False" />
-            <Property Name="UnifiedSize" Value="{{0.5,0},{0.3,0}}" />
-            <Property Name="UnifiedPosition" Value="{{0.25,0},{0.35,0}}" />
-            <Property Name="AlwaysOnTop" Value="True" />
-            <Property Name="Visible" Value="False" />
-
-            <Window Type="FearannLook/StaticText" Name="Dialog/Trade/Message">
-		<Property Name="UnifiedSize" Value="{{0.9,0},{0.6,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.05,0},{0.1,0}}" />
-		<Property Name="Text" Value="Do you want to trade?" />
-            </Window>
-
-            <Window Type="FearannLook/Button" Name="Dialog/Trade/No">
-		<Property Name="UnifiedSize" Value="{{0.2,0},{0.15,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.1,0},{0.8,0}}" />
-                <Property Name="Text" Value="No" />
-            </Window>
-
-            <Window Type="FearannLook/Button" Name="Dialog/Trade/Yes">
-		<Property Name="UnifiedSize" Value="{{0.2,0},{0.15,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.7,0},{0.8,0}}" />
-                <Property Name="Text" Value="Yes" />
+            <Window name="Close" type="FearannLook/Button">
+		<Property name="Size" value="{{0.2,0},{0.15,0}}" />
+		<Property name="Position" value="{{0.4,0},{0.8,0}}" />
+                <Property name="Text" value="Close" />
             </Window>
 	</Window>
 
 
-	<!-- In Game -->
-        <Window Type="DefaultWindow" Name="InGame/Console">
-		<Property Name="UnifiedSize" Value="{{0.8,0},{0.25,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.20,0},{0.75,0}}" />
+        <Window name="Quit" type="FearannLook/FrameWindow">
+            <Property name="Text" value="Quit Dialog" />
+            <Property name="CloseButtonEnabled" value="False" />
+            <Property name="Size" value="{{0.5,0},{0.3,0}}" />
+            <Property name="Position" value="{{0.25,0},{0.35,0}}" />
+            <Property name="AlwaysOnTop" value="True" />
 
-	    <Window Type="FearannLook/StaticImage" Name="InGame/Console/Background">
-		<Property Name="UnifiedSize" Value="{{1,0},{1,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0,0},{0,0}}" />
-		<Property Name="FrameEnabled" Value="False" />
-		<Property Name="BackgroundEnabled" Value="False" />
-		<Property Name="Disabled" Value="True" />
+            <Window name="Message" type="FearannLook/StaticText">
+		<Property name="Size" value="{{0.9,0},{0.6,0}}" />
+		<Property name="Position" value="{{0.05,0},{0.1,0}}" />
+		<Property name="Text" value="Do you really want to quit?" />
+            </Window>
+
+            <Window name="Cancel" type="FearannLook/Button">
+		<Property name="Size" value="{{0.2,0},{0.15,0}}" />
+		<Property name="Position" value="{{0.1,0},{0.8,0}}" />
+                <Property name="Text" value="Cancel" />
+            </Window>
+
+            <Window name="Quit" type="FearannLook/Button">
+		<Property name="Size" value="{{0.2,0},{0.15,0}}" />
+		<Property name="Position" value="{{0.7,0},{0.8,0}}" />
+                <Property name="Text" value="Quit" />
+            </Window>
+	</Window>
+
+
+        <Window name="Combat" type="FearannLook/FrameWindow">
+            <Property name="Text" value="Quit Dialog" />
+            <Property name="CloseButtonEnabled" value="False" />
+            <Property name="Size" value="{{0.5,0},{0.3,0}}" />
+            <Property name="Position" value="{{0.25,0},{0.35,0}}" />
+            <Property name="AlwaysOnTop" value="True" />
+            <Property name="Visible" value="False" />
+
+            <Window name="Message" type="FearannLook/StaticText">
+		<Property name="Size" value="{{0.9,0},{0.6,0}}" />
+		<Property name="Position" value="{{0.05,0},{0.1,0}}" />
+		<Property name="Text" value="Do you accept combat?" />
+            </Window>
+
+            <Window name="No" type="FearannLook/Button">
+		<Property name="Size" value="{{0.2,0},{0.15,0}}" />
+		<Property name="Position" value="{{0.1,0},{0.8,0}}" />
+                <Property name="Text" value="No" />
+            </Window>
+
+            <Window name="Yes" type="FearannLook/Button">
+		<Property name="Size" value="{{0.2,0},{0.15,0}}" />
+		<Property name="Position" value="{{0.7,0},{0.8,0}}" />
+                <Property name="Text" value="Yes" />
+            </Window>
+	</Window>
+
+
+        <Window name="Trade" type="FearannLook/FrameWindow">
+            <Property name="Text" value="Quit Dialog" />
+            <Property name="CloseButtonEnabled" value="False" />
+            <Property name="Size" value="{{0.5,0},{0.3,0}}" />
+            <Property name="Position" value="{{0.25,0},{0.35,0}}" />
+            <Property name="AlwaysOnTop" value="True" />
+            <Property name="Visible" value="False" />
+
+            <Window name="Message" type="FearannLook/StaticText">
+		<Property name="Size" value="{{0.9,0},{0.6,0}}" />
+		<Property name="Position" value="{{0.05,0},{0.1,0}}" />
+		<Property name="Text" value="Do you want to trade?" />
+            </Window>
+
+            <Window name="No" type="FearannLook/Button">
+		<Property name="Size" value="{{0.2,0},{0.15,0}}" />
+		<Property name="Position" value="{{0.1,0},{0.8,0}}" />
+                <Property name="Text" value="No" />
+            </Window>
+
+            <Window name="Yes" type="FearannLook/Button">
+		<Property name="Size" value="{{0.2,0},{0.15,0}}" />
+		<Property name="Position" value="{{0.7,0},{0.8,0}}" />
+                <Property name="Text" value="Yes" />
+            </Window>
+	</Window>
+
+
+	
+        <Window name="Console" type="DefaultWindow">
+		<Property name="Size" value="{{0.8,0},{0.25,0}}" />
+		<Property name="Position" value="{{0.20,0},{0.75,0}}" />
+
+	    <Window name="Background" type="FearannLook/StaticImage">
+		<Property name="Size" value="{{1,0},{1,0}}" />
+		<Property name="Position" value="{{0,0},{0,0}}" />
+		<Property name="FrameEnabled" value="False" />
+		<Property name="BackgroundEnabled" value="False" />
+		<Property name="Disabled" value="True" />
 	    </Window>
 
-            <Window Type="FearannLook/TabControl" Name="InGame/Console/Tabs">
-		<Property Name="UnifiedSize" Value="{{1,0},{0.15,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0,0},{0,0}}" />
-                <Property Name="TabHeight" Value="{1,0}" />
-                <Property Name="TabTextPadding" Value="{0.05,0}" />
+            <Window name="Tabs" type="FearannLook/TabControl">
+		<Property name="Size" value="{{1,0},{0.15,0}}" />
+		<Property name="Position" value="{{0,0},{0,0}}" />
+                <Property name="TabHeight" value="{1,0}" />
+                <Property name="TabTextPadding" value="{0.05,0}" />
 
-		<Window Type="FearannLook/TabButton" Name="InGame/Console/TabAll">
-		    <Property Name="Text" Value="All" />
+		<Window name="TabAll" type="FearannLook/TabButton">
+		    <Property name="Text" value="All" />
 		</Window>
-		<Window Type="FearannLook/TabButton" Name="InGame/Console/TabSystem">
-		    <Property Name="Text" Value="System" />
+		<Window name="TabSystem" type="FearannLook/TabButton">
+		    <Property name="Text" value="System" />
 		</Window>
-		<Window Type="FearannLook/TabButton" Name="InGame/Console/TabAction">
-		    <Property Name="Text" Value="Actions" />
+		<Window name="TabAction" type="FearannLook/TabButton">
+		    <Property name="Text" value="Actions" />
 		</Window>
-		<Window Type="FearannLook/TabButton" Name="InGame/Console/TabChat">
-		    <Property Name="Text" Value="Chat" />
+		<Window name="TabChat" type="FearannLook/TabButton">
+		    <Property name="Text" value="Chat" />
 		</Window>
-		<Window Type="FearannLook/TabButton" Name="InGame/Console/TabPM">
-		    <Property Name="Text" Value="PM" />
+		<Window name="TabPM" type="FearannLook/TabButton">
+		    <Property name="Text" value="PM" />
 		</Window>
             </Window>
 
-            <Window Type="FearannLook/MultiLineEditbox" Name="InGame/Console/Screen">
-		<Property Name="UnifiedSize" Value="{{1,0},{0.65,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0,0},{0.15,0}}" />
-		<Property Name="ReadOnly" Value="True" />
-		<Property Name="Visible" Value="True" />
+            <Window name="Screen" type="FearannLook/MultiLineEditbox">
+		<Property name="Size" value="{{1,0},{0.65,0}}" />
+		<Property name="Position" value="{{0,0},{0.15,0}}" />
+		<Property name="ReadOnly" value="True" />
+		<Property name="Visible" value="True" />
             </Window>
-            <Window Type="FearannLook/MultiLineEditbox" Name="InGame/Console/ScreenAll">
-		<Property Name="UnifiedSize" Value="{{1,0},{0.8,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0,0},{0,0}}" />
-		<Property Name="ReadOnly" Value="True" />
-		<Property Name="Visible" Value="False" />
+            <Window name="ScreenAll" type="FearannLook/MultiLineEditbox">
+		<Property name="Size" value="{{1,0},{0.8,0}}" />
+		<Property name="Position" value="{{0,0},{0,0}}" />
+		<Property name="ReadOnly" value="True" />
+		<Property name="Visible" value="False" />
             </Window>
-            <Window Type="FearannLook/MultiLineEditbox" Name="InGame/Console/ScreenSystem">
-		<Property Name="UnifiedSize" Value="{{1,0},{0.8,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0,0},{0,0}}" />
-		<Property Name="ReadOnly" Value="True" />
-		<Property Name="Visible" Value="False" />
+            <Window name="ScreenSystem" type="FearannLook/MultiLineEditbox">
+		<Property name="Size" value="{{1,0},{0.8,0}}" />
+		<Property name="Position" value="{{0,0},{0,0}}" />
+		<Property name="ReadOnly" value="True" />
+		<Property name="Visible" value="False" />
             </Window>
-            <Window Type="FearannLook/MultiLineEditbox" Name="InGame/Console/ScreenAction">
-		<Property Name="UnifiedSize" Value="{{1,0},{0.8,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0,0},{0,0}}" />
-		<Property Name="ReadOnly" Value="True" />
-		<Property Name="Visible" Value="False" />
+            <Window name="ScreenAction" type="FearannLook/MultiLineEditbox">
+		<Property name="Size" value="{{1,0},{0.8,0}}" />
+		<Property name="Position" value="{{0,0},{0,0}}" />
+		<Property name="ReadOnly" value="True" />
+		<Property name="Visible" value="False" />
             </Window>
-            <Window Type="FearannLook/MultiLineEditbox" Name="InGame/Console/ScreenChat">
-		<Property Name="UnifiedSize" Value="{{1,0},{0.8,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0,0},{0,0}}" />
-		<Property Name="ReadOnly" Value="True" />
-		<Property Name="Visible" Value="False" />
+            <Window name="ScreenChat" type="FearannLook/MultiLineEditbox">
+		<Property name="Size" value="{{1,0},{0.8,0}}" />
+		<Property name="Position" value="{{0,0},{0,0}}" />
+		<Property name="ReadOnly" value="True" />
+		<Property name="Visible" value="False" />
             </Window>
-            <Window Type="FearannLook/MultiLineEditbox" Name="InGame/Console/ScreenPM">
-		<Property Name="UnifiedSize" Value="{{1,0},{0.8,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0,0},{0,0}}" />
-		<Property Name="ReadOnly" Value="True" />
-		<Property Name="Visible" Value="False" />
+            <Window name="ScreenPM" type="FearannLook/MultiLineEditbox">
+		<Property name="Size" value="{{1,0},{0.8,0}}" />
+		<Property name="Position" value="{{0,0},{0,0}}" />
+		<Property name="ReadOnly" value="True" />
+		<Property name="Visible" value="False" />
             </Window>
-            <Window Type="FearannLook/Editbox" Name="InGame/Console/Entrybox">
-		<Property Name="UnifiedSize" Value="{{1,0},{0.2,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0,0},{0.8,0}}" />
-                <Property Name="Text" Value="" />
-		<Property Name="AlwaysOnTop" Value="True" />
+            <Window name="Entrybox" type="FearannLook/Editbox">
+		<Property name="Size" value="{{1,0},{0.2,0}}" />
+		<Property name="Position" value="{{0,0},{0.8,0}}" />
+                <Property name="Text" value="" />
+		<Property name="AlwaysOnTop" value="True" />
             </Window>
         </Window>
 
 
-       <Window Type="FearannLook/StaticImage" Name="InGame/Panel">
-            <Property Name="UnifiedSize" Value="{{0.2,0},{0.25,0}}" />
-            <Property Name="UnifiedPosition" Value="{{0.0,0},{0.75,0}}" />
-            <Property Name="FrameEnabled" Value="False" />
+       <Window name="Panel" type="FearannLook/StaticImage">
+            <Property name="Size" value="{{0.2,0},{0.25,0}}" />
+            <Property name="Position" value="{{0.0,0},{0.75,0}}" />
+            <Property name="FrameEnabled" value="False" />
 
-            <Window Type="FearannLook/Button" Name="InGame/Panel/Char_Btn">
-		<Property Name="UnifiedSize" Value="{{0.4,0},{0.15,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.05,0},{0.15,0}}" />
-                <Property Name="Text" Value="Character" />
+            <Window name="Char_Btn" type="FearannLook/Button">
+		<Property name="Size" value="{{0.4,0},{0.15,0}}" />
+		<Property name="Position" value="{{0.05,0},{0.15,0}}" />
+                <Property name="Text" value="Character" />
             </Window>
-            <Window Type="FearannLook/Button" Name="InGame/Panel/Inventory_Btn">
-		<Property Name="UnifiedSize" Value="{{0.4,0},{0.15,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.55,0},{0.15,0}}" />
-                <Property Name="Text" Value="Invent." />
+            <Window name="Inventory_Btn" type="FearannLook/Button">
+		<Property name="Size" value="{{0.4,0},{0.15,0}}" />
+		<Property name="Position" value="{{0.55,0},{0.15,0}}" />
+                <Property name="Text" value="Invent." />
             </Window>
-            <Window Type="FearannLook/Button" Name="InGame/Panel/Contacts_Btn">
-		<Property Name="UnifiedSize" Value="{{0.4,0},{0.15,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.05,0},{0.30,0}}" />
-                <Property Name="Text" Value="Contacts" />
+            <Window name="Contacts_Btn" type="FearannLook/Button">
+		<Property name="Size" value="{{0.4,0},{0.15,0}}" />
+		<Property name="Position" value="{{0.05,0},{0.30,0}}" />
+                <Property name="Text" value="Contacts" />
             </Window>
-            <Window Type="FearannLook/Button" Name="InGame/Panel/Guilds_Btn">
-		<Property Name="UnifiedSize" Value="{{0.4,0},{0.15,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.55,0},{0.30,0}}" />
-                <Property Name="Text" Value="Guilds" />
+            <Window name="Guilds_Btn" type="FearannLook/Button">
+		<Property name="Size" value="{{0.4,0},{0.15,0}}" />
+		<Property name="Position" value="{{0.55,0},{0.30,0}}" />
+                <Property name="Text" value="Guilds" />
             </Window>
-            <Window Type="FearannLook/Button" Name="InGame/Panel/Options_Btn">
-		<Property Name="UnifiedSize" Value="{{0.4,0},{0.15,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.05,0},{0.55,0}}" />
-                <Property Name="Text" Value="Options" />
+            <Window name="Options_Btn" type="FearannLook/Button">
+		<Property name="Size" value="{{0.4,0},{0.15,0}}" />
+		<Property name="Position" value="{{0.05,0},{0.55,0}}" />
+                <Property name="Text" value="Options" />
             </Window>
-            <Window Type="FearannLook/Button" Name="InGame/Panel/Quit_Btn">
-		<Property Name="UnifiedSize" Value="{{0.4,0},{0.15,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.55,0},{0.55,0}}" />
-                <Property Name="Text" Value="Quit" />
+            <Window name="Quit_Btn" type="FearannLook/Button">
+		<Property name="Size" value="{{0.4,0},{0.15,0}}" />
+		<Property name="Position" value="{{0.55,0},{0.55,0}}" />
+                <Property name="Text" value="Quit" />
             </Window>
         </Window>
 
 
-       <Window Type="FearannLook/StaticImage" Name="InGame/PlayerStats">
-            <Property Name="UnifiedSize" Value="{{0.2,0},{0.2,0}}" />
-            <Property Name="UnifiedPosition" Value="{{0,0},{0,0}}" />
-            <Property Name="FrameEnabled" Value="False" />
-	    <Property Name="BackgroundEnabled" Value="False" />
-	    <Property Name="Image" Value="set:InterfaceDecorations image:PlayerStatsBG" />
+       <Window name="PlayerStats" type="FearannLook/StaticImage">
+            <Property name="Size" value="{{0.2,0},{0.2,0}}" />
+            <Property name="Position" value="{{0,0},{0,0}}" />
+            <Property name="FrameEnabled" value="False" />
+	    <Property name="BackgroundEnabled" value="False" />
+	    <Property name="Image" value="InterfaceDecorations/PlayerStatsBG" />
 
-            <Window Type="FearannLook/StaticImage" Name="InGame/PlayerStats/Picture">
-		<Property Name="UnifiedSize" Value="{{0.44,0},{0.78,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.02,0},{0.02,0}}" />
-		<Property Name="FrameEnabled" Value="False" />
-		<Property Name="BackgroundEnabled" Value="False" />
-		<Property Name="Image" Value="set:RacePictures image:Elf_f-face" />
+            <Window name="Picture" type="FearannLook/StaticImage">
+		<Property name="Size" value="{{0.44,0},{0.78,0}}" />
+		<Property name="Position" value="{{0.02,0},{0.02,0}}" />
+		<Property name="FrameEnabled" value="False" />
+		<Property name="BackgroundEnabled" value="False" />
+		<Property name="Image" value="RacePictures/Elf_f-face" />
             </Window>
-	    <Window Type="FearannLook/Button" Name="InGame/PlayerStats/Camera">
-		<Property Name="UnifiedSize" Value="{{0.45,0},{0.16,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.02,0},{0.82,0}}" />
-                <Property Name="Text" Value="CamMode" />
+	    <Window name="Camera" type="FearannLook/Button">
+		<Property name="Size" value="{{0.45,0},{0.16,0}}" />
+		<Property name="Position" value="{{0.02,0},{0.82,0}}" />
+                <Property name="Text" value="CamMode" />
             </Window>
-            <Window Type="FearannLook/ProgressBarHealth" Name="InGame/PlayerStats/Health">
-		<Property Name="UnifiedSize" Value="{{0.48,0},{0.08,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.5,0},{0.05,0}}" />
-                <Property Name="CurrentProgress" Value="0.00" />
+            <Window name="Health" type="FearannLook/ProgressBarHealth">
+		<Property name="Size" value="{{0.48,0},{0.08,0}}" />
+		<Property name="Position" value="{{0.5,0},{0.05,0}}" />
+                <Property name="CurrentProgress" value="0.00" />
             </Window>
-            <Window Type="FearannLook/ProgressBarMagic" Name="InGame/PlayerStats/Magic">
-		<Property Name="UnifiedSize" Value="{{0.48,0},{0.08,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.5,0},{0.15,0}}" />
-                <Property Name="CurrentProgress" Value="0.00" />
+            <Window name="Magic" type="FearannLook/ProgressBarMagic">
+		<Property name="Size" value="{{0.48,0},{0.08,0}}" />
+		<Property name="Position" value="{{0.5,0},{0.15,0}}" />
+                <Property name="CurrentProgress" value="0.00" />
             </Window>
-            <Window Type="FearannLook/ProgressBarStamina" Name="InGame/PlayerStats/Stamina">
-		<Property Name="UnifiedSize" Value="{{0.48,0},{0.08,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.5,0},{0.25,0}}" />
-                <Property Name="CurrentProgress" Value="0.00" />
+            <Window name="Stamina" type="FearannLook/ProgressBarStamina">
+		<Property name="Size" value="{{0.48,0},{0.08,0}}" />
+		<Property name="Position" value="{{0.5,0},{0.25,0}}" />
+                <Property name="CurrentProgress" value="0.00" />
             </Window>
-            <Window Type="FearannLook/ProgressBarLoad" Name="InGame/PlayerStats/Load">
-		<Property Name="UnifiedSize" Value="{{0.48,0},{0.08,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.5,0},{0.35,0}}" />
-                <Property Name="CurrentProgress" Value="0.00" />
+            <Window name="Load" type="FearannLook/ProgressBarLoad">
+		<Property name="Size" value="{{0.48,0},{0.08,0}}" />
+		<Property name="Position" value="{{0.5,0},{0.35,0}}" />
+                <Property name="CurrentProgress" value="0.00" />
             </Window>
-            <Window Type="FearannLook/StaticText" Name="InGame/PlayerStats/Gold">
-		<Property Name="UnifiedSize" Value="{{0.48,0},{0.2,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.5,0},{0.4,0}}" />
-		<Property Name="FrameEnabled" Value="False" />
-		<Property Name="BackgroundEnabled" Value="False" />
-		<Property Name="HorzFormatting" Value="HorzLeft" />
-		<Property Name="VertFormatting" Value="VertCentred" />
-                <Property Name="Text" Value="G: 00000" />
+            <Window name="Gold" type="FearannLook/StaticText">
+		<Property name="Size" value="{{0.48,0},{0.2,0}}" />
+		<Property name="Position" value="{{0.5,0},{0.4,0}}" />
+		<Property name="FrameEnabled" value="False" />
+		<Property name="BackgroundEnabled" value="False" />
+		<Property name="HorzFormatting" value="HorzLeft" />
+		<Property name="VertFormatting" value="VertCentred" />
+                <Property name="Text" value="G: 00000" />
             </Window>
         </Window>
 
 
-       <Window Type="FearannLook/StaticImage" Name="InGame/Calendar">
-            <Property Name="UnifiedSize" Value="{{0.1,0},{0.13,0}}" />
-            <Property Name="UnifiedPosition" Value="{{0.45,0},{0,0}}" />
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="BackgroundEnabled" Value="False" />
-	    <Property Name="Image" Value="set:InterfaceDecorations image:CalendarBG" />
+       <Window name="Calendar" type="FearannLook/StaticImage">
+            <Property name="Size" value="{{0.1,0},{0.13,0}}" />
+            <Property name="Position" value="{{0.45,0},{0,0}}" />
+            <Property name="FrameEnabled" value="False" />
+            <Property name="BackgroundEnabled" value="False" />
+	    <Property name="Image" value="InterfaceDecorations/CalendarBG" />
 
-            <Window Type="FearannLook/StaticImage" Name="InGame/Calendar/Moon">
-		<Property Name="UnifiedSize" Value="{{0.8,0},{0.8,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.1,0},{0.1,0}}" />
-		<Property Name="FrameEnabled" Value="False" />
-		<Property Name="BackgroundEnabled" Value="False" />
-		<Property Name="Image" Value="set:InterfaceDecorations image:Moon_15" />
+            <Window name="Moon" type="FearannLook/StaticImage">
+		<Property name="Size" value="{{0.8,0},{0.8,0}}" />
+		<Property name="Position" value="{{0.1,0},{0.1,0}}" />
+		<Property name="FrameEnabled" value="False" />
+		<Property name="BackgroundEnabled" value="False" />
+		<Property name="Image" value="InterfaceDecorations/Moon_15" />
             </Window>
-            <Window Type="FearannLook/StaticText" Name="InGame/Calendar/Time_Lbl">
-		<Property Name="UnifiedSize" Value="{{0.9,0},{0.6,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.05,0},{0,0}}" />
-		<Property Name="FrameEnabled" Value="False" />
-		<Property Name="BackgroundEnabled" Value="False" />
-		<Property Name="HorzFormatting" Value="HorzCentred" />
-		<Property Name="VertFormatting" Value="VertCentred" />
-		<Property Name="TextColours" Value="FF000000" />
-                <Property Name="Text" Value="00h00" />
+            <Window name="Time_Lbl" type="FearannLook/StaticText">
+		<Property name="Size" value="{{0.9,0},{0.6,0}}" />
+		<Property name="Position" value="{{0.05,0},{0,0}}" />
+		<Property name="FrameEnabled" value="False" />
+		<Property name="BackgroundEnabled" value="False" />
+		<Property name="HorzFormatting" value="HorzCentred" />
+		<Property name="VertFormatting" value="VertCentred" />
+		<Property name="TextColours" value="FF000000" />
+                <Property name="Text" value="00h00" />
             </Window>
-            <Window Type="FearannLook/StaticText" Name="InGame/Calendar/Date_Lbl">
-		<Property Name="UnifiedSize" Value="{{0.9,0},{0.6,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.05,0},{0.25,0}}" />
-		<Property Name="FrameEnabled" Value="False" />
-		<Property Name="BackgroundEnabled" Value="False" />
-		<Property Name="HorzFormatting" Value="HorzCentred" />
-		<Property Name="VertFormatting" Value="VertCentred" />
-		<Property Name="TextColours" Value="FF000000" />
-                <Property Name="Text" Value="S m d" />
+            <Window name="Date_Lbl" type="FearannLook/StaticText">
+		<Property name="Size" value="{{0.9,0},{0.6,0}}" />
+		<Property name="Position" value="{{0.05,0},{0.25,0}}" />
+		<Property name="FrameEnabled" value="False" />
+		<Property name="BackgroundEnabled" value="False" />
+		<Property name="HorzFormatting" value="HorzCentred" />
+		<Property name="VertFormatting" value="VertCentred" />
+		<Property name="TextColours" value="FF000000" />
+                <Property name="Text" value="S m d" />
             </Window>
-            <Window Type="FearannLook/StaticText" Name="InGame/Calendar/Year_Lbl">
-		<Property Name="UnifiedSize" Value="{{0.9,0},{0.6,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.05,0},{0.5,0}}" />
-		<Property Name="FrameEnabled" Value="False" />
-		<Property Name="BackgroundEnabled" Value="False" />
-		<Property Name="HorzFormatting" Value="HorzCentred" />
-		<Property Name="VertFormatting" Value="VertCentred" />
-		<Property Name="TextColours" Value="FF000000" />
-                <Property Name="Text" Value="year" />
-            </Window>
-        </Window>
-
-	<Window Type="FearannLook/StaticImage" Name="InGame/Minimap">
-            <Property Name="UnifiedSize" Value="{{0.1875,0},{0.25,0}}" />
-            <Property Name="UnifiedPosition" Value="{{0.8125,0},{0,0}}" />
-            <Property Name="FrameEnabled" Value="False" />
-	    <Property Name="Image" Value="set:InterfaceDecorations image:MinimapBG" />
-
-            <Window Type="FearannLook/StaticImage" Name="InGame/Minimap/Map">
-		<Property Name="UnifiedSize" Value="{{0.8,0},{0.8,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.1,0},{0.1,0}}" />
-		<Property Name="FrameEnabled" Value="False" />
-		<Property Name="BackgroundEnabled" Value="False" />
-		<Property Name="HorzFormatting" Value="HorzStretched" />
-		<Property Name="VertFormatting" Value="VertStretched" />
-		<Property Name="Image" Value="set:Map image:Map" />
-		<Property Name="Disabled" Value="True" />
-            </Window>
-
-            <Window Type="FearannLook/StaticImage" Name="InGame/Minimap/CompassDecoration">
-		<Property Name="UnifiedSize" Value="{{1,0},{1,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0,0},{0,0}}" />
-		<Property Name="FrameEnabled" Value="False" />
-		<Property Name="BackgroundEnabled" Value="False" />
-		<Property Name="Image" Value="set:InterfaceDecorations image:MinimapCompassCase" />
+            <Window name="Year_Lbl" type="FearannLook/StaticText">
+		<Property name="Size" value="{{0.9,0},{0.6,0}}" />
+		<Property name="Position" value="{{0.05,0},{0.5,0}}" />
+		<Property name="FrameEnabled" value="False" />
+		<Property name="BackgroundEnabled" value="False" />
+		<Property name="HorzFormatting" value="HorzCentred" />
+		<Property name="VertFormatting" value="VertCentred" />
+		<Property name="TextColours" value="FF000000" />
+                <Property name="Text" value="year" />
             </Window>
         </Window>
 
+	<Window name="Minimap" type="FearannLook/StaticImage">
+            <Property name="Size" value="{{0.1875,0},{0.25,0}}" />
+            <Property name="Position" value="{{0.8125,0},{0,0}}" />
+            <Property name="FrameEnabled" value="False" />
+	    <Property name="Image" value="InterfaceDecorations/MinimapBG" />
 
-       <Window Type="FearannLook/FrameWindow" Name="InGame/ContactList">
-            <Property Name="UnifiedSize" Value="{{0.2,0},{0.55,0}}" />
-            <Property Name="UnifiedPosition" Value="{{0,0},{0.2,0}}" />
-            <Property Name="FrameEnabled" Value="True" />
-            <Property Name="Text" Value="Contacts" />
-
-            <Window Type="FearannLook/MultiColumnList" Name="InGame/ContactList/List">
-		<Property Name="UnifiedSize" Value="{{0.9,0},{0.75,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.05,0},{0.1,0}}" />
-                <Property Name="SelectionMode" Value="RowSingle" />
-                <Property Name="ColumnHeader" Value="text:T width:{0.20,0} id:0" />
-                <Property Name="ColumnHeader" Value="text:Name width:{0.65,0} id:1" />
+            <Window name="Map" type="FearannLook/StaticImage">
+		<Property name="Size" value="{{0.8,0},{0.8,0}}" />
+		<Property name="Position" value="{{0.1,0},{0.1,0}}" />
+		<Property name="FrameEnabled" value="False" />
+		<Property name="BackgroundEnabled" value="False" />
+		<Property name="HorzFormatting" value="HorzStretched" />
+		<Property name="VertFormatting" value="VertStretched" />
+		<Property name="Image" value="Map/Map" />
+		<Property name="Disabled" value="True" />
             </Window>
 
-            <Window Type="FearannLook/Button" Name="InGame/ContactList/Remove">
-		<Property Name="UnifiedSize" Value="{{0.4,0},{0.08,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.05,0},{0.9,0}}" />
-                <Property Name="Text" Value="Remove" />
-            </Window>
-            <Window Type="FearannLook/Button" Name="InGame/ContactList/Add">
-		<Property Name="UnifiedSize" Value="{{0.4,0},{0.08,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.55,0},{0.9,0}}" />
-                <Property Name="Text" Value="Add" />
+            <Window name="CompassDecoration" type="FearannLook/StaticImage">
+		<Property name="Size" value="{{1,0},{1,0}}" />
+		<Property name="Position" value="{{0,0},{0,0}}" />
+		<Property name="FrameEnabled" value="False" />
+		<Property name="BackgroundEnabled" value="False" />
+		<Property name="Image" value="InterfaceDecorations/MinimapCompassCase" />
             </Window>
         </Window>
 
 
-       <Window Type="FearannLook/FrameWindow" Name="InGame/Inventory">
-            <Property Name="UnifiedSize" Value="{{0.5,0},{0.5,0}}" />
-            <Property Name="UnifiedPosition" Value="{{0.25,0},{0.25,0}}" />
-            <Property Name="FrameEnabled" Value="True" />
-            <Property Name="Text" Value="Inventory" />
+       <Window name="ContactList" type="FearannLook/FrameWindow">
+            <Property name="Size" value="{{0.2,0},{0.55,0}}" />
+            <Property name="Position" value="{{0,0},{0.2,0}}" />
+            <Property name="FrameEnabled" value="True" />
+            <Property name="Text" value="Contacts" />
 
-            <Window Type="FearannLook/TabControl" Name="InGame/Inventory/Tabs">
-		<Property Name="UnifiedSize" Value="{{0.7,0},{0.75,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.15,0},{0.1,0}}" />
-                <Property Name="TabHeight" Value="0.08" />
-                <Property Name="TabTextPadding" Value="0.02" />
+            <Window name="List" type="FearannLook/MultiColumnList">
+		<Property name="Size" value="{{0.9,0},{0.75,0}}" />
+		<Property name="Position" value="{{0.05,0},{0.1,0}}" />
+                <Property name="SelectionMode" value="RowSingle" />
+                <Property name="ColumnHeader" value="text:T width:{0.20,0} id:0" />
+                <Property name="ColumnHeader" value="text:Name width:{0.65,0} id:1" />
+            </Window>
 
-		<Window Type="FearannLook/TabButton" Name="InGame/Inventory/TabAll">
-		    <Property Name="Text" Value="All" />
+            <Window name="Remove" type="FearannLook/Button">
+		<Property name="Size" value="{{0.4,0},{0.08,0}}" />
+		<Property name="Position" value="{{0.05,0},{0.9,0}}" />
+                <Property name="Text" value="Remove" />
+            </Window>
+            <Window name="Add" type="FearannLook/Button">
+		<Property name="Size" value="{{0.4,0},{0.08,0}}" />
+		<Property name="Position" value="{{0.55,0},{0.9,0}}" />
+                <Property name="Text" value="Add" />
+            </Window>
+        </Window>
+
+
+       <Window name="Inventory" type="FearannLook/FrameWindow">
+            <Property name="Size" value="{{0.5,0},{0.5,0}}" />
+            <Property name="Position" value="{{0.25,0},{0.25,0}}" />
+            <Property name="FrameEnabled" value="True" />
+            <Property name="Text" value="Inventory" />
+
+            <Window name="Tabs" type="FearannLook/TabControl">
+		<Property name="Size" value="{{0.7,0},{0.75,0}}" />
+		<Property name="Position" value="{{0.15,0},{0.1,0}}" />
+                <Property name="TabHeight" value="0.08" />
+                <Property name="TabTextPadding" value="0.02" />
+
+		<Window name="TabAll" type="FearannLook/TabButton">
+		    <Property name="Text" value="All" />
 		</Window>
-		<Window Type="FearannLook/TabButton" Name="InGame/Inventory/TabEquipment">
-		    <Property Name="Text" Value="Equipment" />
+		<Window name="TabEquipment" type="FearannLook/TabButton">
+		    <Property name="Text" value="Equipment" />
 		</Window>
-		<Window Type="FearannLook/TabButton" Name="InGame/Inventory/TabConsumables">
-		    <Property Name="Text" Value="Consumables" />
+		<Window name="TabConsumables" type="FearannLook/TabButton">
+		    <Property name="Text" value="Consumables" />
 		</Window>
-		<Window Type="FearannLook/TabButton" Name="InGame/Inventory/TabRaw">
-		    <Property Name="Text" Value="Raw" />
+		<Window name="TabRaw" type="FearannLook/TabButton">
+		    <Property name="Text" value="Raw" />
 		</Window>
-		<Window Type="FearannLook/TabButton" Name="InGame/Inventory/TabOther">
-		    <Property Name="Text" Value="Other" />
+		<Window name="TabOther" type="FearannLook/TabButton">
+		    <Property name="Text" value="Other" />
 		</Window>
             </Window>
 
-            <Window Type="FearannLook/MultiColumnList" Name="InGame/Inventory/List">
-		<Property Name="UnifiedSize" Value="{{1,0},{1,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0,0},{0,0}}" />
-                <Property Name="SelectionMode" Value="RowSingle" />
-                <Property Name="ColumnHeader" Value="text:id width:{0.23,0} id:0" />
-                <Property Name="ColumnHeader" Value="text:Name width:{0.50,0} id:1" />
-                <Property Name="ColumnHeader" Value="text:Load width:{0.23,0} id:2" />
+            <Window name="List" type="FearannLook/MultiColumnList">
+		<Property name="Size" value="{{1,0},{1,0}}" />
+		<Property name="Position" value="{{0,0},{0,0}}" />
+                <Property name="SelectionMode" value="RowSingle" />
+                <Property name="ColumnHeader" value="text:id width:{0.23,0} id:0" />
+                <Property name="ColumnHeader" value="text:Name width:{0.50,0} id:1" />
+                <Property name="ColumnHeader" value="text:Load width:{0.23,0} id:2" />
             </Window>
 
-            <Window Type="FearannLook/StaticText" Name="InGame/Inventory/Load_Lbl">
-		<Property Name="UnifiedSize" Value="{{0.25,0},{0.08,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.05,0},{0.87,0}}" />
-		<Property Name="FrameEnabled" Value="False" />
-		<Property Name="BackgroundEnabled" Value="False" />
-                <Property Name="Text" Value="Load: 00/00" />
+            <Window name="Load_Lbl" type="FearannLook/StaticText">
+		<Property name="Size" value="{{0.25,0},{0.08,0}}" />
+		<Property name="Position" value="{{0.05,0},{0.87,0}}" />
+		<Property name="FrameEnabled" value="False" />
+		<Property name="BackgroundEnabled" value="False" />
+                <Property name="Text" value="Load: 00/00" />
             </Window>
-            <Window Type="FearannLook/StaticText" Name="InGame/Inventory/Gold_Lbl">
-		<Property Name="UnifiedSize" Value="{{0.25,0},{0.08,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.3,0},{0.87,0}}" />
-		<Property Name="FrameEnabled" Value="False" />
-		<Property Name="BackgroundEnabled" Value="False" />
-                <Property Name="Text" Value="Gold: 00000" />
+            <Window name="Gold_Lbl" type="FearannLook/StaticText">
+		<Property name="Size" value="{{0.25,0},{0.08,0}}" />
+		<Property name="Position" value="{{0.3,0},{0.87,0}}" />
+		<Property name="FrameEnabled" value="False" />
+		<Property name="BackgroundEnabled" value="False" />
+                <Property name="Text" value="Gold: 00000" />
             </Window>
-            <Window Type="FearannLook/Button" Name="InGame/Inventory/Drop">
-		<Property Name="UnifiedSize" Value="{{0.20,0},{0.08,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.75,0},{0.87,0}}" />
-                <Property Name="Text" Value="Drop" />
+            <Window name="Drop" type="FearannLook/Button">
+		<Property name="Size" value="{{0.20,0},{0.08,0}}" />
+		<Property name="Position" value="{{0.75,0},{0.87,0}}" />
+                <Property name="Text" value="Drop" />
             </Window>
         </Window>
 
-       <Window Type="FearannLook/StaticImage" Name="InGame/ActionMenu">
-            <Property Name="UnifiedSize" Value="{{0.15,0},{0.15,0}}" />
-            <Property Name="UnifiedPosition" Value="{{0.5,0},{0.5,0}}" />
-            <Property Name="FrameEnabled" Value="False" />
-            <Property Name="BackgroundEnabled" Value="False" />
-            <Property Name="Visible" Value="False" />
+       <Window name="ActionMenu" type="FearannLook/StaticImage">
+            <Property name="Size" value="{{0.15,0},{0.15,0}}" />
+            <Property name="Position" value="{{0.5,0},{0.5,0}}" />
+            <Property name="FrameEnabled" value="False" />
+            <Property name="BackgroundEnabled" value="False" />
+            <Property name="Visible" value="False" />
 
-            <Window Type="FearannLook/StaticText" Name="InGame/ActionMenu/Target_Lbl">
-		<Property Name="UnifiedSize" Value="{{0.99,0},{0.2,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.01,0},{0.01,0}}" />
-		<Property Name="FrameEnabled" Value="False" />
-		<Property Name="BackgroundEnabled" Value="False" />
-                <Property Name="Text" Value="Target:" />
+            <Window name="Target_Lbl" type="FearannLook/StaticText">
+		<Property name="Size" value="{{0.99,0},{0.2,0}}" />
+		<Property name="Position" value="{{0.01,0},{0.01,0}}" />
+		<Property name="FrameEnabled" value="False" />
+		<Property name="BackgroundEnabled" value="False" />
+                <Property name="Text" value="Target:" />
             </Window>
 
-            <Window Type="FearannLook/Button" Name="InGame/ActionMenu/InfoAction">
-		<Property Name="UnifiedSize" Value="{{0.2,0},{0.2,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.01,0},{0.22,0}}" />
-                <Property Name="Text" Value="I" />
+            <Window name="InfoAction" type="FearannLook/Button">
+		<Property name="Size" value="{{0.2,0},{0.2,0}}" />
+		<Property name="Position" value="{{0.01,0},{0.22,0}}" />
+                <Property name="Text" value="I" />
             </Window>
 
-            <Window Type="FearannLook/Button" Name="InGame/ActionMenu/PickupAction">
-		<Property Name="UnifiedSize" Value="{{0.2,0},{0.2,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.01,0},{0.32,0}}" />
-                <Property Name="Text" Value="P" />
+            <Window name="PickupAction" type="FearannLook/Button">
+		<Property name="Size" value="{{0.2,0},{0.2,0}}" />
+		<Property name="Position" value="{{0.01,0},{0.32,0}}" />
+                <Property name="Text" value="P" />
             </Window>
 
-            <Window Type="FearannLook/Button" Name="InGame/ActionMenu/FightAction">
-		<Property Name="UnifiedSize" Value="{{0.2,0},{0.2,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.01,0},{0.32,0}}" />
-                <Property Name="Text" Value="F" />
+            <Window name="FightAction" type="FearannLook/Button">
+		<Property name="Size" value="{{0.2,0},{0.2,0}}" />
+		<Property name="Position" value="{{0.01,0},{0.32,0}}" />
+                <Property name="Text" value="F" />
             </Window>
 
-            <Window Type="FearannLook/Button" Name="InGame/ActionMenu/DialogAction">
-		<Property Name="UnifiedSize" Value="{{0.2,0},{0.2,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.02,0},{0.32,0}}" />
-                <Property Name="Text" Value="D" />
+            <Window name="DialogAction" type="FearannLook/Button">
+		<Property name="Size" value="{{0.2,0},{0.2,0}}" />
+		<Property name="Position" value="{{0.02,0},{0.32,0}}" />
+                <Property name="Text" value="D" />
             </Window>
 
-            <Window Type="FearannLook/Button" Name="InGame/ActionMenu/TradeAction">
-		<Property Name="UnifiedSize" Value="{{0.2,0},{0.2,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.02,0},{0.32,0}}" />
-                <Property Name="Text" Value="T" />
+            <Window name="TradeAction" type="FearannLook/Button">
+		<Property name="Size" value="{{0.2,0},{0.2,0}}" />
+		<Property name="Position" value="{{0.02,0},{0.32,0}}" />
+                <Property name="Text" value="T" />
             </Window>
 
         </Window>
 
-       <Window Type="FearannLook/FrameWindow" Name="InGame/Dialog">
-            <Property Name="UnifiedSize" Value="{{0.5,0},{0.5,0}}" />
-            <Property Name="UnifiedPosition" Value="{{0.25,0},{0.25,0}}" />
-            <Property Name="FrameEnabled" Value="True" />
-            <Property Name="Visible" Value="False" />
-            <Property Name="Text" Value="Dialog" />
+       <Window name="Dialog" type="FearannLook/FrameWindow">
+            <Property name="Size" value="{{0.5,0},{0.5,0}}" />
+            <Property name="Position" value="{{0.25,0},{0.25,0}}" />
+            <Property name="FrameEnabled" value="True" />
+            <Property name="Visible" value="False" />
+            <Property name="Text" value="Dialog" />
 
-	    <Window Type="FearannLook/MultiLineEditbox" Name="InGame/Dialog/Dialog_Text">
-                <Property Name="UnifiedSize" Value="{{1,0},{0.25,0}}" />
-                <Property Name="UnifiedPosition" Value="{{0.01,0},{0.1,0}}" />
-		<Property Name="ReadOnly" Value="True" />
-		<Property Name="WordWrap" Value="True" />
-                <Property Name="Text" Value="No reponse." />
+	    <Window name="Dialog_Text" type="FearannLook/MultiLineEditbox">
+                <Property name="Size" value="{{1,0},{0.25,0}}" />
+                <Property name="Position" value="{{0.01,0},{0.1,0}}" />
+		<Property name="ReadOnly" value="True" />
+		<Property name="WordWrap" value="True" />
+                <Property name="Text" value="No reponse." />
 	    </Window>
 
-            <Window Type="FearannLook/MultiColumnList" Name="InGame/Dialog/List">
-		<Property Name="UnifiedSize" Value="{{1,0},{0.5,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0,01},{0.35,0}}" />
-                <Property Name="SelectionMode" Value="RowSingle" />
-                <Property Name="ColumnHeader" Value="text:Reply width:{0.93,0} id:0" />
+            <Window name="List" type="FearannLook/MultiColumnList">
+		<Property name="Size" value="{{1,0},{0.5,0}}" />
+		<Property name="Position" value="{{0,01},{0.35,0}}" />
+                <Property name="SelectionMode" value="RowSingle" />
+                <Property name="ColumnHeader" value="text:Reply width:{0.93,0} id:0" />
             </Window>
 
-            <Window Type="FearannLook/Button" Name="InGame/Dialog/Reply">
-		<Property Name="UnifiedSize" Value="{{0.20,0},{0.08,0}}" />
-		<Property Name="UnifiedPosition" Value="{{0.75,0},{0.87,0}}" />
-                <Property Name="Text" Value="Reply" />
+            <Window name="Reply" type="FearannLook/Button">
+		<Property name="Size" value="{{0.20,0},{0.08,0}}" />
+		<Property name="Position" value="{{0.75,0},{0.87,0}}" />
+                <Property name="Text" value="Reply" />
             </Window>
         </Window>
 
