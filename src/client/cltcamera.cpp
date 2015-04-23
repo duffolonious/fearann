@@ -36,6 +36,7 @@ const char* CltCameraManipulator::className() const
 	return "FearannCameraManipulator";
 }
 
+#include <unistd.h>
 bool CltCameraManipulator::handle(const osgGA::GUIEventAdapter& ea,
 				  osgGA::GUIActionAdapter& /* aa */)
 {

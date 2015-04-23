@@ -113,8 +113,9 @@ SrvEntityPlayer::SrvEntityPlayer(MsgEntityCreate& basic,
 	SrvNetworkMgr::instance().sendToPlayer(msgself,  mLoginData);
 
 	// join reply message
+	LogDBG("Sending join reply message");
 	MsgJoinReply joinreply;
-	joinreply.resultCode = 0;
+	joinreply.resultCode = MsgUtils::Errors::SUCCESS;
 	SrvNetworkMgr::instance().sendToPlayer(joinreply, mLoginData);
 
 	// player data message

@@ -823,6 +823,8 @@ void SrvLoginMgr::joinGame(LoginData* loginData, string charname)
 				throw SrvLoginError(MsgUtils::Errors::EDATABASE, logMsg);
 			}
 		}
+
+		LogDBG("charname '%s' joining ...", charname.c_str());
 		loginData->charname = charname;
 		loginData->cid = cid;
 		SrvEntityPlayer* player = new SrvEntityPlayer(msgBasic, msgMove, msgPlayer, loginData);

@@ -153,8 +153,8 @@ void CltCEGUIInitial::setup()
 
 	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
 	// initial visibility
-	root->getChild("Background")->setVisible(false);
-	root->getChild("Connect")->setVisible(false); //set to false for now
+	root->getChild("Background")->setVisible(true);
+	root->getChild("Connect")->setVisible(true);
 	root->getChild("Login")->setVisible(false);
 	root->getChild("NewUser")->setVisible(false);
 	root->getChild("Join")->setVisible(false);
@@ -838,18 +838,18 @@ void CltCEGUIInitial::LoadingGame_to_Game()
 
 	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
 	// switch window shown
-	root->getChild("Initial/LoadingBanner")->setVisible(false);
-	root->getChild("Initial/Background")->setVisible(false);
+	root->getChild("LoadingBanner")->setVisible(false);
+	root->getChild("Background")->setVisible(false);
 
 	// destroy windows
-	mWinMgr->destroyWindow(root->getChild("Initial/Background"));
-	mWinMgr->destroyWindow(root->getChild("Initial/Connect"));
-	mWinMgr->destroyWindow(root->getChild("Initial/Login"));
-	mWinMgr->destroyWindow(root->getChild("Initial/NewUser"));
-	mWinMgr->destroyWindow(root->getChild("Initial/Join"));
-	mWinMgr->destroyWindow(root->getChild("Initial/NewChar"));
-	mWinMgr->destroyWindow(root->getChild("Initial/Download"));
-	mWinMgr->destroyWindow(root->getChild("Initial/LoadingBanner"));
+	mWinMgr->destroyWindow(root->getChild("Background"));
+	mWinMgr->destroyWindow(root->getChild("Connect"));
+	mWinMgr->destroyWindow(root->getChild("Login"));
+	mWinMgr->destroyWindow(root->getChild("NewUser"));
+	mWinMgr->destroyWindow(root->getChild("Join"));
+	mWinMgr->destroyWindow(root->getChild("NewChar"));
+	mWinMgr->destroyWindow(root->getChild("Download"));
+	mWinMgr->destroyWindow(root->getChild("LoadingBanner"));
 	mWinMgr->cleanDeadPool();
 }
 

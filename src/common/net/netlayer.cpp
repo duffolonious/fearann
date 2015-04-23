@@ -229,7 +229,7 @@ bool Netlink::processIncomingMsgs(MsgHdlFactory& factory)
 		mWorkBuffer.back = mWorkBuffer.getStreamSize();
 		mWorkBuffer.front = 0;
 	}
-		
+
 	// check if we received something, otherwise stop here
 	bool result = recvAvailableData(recvBuffer[0], bytesRead);
 	if (!result) {
@@ -286,7 +286,7 @@ bool Netlink::processIncomingMsgs(MsgHdlFactory& factory)
 				mWorkBuffer.front += nextMsgSize;
 				PERM_ASSERT(mWorkBuffer.back >= mWorkBuffer.front);
 			}
-	      
+
 			// update the stats
 			++mNetlinkStats.packetsReceived;
 			mNetlinkStats.bytesReceived += nextMsgSize;

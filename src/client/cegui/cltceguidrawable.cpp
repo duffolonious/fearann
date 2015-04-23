@@ -423,7 +423,7 @@ void CltCEGUIDrawable::drawImplementation(osg::RenderInfo& renderInfo) const
 		CEGUI::System::getSingleton().notifyDisplaySizeChanged(
 			        CEGUI::Sizef(viewport->width(), viewport->height()));
 		//FIXME: This doesn't appear to adjust for a change in window dimensions.
-		mProjection->setMatrix(osg::Matrix::ortho2D(0, mWindowWidth, 0, mWindowHeight));
+		//mProjection->setMatrix(osg::Matrix::ortho2D(0, mWindowWidth, 0, mWindowHeight));
 	}
 	if(mActiveContextID != contextID) {
 		return;

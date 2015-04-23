@@ -535,6 +535,7 @@ bool MsgHdlFactory::handleStream(Netlink& netlink,
 
 	// deserialize and use the message
 	msg->deserialize(buffer, size);
+	//LogDBG("Message %s received", msg->getType().getName());
 	hdl->handleMsg(*msg, &netlink);
 	delete msg;
 

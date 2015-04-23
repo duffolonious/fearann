@@ -91,7 +91,7 @@ void CltEntityMgr::entityCreate(const MsgEntityCreate* msg)
 		playerNode->addDescription(StrFmt("%lu", msg->entityID));
 		//LogDBG("%s desc: '%s'", entity->getName(), entity->getTransform()->getDescription( 0 ).c_str() );
 		CltViewer::instance().addToScene(entity->getTransform());
-  
+
 		///\todo: duffolonious: pump the player so it stays in place.
 		MsgEntityMove movemsg;
 		movemsg.position = msg->position;

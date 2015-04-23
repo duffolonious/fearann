@@ -110,8 +110,8 @@ void MsgHdlLoginReply::handleMsg(MsgBase& baseMsg, Netlink* /* netlink */)
 			MsgJoin join;
 			join.charname = ConfigMgr::instance().getConfigVar("Bot.Settings.Character", "-");
 			if (join.charname != "-")
-		    Bot->setName( join.charname.c_str() );
-	            Bot->getNetworkMgr()->sendToServer(join);
+				Bot->setName( join.charname.c_str() );
+				Bot->getNetworkMgr()->sendToServer(join);
 			return;
 		}
 

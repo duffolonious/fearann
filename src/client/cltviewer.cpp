@@ -132,7 +132,8 @@ CltViewer::CltViewer() :
 
 CltViewer::~CltViewer()
 {
-	delete mViewer;
+	//FIXME: causes a segfault on exit - maybe switch to a ref_ptr and release?
+	//delete mViewer;
 }
 
 uint32_t CltViewer::getWindowWidth() const
@@ -276,8 +277,6 @@ void CltViewer::setup()
 		LogDBG("%g %g", mPrecipitation->getNearTransition(), mPrecipitation->getFarTransition());
 	 */}
 
-	/// \todo mafm: CEGUI disabled
-
 	// add the GUI
 	CltCEGUIDrawable* ceguiDrawable = new CltCEGUIDrawable(mWindowWidth, mWindowHeight);
 	mScene->addChild(ceguiDrawable->getNode());
@@ -285,7 +284,7 @@ void CltViewer::setup()
 	// finally, set up the scene in the viewer
 	mViewer->setSceneData(mScene);
 
-       /* mafm: for testing, readily available world without login into the
+	/* mafm: for testing, readily available world without login into the
         * server
 	*/
 	bool connected = CltNetworkMgr::instance().connectToServer("localhost",

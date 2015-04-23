@@ -88,11 +88,6 @@ void CltCEGUIMgr::setup(int screenWidth, int screenHeight)
 	// load and set CEGUI resources
 	CEGUI::SchemeManager::getSingleton().createFromFile("fearann.scheme");
 	mWinMgr = &CEGUI::WindowManager::getSingleton();
-#if 0
-	CEGUI::Window* root = mWinMgr->createWindow("DefaultWindow", "root");
-	CEGUI::Window* win = mWinMgr->loadLayoutFromFile("fearann.layout");
-	root->addChild(win);
-#endif
 	CEGUI::Window* root = mWinMgr->loadLayoutFromFile("fearann.layout");
 
 	mGUIContext = &CEGUI::System::getSingleton().getDefaultGUIContext();
@@ -153,9 +148,7 @@ void CltCEGUIMgr::setup(int screenWidth, int screenHeight)
 	root->getChild("Notification")->setVisible(false);
 	root->getChild("Quit")->setVisible(false);
 	// in game windows
-#if 0 //show the panel and the console
 	root->getChild("PlayerStats")->setVisible(false);
-#endif
 	root->getChild("Console")->setVisible(false);
 	root->getChild("Panel")->setVisible(false);
 	root->getChild("Calendar")->setVisible(false);
@@ -199,21 +192,21 @@ void CltCEGUIMgr::disableFocus()
 
 bool CltCEGUIMgr::Notification_DisplayMessage(const char* msg)
 {
-	mGUIContext->getRootWindow()->getChild("Dialog/Notification/Message")->setText(msg);
-	mGUIContext->getRootWindow()->getChild("Dialog/Notification")->setVisible(true);
+	mGUIContext->getRootWindow()->getChild("Notification/Message")->setText(msg);
+	mGUIContext->getRootWindow()->getChild("Notification")->setVisible(true);
 	return true;
 }
 
 bool CltCEGUIMgr::Notification_Close(const CEGUI::EventArgs& e)
 {
-	mGUIContext->getRootWindow()->getChild("Dialog/Notification")->setVisible(false);
+	mGUIContext->getRootWindow()->getChild("Notification")->setVisible(false);
 	return true;
 }
 
 
 bool CltCEGUIMgr::Quit_Cancel(const CEGUI::EventArgs& e)
 {
-	mGUIContext->getRootWindow()->getChild("Dialog/Quit")->setVisible(false);
+	mGUIContext->getRootWindow()->getChild("Quit")->setVisible(false);
 	return true;
 }
 
@@ -225,13 +218,13 @@ bool CltCEGUIMgr::Quit_Quit(const CEGUI::EventArgs& e)
 
 void CltCEGUIMgr::Combat_DisplayMessage( const char * msg )
 {
-	mGUIContext->getRootWindow()->getChild("Dialog/Combat/Message")->setText( msg );
-	mGUIContext->getRootWindow()->getChild("Dialog/Combat")->setVisible(true);
+	mGUIContext->getRootWindow()->getChild("Combat/Message")->setText( msg );
+	mGUIContext->getRootWindow()->getChild("Combat")->setVisible(true);
 }
 
 bool CltCEGUIMgr::Combat_Cancel(const CEGUI::EventArgs& e)
 {
-	mGUIContext->getRootWindow()->getChild("Dialog/Combat")->setVisible(false);
+	mGUIContext->getRootWindow()->getChild("Combat")->setVisible(false);
 	//Send combat end message.
 	CltCombatMgr::instance().combatAction(MsgCombat::END);
 	return true;
@@ -239,7 +232,7 @@ bool CltCEGUIMgr::Combat_Cancel(const CEGUI::EventArgs& e)
 
 bool CltCEGUIMgr::Combat_Accept(const CEGUI::EventArgs& e)
 {
-	mGUIContext->getRootWindow()->getChild("Dialog/Combat")->setVisible(false);
+	mGUIContext->getRootWindow()->getChild("Combat")->setVisible(false);
 	//Send combat accept message.
 	CltCombatMgr::instance().combatAction(MsgCombat::ACCEPTED);
 	return true;
@@ -275,7 +268,7 @@ void CltCEGUIMgr::Contacts_AddToList(const char* name, char type, char _status,
 				    const char* last_login, const char* comment)
 {
 	CEGUI::MultiColumnList* contactList = static_cast<CEGUI::MultiColumnList*>
-		(mGUIContext->getRootWindow()->getChild("InGame/ContactList/List"));
+		(mGUIContext->getRootWindow()->getChild("ContactList/List"));
 	PERM_ASSERT(contactList);
 
 	string typeStr = StrFmt("%c", type);
@@ -338,7 +331,7 @@ void CltCEGUIMgr::Contacts_AddToList(const char* name, char type, char _status,
 bool CltCEGUIMgr::Contacts_Remove(const CEGUI::EventArgs& e)
 {
 	CEGUI::MultiColumnList* contactList = static_cast<CEGUI::MultiColumnList*>
-		(mGUIContext->getRootWindow()->getChild("InGame/ContactList"));
+		(mGUIContext->getRootWindow()->getChild("ContactList"));
 	PERM_ASSERT(contactList);
 
 	if (contactList->getSelectedCount() == 0) {
@@ -366,7 +359,7 @@ bool CltCEGUIMgr::Contacts_Add(const CEGUI::EventArgs& e)
 
 /*
 	CEGUI::MultiColumnList* contactList = static_cast<CEGUI::MultiColumnList*>
-		(mWinMgr->getWindow("InGame/ContactList"));
+		(mWinMgr->getWindow("ContactList"));
 	PERM_ASSERT(contactList);
 
 	if (contactList->getSelectedCount() == 0)
@@ -420,31 +413,31 @@ void CltCEGUIMgr::PlayerStats_SetCameraModeName(const char* name)
 
 void CltCEGUIMgr::Calendar_SetTime(const string& time, const string& date, const string& year)
 {
-	mGUIContext->getRootWindow()->getChild("InGame/Calendar/Time_Lbl")->setText(time.c_str());
-	mGUIContext->getRootWindow()->getChild("InGame/Calendar/Date_Lbl")->setText(date.c_str());
-	mGUIContext->getRootWindow()->getChild("InGame/Calendar/Year_Lbl")->setText(year.c_str());
+	mGUIContext->getRootWindow()->getChild("Calendar/Time_Lbl")->setText(time.c_str());
+	mGUIContext->getRootWindow()->getChild("Calendar/Date_Lbl")->setText(date.c_str());
+	mGUIContext->getRootWindow()->getChild("Calendar/Year_Lbl")->setText(year.c_str());
 }
 
 void CltCEGUIMgr::Calendar_SetMoonPicture(const string& moonPictureName)
 {
 	string imageProperty = StrFmt("set:InterfaceDecorations image:%s", moonPictureName.c_str());
-	mGUIContext->getRootWindow()->getChild("InGame/Calendar/Moon")->setProperty("Image", imageProperty);
+	mGUIContext->getRootWindow()->getChild("Calendar/Moon")->setProperty("Image", imageProperty);
 }
 
 void CltCEGUIMgr::Quit_DisplayDialog()
 {
 	// just raising the window
-	mGUIContext->getRootWindow()->getChild("Dialog/Quit")->setVisible(true);
+	mGUIContext->getRootWindow()->getChild("Quit")->setVisible(true);
 }
 
 void CltCEGUIMgr::StartPlaying()
 {
 	// raising the default windows when entering the game
-	mGUIContext->getRootWindow()->getChild("InGame/Console")->setVisible(true);
-	mGUIContext->getRootWindow()->getChild("InGame/Panel")->setVisible(true);
-	mGUIContext->getRootWindow()->getChild("InGame/PlayerStats")->setVisible(true);
-	mGUIContext->getRootWindow()->getChild("InGame/Calendar")->setVisible(true);
-	mGUIContext->getRootWindow()->getChild("InGame/Minimap")->setVisible(true);
+	mGUIContext->getRootWindow()->getChild("Console")->setVisible(true);
+	mGUIContext->getRootWindow()->getChild("Panel")->setVisible(true);
+	mGUIContext->getRootWindow()->getChild("PlayerStats")->setVisible(true);
+	mGUIContext->getRootWindow()->getChild("Calendar")->setVisible(true);
+	mGUIContext->getRootWindow()->getChild("Minimap")->setVisible(true);
 }
 
 void CltCEGUIMgr::ToggleWindow_Inventory()

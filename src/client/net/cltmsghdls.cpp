@@ -192,7 +192,6 @@ MsgType CltMsgHdlJoinReply::getMsgType() const
 void CltMsgHdlJoinReply::handleMsg(MsgBase& baseMsg, Netlink* /* netlink */)
 {
 	MsgJoinReply* msg = dynamic_cast<MsgJoinReply*>(&baseMsg);
-	return;
 
 	if (msg->resultCode == MsgUtils::Errors::SUCCESS) {
 		CltCEGUIInitial::instance().LoadingGame_to_Game();
@@ -202,6 +201,7 @@ void CltMsgHdlJoinReply::handleMsg(MsgBase& baseMsg, Netlink* /* netlink */)
 		msgReply.origin = "Client";
 		msgReply.type = MsgChat::SYSTEM;
 		msgReply.text = "You are now playing in the world";
+		LogNTC("%s", msgReply.text.c_str());
 		CltCEGUIConsole::instance().printMessage(msgReply);
 	} else {
 		string errmsg = StrFmt("Failed to join: %s",
@@ -475,7 +475,6 @@ void CltMsgHdlTimeMinute::handleMsg(MsgBase& baseMsg, Netlink* /* netlink */)
 
 	// update environment in the client viewer
 	CltViewer::instance().setEnvironment(day_rest);
-	return;
 
 	// setting time in the calendar applet
 	string prettyTime = StrFmt("%02dh%02d", hour, minute);

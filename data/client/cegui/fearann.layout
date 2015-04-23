@@ -3,7 +3,6 @@
 <GUILayout version="4">
     <Window name="root" type="DefaultWindow">
 
-	
         <Window name="Background" type="FearannLook/StaticImage">
             <Property name="FrameEnabled" value="False" />
             <Property name="BackgroundEnabled" value="False" />
@@ -700,8 +699,6 @@
             </Window>
 	</Window>
 
-
-	
         <Window name="Console" type="DefaultWindow">
 		<Property name="Size" value="{{0.8,0},{0.25,0}}" />
 		<Property name="Position" value="{{0.20,0},{0.75,0}}" />
@@ -720,19 +717,19 @@
                 <Property name="TabHeight" value="{1,0}" />
                 <Property name="TabTextPadding" value="{0.05,0}" />
 
-		<Window name="TabAll" type="FearannLook/TabButton">
+		<Window name="All" type="FearannLook/TabButton">
 		    <Property name="Text" value="All" />
 		</Window>
-		<Window name="TabSystem" type="FearannLook/TabButton">
+		<Window name="System" type="FearannLook/TabButton">
 		    <Property name="Text" value="System" />
 		</Window>
-		<Window name="TabAction" type="FearannLook/TabButton">
+		<Window name="Action" type="FearannLook/TabButton">
 		    <Property name="Text" value="Actions" />
 		</Window>
-		<Window name="TabChat" type="FearannLook/TabButton">
+		<Window name="Chat" type="FearannLook/TabButton">
 		    <Property name="Text" value="Chat" />
 		</Window>
-		<Window name="TabPM" type="FearannLook/TabButton">
+		<Window name="PM" type="FearannLook/TabButton">
 		    <Property name="Text" value="PM" />
 		</Window>
             </Window>

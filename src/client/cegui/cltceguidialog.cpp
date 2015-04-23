@@ -44,7 +44,6 @@ template <> CltCEGUIDialog* Singleton<CltCEGUIDialog>::INSTANCE = 0;
 CltCEGUIDialog::CltCEGUIDialog()
 {
 	///\todo: replace with popup menu.
-	CEGUI::WindowManager* mWinMgr = &CEGUI::WindowManager::getSingleton();
 	// installing events
 	CEGUI_EVENT("InGame/Dialog",
 		    CEGUI::Window::EventShown,

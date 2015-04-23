@@ -47,15 +47,15 @@ CltCEGUIConsole::CltCEGUIConsole()
 	changeTab(string("All"));
 
 	// installing events
-	CEGUI_EVENT("InGame/Console/Tabs",
+	CEGUI_EVENT("Console/Tabs",
 		    CEGUI::TabControl::EventSelectionChanged,
 		    CltCEGUIConsole::Event_TabSelectionChanged);
 
-	CEGUI_EVENT("InGame/Console/Entrybox",
+	CEGUI_EVENT("Console/Entrybox",
 		    CEGUI::Editbox::EventTextAccepted,
 		    CltCEGUIConsole::Event_EditTextAccepted);
 
-	CEGUI_EVENT("InGame/Console/Entrybox",
+	CEGUI_EVENT("Console/Entrybox",
 		    CEGUI::Window::EventKeyDown,
 		    CltCEGUIConsole::Event_KeyPressed);
 }
@@ -67,32 +67,34 @@ CltCEGUIConsole::~CltCEGUIConsole()
 void CltCEGUIConsole::changeTab(const string& tabName)
 {
 	string tabNameShort(tabName);
-	string baseName("InGame/Console/Tab");
-	tabNameShort.erase(0, baseName.size());
+	string baseName("Console/Tabs/");
+	//tabNameShort.erase(0, baseName.size());
 
 	// sanity check
-	if (tabNameShort != "All"
-	    && tabNameShort != "System"
-	    && tabNameShort != "Action"
-	    && tabNameShort != "Chat"
-	    && tabNameShort != "PM") {
-		LogERR("Tab button in Console window unknown: '%s'", tabName.c_str());
+	if (tabNameShort != "All" &&
+	    tabNameShort != "System" &&
+	    tabNameShort != "Action" &&
+	    tabNameShort != "Chat" &&
+	    tabNameShort != "PM") {
+		LogERR("Tab button in Console window unknown: '%s' ('%s')",
+			tabName.c_str(), tabNameShort.c_str());
 		return;
 	}
 
 	// put the multiline box accordingly with the tab (there's a different
 	// MLBox for each message type)
 	CEGUI::Window* root = CltCEGUIMgr::instance().getGUIContext()->getRootWindow();
-	string screenTabName = StrFmt("InGame/Console/Screen%s", tabNameShort.c_str());
+	string screenTabName = StrFmt("Console/Screen%s", tabNameShort.c_str());
 	CEGUI::Window* screenTabW = root->getChild(screenTabName);
-	string screenName("InGame/Console/Screen");
+	string screenName("Console/Screen");
 	CEGUI::MultiLineEditbox* screenW = dynamic_cast<CEGUI::MultiLineEditbox*>(root->getChild(screenName));
 	screenW->setText(screenTabW->getText());
-	string screenScroll("InGame/Console/Screen__auto_vscrollbar__");
+#if 0 //not sure if this even exists anymore - with 0.8.4 it crashes CEGUI
+	string screenScroll("Console/Screen__auto_vscrollbar__");
 	dynamic_cast<CEGUI::Scrollbar*>(root->getChild(screenScroll))->setScrollPosition(100000.0f);
-
+#endif
 	// un-highlight the selected tab button
-	CEGUI::TabButton* btn = dynamic_cast<CEGUI::TabButton*>(root->getChild(tabName));
+	CEGUI::TabButton* btn = dynamic_cast<CEGUI::TabButton*>(root->getChild(baseName + tabName));
 	btn->setProperty("NormalTextColour", "ffc0c0c0");
 }
 
@@ -100,8 +102,8 @@ void CltCEGUIConsole::printMessage(const MsgChat& msg)
 {
 	// select tabs/screens depending on type, and formatting line
 	string line;
-	string targetScreen = "InGame/Console/Screen";
-	string targetButton = "InGame/Console/Tab";
+	string targetScreen = "Console/Screen";
+	string targetButton = "Console/Tabs/";
 	switch (msg.type)
 	{
 	case MsgChat::SYSTEM:
@@ -139,13 +141,13 @@ void CltCEGUIConsole::printMessage(const MsgChat& msg)
 
 	// add new line to All tab
 	CEGUI::MultiLineEditbox* screenAll = dynamic_cast<CEGUI::MultiLineEditbox*>
-		(root->getChild("InGame/Console/ScreenAll"));
+		(root->getChild("Console/ScreenAll"));
 	text = screenAll->getText().c_str();
 	text += line;
 	screenAll->setText(text);
 
 	// update the text, simulating that tab changed
-	CEGUI::TabControl* tab = dynamic_cast<CEGUI::TabControl*>(root->getChild("InGame/Console/Tabs"));
+	CEGUI::TabControl* tab = dynamic_cast<CEGUI::TabControl*>(root->getChild("Console/Tabs"));
 	string tabName = tab->getTabContentsAtIndex(tab->getSelectedTabIndex())->getName().c_str();
 	changeTab(tabName);
 
@@ -164,7 +166,7 @@ void CltCEGUIConsole::printMessage(const MsgChat& msg)
 bool CltCEGUIConsole::Event_TabSelectionChanged(const CEGUI::EventArgs& e)
 {
 	// find the tab which has been selected
-	CEGUI::TabControl* tab = dynamic_cast<CEGUI::TabControl*>(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("InGame/Console/Tabs"));
+	CEGUI::TabControl* tab = dynamic_cast<CEGUI::TabControl*>(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Console/Tabs"));
 	string tabName = tab->getTabContentsAtIndex(tab->getSelectedTabIndex())->getName().c_str();
 	// call the function to do the real job
 	changeTab(tabName);
@@ -175,7 +177,7 @@ bool CltCEGUIConsole::Event_TabSelectionChanged(const CEGUI::EventArgs& e)
 bool CltCEGUIConsole::Event_KeyPressed(const CEGUI::EventArgs& e)
 {
 	// get the widget
-	CEGUI::Editbox* entry = dynamic_cast<CEGUI::Editbox*>(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("InGame/Console/Entrybox"));
+	CEGUI::Editbox* entry = dynamic_cast<CEGUI::Editbox*>(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Console/Entrybox"));
 	const char* cmd = 0;
 
 	const CEGUI::KeyEventArgs& keyArgs = dynamic_cast<const CEGUI::KeyEventArgs&>(e);
@@ -203,7 +205,7 @@ bool CltCEGUIConsole::Event_KeyPressed(const CEGUI::EventArgs& e)
 
 bool CltCEGUIConsole::Event_EditTextAccepted(const CEGUI::EventArgs& e)
 {
-	CEGUI::Editbox* entry = dynamic_cast<CEGUI::Editbox*>(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("InGame/Console/Entrybox"));
+	CEGUI::Editbox* entry = dynamic_cast<CEGUI::Editbox*>(CltCEGUIMgr::instance().getGUIContext()->getRootWindow()->getChild("Console/Entrybox"));
 
 	// send the text as chat message
 	if (entry->getText().length() == 0) {
